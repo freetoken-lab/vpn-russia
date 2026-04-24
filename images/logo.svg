@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- Shield body -->
+  <path d="M60 8 L100 26 L100 58 C100 82 82 100 60 112 C38 100 20 82 20 58 L20 26 Z"
+        fill="#0e1645" stroke="#a855f7" stroke-width="2"/>
+  <!-- Shield inner glow -->
+  <path d="M60 16 L93 31 L93 58 C93 78 77 94 60 105 C43 94 27 78 27 58 L27 31 Z"
+        fill="none" stroke="rgba(168,85,247,0.3)" stroke-width="1"/>
+  <!-- VPN text / signal arcs -->
+  <path d="M44 54 Q60 40 76 54" stroke="#f97316" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M37 62 Q60 44 83 62" stroke="#f97316" stroke-width="2.5" stroke-linecap="round" fill="none" opacity="0.6"/>
+  <path d="M30 70 Q60 48 90 70" stroke="#f97316" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.3"/>
+  <!-- Center dot -->
+  <circle cx="60" cy="66" r="6" fill="#f97316"/>
+  <circle cx="60" cy="66" r="10" fill="rgba(249,115,22,0.15)"/>
+  <!-- RU badge -->
+  <rect x="44" y="78" width="32" height="14" rx="7" fill="#22c55e" opacity="0.9"/>
+  <text x="60" y="89" text-anchor="middle" font-family="'Syne', sans-serif" font-weight="800" font-size="8" fill="white">РФ</text>
+</svg>
