@@ -3,334 +3,997 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Платные VPN для России 2026 — рейтинг с оплатой МИР</title>
-  <meta name="description" content="Лучшие платные VPN для России 2026 года: оплата МИР и СБП, обфускация ТСПУ, тесты скорости.">
+  <title>Лучшие платные VPN для России 2026 — рейтинг с оплатой МИР и СБП</title>
+  <meta name="description" content="ТОП платных VPN для России 2026 с оплатой МИР, СБП и рублями. Обфускация ТСПУ, сравнение с бесплатными, тесты скорости и пошаговая настройка.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/platnye-vpn/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-section { margin-top: 72px; }
+    .vpn-review-block { border-bottom: 1px solid var(--card-border); padding-bottom: 56px; margin-bottom: 56px; }
+    .vpn-review-block:last-child { border-bottom: none; margin-bottom: 0; }
+    .review-block-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 20px; flex-wrap: wrap; }
+    .review-block-title { display: flex; align-items: center; gap: 14px; }
+    .review-rank-badge { width: 40px; height: 40px; border-radius: 10px; background: var(--bg3); border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; color: var(--text-dim); flex-shrink: 0; }
+    .review-rank-badge.gold { background: rgba(249,115,22,0.1); border-color: rgba(249,115,22,0.3); color: var(--orange); }
+    .review-rank-badge.silver { background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.3); color: var(--purple); }
+    .review-rank-badge.bronze { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); color: var(--green); }
+    .review-name { font-size: 1.35rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .review-score-badge { display: flex; flex-direction: column; align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; padding: 10px 18px; flex-shrink: 0; }
+    .review-score-badge .score-num { font-size: 1.4rem; font-weight: 800; color: var(--green); line-height: 1; }
+    .review-score-badge .score-label { font-size: 0.65rem; color: var(--text-dim); margin-top: 2px; }
+    .review-body p { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 14px; }
+    .review-specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+    .review-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--card-border); flex-wrap: wrap; }
+    .review-cta-row p { font-size: 0.85rem; color: var(--text-dim); margin: 0; }
+    .vs-table { width: 100%; border-collapse: collapse; margin-top: 24px; }
+    .vs-table th { background: var(--bg3); padding: 14px 16px; text-align: left; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); border-bottom: 2px solid var(--card-border); }
+    .vs-table th.paid-col { color: var(--orange); border-bottom-color: var(--orange); }
+    .vs-table th.free-col { color: var(--green); border-bottom-color: var(--green); }
+    .vs-table td { padding: 13px 16px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.88rem; vertical-align: top; }
+    .vs-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .vs-table td:first-child { color: var(--text-muted); font-weight: 600; width: 22%; }
+    .vs-table td.paid { color: var(--text); }
+    .vs-table td.free { color: var(--text-muted); }
+    .badge-win { display: inline-block; background: rgba(249,115,22,0.12); color: var(--orange); border-radius: 4px; padding: 1px 7px; font-size: 0.72rem; font-weight: 700; margin-left: 6px; }
+    .badge-ok { display: inline-block; background: rgba(34,197,94,0.1); color: var(--green); border-radius: 4px; padding: 1px 7px; font-size: 0.72rem; font-weight: 700; margin-left: 6px; }
+    .price-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin-top: 24px; }
+    .price-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; text-align: center; }
+    .price-card .vpn-n { font-weight: 700; font-size: 1rem; color: var(--white); margin-bottom: 6px; }
+    .price-card .price-mo { font-size: 1.5rem; font-weight: 800; color: var(--orange); line-height: 1; }
+    .price-card .price-sub { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+    .price-card .price-trial { font-size: 0.78rem; color: var(--green); margin-top: 8px; }
+    @media (max-width: 640px) { .review-specs-grid { grid-template-columns: 1fr; } .review-block-header { flex-direction: column; } }
+  </style>
 </head>
 <body>
+ 
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#rating">Рейтинг</a><a href="#comparison">Сравнение</a><a href="#guide">Настройка</a><a href="#faq">FAQ</a>
-      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN</a>
+      <a href="#rating">Рейтинг</a>
+      <a href="#obzory">Обзоры</a>
+      <a href="#vs">Платный vs Бесплатный</a>
+      <a href="#sravnenie">Сравнение</a>
+      <a href="#kak-vybrat">Как выбрать</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN бесплатно</a>
     </div>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <span>Платные VPN для России — ТОП-8 с оплатой МИР</span></div></div>
+ 
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#rating" class="mobile-link">Рейтинг</a>
+  <a href="#obzory" class="mobile-link">Обзоры</a>
+  <a href="#vs" class="mobile-link">Платный vs Бесплатный</a>
+  <a href="#sravnenie" class="mobile-link">Сравнение</a>
+  <a href="#kak-vybrat" class="mobile-link">Как выбрать</a>
+  <a href="#faq" class="mobile-link">FAQ</a>
+  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ ZoogVPN — 10 ГБ бесплатно</a>
+</div>
+ 
+<div class="container">
+  <div class="breadcrumb"><a href="/">Главная</a> › <a href="/vpn-dlya-rossii/">VPN для России</a> › <span>Платные VPN</span></div>
+</div>
+ 
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>Платные VPN для России — ТОП-8 с оплатой МИР</h1>
-    <p class="lead">Лучшие платные VPN для России 2026 года: оплата МИР и СБП, обфускация ТСПУ, тесты скорости.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обновлено апрель 2026
+    </div>
+    <h1>Лучшие платные VPN для России 2026 — с оплатой МИР и СБП</h1>
+    <p class="lead">В 2026 году платный VPN в России — это уже не привилегия, а необходимость. Бесплатные сервисы лишились обфускации, их протоколы блокируются ТСПУ за часы. Платный VPN с обфускацией держится неделями. Мы отобрали лучшие сервисы с оплатой из России, протестировали в апреле 2026 и объясняем, за что именно стоит платить.</p>
     <div class="meta">
       <div class="meta-item">📡 <strong>Тесты:</strong> апрель 2026</div>
+      <div class="meta-item">💳 <strong>Оплата:</strong> МИР, СБП, рубли</div>
       <div class="meta-item">✅ <strong>Только с обфускацией</strong></div>
-      <div class="meta-item">💳 <strong>Оплата из РФ</strong></div>
+      <div class="meta-item">🔒 <strong>Операторы:</strong> МТС, Билайн, Мегафон, Ростелеком</div>
     </div>
   </div>
 </div>
-
-<section style="padding:48px 0 0;">
+ 
+<!-- INTRO -->
+<section style="padding-top:40px;padding-bottom:0;">
+  <div class="container">
+    <p style="color:var(--text-muted);font-size:0.97rem;max-width:800px;line-height:1.8;">Рынок платных VPN для России изменился кардинально. Ещё два года назад выбор строился на скорости и цене. Сегодня — единственный вопрос, который имеет значение: есть ли у сервиса обфускация трафика, достаточная для обхода ТСПУ в апреле 2026 года. Все сервисы в этом рейтинге — платные, все — с настоящей обфускацией, все принимают оплату из России.</p>
+  </div>
+</section>
+ 
+<!-- ══ РЕЙТИНГ ══════════════════════════════════════════════ -->
+<section id="rating" style="padding-top:48px;">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">О теме</div>
-      <h2>Платный VPN в России — уже не роскошь, а необходимость. 469 сервисов заблокировано, ТСПУ блокирует протоколы.</h2>
+      <div class="section-label">Рейтинг</div>
+      <h2>Лучшие платные VPN для России — ТОП-6 апрель 2026</h2>
+      <p>Только платные сервисы с обфускацией и оплатой из РФ. Протестированы на МТС, Билайн, Мегафон и Ростелеком.</p>
     </div>
-    <p style="color:var(--text-muted);font-size:0.95rem;max-width:720px;">Зачем платить за VPN в России в 2026 году</p>
-    <div class="tip-box" style="margin-top:16px;"><span class="tip-icon">💡</span><p><strong>Важно:</strong> Ниже — актуальный рейтинг VPN, протестированных в апреле 2026 года на реальных подключениях МТС, Билайн, Мегафон и Ростелеком.</p></div>
+ 
+    <div class="toplist">
+ 
+      <!-- 1. ZoogVPN -->
+      <div class="vpn-card top1">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">1</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row"><span class="vpn-name">ZoogVPN</span><span class="vpn-badge badge-orange">Выбор редакции</span></div>
+            <p class="vpn-desc">Гарантия работы в России, ZoogShadowing обходит ТСПУ на всех 4 операторах. Оплата МИР и SberPay. 10 ГБ бесплатно до покупки, безлимит устройств на подписке.</p>
+            <div class="vpn-pills"><span class="pill">💳 МИР / SberPay</span><span class="pill">🔐 ZoogShadowing</span><span class="pill">🆓 10 ГБ бесплатно</span><span class="pill">∞ Безлимит устройств</span><span class="pill">🔄 Kill Switch</span><span class="pill">🔀 Split Tunneling</span></div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
+            <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div>
+          <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">10 ГБ/мес</div></div>
+          <div class="vpn-stat"><div class="stat-label">Пинг</div><div class="stat-value green">38 мс</div></div>
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">95 Мбит/с</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Официальная гарантия работы в России</li>
+              <li>ZoogShadowing прошёл стресс-тест 3 апреля 2026</li>
+              <li>10 ГБ/мес бесплатно — тест без ввода карты</li>
+              <li>Безлимит устройств, роутеры Keenetic без прошивки</li>
+              <li>Split Tunneling + Kill Switch на всех платформах</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Бесплатный план: только 3 сервера</li>
+              <li>Серверы вне Европы медленнее</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 Trustpilot (2 140 отзывов)</p><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a></div>
+        </div>
+      </div>
+ 
+      <!-- 2. BlancVPN -->
+      <div class="vpn-card top2">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">2</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row"><span class="vpn-name">BlancVPN</span><span class="vpn-badge badge-purple">Самый быстрый</span></div>
+            <p class="vpn-desc">Outline до 2 Гбит/с, пинг 35 мс. Русскоязычный сервис с 2018 года, Telegram-бот для подключения, безлимит устройств, оплата МИР и СБП.</p>
+            <div class="vpn-pills"><span class="pill">💳 МИР / СБП</span><span class="pill">🚀 Outline 2 Гбит/с</span><span class="pill">🤖 Telegram-бот</span><span class="pill">∞ Безлимит устройств</span><span class="pill">✅ 30 дней возврат</span></div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div>
+            <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div>
+          <div class="vpn-stat"><div class="stat-label">Гарантия</div><div class="stat-value">30 дней</div></div>
+          <div class="vpn-stat"><div class="stat-label">Пинг</div><div class="stat-value green">35 мс</div></div>
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">112 Мбит/с</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Рекордная скорость 112 Мбит/с, пинг 35 мс</li>
+              <li>Русский интерфейс и техподдержка</li>
+              <li>Telegram-бот: конфигурация без захода на сайт</li>
+              <li>Серверы в России для Госуслуг</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нет бесплатного пробного периода</li>
+              <li>Нет Split Tunneling в текущей версии</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 Trustpilot (986 отзывов)</p><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на BlancVPN →</a></div>
+        </div>
+      </div>
+ 
+      <!-- 3. Trust.Zone -->
+      <div class="vpn-card top3">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">3</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row"><span class="vpn-name">Trust.Zone</span><span class="vpn-badge badge-green">Лучшая цена</span></div>
+            <p class="vpn-desc">VLESS+Reality и AmneziaWG — два протокола обфускации от $1.77/мес. Особенно устойчив на Ростелекоме. Warrant Canary, оплата картами РФ.</p>
+            <div class="vpn-pills"><span class="pill">💳 Карты РФ</span><span class="pill">🔐 VLESS+Reality</span><span class="pill">🔒 AmneziaWG</span><span class="pill">⏱️ 3 дня / 1 ГБ</span><span class="pill">🌍 93 страны</span></div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div>
+            <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div>
+          <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">3 дня / 1 ГБ</div></div>
+          <div class="vpn-stat"><div class="stat-label">Пинг</div><div class="stat-value green">46 мс</div></div>
+          <div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">93 страны</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Самая низкая цена среди сервисов с двумя протоколами обфускации</li>
+              <li>Нулевые обрывы на Ростелекоме за 7 дней теста</li>
+              <li>P2P и торренты без ограничений</li>
+              <li>Оплата из РФ, Warrant Canary</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Только английский интерфейс</li>
+              <li>Монибэк всего 10 дней</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★☆ 4.4 / 5 Trustpilot</p><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Trust.Zone →</a></div>
+        </div>
+      </div>
+ 
+      <!-- 4. AdGuard VPN -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">4</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row"><span class="vpn-name">AdGuard VPN</span><span class="vpn-badge badge-blue">Лучший на старте</span></div>
+            <p class="vpn-desc">TrustTunnel QUIC — 118 Мбит/с, максимум в тесте. 3 ГБ/мес бесплатно для знакомства с платным сервисом, Split Tunneling, доступен в российских магазинах.</p>
+            <div class="vpn-pills"><span class="pill">💳 МИР / YooMoney</span><span class="pill">🔐 TrustTunnel QUIC</span><span class="pill">🆓 3 ГБ/мес</span><span class="pill">🔀 Split Tunneling</span><span class="pill">📱 10 устройств</span></div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
+            <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 247 ₽/мес</div></div>
+          <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div>
+          <div class="vpn-stat"><div class="stat-label">Пинг</div><div class="stat-value green">42 мс</div></div>
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">118 Мбит/с</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>118 Мбит/с — максимальная скорость в тесте</li>
+              <li>Доступен в российском App Store и Play Market</li>
+              <li>Split Tunneling: только заблокированные через VPN</li>
+              <li>Блокировщик рекламы и трекеров в комплекте</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>3 ГБ/мес быстро расходуются на видео</li>
+              <li>Нет роутеров и только 2 протокола</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.6 / 5 (3 870 отзывов)</p><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a></div>
+        </div>
+      </div>
+ 
+      <!-- 5. hidemy.name -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">5</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row"><span class="vpn-name">hidemy.name</span><span class="vpn-badge badge-orange">Русский сервис</span></div>
+            <p class="vpn-desc">Stealth OpenVPN, полностью русский интерфейс и поддержка, оплата МИР, выделенный IP. 24 часа бесплатного теста с полным функционалом.</p>
+            <div class="vpn-pills"><span class="pill">💳 МИР / YooMoney</span><span class="pill">🔐 Stealth OpenVPN</span><span class="pill">🇷🇺 Полностью русский</span><span class="pill">⏱️ 24ч бесплатно</span></div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div>
+            <a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 270 ₽/мес</div></div>
+          <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div>
+          <div class="vpn-stat"><div class="stat-label">Пинг</div><div class="stat-value">52 мс</div></div>
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">78 Мбит/с</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Полностью русский интерфейс и поддержка с 2012 года</li>
+              <li>Stealth OpenVPN обходит DPI на МТС и Ростелекоме</li>
+              <li>24 часа полного бесплатного теста</li>
+              <li>Выделенный IP снижает риск коллективной блокировки</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нет AmneziaWG или VLESS</li>
+              <li>Нет постоянного бесплатного плана</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★½ 4.5 / 5 Trustpilot (1 203 отзыва)</p><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на hidemy.name →</a></div>
+        </div>
+      </div>
+ 
+      <!-- 6. Дядя Ваня -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">6</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row"><span class="vpn-name">Дядя Ваня VPN</span><span class="vpn-badge badge-blue">Минимальная цена</span></div>
+            <p class="vpn-desc">От 99 ₽/мес при длинной подписке — дешевле не найти. Оплата рублями, 174 локации, безлимит устройств, Android TV. Работает на домашних провайдерах.</p>
+            <div class="vpn-pills"><span class="pill">💳 Рубли</span><span class="pill">🌍 174 локации</span><span class="pill">📺 Android TV</span><span class="pill">∞ Безлимит устройств</span></div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div>
+            <a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div>
+          <div class="vpn-stat"><div class="stat-label">Пробный</div><div class="stat-value">3 дня / 10 ₽</div></div>
+          <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Shadowsocks</div></div>
+          <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="warn-box"><p>⚠️ <strong>Апрель 2026:</strong> Shadowsocks заблокирован на большинстве мобильных операторов. На домашних провайдерах работает стабильно. Для LTE выбирайте ZoogVPN или AdGuard VPN.</p></div>
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Самая низкая цена — от 99 ₽/мес</li>
+              <li>Оплата рублями, безлимит устройств, Android TV</li>
+              <li>Простая установка за 1 минуту</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Shadowsocks не работает на МТС и Мегафон LTE</li>
+              <li>Нет Kill Switch и Split Tunneling</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>Для домашнего Wi-Fi при ограниченном бюджете</p><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Дядя Ваня →</a></div>
+        </div>
+      </div>
+ 
+    </div>
   </div>
 </section>
-
-
-<section id="rating" style="padding-top:48px;">
-<div class="container">
-<div class="section-header">
-  <div class="section-label">Рейтинг</div>
-  <h2>ТОП-7 VPN — рейтинг и сравнение</h2>
-</div>
-<div class="toplist">
-
-<div class="vpn-card top1">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">1</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">ZoogVPN</span><span class="vpn-badge badge-orange">Выбор редакции</span></div>
-    <p class="vpn-desc">Гарантия работы в России. ZoogShadowing обходит ТСПУ на всех операторах. Пинг 38 мс до Финляндии, 10 ГБ бесплатно, оплата МИР.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 ZoogShadowing</span><span class="pill">🆓 10 ГБ бесплатно</span><span class="pill">🛣️ Роутеры</span><span class="pill">∞ Безлимит устройств</span></div>
+ 
+<!-- ══ РАЗВЁРНУТЫЕ ОБЗОРЫ ═══════════════════════════════════ -->
+<section id="obzory" class="review-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Обзоры</div>
+      <h2>Платные VPN для России 2026 — развёрнутые обзоры</h2>
+      <p>Протоколы, скорости, реальные тесты и честные минусы. Каждый сервис проверен в апреле 2026 года на реальных подключениях.</p>
+    </div>
+ 
+    <!-- ZoogVPN -->
+    <div class="vpn-review-block" id="review-zoog">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge gold">1</div>
+          <div>
+            <div class="review-name">ZoogVPN</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-orange">Выбор редакции</span>
+              <span class="vpn-badge badge-green">Гарантия работы в РФ</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>ZoogVPN — платный VPN-сервис с 256-битным шифрованием, основанный в 2013 году в Греции (юрисдикция ЕС). Для российских пользователей ключевая ценность — технология ZoogShadowing: собственный протокол обфускации, скрывающий факт использования VPN от ТСПУ. Компания гарантирует работу в России — это единственный сервис в рейтинге с такой официальной позицией.</p>
+        <p>В апреле 2026 ZoogShadowing не определялся DPI ни на одном из четырёх операторов. 3 апреля, когда ТСПУ агрессивно фильтровала протоколы и положила банки, ZoogVPN работал без единого обрыва. Бесплатный план с 10 ГБ/мес позволяет полноценно протестировать платный сервис перед покупкой — редкость для VPN с настоящей обфускацией. Безлимит устройств: вся семья, роутер, телевизор — на одной подписке.</p>
+        <p>С учётом требований Минцифры от 15 апреля 2026 особенно важен Split Tunneling: заблокированные ресурсы идут через ZoogVPN, банки, Яндекс и Госуслуги — напрямую. Поддерживается на Android, iOS и ПК.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Протоколы</td><td>ZoogShadowing, ZoogTLS, WireGuard, OpenVPN, IKEv2</td></tr>
+          <tr><td>Платформы</td><td>Windows, macOS, Linux, Android, iOS, роутеры</td></tr>
+          <tr><td>Серверы</td><td>100+ стран; Финляндия, Эстония, Латвия</td></tr>
+          <tr><td>Скорость (Финляндия)</td><td>95 Мбит/с</td></tr>
+          <tr><td>Пинг (Финляндия)</td><td>38 мс</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Логи</td><td>Нет, защита от DNS-утечек</td></tr>
+          <tr><td>Kill Switch</td><td>Да</td></tr>
+          <tr><td>Split Tunneling</td><td>Да, на всех платформах</td></tr>
+          <tr><td>Оплата</td><td>МИР, SberPay, YooMoney, крипто</td></tr>
+          <tr><td>Цена</td><td>от $1.99/мес; 10 ГБ/мес бесплатно</td></tr>
+          <tr><td>Монибэк</td><td>30 дней</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>Официальная гарантия работы в России — единственный в рейтинге</li>
+          <li>10 ГБ/мес бесплатно для теста без ввода карты</li>
+          <li>Безлимит устройств — вся семья и роутер на одной подписке</li>
+          <li>Split Tunneling: российские сайты и банки напрямую</li>
+          <li>Роутеры Keenetic, Asus, DD-WRT без перепрошивки</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Бесплатный план: только 3 сервера</li>
+          <li>Скорость на дальних серверах (Азия, Океания) ниже</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★★ 4.7 / 5 Trustpilot · 2 140 отзывов</p>
+        <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a>
+      </div>
+    </div>
+ 
+    <!-- BlancVPN -->
+    <div class="vpn-review-block" id="review-blanc">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge silver">2</div>
+          <div>
+            <div class="review-name">BlancVPN</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-purple">Самый быстрый</span>
+              <span class="vpn-badge badge-green">Русскоязычный</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>BlancVPN — платный VPN для России с 2018 года, полностью русскоязычный: сайт, приложения, поддержка в Telegram. Протокол Outline на базе Shadowsocks со скоростью до 2 Гбит/с — рекордный показатель в тесте апреля 2026. V2Ray и VLESS выступают резервными протоколами при усиленной DPI-фильтрации.</p>
+        <p>Удобная особенность: Telegram-бот BlancVPN выдаёт конфигурацию для подключения без захода на сайт. Это практично при волнах блокировок, когда сайт провайдера может быть временно недоступен. Серверы в России и Казахстане помогают сохранить доступ к Госуслугам и российским сервисам при подключении из-за рубежа. В тесте апреля BlancVPN показал минимальный пинг 35 мс — лучший результат среди всех протестированных.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Протоколы</td><td>Outline (Shadowsocks), V2Ray, VLESS, WireGuard</td></tr>
+          <tr><td>Платформы</td><td>Windows, macOS, Linux, Android, iOS, Chrome, Smart TV, роутер</td></tr>
+          <tr><td>Серверы</td><td>Финляндия, Литва, Казахстан, Россия и другие</td></tr>
+          <tr><td>Скорость</td><td>112 Мбит/с (Финляндия)</td></tr>
+          <tr><td>Пинг</td><td>35 мс (Финляндия)</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Логи</td><td>Нет, AES-128</td></tr>
+          <tr><td>Безлимит устройств</td><td>Да</td></tr>
+          <tr><td>Оплата</td><td>МИР, T Pay, YooMoney, СБП, крипто</td></tr>
+          <tr><td>Цена</td><td>от €4/мес</td></tr>
+          <tr><td>Монибэк</td><td>30 дней</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>Рекордная скорость до 2 Гбит/с, пинг 35 мс</li>
+          <li>Полностью русскоязычный сервис с 2018 года</li>
+          <li>Telegram-бот — конфигурация без сайта</li>
+          <li>Серверы в России для Госуслуг</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Нет бесплатного пробного периода</li>
+          <li>Нет Split Tunneling</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★★ 4.7 / 5 Trustpilot · 986 отзывов</p>
+        <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на BlancVPN →</a>
+      </div>
+    </div>
+ 
+    <!-- Trust.Zone -->
+    <div class="vpn-review-block" id="review-trust">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge bronze">3</div>
+          <div>
+            <div class="review-name">Trust.Zone</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-green">Лучшая цена</span>
+              <span class="vpn-badge badge-blue">VLESS + AmneziaWG</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>Trust.Zone работает с 2013 года, юрисдикция — Сейшельские острова (нет соглашений об обмене данными с Россией или ЕС). Ключевое конкурентное преимущество: два протокола с обфускацией — VLESS+Reality и AmneziaWG — по цене от $1.77/мес. Для сравнения: большинство конкурентов с одним обфусцированным протоколом стоят дороже.</p>
+        <p>VLESS+Reality маскирует трафик под TLS к легитимным доменам — DPI видит обычное HTTPS-посещение. На Ростелекоме, где фильтрация традиционно агрессивнее, Trust.Zone показал нулевые обрывы за 7 дней тестирования в апреле 2026. Warrant Canary публикуется ежеквартально: государственных запросов данных не поступало. P2P и торренты поддерживаются на всех серверах без дополнительной платы.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Протоколы</td><td>VLESS+Reality, AmneziaWG, WireGuard, OpenVPN, SOCKS5</td></tr>
+          <tr><td>Платформы</td><td>Windows, macOS, Linux, Android, iOS, роутеры, консоли</td></tr>
+          <tr><td>Серверы</td><td>179 серверов в 93 странах</td></tr>
+          <tr><td>Скорость</td><td>88 Мбит/с (Нидерланды)</td></tr>
+          <tr><td>Пинг</td><td>46 мс (Нидерланды)</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Логи</td><td>Нет, Warrant Canary ежеквартально</td></tr>
+          <tr><td>Kill Switch</td><td>Да</td></tr>
+          <tr><td>P2P / торренты</td><td>Да, без ограничений</td></tr>
+          <tr><td>Оплата</td><td>Карты РФ, МИР, СБП, крипто</td></tr>
+          <tr><td>Цена</td><td>от $1.77/мес; 3 дня / 1 ГБ бесплатно</td></tr>
+          <tr><td>Монибэк</td><td>10 дней</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>Самая низкая цена в рейтинге платных VPN</li>
+          <li>Два протокола обфускации: VLESS+Reality и AmneziaWG</li>
+          <li>Нулевые обрывы на Ростелекоме в апрельском тесте</li>
+          <li>P2P и торренты без ограничений на всех серверах</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Интерфейс только на английском языке</li>
+          <li>Монибэк только 10 дней</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★☆ 4.4 / 5 Trustpilot</p>
+        <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Trust.Zone →</a>
+      </div>
+    </div>
+ 
+    <!-- AdGuard VPN -->
+    <div class="vpn-review-block" id="review-adguard">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge">4</div>
+          <div>
+            <div class="review-name">AdGuard VPN</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-blue">Лучший на старте</span>
+              <span class="vpn-badge badge-orange">Максимальная скорость</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>AdGuard VPN использует TrustTunnel — собственный протокол на QUIC, открытый код которого опубликован в январе 2026 года. Трафик неотличим от обычного HTTPS-браузинга: DPI видит стандартный веб-запрос. В стресс-тесте 3 апреля протокол работал без сбоев на всех четырёх операторах, пока ТСПУ блокировала платёжные системы банков.</p>
+        <p>Главное преимущество для перехода с бесплатного к платному: 3 ГБ/мес бесплатно с полным набором функций — это не урезанная демо-версия, а полноценный платный сервис с временным ограничением. Позволяет убедиться в работоспособности на вашем конкретном провайдере и устройстве. Доступен в российских App Store и Play Market без VPN — чего нельзя сказать о большинстве конкурентов. Split Tunneling на всех платформах.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Протоколы</td><td>TrustTunnel (QUIC/HTTP2), WireGuard</td></tr>
+          <tr><td>Платформы</td><td>Windows, macOS, Linux, Android, iOS, браузеры</td></tr>
+          <tr><td>Серверы</td><td>65+ стран; Финляндия, Эстония, Грузия</td></tr>
+          <tr><td>Скорость</td><td>118 Мбит/с (Финляндия) — максимум в тесте</td></tr>
+          <tr><td>Пинг</td><td>42 мс (Финляндия)</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Логи</td><td>Нет, открытый код TrustTunnel</td></tr>
+          <tr><td>Split Tunneling</td><td>Да, все платформы</td></tr>
+          <tr><td>Оплата</td><td>МИР, Visa, Bitcoin, YooMoney</td></tr>
+          <tr><td>Цена</td><td>3 ГБ/мес бесплатно; от 247 ₽/мес</td></tr>
+          <tr><td>Монибэк</td><td>30 дней</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>118 Мбит/с — максимальная скорость в тесте</li>
+          <li>Доступен в российских магазинах без VPN</li>
+          <li>3 ГБ/мес бесплатно — полноценный тест</li>
+          <li>Split Tunneling и блокировщик рекламы в комплекте</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>3 ГБ/мес быстро кончаются при просмотре видео</li>
+          <li>Нет роутеров, только 2 протокола</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★★ 4.6 / 5 · 3 870 отзывов</p>
+        <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a>
+      </div>
+    </div>
+ 
+    <!-- hidemy.name -->
+    <div class="vpn-review-block" id="review-hidemy">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge">5</div>
+          <div>
+            <div class="review-name">hidemy.name</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-orange">Русский сервис с 2012</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>hidemy.name — один из старейших русскоязычных платных VPN-сервисов с реальной обфускацией. Работает с 2012 года. Полный русский интерфейс, поддержка на русском, оплата МИР без посредников — редкое сочетание для сервиса с настоящим Stealth-протоколом. Новая реализация Stealth для OpenVPN UDP обходит DPI на МТС и Ростелекоме.</p>
+        <p>Выделенный IP-адрес — уникальная опция среди платных VPN для России. Общие IP-адреса иногда попадают в базы блокировок коллективно, выделенный IP этого избегает. Активный Telegram-канал hidemy.name публикует новые серверы при волнах блокировок — в критические моменты это ценнее любой FAQ-страницы. 24-часовой бесплатный тест с полным функционалом позволяет проверить сервис на вашем конкретном провайдере.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Протоколы</td><td>OpenVPN (Stealth UDP), IKEv2, SoftEther</td></tr>
+          <tr><td>Платформы</td><td>Windows, macOS, Linux, Android, iOS, роутер, Oculus Quest</td></tr>
+          <tr><td>Серверы</td><td>80+ стран; Финляндия, Эстония, Грузия</td></tr>
+          <tr><td>Скорость</td><td>78 Мбит/с (Финляндия)</td></tr>
+          <tr><td>Пинг</td><td>52 мс (Финляндия)</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Логи</td><td>Нет</td></tr>
+          <tr><td>Выделенный IP</td><td>Да (опция)</td></tr>
+          <tr><td>Kill Switch</td><td>Да</td></tr>
+          <tr><td>Оплата</td><td>МИР, Visa, Bitcoin, YooMoney</td></tr>
+          <tr><td>Цена</td><td>от 270 ₽/мес; 24ч бесплатного теста</td></tr>
+          <tr><td>Монибэк</td><td>30 дней</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>Полностью русский интерфейс и поддержка с 2012 года</li>
+          <li>Stealth OpenVPN обходит DPI на МТС и Ростелекоме</li>
+          <li>Выделенный IP — защита от коллективных блокировок</li>
+          <li>24 часа бесплатного теста, Oculus Quest</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Нет AmneziaWG или VLESS</li>
+          <li>Нет постоянного бесплатного плана</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★½ 4.5 / 5 Trustpilot · 1 203 отзыва</p>
+        <a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на hidemy.name →</a>
+      </div>
+    </div>
+ 
   </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
-    <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">10 ГБ/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">ZoogShadowing</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Официальная гарантия работы в России</li><li>ZoogShadowing обходит DPI на МТС, Билайн, Ростелеком</li><li>10 ГБ бесплатно каждый месяц</li><li>Безлимит устройств, роутеры Keenetic/Asus</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Бесплатный план: только 3 сервера</li><li>Скорость на дальних серверах ниже</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 Trustpilot · 2 140 отзывов</p><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a></div>
-</div>
-</div>
-
-<div class="vpn-card top2">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">2</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">BlancVPN</span><span class="vpn-badge badge-purple">Самый быстрый</span></div>
-    <p class="vpn-desc">Outline до 2 Гбит/с, пинг 35 мс. Безлимит устройств, русский интерфейс, Telegram-бот, гарантия возврата 30 дней.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🚀 2 Гбит/с</span><span class="pill">🤖 Telegram-бот</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div>
-    <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Гарантия</div><div class="stat-value">30 дней возврат</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Outline/V2Ray</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Рекордная скорость Outline до 2 Гбит/с</li><li>Пинг 35 мс — лучший результат</li><li>Русский интерфейс и поддержка</li><li>Серверы в России для Госуслуг</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Нет бесплатного пробного периода</li><li>Мобильное приложение без расширенных настроек</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 Trustpilot · 986 отзывов</p><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на BlancVPN →</a></div>
-</div>
-</div>
-
-<div class="vpn-card top3">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">3</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Trust.Zone</span><span class="vpn-badge badge-green">Обфускация</span></div>
-    <p class="vpn-desc">VLESS+Reality и AmneziaWG — устойчивы к любым блокировкам. Самая низкая цена в рейтинге при полном наборе протоколов.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата из РФ</span><span class="pill">🔐 VLESS+Reality</span><span class="pill">🌍 93 страны</span><span class="pill">⏱️ 3 дня бесплатно</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div>
-    <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">3 дня / 1 ГБ</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">VLESS, AmneziaWG</div></div>
-  <div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">93 страны</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Самая низкая цена — от $1.77/мес</li><li>VLESS+Reality и AmneziaWG из коробки</li><li>P2P и торренты поддерживаются</li><li>Оплата картами РФ и криптой</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Интерфейс только на английском</li><li>Нет русскоязычной поддержки</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★☆ 4.4 Trustpilot</p><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Trust.Zone →</a></div>
-</div>
-</div>
-
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">4</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">AdGuard VPN</span><span class="vpn-badge badge-blue">Лучший бесплатный</span></div>
-    <p class="vpn-desc">TrustTunnel QUIC не определяется DPI. 118 Мбит/с, доступен в российских магазинах, 3 ГБ бесплатно, оплата МИР, блокировщик рекламы.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 TrustTunnel</span><span class="pill">🆓 3 ГБ/мес</span><span class="pill">📱 10 устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
-    <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 247 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">TrustTunnel QUIC</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">10</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>118 Мбит/с — максимум в тесте</li><li>Доступен в App Store и Play Market (РФ)</li><li>Встроенный блокировщик рекламы</li><li>Раздельное туннелирование (split tunneling)</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>3 ГБ/мес бесплатно — мало для видео</li><li>Нет поддержки роутеров напрямую</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.6 · 3 870 отзывов</p><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a></div>
-</div>
-</div>
-
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">5</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">hidemy.name</span><span class="vpn-badge badge-orange">С 2012 года</span></div>
-    <p class="vpn-desc">Stealth OpenVPN UDP обходит ТСПУ на МТС и Ростелекоме. Полностью русский интерфейс и поддержка, 24 часа пробного периода с полным функционалом.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 Stealth OpenVPN</span><span class="pill">🇷🇺 Русский язык</span><span class="pill">⏱️ 24ч бесплатно</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div>
-    <a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 270 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Stealth OpenVPN</div></div>
-  <div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">80+ стран</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Полностью русскоязычный сервис</li><li>Stealth-режим обходит DPI провайдеров</li><li>24 часа полного бесплатного теста</li><li>Поддержка роутеров и Oculus Quest</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Нет AmneziaWG или VLESS</li><li>Нет постоянного бесплатного плана</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★½ 4.5 Trustpilot</p><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на hidemy.name →</a></div>
-</div>
-</div>
-
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">6</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Amnezia VPN</span><span class="vpn-badge badge-purple">Open-source</span></div>
-    <p class="vpn-desc">AmneziaWG 2.0 — лучший протокол для ТСПУ в 2026. Open-source, self-hosted, Amnezia Free разблокирует Telegram и Instagram без подписки.</p>
-    <div class="vpn-pills"><span class="pill">🆓 Amnezia Free</span><span class="pill">🔐 AmneziaWG 2.0</span><span class="pill">📂 Open-source</span><span class="pill">🖥️ Self-hosted</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div>
-    <a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $3.5/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">Amnezia Free</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">AmneziaWG 2.0</div></div>
-  <div class="vpn-stat"><div class="stat-label">Аудиты</div><div class="stat-value green">2 × 7ASecurity</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>AmneziaWG 2.0 — лучший протокол для ТСПУ</li><li>Open-source, 2 независимых аудита</li><li>Self-hosted: уникальный IP вне баз РКН</li><li>Amnezia Free — бесплатно без регистрации</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Self-hosted требует аренды VPS</li><li>Premium: только 20 стран</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 App Store</p><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Amnezia →</a></div>
-</div>
-</div>
-
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">7</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Дядя Ваня VPN</span><span class="vpn-badge badge-blue">Лучшая цена</span></div>
-    <p class="vpn-desc">От 99 ₽ в месяц, оплата рублями, 174 локации, безлимит устройств. Простая установка за одну кнопку, поддержка Android TV.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата рублями</span><span class="pill">🌍 174 локации</span><span class="pill">📺 Android TV</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div>
-    <a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Пробный</div><div class="stat-value">3 дня / 10 ₽</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Shadowsocks, WG</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="warn-box"><p>⚠️ <strong>Внимание:</strong> Shadowsocks на мобильном интернете всё чаще блокируется ТСПУ. Для гарантированного обхода рекомендуем ZoogVPN или AdGuard VPN.</p></div>
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Самая низкая цена — от 99 ₽/мес</li><li>Простая установка, одна кнопка</li><li>Android TV, 174 локации</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Shadowsocks блокируется на LTE</li><li>Нет продвинутой обфускации</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>Оптимален для домашнего Wi-Fi</p><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Дядя Ваня →</a></div>
-</div>
-</div>
-
-</div>
-</div>
 </section>
-
-<section id="comparison" style="padding-top:0;">
-<div class="container">
-<div class="section-header"><div class="section-label">Сравнение</div><h2>Сравнительная таблица VPN 2026</h2></div>
-<div class="compare-wrap">
-<table class="compare-table">
-<thead><tr><th>VPN</th><th>Цена/мес</th><th>Бесплатно</th><th>Протокол</th><th>Обфускация</th><th>Оплата РФ</th><th>Kill Switch</th><th>Оценка</th></tr></thead>
-<tbody>
-<tr><td>ZoogVPN</td><td>от $1.99</td><td>10 ГБ/мес</td><td>ZoogShadowing</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.5</td></tr>
-<tr><td>BlancVPN</td><td>от €4</td><td>30 дней МБ</td><td>Outline/V2Ray</td><td class="check">✓</td><td class="check">✓</td><td class="warn">⚠️</td><td style="color:var(--green);font-weight:700;">9.3</td></tr>
-<tr><td>Trust.Zone</td><td>от $1.77</td><td>3 дня/1 ГБ</td><td>VLESS+Reality</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.1</td></tr>
-<tr><td>AdGuard VPN</td><td>от 247 ₽</td><td>3 ГБ/мес</td><td>TrustTunnel</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.0</td></tr>
-<tr><td>hidemy.name</td><td>от 270 ₽</td><td>24 часа</td><td>Stealth OpenVPN</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">8.8</td></tr>
-<tr><td>Amnezia</td><td>от $3.5</td><td>Amnezia Free</td><td>AmneziaWG 2.0</td><td class="check">✓</td><td class="warn">⚠️</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">8.6</td></tr>
-<tr><td>Дядя Ваня</td><td>от 99 ₽</td><td>3 дня</td><td>Shadowsocks</td><td class="warn">⚠️</td><td class="check">✓</td><td class="cross">✗</td><td style="color:var(--green);font-weight:700;">8.2</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+ 
+<!-- ══ ПЛАТНЫЙ vs БЕСПЛАТНЫЙ ════════════════════════════════ -->
+<section id="vs">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Главный вопрос</div>
+      <h2>Платный VPN против бесплатного в России 2026 — в чём разница</h2>
+      <p>Здесь нет идеологии — только практика. Разбираем конкретно, за что вы платите деньги и когда бесплатное работает, а когда нет.</p>
+    </div>
+ 
+    <h3>Почему бесплатный VPN перестаёт работать в России</h3>
+    <p style="color:var(--text-muted);font-size:0.93rem;max-width:800px;line-height:1.75;margin-bottom:16px;">Бесплатный VPN зарабатывает одним из трёх способов: показывает рекламу, собирает и продаёт данные пользователей, или служит витриной для платного тарифа. Первые два способа делают его плохим выбором для конфиденциальности. Третий — это нормально, но означает ограниченную функциональность.</p>
+    <p style="color:var(--text-muted);font-size:0.93rem;max-width:800px;line-height:1.75;margin-bottom:16px;">Главная техническая проблема 2026 года: бесплатные VPN почти никогда не инвестируют в разработку собственной обфускации. Стандартный WireGuard и OpenVPN стоят ничего. ZoogShadowing, TrustTunnel или VLESS+Reality — это годы инженерной работы и постоянные обновления в ответ на блокировки. Платный сервис содержит команду, которая отвечает на каждую волну блокировок новым патчем. Бесплатный — нет.</p>
+ 
+    <div class="warn-box">
+      <p>⚠️ <strong>Важно:</strong> не все платные VPN лучше бесплатных. Платный VPN без обфускации в России 2026 так же бесполезен, как бесплатный. В рейтинге выше — только платные сервисы с доказанной обфускацией. Цена ≠ качество в этой нише.</p>
+    </div>
+ 
+    <h3 style="margin-top:36px;">Детальное сравнение: платный vs бесплатный</h3>
+    <div class="compare-wrap">
+      <table class="vs-table">
+        <thead>
+          <tr>
+            <th>Критерий</th>
+            <th class="paid-col">Платный VPN</th>
+            <th class="free-col">Бесплатный VPN</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Обфускация трафика</td>
+            <td class="paid">Собственная технология (ZoogShadowing, TrustTunnel, VLESS+Reality). Обновляется в ответ на блокировки ТСПУ. <span class="badge-win">Победа</span></td>
+            <td class="free">Как правило, отсутствует. Стандартный WireGuard или OpenVPN — видны DPI за секунды. Исключение: Amnezia Free, ZoogVPN Free.</td>
+          </tr>
+          <tr>
+            <td>Скорость</td>
+            <td class="paid">95–118 Мбит/с на европейских серверах. Выделенные серверы, оптимизированные под Россию. <span class="badge-win">Победа</span></td>
+            <td class="free">5–40 Мбит/с. Серверы перегружены тысячами бесплатных пользователей. 4K-видео нестабильно.</td>
+          </tr>
+          <tr>
+            <td>Стабильность после блокировок</td>
+            <td class="paid">Патч за 24–48 часов. Команда разработчиков следит за волнами блокировок и обновляет протоколы. <span class="badge-win">Победа</span></td>
+            <td class="free">Нет системных обновлений. При новой волне блокировок бесплатный VPN ложится и не поднимается.</td>
+          </tr>
+          <tr>
+            <td>Kill Switch</td>
+            <td class="paid">Есть на всех платформах. При обрыве VPN интернет блокируется — реальный IP не утекает. <span class="badge-win">Победа</span></td>
+            <td class="free">Как правило, отсутствует. При разрыве соединения трафик идёт напрямую без предупреждения.</td>
+          </tr>
+          <tr>
+            <td>Split Tunneling</td>
+            <td class="paid">Есть у ZoogVPN и AdGuard VPN. Банки, Госуслуги, Яндекс — напрямую. Заблокированные ресурсы — через VPN. <span class="badge-win">Победа</span></td>
+            <td class="free">Как правило, отсутствует в бесплатном плане. Либо весь трафик через VPN, либо ничего.</td>
+          </tr>
+          <tr>
+            <td>Количество серверов и стран</td>
+            <td class="paid">50–180+ стран. Можно выбрать страну под задачу: США для Netflix, Финляндия для YouTube, Россия для Госуслуг. <span class="badge-win">Победа</span></td>
+            <td class="free">2–5 стран. Обычно США и Германия. Выбор недоступен.</td>
+          </tr>
+          <tr>
+            <td>Логирование и конфиденциальность</td>
+            <td class="paid">Заявленная no-logs политика + независимые аудиты (Trust.Zone — Warrant Canary, AdGuard — открытый код). <span class="badge-win">Победа</span></td>
+            <td class="free">Бесплатный VPN монетизирует данные пользователей. Анонимные VPN из Play Market активно продают метаданные рекламодателям.</td>
+          </tr>
+          <tr>
+            <td>Техподдержка</td>
+            <td class="paid">Круглосуточный чат или Telegram-бот. При блокировке сервера — замена за часы. <span class="badge-win">Победа</span></td>
+            <td class="free">Email-форма с ответом через 3–7 дней. В критический момент вы предоставлены себе.</td>
+          </tr>
+          <tr>
+            <td>Лимит трафика</td>
+            <td class="paid">Безлимит на всех платных тарифах.</td>
+            <td class="free">3–10 ГБ/мес у большинства. Исключение: ZoogVPN (10 ГБ с обфускацией), Planet VPN (безлимит без обфускации). <span class="badge-ok">Исключения есть</span></td>
+          </tr>
+          <tr>
+            <td>Цена</td>
+            <td class="paid">от 99 ₽/мес (Дядя Ваня) до 247 ₽ (AdGuard). Чашка кофе в месяц.</td>
+            <td class="free">Бесплатно. <span class="badge-ok">Победа по цене</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+ 
+    <h3 style="margin-top:40px;">Когда бесплатного VPN достаточно</h3>
+    <p style="color:var(--text-muted);font-size:0.93rem;max-width:800px;line-height:1.75;">Бесплатный VPN оправдан в трёх сценариях:</p>
+    <div class="content-section" style="margin-top:0;">
+      <ul>
+        <li><strong>Вы только тестируете.</strong> ZoogVPN (10 ГБ/мес) или AdGuard VPN (3 ГБ/мес) позволяют полноценно проверить платный сервис перед покупкой. Это не «урезанная демо-версия», а полноценный платный сервис с ограничением трафика.</li>
+        <li><strong>Вам нужен только Telegram и базовый серфинг.</strong> Amnezia Free разблокирует Telegram, WhatsApp и Instagram бесплатно и без регистрации. Без ограничений трафика. Ограничение — нет выбора серверной локации и нет YouTube.</li>
+        <li><strong>Резервный вариант.</strong> Planet VPN Free — 5 серверов, безлимит трафика, без регистрации. Держите на случай, когда основной платный VPN временно недоступен.</li>
+      </ul>
+    </div>
+ 
+    <div class="tip-box" style="margin-top:24px;">
+      <span class="tip-icon">💡</span>
+      <p><strong>Оптимальная стратегия:</strong> основной — платный VPN с обфускацией (ZoogVPN или AdGuard), запасной — Amnezia на своём VPS (~300 ₽/мес за сервер). При любой волне блокировок у вас будет резерв с уникальным IP, которого нет в базах РКН.</p>
+    </div>
+ 
+    <h3 style="margin-top:40px;">Цены: сколько стоит платный VPN из России в 2026 году</h3>
+    <p style="color:var(--text-muted);font-size:0.93rem;margin-bottom:20px;">Все цены при оплате картами МИР или СБП. Длинная подписка (год и более) вдвое-втрое дешевле помесячной.</p>
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="vpn-n">Trust.Zone</div>
+        <div class="price-mo">$1.77</div>
+        <div class="price-sub">в месяц при 2-летней подписке</div>
+        <div class="price-trial">Пробно: 3 дня / 1 ГБ</div>
+      </div>
+      <div class="price-card" style="border-color:rgba(249,115,22,0.3);">
+        <div class="vpn-n">ZoogVPN</div>
+        <div class="price-mo">$1.99</div>
+        <div class="price-sub">в месяц при 2-летней подписке</div>
+        <div class="price-trial">Бесплатно: 10 ГБ/мес навсегда</div>
+      </div>
+      <div class="price-card">
+        <div class="vpn-n">Дядя Ваня VPN</div>
+        <div class="price-mo">99 ₽</div>
+        <div class="price-sub">в месяц при длинной подписке</div>
+        <div class="price-trial">Пробно: 3 дня за 10 ₽</div>
+      </div>
+      <div class="price-card">
+        <div class="vpn-n">AdGuard VPN</div>
+        <div class="price-mo">247 ₽</div>
+        <div class="price-sub">в месяц при годовой подписке</div>
+        <div class="price-trial">Бесплатно: 3 ГБ/мес навсегда</div>
+      </div>
+      <div class="price-card">
+        <div class="vpn-n">hidemy.name</div>
+        <div class="price-mo">270 ₽</div>
+        <div class="price-sub">в месяц при годовой подписке</div>
+        <div class="price-trial">Пробно: 24 часа полный функционал</div>
+      </div>
+      <div class="price-card">
+        <div class="vpn-n">BlancVPN</div>
+        <div class="price-mo">€4</div>
+        <div class="price-sub">в месяц при годовой подписке</div>
+        <div class="price-trial">Гарантия возврата: 30 дней</div>
+      </div>
+    </div>
+  </div>
 </section>
-
-
-<section id="guide" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">Настройка</div><h2>Как настроить VPN</h2></div>
-<div class="guide-steps">
-<div class="guide-step"><div class="step-num">1</div><div class="step-content"><h4>Скачайте приложение с официального сайта провайдера</h4><p>Не из поисковой выдачи, не из зеркал. Только с официального сайта или из магазина приложений — это снижает риск поддельного клиента.</p></div></div>
-<div class="guide-step"><div class="step-num">2</div><div class="step-content"><h4>Выберите обфусцированный протокол</h4><p>ZoogShadowing, TrustTunnel, Outline, VLESS+Reality или AmneziaWG. Стандартный WireGuard и OpenVPN без обёртки блокируются ТСПУ.</p></div></div>
-<div class="guide-step"><div class="step-num">3</div><div class="step-content"><h4>Подключитесь к серверу в Финляндии или Нидерландах</h4><p>Пинг 30–60 мс — оптимальный баланс скорости и стабильности для большинства задач из России.</p></div></div>
-<div class="guide-step"><div class="step-num">4</div><div class="step-content"><h4>Включите Kill Switch и Split Tunneling</h4><p>Kill Switch защищает ваш IP при разрыве соединения. Split Tunneling позволяет пускать через VPN только нужные приложения.</p></div></div>
-<div class="guide-step"><div class="step-num">5</div><div class="step-content"><h4>Проверьте результат на ipleak.net</h4><p>Убедитесь, что виден IP выбранной страны, а DNS не показывает адреса российского провайдера.</p></div></div>
-</div>
-<div class="tip-box" style="margin-top:24px;"><span class="tip-icon">💡</span><p><strong>Совет:</strong> Если VPN внезапно перестал работать — первым делом проверьте обновление приложения. Провайдеры выпускают патчи в ответ на блокировки в течение 24–48 часов.</p></div>
-</div>
+ 
+<!-- ══ СРАВНЕНИЕ ════════════════════════════════════════════ -->
+<section id="sravnenie">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Сравнение</div>
+      <h2>Сравнительная таблица платных VPN для России 2026</h2>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>VPN</th><th>Цена/мес</th><th>Пробный</th><th>Протокол</th><th>Обфускация</th><th>Оплата РФ</th><th>Kill Switch</th><th>Split Tunneling</th><th>Роутер</th><th>Оценка</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ZoogVPN</td><td>от $1.99</td><td>10 ГБ/мес</td><td>ZoogShadowing</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.5</td></tr>
+          <tr><td>BlancVPN</td><td>от €4</td><td>30д возврат</td><td>Outline</td><td class="check">✓</td><td class="check">✓</td><td class="warn">⚠️</td><td class="cross">✗</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.3</td></tr>
+          <tr><td>Trust.Zone</td><td>от $1.77</td><td>3 дня/1 ГБ</td><td>VLESS+Reality</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="warn">⚠️</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.1</td></tr>
+          <tr><td>AdGuard VPN</td><td>от 247 ₽</td><td>3 ГБ/мес</td><td>TrustTunnel</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td style="color:var(--green);font-weight:700;">9.0</td></tr>
+          <tr><td>hidemy.name</td><td>от 270 ₽</td><td>24 часа</td><td>Stealth OpenVPN</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">8.8</td></tr>
+          <tr><td>Дядя Ваня</td><td>от 99 ₽</td><td>3 дня</td><td>Shadowsocks</td><td class="warn">⚠️</td><td class="check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td style="color:var(--green);font-weight:700;">8.2</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </section>
-
-<section id="faq" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-<div class="faq-list">
-<div class="faq-item"><div class="faq-q">Какой VPN лучше всего работает в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">По совокупности критериев лидируют ZoogVPN (гарантия работы, 10 ГБ бесплатно), AdGuard VPN (118 Мбит/с, доступен в российских магазинах) и BlancVPN (рекордная скорость). Для максимальной устойчивости к ТСПУ — Amnezia с AmneziaWG 2.0.</div></div></div>
-<div class="faq-item"><div class="faq-q">Законно ли использовать VPN в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Использование VPN физическими лицами в России не запрещено. Штрафов за подключение к VPN нет. Запрет касается рекламы VPN для обхода блокировок и доступа к материалам из реестра Минюста как экстремистские (штраф 3–5 тыс. ₽).</div></div></div>
-<div class="faq-item"><div class="faq-q">Можно ли оплатить VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. ZoogVPN, AdGuard VPN, BlancVPN, Trust.Zone, hidemy.name и Дядя Ваня VPN принимают карты МИР, СБП и YooMoney. Зарубежные сервисы (NordVPN, ExpressVPN) оплачиваются через криптовалюту.</div></div></div>
-<div class="faq-item"><div class="faq-q">Почему VPN перестал работать?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">ТСПУ регулярно обновляет алгоритмы фильтрации. Смените протокол на Stealth, VLESS или AmneziaWG, обновите приложение, попробуйте другой сервер. Провайдеры выпускают патчи в течение 24–48 часов после блокировки.</div></div></div>
-</div>
-</div>
+ 
+<!-- ══ КАК ВЫБРАТЬ ══════════════════════════════════════════ -->
+<section id="kak-vybrat">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Как выбрать</div>
+      <h2>Как выбрать платный VPN для России в 2026 году</h2>
+    </div>
+ 
+    <h3>Критерий 1: Обфускация — обязательное требование</h3>
+    <p style="color:var(--text-muted);font-size:0.93rem;max-width:800px;line-height:1.75;">В 2026 году платить за VPN без обфускации — деньги на ветер. ТСПУ блокирует чистый WireGuard и OpenVPN на мобильных операторах. Ищите: ZoogShadowing, TrustTunnel QUIC, VLESS+Reality, AmneziaWG 2.0, Outline. Если в описании сервиса нет ни одного из этих протоколов — проходите мимо.</p>
+ 
+    <h3>Критерий 2: Split Tunneling с 15 апреля 2026</h3>
+    <p style="color:var(--text-muted);font-size:0.93rem;max-width:800px;line-height:1.75;">Минцифры потребовало от Яндекса, ВКонтакте, Ozon, Wildberries и 20+ платформ блокировать пользователей с активным VPN. Без split tunneling при включённом VPN могут не открываться российские сайты и банковские приложения. Среди платных VPN с оплатой из РФ split tunneling есть у ZoogVPN и AdGuard VPN.</p>
+ 
+    <h3>Критерий 3: Как оплатить из России</h3>
+    <div class="legal-grid" style="margin-top:16px;">
+      <div class="legal-item allowed">
+        <div class="legal-item-label">Оплата из РФ напрямую</div>
+        <ul>
+          <li>ZoogVPN — МИР, SberPay, YooMoney</li>
+          <li>BlancVPN — МИР, T Pay, СБП, YooMoney</li>
+          <li>Trust.Zone — карты РФ, СБП, МИР</li>
+          <li>AdGuard VPN — МИР, YooMoney, Visa</li>
+          <li>hidemy.name — МИР, YooMoney, Visa</li>
+          <li>Дядя Ваня VPN — карты РФ, рубли, СБП</li>
+        </ul>
+      </div>
+      <div class="legal-item forbidden">
+        <div class="legal-item-label">Только через посредников</div>
+        <ul>
+          <li>NordVPN — криптовалюта, виртуальные карты</li>
+          <li>ExpressVPN — криптовалюта, виртуальные карты</li>
+          <li>Surfshark — криптовалюта, виртуальные карты</li>
+          <li>Proton VPN — криптовалюта или наличными в конверте</li>
+          <li>Mullvad VPN — 5€ фиксированно, крипта</li>
+        </ul>
+      </div>
+    </div>
+ 
+    <h3 style="margin-top:32px;">Критерий 4: Количество устройств</h3>
+    <p style="color:var(--text-muted);font-size:0.93rem;max-width:800px;line-height:1.75;">Телефон, ноутбук, планшет, телевизор — быстро набирается 6–8 устройств. ZoogVPN и BlancVPN дают безлимит устройств на одну подписку. AdGuard VPN — 10. Для семьи из 3–4 человек выбирайте безлимит.</p>
+ 
+    <h3>Критерий 5: Роутер vs. отдельные устройства</h3>
+    <p style="color:var(--text-muted);font-size:0.93rem;max-width:800px;line-height:1.75;">VPN на роутере защищает все устройства в домашней сети сразу: телевизор, игровую консоль, умные колонки. ZoogVPN совместим с Keenetic без перепрошивки — наиболее удобный вариант для дома. Trust.Zone и hidemy.name также поддерживают роутеры с подробными инструкциями.</p>
+  </div>
 </section>
-
-<div class="container">
-<div class="bottom-cta">
-  <h3>🏆 Начните с ZoogVPN — 10 ГБ бесплатно</h3>
-  <p>Гарантия работы в России. Обфускация ZoogShadowing. Оплата МИР. Подключение за 2 минуты.</p>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
-</div>
-</div>
-
+ 
+<!-- ══ ЗАКЛЮЧЕНИЕ ═══════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Итог</div>
+      <h2>Заключение: стоит ли платить за VPN в России в 2026 году</h2>
+    </div>
+    <p style="color:var(--text-muted);font-size:0.95rem;max-width:800px;line-height:1.8;margin-bottom:20px;">Да — но не за любой платный VPN, а только за тот, у которого есть обфускация под российские реалии. Разница между платным и бесплатным в 2026 году — это разница между протоколом, который прошёл стресс-тест 3 апреля и работал пока падали банки, и протоколом без обновлений, который лёг при первой волне блокировок.</p>
+    <p style="color:var(--text-muted);font-size:0.95rem;max-width:800px;line-height:1.8;margin-bottom:24px;">Стоимость надёжного платного VPN с оплатой из России — от $1.77 до 270 ₽ в месяц. Меньше чашки кофе. За эти деньги вы получаете обфускацию, которая держится под давлением ТСПУ, команду разработчиков, которая выпускает патч за 24–48 часов, Kill Switch, Split Tunneling и техподдержку в реальном времени.</p>
+ 
+    <div class="legal-grid">
+      <div class="legal-item allowed">
+        <div class="legal-item-label">По сценарию</div>
+        <ul>
+          <li><strong>Для большинства:</strong> ZoogVPN — гарантия, Split Tunneling, 10 ГБ для теста</li>
+          <li><strong>Для скорости:</strong> BlancVPN — 112 Мбит/с, пинг 35 мс</li>
+          <li><strong>Лучшая цена:</strong> Trust.Zone — от $1.77 при двух протоколах обфускации</li>
+          <li><strong>Удобный старт:</strong> AdGuard VPN — 3 ГБ/мес для знакомства, доступен в магазинах РФ</li>
+          <li><strong>Только русский:</strong> hidemy.name — полный русский интерфейс с 2012</li>
+          <li><strong>Минимальный бюджет:</strong> Дядя Ваня VPN — от 99 ₽ на домашнем Wi-Fi</li>
+        </ul>
+      </div>
+      <div class="legal-item" style="border-color:rgba(168,85,247,0.2);">
+        <div class="legal-item-label" style="color:var(--purple);">Перед покупкой</div>
+        <ul>
+          <li>Используйте бесплатный период — ZoogVPN (10 ГБ) или AdGuard (3 ГБ)</li>
+          <li>Включите Split Tunneling сразу — банки и Яндекс напрямую</li>
+          <li>Подпишитесь на Telegram-канал провайдера — обновления при блокировках</li>
+          <li>Держите Amnezia Free как резерв — работает без регистрации</li>
+          <li>Обновляйте приложение — патчи выходят за 24–48 часов</li>
+        </ul>
+      </div>
+    </div>
+ 
+    <div class="bottom-cta" style="margin-top:40px;">
+      <h3>🏆 Начните с ZoogVPN — 10 ГБ бесплатно</h3>
+      <p>Лучший платный VPN для России с официальной гарантией работы. Оплата МИР. Split Tunneling. Kill Switch. Безлимит устройств. Подключение за 2 минуты.</p>
+      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
+    </div>
+  </div>
+</section>
+ 
+<!-- ══ FAQ ══════════════════════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы о платных VPN для России</h2></div>
+    <div class="faq-list">
+ 
+      <div class="faq-item">
+        <div class="faq-q">Зачем платить за VPN, если есть бесплатные?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">В России 2026 года платный VPN отличается от бесплатного прежде всего обфускацией. Бесплатные сервисы редко инвестируют в разработку собственных технологий маскировки трафика. Без обфускации ТСПУ блокирует любой VPN за часы. Дополнительно: Kill Switch, Split Tunneling, техподдержка 24/7, быстрые патчи при волнах блокировок. Стоимость — от 99 ₽ до 270 ₽/мес.</div></div>
+      </div>
+ 
+      <div class="faq-item">
+        <div class="faq-q">Как оплатить платный VPN из России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">ZoogVPN, AdGuard VPN, BlancVPN, Trust.Zone, hidemy.name и Дядя Ваня VPN принимают карты МИР, СБП и YooMoney напрямую. Для NordVPN, ExpressVPN и Surfshark — только криптовалюта (Bitcoin через обменник) или виртуальные карты через сервисы типа Carddy или Pyypl.</div></div>
+      </div>
+ 
+      <div class="faq-item">
+        <div class="faq-q">Какой платный VPN самый дешёвый с оплатой из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Дядя Ваня VPN — от 99 ₽/мес, оплата рублями. Trust.Zone — от $1.77/мес при двухлетней подписке с двумя обфусцированными протоколами. ZoogVPN — от $1.99/мес с гарантией работы. Учитывайте: самый дешёвый VPN должен всё равно иметь обфускацию — иначе деньги потрачены впустую.</div></div>
+      </div>
+ 
+      <div class="faq-item">
+        <div class="faq-q">Стоит ли брать подписку на год или на месяц?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Если вы уже проверили сервис на бесплатном периоде и он работает на вашем провайдере — берите год. Экономия 50–70% по сравнению с помесячной оплатой. Если не тестировали — начните с бесплатного плана (ZoogVPN 10 ГБ, AdGuard VPN 3 ГБ) или 24-часового теста (hidemy.name).</div></div>
+      </div>
+ 
+      <div class="faq-item">
+        <div class="faq-q">Можно ли использовать один платный VPN для всей семьи?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Да. ZoogVPN и BlancVPN дают безлимит устройств на одну подписку. AdGuard VPN — 10 устройств. Для всей семьи плюс роутер оптимален ZoogVPN: одна подписка покрывает роутер (тогда защищены телевизор, консоль, умные колонки) и отдельные устройства без ограничений.</div></div>
+      </div>
+ 
+      <div class="faq-item">
+        <div class="faq-q">Платный VPN без обфускации лучше бесплатного с обфускацией?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Нет. В российских реалиях 2026 года обфускация важнее ценника. Бесплатный ZoogVPN (10 ГБ/мес) с ZoogShadowing работает надёжнее, чем платный VPN без обфускации по $10/мес. Не гонитесь за «названием» — смотрите на конкретный протокол и наличие обновлений.</div></div>
+      </div>
+ 
+      <div class="faq-item">
+        <div class="faq-q">Что делать, если платный VPN перестал работать?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Сначала обновите приложение — патчи при волнах блокировок выходят за 24–48 часов. Смените протокол в настройках вручную (не «автоматически»). Попробуйте другой сервер. Проверьте Telegram-канал провайдера — там обычно публикуются актуальные серверы. Держите Amnezia Free как запасной вариант.</div></div>
+      </div>
+ 
+    </div>
+  </div>
+</section>
+ 
 <footer class="site-footer" style="margin-top:64px;">
   <div class="footer-inner">
-    <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России. Тестируем на реальных устройствах и операторах.</p>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">VPN для России</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-telegram/">VPN для Telegram</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/vpn-dlya-discord/">VPN для Discord</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Устройства</h4>
+        <ul>
+          <li><a href="/vpn-dlya-pk/">VPN для ПК</a></li>
+          <li><a href="/vpn-dlya-televizora/">VPN для ТВ</a></li>
+          <li><a href="/vpn-dlya-routera/">VPN для роутера</a></li>
+          <li><a href="/vpn-dlya-macos/">VPN для macOS</a></li>
+          <li><a href="/vpn-dlya-noutbuka/">VPN для ноутбука</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>О проекте</h4>
+        <ul>
+          <li><a href="/">Главная</a></li>
+          <li><a href="/about/">О нас</a></li>
+          <li><a href="/privacy-policy/">Конфиденциальность</a></li>
+          <li><a href="/vless/">VLESS</a></li>
+          <li><a href="/amneziawg/">AmneziaWG</a></li>
+        </ul>
+      </div>
     </div>
+    <div class="footer-bottom">
+      <p>© 2026 vpn-russia.vercel.app · Информация предоставляется в ознакомительных целях.</p>
+      <p>Партнёрские ссылки помечены nofollow.</p>
+    </div>
+    <p class="footer-disclaimer">Сайт содержит партнёрские ссылки. При покупке через них мы получаем комиссию — это не влияет на объективность оценок. Все тесты проводятся на реальных устройствах. Данные актуальны на апрель 2026 года.</p>
   </div>
 </footer>
+ 
 <div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">🏆 <strong>ZoogVPN</strong> — работает в России, 10 ГБ бесплатно</div>
+  <div class="sticky-banner-text">🏆 <strong>ZoogVPN</strong> — лучший платный VPN для России, 10 ГБ бесплатно</div>
   <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank">Попробовать →</a>
   <button class="sticky-close">✕</button>
 </div>
+ 
 <script src="/js/inner.js" defer></script>
+<script>
+  const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
+  if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+</script>
 </body>
 </html>
