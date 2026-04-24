@@ -7,3 +7,4 @@ Sitemap: https://vpn-russia.vercel.app/sitemap.xml
 User-agent: Yandex
 Allow: /
 Crawl-delay: 2
+ 
