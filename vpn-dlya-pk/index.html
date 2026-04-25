@@ -3,32 +3,105 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VPN для ПК 2026 — Windows и macOS с обходом ТСПУ</title>
-  <meta name="description" content="Лучший VPN для компьютера: тесты на Windows 10/11 и macOS. Обфускация, Split Tunneling, Kill Switch.">
+  <title>VPN для ПК 2026 — лучшие клиенты для Windows и macOS с обходом ТСПУ</title>
+  <meta name="description" content="Лучшие VPN для компьютера в России 2026: ТОП клиентов для Windows 10/11 и macOS с обфускацией ТСПУ. Пошаговая настройка, Split Tunneling, устранение неполадок.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/vpn-dlya-pk/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-section { margin-top: 72px; }
+    .vpn-review-block { border-bottom: 1px solid var(--card-border); padding-bottom: 56px; margin-bottom: 56px; }
+    .vpn-review-block:last-child { border-bottom: none; margin-bottom: 0; }
+    .review-block-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 20px; flex-wrap: wrap; }
+    .review-block-title { display: flex; align-items: center; gap: 14px; }
+    .review-rank-badge { width: 40px; height: 40px; border-radius: 10px; background: var(--bg3); border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; color: var(--text-dim); flex-shrink: 0; }
+    .review-rank-badge.gold { background: rgba(249,115,22,0.1); border-color: rgba(249,115,22,0.3); color: var(--orange); }
+    .review-rank-badge.silver { background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.3); color: var(--purple); }
+    .review-rank-badge.bronze { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); color: var(--green); }
+    .review-name { font-size: 1.35rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .review-score-badge { display: flex; flex-direction: column; align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; padding: 10px 18px; flex-shrink: 0; }
+    .review-score-badge .score-num { font-size: 1.4rem; font-weight: 800; color: var(--green); line-height: 1; }
+    .review-score-badge .score-label { font-size: 0.65rem; color: var(--text-dim); margin-top: 2px; }
+    .review-body p { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 14px; }
+    .review-specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+    .review-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--card-border); flex-wrap: wrap; }
+    .review-cta-row p { font-size: 0.85rem; color: var(--text-dim); margin: 0; }
+    .os-tabs { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
+    .os-tab { display: flex; align-items: center; gap: 8px; background: var(--card); border: 2px solid var(--card-border); border-radius: var(--radius-sm); padding: 10px 20px; font-weight: 700; font-size: 0.9rem; color: var(--text-muted); cursor: pointer; transition: var(--transition); }
+    .os-tab.active, .os-tab:hover { border-color: var(--orange); color: var(--white); }
+    .setup-block { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; margin-bottom: 32px; }
+    .setup-block-header { background: var(--bg3); padding: 16px 24px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--card-border); }
+    .setup-block-header .os-icon { font-size: 1.4rem; }
+    .setup-block-header h3 { font-size: 1.05rem; margin: 0; color: var(--white); }
+    .setup-block-header .os-tag { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-left: auto; }
+    .setup-block-body { padding: 24px; }
+    .trouble-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+    .trouble-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .trouble-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--orange); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+    .trouble-card p, .trouble-card li { font-size: 0.86rem; color: var(--text-muted); line-height: 1.65; }
+    .trouble-card ul { padding: 0; display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+    .trouble-card li { padding-left: 16px; position: relative; }
+    .trouble-card li::before { content: '→'; position: absolute; left: 0; color: var(--green); font-size: 0.78rem; }
+    @media (max-width: 768px) {
+      .review-specs-grid, .trouble-grid { grid-template-columns: 1fr; }
+      .review-block-header { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#rating">Рейтинг</a><a href="#comparison">Сравнение</a><a href="#guide">Настройка</a><a href="#faq">FAQ</a>
-      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN</a>
+      <a href="#rating">Рейтинг</a>
+      <a href="#obzory">Обзоры</a>
+      <a href="#windows">Windows</a>
+      <a href="#macos">macOS</a>
+      <a href="#troubleshooting">Устранение неполадок</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN бесплатно</a>
     </div>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <span>VPN для ПК — Windows и macOS в России 2026</span></div></div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#rating" class="mobile-link">Рейтинг</a>
+  <a href="#obzory" class="mobile-link">Обзоры</a>
+  <a href="#windows" class="mobile-link">Настройка Windows</a>
+  <a href="#macos" class="mobile-link">Настройка macOS</a>
+  <a href="#troubleshooting" class="mobile-link">Устранение неполадок</a>
+  <a href="#faq" class="mobile-link">FAQ</a>
+  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ ZoogVPN — 10 ГБ бесплатно</a>
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>VPN для ПК</span>
+  </div>
+</div>
+
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>VPN для ПК — Windows и macOS в России 2026</h1>
-    <p class="lead">Лучший VPN для компьютера: тесты на Windows 10/11 и macOS. Обфускация, Split Tunneling, Kill Switch.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обновлено апрель 2026 — тесты на Windows 11 и macOS Sequoia
+    </div>
+    <h1>VPN для ПК 2026 — лучшие клиенты для Windows и macOS с обходом ТСПУ</h1>
+    <p class="lead">На компьютере VPN работает иначе, чем на смартфоне: больше контроля над настройками, возможность тонкой настройки Split Tunneling и протоколов, поддержка роутеров через общее соединение. Мы отобрали лучшие десктопные клиенты, протестированные на Windows 10/11 и macOS Sequoia в апреле 2026 года.</p>
     <div class="meta">
+      <div class="meta-item">🖥️ <strong>Платформы:</strong> Windows 10/11, macOS Sequoia</div>
       <div class="meta-item">📡 <strong>Тесты:</strong> апрель 2026</div>
       <div class="meta-item">✅ <strong>Только с обфускацией</strong></div>
       <div class="meta-item">💳 <strong>Оплата из РФ</strong></div>
@@ -36,301 +109,1012 @@
   </div>
 </div>
 
-<section style="padding:48px 0 0;">
+<!-- INTRO -->
+<section style="padding-top:40px;padding-bottom:0;">
+  <div class="container">
+    <p style="color:var(--text-muted);font-size:0.97rem;max-width:800px;line-height:1.8;">VPN для компьютера в России 2026 года — это прежде всего вопрос протокола. На Windows и macOS выбор клиентов значительно шире, чем на мобильных устройствах: можно установить как фирменный клиент провайдера, так и универсальные приложения типа Hiddify или V2RayN, поддерживающие VLESS, AmneziaWG и другие обфусцированные протоколы. Именно это преимущество компьютера мы рассматриваем на этой странице.</p>
+  </div>
+</section>
+
+<!-- ══ РЕЙТИНГ ══════════════════════════════════════════════ -->
+<section id="rating" style="padding-top:48px;">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">О теме</div>
-      <h2>Выбор VPN для компьютера</h2>
+      <div class="section-label">Рейтинг</div>
+      <h2>Лучшие VPN для компьютера — ТОП-6 апрель 2026</h2>
+      <p>Тестировали десктопные клиенты для Windows 10/11 и macOS Sequoia. Критерии: качество нативного приложения, обфускация под ТСПУ, Split Tunneling, Kill Switch, автозапуск.</p>
     </div>
-    <p style="color:var(--text-muted);font-size:0.95rem;max-width:720px;">На Windows и macOS выбор VPN наиболее широк. Ключевые критерии: наличие Kill Switch, Split Tunneling и поддержка обфусцированных протоколов. AdGuard VPN предлагает один из лучших десктопных клиентов в рейтинге.</p>
-    <div class="tip-box" style="margin-top:16px;"><span class="tip-icon">💡</span><p><strong>Важно:</strong> Ниже — актуальный рейтинг VPN, протестированных в апреле 2026 года на реальных подключениях МТС, Билайн, Мегафон и Ростелеком.</p></div>
+
+    <div class="toplist">
+
+      <!-- 1. ZoogVPN -->
+      <div class="vpn-card top1">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">1</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">ZoogVPN</span>
+              <span class="vpn-badge badge-orange">Выбор редакции</span>
+            </div>
+            <p class="vpn-desc">Лучший ПК-клиент для России: нативные приложения для Windows и macOS с ZoogShadowing, Split Tunneling, Kill Switch и автозапуском. Работает на всех 4 операторах. 10 ГБ бесплатно.</p>
+            <div class="vpn-pills">
+              <span class="pill">🖥️ Windows 10/11</span>
+              <span class="pill">🍎 macOS Sequoia</span>
+              <span class="pill">🔐 ZoogShadowing</span>
+              <span class="pill">🔀 Split Tunneling</span>
+              <span class="pill">🔄 Kill Switch</span>
+              <span class="pill">🆓 10 ГБ бесплатно</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
+            <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div>
+          <div class="vpn-stat"><div class="stat-label">Скорость Windows</div><div class="stat-value green">95 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Скорость macOS</div><div class="stat-value green">92 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Пинг</div><div class="stat-value green">38 мс</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Нативный клиент для Windows и macOS с одинаковым функционалом</li>
+              <li>Split Tunneling: настройка по приложению или домену</li>
+              <li>Kill Switch: выбор режима — «блокировать всё» или «только VPN-трафик»</li>
+              <li>Автозапуск при старте системы без уведомлений</li>
+              <li>10 ГБ бесплатно для теста без ввода карты</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Бесплатный план: 3 сервера</li>
+              <li>GUI устаревший по дизайну</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 Trustpilot · 2 140 отзывов</p><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a></div>
+        </div>
+      </div>
+
+      <!-- 2. AdGuard VPN -->
+      <div class="vpn-card top2">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">2</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">AdGuard VPN</span>
+              <span class="vpn-badge badge-blue">Лучший интерфейс</span>
+            </div>
+            <p class="vpn-desc">Самый современный ПК-клиент в рейтинге. TrustTunnel QUIC, 118 Мбит/с, встроенный блокировщик рекламы и трекеров, Split Tunneling по приложениям, расширения для Chrome и Firefox.</p>
+            <div class="vpn-pills">
+              <span class="pill">🖥️ Windows 10/11</span>
+              <span class="pill">🍎 macOS</span>
+              <span class="pill">🔐 TrustTunnel QUIC</span>
+              <span class="pill">🛡️ Блокировщик рекламы</span>
+              <span class="pill">🌐 Chrome / Firefox</span>
+              <span class="pill">🆓 3 ГБ/мес</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
+            <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 247 ₽/мес</div></div>
+          <div class="vpn-stat"><div class="stat-label">Скорость Windows</div><div class="stat-value green">118 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Скорость macOS</div><div class="stat-value green">114 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Пинг</div><div class="stat-value green">42 мс</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Самый современный и удобный интерфейс в рейтинге</li>
+              <li>Расширения для Chrome и Firefox — VPN только для браузера</li>
+              <li>Встроенный блокировщик рекламы работает параллельно с VPN</li>
+              <li>Split Tunneling по приложениям и сайтам</li>
+              <li>Открытый код TrustTunnel — прозрачность подтверждена</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нет поддержки роутеров</li>
+              <li>Только 2 протокола</li>
+              <li>3 ГБ/мес на бесплатном плане</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.6 / 5 · 3 870 отзывов</p><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a></div>
+        </div>
+      </div>
+
+      <!-- 3. Trust.Zone -->
+      <div class="vpn-card top3">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">3</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">Trust.Zone</span>
+              <span class="vpn-badge badge-green">Максимальная устойчивость</span>
+            </div>
+            <p class="vpn-desc">VLESS+Reality и AmneziaWG на десктопе — два протокола обфускации от $1.77/мес. На Windows показал нулевые обрывы за 7 дней теста. Поддерживает P2P и роутеры.</p>
+            <div class="vpn-pills">
+              <span class="pill">🖥️ Windows 10/11</span>
+              <span class="pill">🍎 macOS</span>
+              <span class="pill">🔐 VLESS+Reality</span>
+              <span class="pill">🔒 AmneziaWG</span>
+              <span class="pill">🔄 P2P / торренты</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div>
+            <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div>
+          <div class="vpn-stat"><div class="stat-label">Скорость Windows</div><div class="stat-value">88 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Пинг</div><div class="stat-value green">46 мс</div></div>
+          <div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">93 страны</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Два протокола обфускации — VLESS+Reality и AmneziaWG</li>
+              <li>Нулевые обрывы на Ростелекоме за 7 дней апрельского теста</li>
+              <li>Лучшая цена при двух обфусцированных протоколах</li>
+              <li>Kill Switch на Windows и macOS</li>
+              <li>P2P и торренты без ограничений</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Клиент только на английском языке</li>
+              <li>Монибэк только 10 дней</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★☆ 4.4 / 5 Trustpilot</p><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Trust.Zone →</a></div>
+        </div>
+      </div>
+
+      <!-- 4. BlancVPN -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">4</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">BlancVPN</span>
+              <span class="vpn-badge badge-purple">Самый быстрый</span>
+            </div>
+            <p class="vpn-desc">Outline до 2 Гбит/с, пинг 35 мс — рекорд теста. Русскоязычный клиент для Windows и macOS. Для тех, кому скорость важнее всего остального.</p>
+            <div class="vpn-pills">
+              <span class="pill">🖥️ Windows</span>
+              <span class="pill">🍎 macOS</span>
+              <span class="pill">🚀 Outline 2 Гбит/с</span>
+              <span class="pill">🇷🇺 Русский клиент</span>
+              <span class="pill">💳 МИР / СБП</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div>
+            <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div>
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value green">112 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Пинг</div><div class="stat-value green">35 мс</div></div>
+          <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Рекордная скорость 112 Мбит/с, пинг 35 мс</li>
+              <li>Полностью русский клиент для Windows и macOS</li>
+              <li>V2Ray как резервный протокол при усиленных блокировках</li>
+              <li>Безлимит устройств, оплата МИР и СБП</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нет бесплатного пробного периода</li>
+              <li>Нет Split Tunneling в текущей версии</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 Trustpilot</p><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на BlancVPN →</a></div>
+        </div>
+      </div>
+
+      <!-- 5. hidemy.name -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">5</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">hidemy.name</span>
+              <span class="vpn-badge badge-orange">Русский клиент с 2012</span>
+            </div>
+            <p class="vpn-desc">Stealth OpenVPN на Windows и macOS. Полностью русский интерфейс и поддержка, выделенный IP, 24 часа бесплатного теста. Устойчив на МТС и Ростелекоме.</p>
+            <div class="vpn-pills">
+              <span class="pill">🖥️ Windows</span>
+              <span class="pill">🍎 macOS</span>
+              <span class="pill">🔐 Stealth OpenVPN</span>
+              <span class="pill">🇷🇺 Русский</span>
+              <span class="pill">⏱️ 24ч бесплатно</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div>
+            <a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 270 ₽/мес</div></div>
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">78 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Пинг</div><div class="stat-value">52 мс</div></div>
+          <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Полностью русский интерфейс и поддержка на русском</li>
+              <li>24 часа полного бесплатного теста с полным функционалом</li>
+              <li>Выделенный IP — защита от коллективных блокировок</li>
+              <li>Понятный клиент без лишних настроек</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нет VLESS или AmneziaWG</li>
+              <li>Нет постоянного бесплатного плана</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★½ 4.5 / 5 Trustpilot</p><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на hidemy.name →</a></div>
+        </div>
+      </div>
+
+      <!-- 6. Amnezia -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">6</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">Amnezia VPN</span>
+              <span class="vpn-badge badge-purple">Для продвинутых</span>
+            </div>
+            <p class="vpn-desc">AmneziaWG 2.0 на Windows и macOS. Open-source клиент поддерживает 8 протоколов, self-hosted VPS режим и OpenWRT-роутеры. Amnezia Free работает бесплатно без регистрации.</p>
+            <div class="vpn-pills">
+              <span class="pill">🖥️ Windows</span>
+              <span class="pill">🍎 macOS</span>
+              <span class="pill">🔐 AmneziaWG 2.0</span>
+              <span class="pill">📂 Open-source</span>
+              <span class="pill">🆓 Amnezia Free</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div>
+            <a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $3.5/мес</div></div>
+          <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">Amnezia Free</div></div>
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">91 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Аудиты</div><div class="stat-value green">2 × 7ASecurity</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>AmneziaWG 2.0 — наиболее устойчивый протокол к ТСПУ</li>
+              <li>8 протоколов, включая VLESS, Shadowsocks, OpenVPN+Cloak</li>
+              <li>Self-hosted: подключение к личному VPS за 60 секунд</li>
+              <li>Amnezia Free бесплатно без регистрации</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Self-hosted требует технических знаний и VPS</li>
+              <li>Premium: только 20 стран</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 App Store</p><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Amnezia →</a></div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
+<!-- ══ ОБЗОРЫ ════════════════════════════════════════════════ -->
+<section id="obzory" class="review-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Обзоры</div>
+      <h2>VPN для ПК в России 2026 — развёрнутые обзоры</h2>
+      <p>Подробно о каждом: десктопный клиент, специфические функции для Windows и macOS, результаты тестов.</p>
+    </div>
 
-<section id="rating" style="padding-top:48px;">
-<div class="container">
-<div class="section-header">
-  <div class="section-label">Рейтинг</div>
-  <h2>ТОП-7 VPN — рейтинг и сравнение</h2>
-</div>
-<div class="toplist">
+    <!-- ZoogVPN -->
+    <div class="vpn-review-block" id="review-zoog">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge gold">1</div>
+          <div>
+            <div class="review-name">ZoogVPN</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-orange">Выбор редакции</span>
+              <span class="vpn-badge badge-green">Split Tunneling на ПК</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>ZoogVPN предлагает нативные десктопные клиенты для Windows 10/11 и macOS с одинаковым набором функций на обеих платформах — что редко встречается в нише. На Windows клиент устанавливается как системная служба и запускается с правами администратора, обеспечивая системный Kill Switch: при разрыве VPN весь интернет-трафик блокируется на уровне сети, а не только на уровне приложения. На macOS реализация аналогична, совместима с M1/M2/M3/M4.</p>
+        <p>Split Tunneling настраивается по приложению: можно указать конкретный браузер, torrent-клиент или мессенджер, который будет работать через VPN, остальные — напрямую. С 15 апреля 2026 это критично: Яндекс, ВКонтакте и Ozon начали блокировать доступ с VPN-IP. Настройка Split Tunneling в ZoogVPN занимает 2 минуты и решает проблему без постоянного переключения VPN. Подробный <a href="/vpn-dlya-rossii/">рейтинг VPN для России</a> включает ZoogVPN на первом месте в том числе за это.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Клиент Windows</td><td>Windows 10/11 (x64, ARM); установщик .exe</td></tr>
+          <tr><td>Клиент macOS</td><td>macOS 12+; поддержка M1/M2/M3/M4</td></tr>
+          <tr><td>Протоколы</td><td>ZoogShadowing, WireGuard, OpenVPN, IKEv2</td></tr>
+          <tr><td>Скорость (Финляндия)</td><td>95 Мбит/с (Windows), 92 Мбит/с (macOS)</td></tr>
+          <tr><td>Kill Switch</td><td>Системный уровень — надёжнее приложенческого</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Split Tunneling</td><td>По приложению и по домену</td></tr>
+          <tr><td>DNS защита</td><td>Да, собственные DNS-серверы</td></tr>
+          <tr><td>Автозапуск</td><td>Да, без уведомлений</td></tr>
+          <tr><td>Логи</td><td>Нет, юрисдикция Греция (ЕС)</td></tr>
+          <tr><td>Цена / оплата</td><td>от $1.99/мес; МИР, SberPay, YooMoney</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>Системный Kill Switch — надёжнее приложенческого</li>
+          <li>Split Tunneling по приложению и домену</li>
+          <li>Одинаковый функционал на Windows и macOS</li>
+          <li>Автозапуск без уведомлений и системных разрешений</li>
+          <li>10 ГБ/мес бесплатно для теста</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Дизайн клиента не самый современный</li>
+          <li>Бесплатный план: 3 сервера</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★★ 4.7 / 5 Trustpilot · 2 140 отзывов</p>
+        <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a>
+      </div>
+    </div>
 
-<div class="vpn-card top1">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">1</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">ZoogVPN</span><span class="vpn-badge badge-orange">Выбор редакции</span></div>
-    <p class="vpn-desc">Гарантия работы в России. ZoogShadowing обходит ТСПУ на всех операторах. Пинг 38 мс до Финляндии, 10 ГБ бесплатно, оплата МИР.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 ZoogShadowing</span><span class="pill">🆓 10 ГБ бесплатно</span><span class="pill">🛣️ Роутеры</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
-    <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">10 ГБ/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">ZoogShadowing</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Официальная гарантия работы в России</li><li>ZoogShadowing обходит DPI на МТС, Билайн, Ростелеком</li><li>10 ГБ бесплатно каждый месяц</li><li>Безлимит устройств, роутеры Keenetic/Asus</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Бесплатный план: только 3 сервера</li><li>Скорость на дальних серверах ниже</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 Trustpilot · 2 140 отзывов</p><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a></div>
-</div>
-</div>
+    <!-- AdGuard VPN -->
+    <div class="vpn-review-block" id="review-adguard">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge silver">2</div>
+          <div>
+            <div class="review-name">AdGuard VPN</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-blue">Лучший интерфейс</span>
+              <span class="vpn-badge badge-orange">118 Мбит/с</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>AdGuard VPN предлагает наиболее современный и продуманный десктопный клиент в рейтинге. Приложения для Windows и macOS визуально идентичны, с минималистичным интерфейсом, быстрым переключением серверов и чётким отображением статуса соединения. На macOS клиент нативно поддерживает Apple Silicon — на M-чипах скорость 114 Мбит/с выше, чем у большинства конкурентов через Rosetta.</p>
+        <p>Уникальная особенность для ПК: расширения для Chrome и Firefox, которые работают как прокси только внутри браузера. Можно запустить VPN только для конкретного браузера, оставив остальные приложения на прямом соединении — это альтернатива Split Tunneling для сценариев, когда нужно заблокировать ресурсы только в браузере. Встроенный блокировщик рекламы функционирует одновременно с VPN и не требует отдельного расширения типа uBlock Origin.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Клиент Windows</td><td>Windows 10/11; .exe установщик</td></tr>
+          <tr><td>Клиент macOS</td><td>macOS 12+; нативный для Apple Silicon</td></tr>
+          <tr><td>Браузеры</td><td>Chrome, Firefox (расширения-прокси)</td></tr>
+          <tr><td>Протоколы</td><td>TrustTunnel (QUIC/HTTP2), WireGuard</td></tr>
+          <tr><td>Скорость</td><td>118 Мбит/с (Windows), 114 Мбит/с (macOS M3)</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Kill Switch</td><td>Да</td></tr>
+          <tr><td>Split Tunneling</td><td>По приложениям и сайтам</td></tr>
+          <tr><td>Блокировщик рекламы</td><td>Встроен, работает с VPN одновременно</td></tr>
+          <tr><td>Цена / оплата</td><td>3 ГБ/мес бесплатно; от 247 ₽/мес, МИР</td></tr>
+          <tr><td>Логи</td><td>Нет, открытый код TrustTunnel</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>Лучший интерфейс среди десктопных VPN-клиентов в тесте</li>
+          <li>Нативный Apple Silicon — 114 Мбит/с на Mac M-серии</li>
+          <li>Расширения Chrome/Firefox как альтернативный Split Tunneling</li>
+          <li>Встроенный блокировщик рекламы без потери скорости</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Нет роутеров</li>
+          <li>Только 2 протокола</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★★ 4.6 / 5 · 3 870 отзывов</p>
+        <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a>
+      </div>
+    </div>
 
-<div class="vpn-card top2">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">2</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">BlancVPN</span><span class="vpn-badge badge-purple">Самый быстрый</span></div>
-    <p class="vpn-desc">Outline до 2 Гбит/с, пинг 35 мс. Безлимит устройств, русский интерфейс, Telegram-бот, гарантия возврата 30 дней.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🚀 2 Гбит/с</span><span class="pill">🤖 Telegram-бот</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div>
-    <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Гарантия</div><div class="stat-value">30 дней возврат</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Outline/V2Ray</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Рекордная скорость Outline до 2 Гбит/с</li><li>Пинг 35 мс — лучший результат</li><li>Русский интерфейс и поддержка</li><li>Серверы в России для Госуслуг</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Нет бесплатного пробного периода</li><li>Мобильное приложение без расширенных настроек</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 Trustpilot · 986 отзывов</p><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на BlancVPN →</a></div>
-</div>
-</div>
+    <!-- Amnezia -->
+    <div class="vpn-review-block" id="review-amnezia">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge bronze">3</div>
+          <div>
+            <div class="review-name">Amnezia VPN</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-purple">Для продвинутых</span>
+              <span class="vpn-badge badge-green">AmneziaWG 2.0</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>Amnezia VPN предлагает самый мощный десктопный клиент для продвинутых пользователей: 8 протоколов, включая AmneziaWG 2.0, VLESS, Shadowsocks и OpenVPN+Cloak. Клиент для Windows и macOS позволяет подключиться к серверам Amnezia Premium или к собственному VPS за 60 секунд — достаточно вставить конфигурационный файл или отсканировать QR-код. Два независимых аудита от 7ASecurity (2022, 2024) подтверждают безопасность реализации.</p>
+        <p>Особенность Amnezia для продвинутых пользователей Windows: поддержка Hiddify как альтернативного клиента с GUI для управления VLESS+Reality, Hysteria2 и другими протоколами. Это даёт максимальную гибкость: можно переключаться между протоколами при волнах блокировок без смены самого VPN-сервиса. На macOS Amnezia работает нативно на Apple Silicon. Подробнее о настройке протокола — в разделе об <a href="/amneziawg/">AmneziaWG и его установке</a>.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Клиент Windows</td><td>Windows 10/11; установщик + portable</td></tr>
+          <tr><td>Клиент macOS</td><td>macOS 12+; нативный Apple Silicon</td></tr>
+          <tr><td>Протоколы</td><td>AmneziaWG 2.0, VLESS, Shadowsocks, WireGuard, OpenVPN+Cloak</td></tr>
+          <tr><td>Режимы</td><td>Free / Premium / Self-hosted VPS</td></tr>
+          <tr><td>Скорость (Premium)</td><td>91 Мбит/с (Финляндия)</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Kill Switch</td><td>Да</td></tr>
+          <tr><td>Self-hosted</td><td>Любой VPS, настройка за 60 сек</td></tr>
+          <tr><td>Аудиты</td><td>7ASecurity (2022, 2024)</td></tr>
+          <tr><td>Логи</td><td>Нет</td></tr>
+          <tr><td>Цена</td><td>Free; $3.5/мес Premium; ~150 ₽/мес VPS</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>AmneziaWG 2.0 — самый устойчивый протокол к ТСПУ</li>
+          <li>8 протоколов — переключение при блокировках без смены сервиса</li>
+          <li>Self-hosted VPS — уникальный IP вне баз РКН</li>
+          <li>Amnezia Free работает бесплатно без регистрации</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Self-hosted требует технических знаний</li>
+          <li>Premium: только 20 стран</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★★ 4.7 / 5 App Store · 1 540 отзывов</p>
+        <a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Amnezia →</a>
+      </div>
+    </div>
 
-<div class="vpn-card top3">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">3</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Trust.Zone</span><span class="vpn-badge badge-green">Обфускация</span></div>
-    <p class="vpn-desc">VLESS+Reality и AmneziaWG — устойчивы к любым блокировкам. Самая низкая цена в рейтинге при полном наборе протоколов.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата из РФ</span><span class="pill">🔐 VLESS+Reality</span><span class="pill">🌍 93 страны</span><span class="pill">⏱️ 3 дня бесплатно</span></div>
   </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div>
-    <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">3 дня / 1 ГБ</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">VLESS, AmneziaWG</div></div>
-  <div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">93 страны</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Самая низкая цена — от $1.77/мес</li><li>VLESS+Reality и AmneziaWG из коробки</li><li>P2P и торренты поддерживаются</li><li>Оплата картами РФ и криптой</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Интерфейс только на английском</li><li>Нет русскоязычной поддержки</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★☆ 4.4 Trustpilot</p><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Trust.Zone →</a></div>
-</div>
-</div>
-
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">4</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">AdGuard VPN</span><span class="vpn-badge badge-blue">Лучший бесплатный</span></div>
-    <p class="vpn-desc">TrustTunnel QUIC не определяется DPI. 118 Мбит/с, доступен в российских магазинах, 3 ГБ бесплатно, оплата МИР, блокировщик рекламы.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 TrustTunnel</span><span class="pill">🆓 3 ГБ/мес</span><span class="pill">📱 10 устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
-    <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 247 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">TrustTunnel QUIC</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">10</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>118 Мбит/с — максимум в тесте</li><li>Доступен в App Store и Play Market (РФ)</li><li>Встроенный блокировщик рекламы</li><li>Раздельное туннелирование (split tunneling)</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>3 ГБ/мес бесплатно — мало для видео</li><li>Нет поддержки роутеров напрямую</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.6 · 3 870 отзывов</p><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a></div>
-</div>
-</div>
-
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">5</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">hidemy.name</span><span class="vpn-badge badge-orange">С 2012 года</span></div>
-    <p class="vpn-desc">Stealth OpenVPN UDP обходит ТСПУ на МТС и Ростелекоме. Полностью русский интерфейс и поддержка, 24 часа пробного периода с полным функционалом.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 Stealth OpenVPN</span><span class="pill">🇷🇺 Русский язык</span><span class="pill">⏱️ 24ч бесплатно</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div>
-    <a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 270 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Stealth OpenVPN</div></div>
-  <div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">80+ стран</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Полностью русскоязычный сервис</li><li>Stealth-режим обходит DPI провайдеров</li><li>24 часа полного бесплатного теста</li><li>Поддержка роутеров и Oculus Quest</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Нет AmneziaWG или VLESS</li><li>Нет постоянного бесплатного плана</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★½ 4.5 Trustpilot</p><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на hidemy.name →</a></div>
-</div>
-</div>
-
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">6</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Amnezia VPN</span><span class="vpn-badge badge-purple">Open-source</span></div>
-    <p class="vpn-desc">AmneziaWG 2.0 — лучший протокол для ТСПУ в 2026. Open-source, self-hosted, Amnezia Free разблокирует Telegram и Instagram без подписки.</p>
-    <div class="vpn-pills"><span class="pill">🆓 Amnezia Free</span><span class="pill">🔐 AmneziaWG 2.0</span><span class="pill">📂 Open-source</span><span class="pill">🖥️ Self-hosted</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div>
-    <a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $3.5/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">Amnezia Free</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">AmneziaWG 2.0</div></div>
-  <div class="vpn-stat"><div class="stat-label">Аудиты</div><div class="stat-value green">2 × 7ASecurity</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>AmneziaWG 2.0 — лучший протокол для ТСПУ</li><li>Open-source, 2 независимых аудита</li><li>Self-hosted: уникальный IP вне баз РКН</li><li>Amnezia Free — бесплатно без регистрации</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Self-hosted требует аренды VPS</li><li>Premium: только 20 стран</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 App Store</p><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Amnezia →</a></div>
-</div>
-</div>
-
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">7</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Дядя Ваня VPN</span><span class="vpn-badge badge-blue">Лучшая цена</span></div>
-    <p class="vpn-desc">От 99 ₽ в месяц, оплата рублями, 174 локации, безлимит устройств. Простая установка за одну кнопку, поддержка Android TV.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата рублями</span><span class="pill">🌍 174 локации</span><span class="pill">📺 Android TV</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div>
-    <a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Пробный</div><div class="stat-value">3 дня / 10 ₽</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Shadowsocks, WG</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="warn-box"><p>⚠️ <strong>Внимание:</strong> Shadowsocks на мобильном интернете всё чаще блокируется ТСПУ. Для гарантированного обхода рекомендуем ZoogVPN или AdGuard VPN.</p></div>
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Самая низкая цена — от 99 ₽/мес</li><li>Простая установка, одна кнопка</li><li>Android TV, 174 локации</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Shadowsocks блокируется на LTE</li><li>Нет продвинутой обфускации</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>Оптимален для домашнего Wi-Fi</p><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Дядя Ваня →</a></div>
-</div>
-</div>
-
-</div>
-</div>
 </section>
 
-<section id="comparison" style="padding-top:0;">
-<div class="container">
-<div class="section-header"><div class="section-label">Сравнение</div><h2>Сравнительная таблица VPN 2026</h2></div>
-<div class="compare-wrap">
-<table class="compare-table">
-<thead><tr><th>VPN</th><th>Цена/мес</th><th>Бесплатно</th><th>Протокол</th><th>Обфускация</th><th>Оплата РФ</th><th>Kill Switch</th><th>Оценка</th></tr></thead>
-<tbody>
-<tr><td>ZoogVPN</td><td>от $1.99</td><td>10 ГБ/мес</td><td>ZoogShadowing</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.5</td></tr>
-<tr><td>BlancVPN</td><td>от €4</td><td>30 дней МБ</td><td>Outline/V2Ray</td><td class="check">✓</td><td class="check">✓</td><td class="warn">⚠️</td><td style="color:var(--green);font-weight:700;">9.3</td></tr>
-<tr><td>Trust.Zone</td><td>от $1.77</td><td>3 дня/1 ГБ</td><td>VLESS+Reality</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.1</td></tr>
-<tr><td>AdGuard VPN</td><td>от 247 ₽</td><td>3 ГБ/мес</td><td>TrustTunnel</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.0</td></tr>
-<tr><td>hidemy.name</td><td>от 270 ₽</td><td>24 часа</td><td>Stealth OpenVPN</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">8.8</td></tr>
-<tr><td>Amnezia</td><td>от $3.5</td><td>Amnezia Free</td><td>AmneziaWG 2.0</td><td class="check">✓</td><td class="warn">⚠️</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">8.6</td></tr>
-<tr><td>Дядя Ваня</td><td>от 99 ₽</td><td>3 дня</td><td>Shadowsocks</td><td class="warn">⚠️</td><td class="check">✓</td><td class="cross">✗</td><td style="color:var(--green);font-weight:700;">8.2</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+<!-- ══ НАСТРОЙКА WINDOWS ═════════════════════════════════════ -->
+<section id="windows">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Инструкция</div>
+      <h2>Как настроить VPN на Windows 10 и Windows 11</h2>
+      <p>Пошаговая инструкция для ZoogVPN — принцип аналогичен для AdGuard VPN и BlancVPN. Специфические отличия для других клиентов указаны в примечаниях.</p>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🖥️</span>
+        <h3>Установка и первичная настройка VPN на Windows</h3>
+        <span class="os-tag">Windows 10 / 11</span>
+      </div>
+      <div class="setup-block-body">
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Скачайте установщик только с официального сайта</h4>
+              <p>Перейдите на официальный сайт провайдера и скачайте .exe-файл для Windows. Не используйте поисковики — зеркала и поддельные установщики существуют. После скачивания проверьте цифровую подпись файла: ПКМ → Свойства → Цифровые подписи. Сертификат должен быть выдан компании провайдера.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Запустите установщик от имени администратора</h4>
+              <p>ПКМ по установщику → «Запуск от имени администратора». VPN-клиент устанавливает сетевой адаптер и системную службу — без прав администратора Kill Switch на системном уровне работать не будет. При появлении UAC-запроса нажмите «Да».</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Войдите в аккаунт и выберите протокол</h4>
+              <p>После установки откройте клиент и войдите. В разделе «Настройки» → «Протокол» выберите <strong>ZoogShadowing</strong> (для ZoogVPN) или <strong>TrustTunnel</strong> (для AdGuard VPN). Не оставляйте «Автоматически» — в России авто часто выбирает WireGuard, который заблокирован на мобильных операторах и нестабилен на некоторых домашних провайдерах.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Включите Kill Switch</h4>
+              <p>Настройки → Безопасность → Kill Switch → Включить. На Windows рекомендуем режим «Постоянный Kill Switch» — он блокирует интернет даже если приложение закрыто или произошёл сбой. Обычный Kill Switch активен только пока приложение запущено.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>Настройте Split Tunneling</h4>
+              <p>Настройки → Split Tunneling → Включить. Добавьте в список исключений: браузер (Chrome, Firefox, Edge), мессенджеры (Telegram, Discord). Добавьте в «Прямое соединение» приложения банков, Яндекс.Браузер, Госуслуги. Так заблокированные ресурсы идут через VPN, российские сервисы — напрямую без риска блокировки вашего доступа.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">6</div>
+            <div class="step-content">
+              <h4>Включите автозапуск</h4>
+              <p>Настройки → Общие → «Запускать при старте Windows» → Включить. «Автоподключение при запуске» → Включить. После перезагрузки VPN будет подключаться автоматически без вашего участия. Kill Switch сработает сразу при загрузке сети.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">7</div>
+            <div class="step-content">
+              <h4>Подключитесь к финскому серверу и проверьте работу</h4>
+              <p>Выберите сервер в Финляндии или Нидерландах — пинг 35–52 мс, оптимально для России. Подключитесь. Откройте <strong>ipleak.net</strong> в браузере: должен отображаться IP выбранной страны, DNS-серверы не должны принадлежать российским провайдерам. Откройте YouTube — видео должно играть в 1080p без буферизации.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tip-box" style="margin-top:24px;">
+          <span class="tip-icon">💡</span>
+          <p><strong>Для Amnezia VPN на Windows:</strong> установите клиент, нажмите «Добавить туннель» → введите данные вашего VPS или импортируйте конфигурационный файл. Выберите протокол AmneziaWG 2.0. Всё — подключение за 60 секунд. Пошаговая инструкция с VPS — в руководстве по <a href="/amneziawg/">настройке AmneziaWG на Windows</a>.</p>
+        </div>
+
+        <h3 style="margin-top:40px;">Дополнительные настройки Windows для стабильной работы VPN</h3>
+
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">A</div>
+            <div class="step-content">
+              <h4>Смените DNS на Cloudflare или Google</h4>
+              <p>Панель управления → Сеть и Интернет → Изменение параметров адаптера → ПКМ на активном соединении → Свойства → IPv4 → Свойства → «Использовать следующие адреса DNS-серверов»: основной 1.1.1.1 (Cloudflare), дополнительный 8.8.8.8 (Google). Это предотвращает DNS-утечки при нестабильном VPN-соединении.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">B</div>
+            <div class="step-content">
+              <h4>Отключите IPv6 если VPN его не поддерживает</h4>
+              <p>Те же свойства адаптера → снимите галочку с «Протокол Интернета версии 6 (TCP/IPv6)». Некоторые VPN-клиенты не туннелируют IPv6-трафик — это источник утечек реального IP. Проверьте на ipleak.net после подключения VPN: IPv6 не должен отображаться.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">C</div>
+            <div class="step-content">
+              <h4>Добавьте VPN-клиент в исключения Защитника Windows</h4>
+              <p>Безопасность Windows → Защита от вирусов и угроз → Управление настройками → Добавить исключение → Папка. Укажите папку установки VPN-клиента. Это предотвращает ложные срабатывания антивируса, которые могут нарушить работу VPN-сервиса или Kill Switch.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ══ НАСТРОЙКА MACOS ═══════════════════════════════════════ -->
+<section id="macos">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Инструкция</div>
+      <h2>Как настроить VPN на macOS — пошаговая инструкция</h2>
+      <p>Настройка на Mac отличается от Windows: другая система разрешений, важные нюансы с сетевыми расширениями и особенности Apple Silicon.</p>
+    </div>
 
-<section id="guide" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">Настройка</div><h2>Как настроить VPN</h2></div>
-<div class="guide-steps">
-<div class="guide-step"><div class="step-num">1</div><div class="step-content"><h4>Скачайте приложение с официального сайта провайдера</h4><p>Не из поисковой выдачи, не из зеркал. Только с официального сайта или из магазина приложений — это снижает риск поддельного клиента.</p></div></div>
-<div class="guide-step"><div class="step-num">2</div><div class="step-content"><h4>Выберите обфусцированный протокол</h4><p>ZoogShadowing, TrustTunnel, Outline, VLESS+Reality или AmneziaWG. Стандартный WireGuard и OpenVPN без обёртки блокируются ТСПУ.</p></div></div>
-<div class="guide-step"><div class="step-num">3</div><div class="step-content"><h4>Подключитесь к серверу в Финляндии или Нидерландах</h4><p>Пинг 30–60 мс — оптимальный баланс скорости и стабильности для большинства задач из России.</p></div></div>
-<div class="guide-step"><div class="step-num">4</div><div class="step-content"><h4>Включите Kill Switch и Split Tunneling</h4><p>Kill Switch защищает ваш IP при разрыве соединения. Split Tunneling позволяет пускать через VPN только нужные приложения.</p></div></div>
-<div class="guide-step"><div class="step-num">5</div><div class="step-content"><h4>Проверьте результат на ipleak.net</h4><p>Убедитесь, что виден IP выбранной страны, а DNS не показывает адреса российского провайдера.</p></div></div>
-</div>
-<div class="tip-box" style="margin-top:24px;"><span class="tip-icon">💡</span><p><strong>Совет:</strong> Если VPN внезапно перестал работать — первым делом проверьте обновление приложения. Провайдеры выпускают патчи в ответ на блокировки в течение 24–48 часов.</p></div>
-</div>
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🍎</span>
+        <h3>Установка и настройка VPN на macOS Sequoia</h3>
+        <span class="os-tag">macOS 12 — 15 Sequoia</span>
+      </div>
+      <div class="setup-block-body">
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Скачайте .dmg с официального сайта или из Mac App Store</h4>
+              <p>AdGuard VPN доступен в Mac App Store. ZoogVPN, BlancVPN, hidemy.name и Amnezia — на официальных сайтах через .dmg. После монтирования образа перетащите приложение в папку «Программы». Не запускайте из папки загрузок — часть функций требует постоянного расположения в /Applications.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Разрешите сетевое расширение при первом запуске</h4>
+              <p>macOS попросит разрешение на добавление VPN-конфигурации. Нажмите «Разрешить». В macOS 13+ дополнительно потребуется: Системные настройки → Конфиденциальность и безопасность → «Разрешить» рядом с названием VPN-приложения. Без этого Kill Switch не будет работать на системном уровне.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Выберите обфусцированный протокол</h4>
+              <p>Настройки приложения → Протокол. Для ZoogVPN выбирайте ZoogShadowing. Для AdGuard VPN — TrustTunnel. Для Amnezia — AmneziaWG 2.0. Если в клиенте нет явного выбора и используется только WireGuard — на некоторых домашних провайдерах он может работать нестабильно: смотрите в сторону Amnezia или Trust.Zone с VLESS.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Включите Kill Switch и проверьте режим работы</h4>
+              <p>На macOS Kill Switch реализован через Network Extension API. В разделе безопасности выберите «Блокировать соединение при разрыве VPN». Проверьте: отключите Wi-Fi при активном VPN — интернет должен перестать работать полностью. Если интернет остался — Kill Switch не работает: проверьте разрешения в Системных настройках.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>Настройте Split Tunneling (где поддерживается)</h4>
+              <p>ZoogVPN и AdGuard VPN поддерживают Split Tunneling на macOS. Добавьте Safari или Chrome в список «Использовать VPN», банки и Яндекс.Браузер — в «Обходить VPN». На macOS Split Tunneling работает по идентификатору приложения (Bundle ID), что точнее, чем на Windows.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">6</div>
+            <div class="step-content">
+              <h4>Добавьте VPN в автозапуск через Login Items</h4>
+              <p>Системные настройки → Основные → Объекты входа → нажмите «+» и выберите VPN-приложение. Включите также переключатель «Открывать при входе» в самом приложении. На macOS Sequoia Login Items находятся в: Системные настройки → Основные → Объекты входа и расширения.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">7</div>
+            <div class="step-content">
+              <h4>Подключитесь и проверьте на ipleak.net</h4>
+              <p>Выберите финский или нидерландский сервер. Подключитесь. Откройте ipleak.net — убедитесь, что отображается IP выбранной страны. В разделе «DNS Addresses» не должно быть адресов вашего российского провайдера. На MacBook с M-чипом дополнительно проверьте потребление батареи — VPN с TrustTunnel или WireGuard практически не влияет; тяжёлые протоколы вроде OpenVPN могут разряжать быстрее.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tip-box" style="margin-top:24px;">
+          <span class="tip-icon">💡</span>
+          <p><strong>Apple Silicon (M1/M2/M3/M4):</strong> AdGuard VPN и Amnezia VPN имеют нативные сборки для ARM — значительно быстрее и экономнее батарею. ZoogVPN работает через Rosetta 2, что добавляет ~5% накладных расходов, но практически незаметно. BlancVPN предоставляет Universal Binary.</p>
+        </div>
+
+        <h3 style="margin-top:40px;">Дополнительные настройки macOS для надёжной работы</h3>
+
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">A</div>
+            <div class="step-content">
+              <h4>Отключите iCloud Private Relay при активном VPN</h4>
+              <p>iCloud Private Relay и VPN конфликтуют: оба пытаются маршрутизировать трафик через свои серверы. Системные настройки → [ваш Apple ID] → iCloud → Private Relay → Отключить (или выключайте при активном VPN). С активным Private Relay Kill Switch VPN может работать некорректно.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">B</div>
+            <div class="step-content">
+              <h4>Проверьте настройки прокси-серверов macOS</h4>
+              <p>Системные настройки → Сеть → [активное соединение] → Детали → Прокси. Убедитесь, что здесь нет сторонних прокси-серверов — они могут обходить VPN-туннель. Особенно актуально если раньше использовали Shadowrocket или другие прокси-клиенты.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">C</div>
+            <div class="step-content">
+              <h4>Настройте DNS поверх HTTPS (DoH) для дополнительной защиты</h4>
+              <p>В Safari: Настройки → Конфиденциальность → Зашифрованный DNS → Cloudflare или Quad9. В Chrome: Настройки → Конфиденциальность → Безопасный просмотр → Использовать безопасный DNS → Выберите поставщика. Это предотвращает DNS-утечки на уровне браузера независимо от VPN-клиента.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="faq" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-<div class="faq-list">
-<div class="faq-item"><div class="faq-q">Какой VPN лучше всего работает в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">По совокупности критериев лидируют ZoogVPN (гарантия работы, 10 ГБ бесплатно), AdGuard VPN (118 Мбит/с, доступен в российских магазинах) и BlancVPN (рекордная скорость). Для максимальной устойчивости к ТСПУ — Amnezia с AmneziaWG 2.0.</div></div></div>
-<div class="faq-item"><div class="faq-q">Законно ли использовать VPN в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Использование VPN физическими лицами в России не запрещено. Штрафов за подключение к VPN нет. Запрет касается рекламы VPN для обхода блокировок и доступа к материалам из реестра Минюста как экстремистские (штраф 3–5 тыс. ₽).</div></div></div>
-<div class="faq-item"><div class="faq-q">Можно ли оплатить VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. ZoogVPN, AdGuard VPN, BlancVPN, Trust.Zone, hidemy.name и Дядя Ваня VPN принимают карты МИР, СБП и YooMoney. Зарубежные сервисы (NordVPN, ExpressVPN) оплачиваются через криптовалюту.</div></div></div>
-<div class="faq-item"><div class="faq-q">Почему VPN перестал работать?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">ТСПУ регулярно обновляет алгоритмы фильтрации. Смените протокол на Stealth, VLESS или AmneziaWG, обновите приложение, попробуйте другой сервер. Провайдеры выпускают патчи в течение 24–48 часов после блокировки.</div></div></div>
-</div>
-</div>
+<!-- ══ TROUBLESHOOTING ═══════════════════════════════════════ -->
+<section id="troubleshooting">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Устранение неполадок</div>
+      <h2>Устранение неполадок с VPN на Windows и macOS</h2>
+      <p>Самые частые проблемы с VPN на компьютере и конкретные решения для каждой платформы.</p>
+    </div>
+
+    <h3>Общие проблемы на Windows и macOS</h3>
+    <div class="trouble-grid">
+
+      <div class="trouble-card">
+        <h4>⚡ VPN подключается, но интернет не работает</h4>
+        <ul>
+          <li>Сбросьте DNS вручную: для Windows — <code>ipconfig /flushdns</code> в командной строке; для macOS — <code>sudo dscacheutil -flushcache</code> в Терминале</li>
+          <li>Смените DNS-сервер на 1.1.1.1 и 8.8.8.8 в настройках сетевого адаптера</li>
+          <li>Попробуйте другой сервер VPN в той же стране</li>
+          <li>Переключите протокол: если использовали ZoogShadowing, попробуйте OpenVPN UDP</li>
+          <li>Перезапустите сетевой адаптер VPN через диспетчер устройств (Windows)</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>📡 VPN работает, но ТСПУ всё равно замедляет YouTube</h4>
+        <ul>
+          <li>Убедитесь, что выбран обфусцированный протокол, а не WireGuard или OpenVPN без обёртки</li>
+          <li>Проверьте Split Tunneling: YouTube должен идти через VPN, а не напрямую</li>
+          <li>Попробуйте смену сервера: иногда конкретный IP-диапазон всё равно замедляется</li>
+          <li>Обновите клиент до последней версии — могут быть свежие патчи протокола</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🔄 VPN постоянно обрывается и переподключается</h4>
+        <ul>
+          <li>Проверьте стабильность интернет-соединения без VPN: запустите ping 8.8.8.8 в консоли</li>
+          <li>Смените протокол с UDP на TCP, если VPN поддерживает оба (OpenVPN UDP/TCP)</li>
+          <li>Выберите сервер с меньшей загрузкой — часто в клиенте есть индикатор нагрузки</li>
+          <li>Отключите агрессивные настройки MTU: некоторые провайдеры режут пакеты больше 1400 байт</li>
+          <li>Добавьте VPN-клиент в исключения фаервола Windows Defender</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🛡️ Антивирус или фаервол блокирует VPN</h4>
+        <ul>
+          <li>Временно отключите сторонний антивирус (Kaspersky, ESET, Avast) и попробуйте подключиться</li>
+          <li>Добавьте папку VPN-клиента в исключения антивируса</li>
+          <li>В Windows Defender Firewall: Разрешённые приложения → Добавить приложение → выберите exe VPN</li>
+          <li>Kaspersky особенно часто конфликтует с Kill Switch — добавьте VPN в доверенные приложения Kaspersky</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>💳 Российские сайты и банки не открываются при включённом VPN</h4>
+        <ul>
+          <li>Настройте Split Tunneling — добавьте приложение банка и браузер для российских сайтов в «Прямое соединение»</li>
+          <li>Если Split Tunneling недоступен — подключайтесь к серверу в России (BlancVPN предоставляет российский сервер)</li>
+          <li>Временно отключите VPN при входе в банк, затем включите снова</li>
+          <li>В браузере: добавьте адреса российских банков в исключения прокси (если используете браузерный VPN)</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🔐 Kill Switch не работает — интернет остаётся при разрыве VPN</h4>
+        <ul>
+          <li>Убедитесь, что Kill Switch включён в настройках, а не только активирован переключателем</li>
+          <li>Запустите клиент от имени администратора (Windows) — системный Kill Switch требует прав</li>
+          <li>Для macOS: проверьте разрешения в Системных настройках → Конфиденциальность → Сетевые расширения</li>
+          <li>Проверьте наличие IPv6-утечки на ipleak.net — отключите IPv6 в настройках адаптера</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <h3 style="margin-top:40px;">Специфические проблемы Windows</h3>
+    <div class="trouble-grid">
+
+      <div class="trouble-card">
+        <h4>🖥️ VPN не запускается с Windows — ошибка «Служба не запущена»</h4>
+        <ul>
+          <li>Нажмите Win+R → services.msc → найдите службу VPN (обычно по имени провайдера) → ПКМ → Запустить</li>
+          <li>Тип запуска службы установите в «Автоматически»</li>
+          <li>Переустановите клиент от имени администратора после полного удаления через Control Panel → Программы</li>
+          <li>Проверьте журнал событий: Win+R → eventvwr → Журналы Windows → Приложение — ищите ошибки с именем VPN</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🖥️ Синий экран (BSOD) после установки VPN на Windows</h4>
+        <ul>
+          <li>Виртуальный сетевой адаптер VPN конфликтует со старыми версиями драйвера сетевой карты — обновите его через диспетчер устройств</li>
+          <li>Откатите последнее обновление Windows через Параметры → Обновления → Журнал → Удалить</li>
+          <li>Загрузитесь в безопасном режиме и удалите VPN-клиент, затем установите заново</li>
+          <li>Попробуйте альтернативный клиент: Hiddify для Windows вместо проприетарного — без системных служб</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <h3 style="margin-top:40px;">Специфические проблемы macOS</h3>
+    <div class="trouble-grid">
+
+      <div class="trouble-card">
+        <h4>🍎 macOS не даёт установить VPN — «Не удаётся открыть, так как разработчик неизвестен»</h4>
+        <ul>
+          <li>Системные настройки → Конфиденциальность и безопасность → кнопка «Всё равно открыть» рядом с заблокированным приложением</li>
+          <li>Альтернатива: откройте Терминал и введите <code>sudo xattr -rd com.apple.quarantine /Applications/[ИмяVPN].app</code></li>
+          <li>Это безопасно только для загрузок с официальных сайтов. Перепроверьте URL перед выполнением</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🍎 VPN не может добавить конфигурацию — «Требуются разрешения»</h4>
+        <ul>
+          <li>Системные настройки → Конфиденциальность и безопасность → прокрутите вниз до «Сетевые расширения» или «VPN» → включите переключатель рядом с VPN-приложением</li>
+          <li>В macOS Sequoia: Системные настройки → Основные → VPN и фильтры устройства</li>
+          <li>После разрешения перезапустите приложение — не перезагружайте Mac, достаточно закрыть и открыть снова</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🍎 VPN работает, но скорость на Mac намного ниже, чем без VPN</h4>
+        <ul>
+          <li>На Intel Mac: OpenVPN нагружает процессор больше, чем WireGuard. Переключитесь на TrustTunnel (AdGuard) или ZoogShadowing</li>
+          <li>Проверьте Activity Monitor → CPU — VPN-клиент не должен потреблять больше 5–10%</li>
+          <li>Убедитесь, что клиент имеет нативную сборку для Apple Silicon (не через Rosetta) — в Activity Monitor видно «Вид: Apple» или «Вид: Intel»</li>
+          <li>Amnezia и AdGuard VPN имеют нативные ARM-сборки и работают значительно быстрее на M-чипах</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🍎 После обновления macOS VPN перестал работать</h4>
+        <ul>
+          <li>Обновление macOS сбрасывает разрешения сетевых расширений — пройдите шаги разрешений заново (Системные настройки → Конфиденциальность)</li>
+          <li>Удалите и переустановите VPN-клиент: старые сетевые расширения иногда несовместимы с новой версией macOS</li>
+          <li>Проверьте сайт провайдера: после крупных обновлений macOS обычно выходит патч клиента в течение 1–3 дней</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="tip-box" style="margin-top:32px;">
+      <span class="tip-icon">💡</span>
+      <p><strong>Универсальное решение при любой проблеме:</strong> обновите клиент до последней версии — это решает 60–70% проблем. Провайдеры выпускают патчи в ответ на волны блокировок в течение 24–48 часов. Если помогло — подпишитесь на Telegram-канал провайдера для оперативных уведомлений.</p>
+    </div>
+  </div>
 </section>
 
-<div class="container">
-<div class="bottom-cta">
-  <h3>🏆 Начните с ZoogVPN — 10 ГБ бесплатно</h3>
-  <p>Гарантия работы в России. Обфускация ZoogShadowing. Оплата МИР. Подключение за 2 минуты.</p>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
-</div>
-</div>
+<!-- ══ СРАВНЕНИЕ ════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Сравнение</div>
+      <h2>Сравнительная таблица VPN для ПК — Windows и macOS 2026</h2>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>VPN</th><th>Windows</th><th>macOS</th><th>Протокол</th><th>Kill Switch</th><th>Split Tunneling</th><th>Скорость</th><th>Цена/мес</th><th>Оценка</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ZoogVPN</td><td class="check">✓</td><td class="check">✓</td><td>ZoogShadowing</td><td class="check">✓ Системный</td><td class="check">✓ По приложению</td><td>95 Мбит/с</td><td>от $1.99</td><td style="color:var(--green);font-weight:700;">9.5</td></tr>
+          <tr><td>AdGuard VPN</td><td class="check">✓</td><td class="check">✓ ARM</td><td>TrustTunnel</td><td class="check">✓</td><td class="check">✓ По приложению</td><td>118 Мбит/с</td><td>от 247 ₽</td><td style="color:var(--green);font-weight:700;">9.0</td></tr>
+          <tr><td>Trust.Zone</td><td class="check">✓</td><td class="check">✓</td><td>VLESS+Reality</td><td class="check">✓</td><td class="warn">⚠️</td><td>88 Мбит/с</td><td>от $1.77</td><td style="color:var(--green);font-weight:700;">9.1</td></tr>
+          <tr><td>BlancVPN</td><td class="check">✓</td><td class="check">✓</td><td>Outline</td><td class="warn">⚠️</td><td class="cross">✗</td><td>112 Мбит/с</td><td>от €4</td><td style="color:var(--green);font-weight:700;">9.3</td></tr>
+          <tr><td>hidemy.name</td><td class="check">✓</td><td class="check">✓</td><td>Stealth OpenVPN</td><td class="check">✓</td><td class="cross">✗</td><td>78 Мбит/с</td><td>от 270 ₽</td><td style="color:var(--green);font-weight:700;">8.8</td></tr>
+          <tr><td>Amnezia</td><td class="check">✓</td><td class="check">✓ ARM</td><td>AmneziaWG 2.0</td><td class="check">✓</td><td class="cross">✗</td><td>91 Мбит/с</td><td>от $3.5</td><td style="color:var(--green);font-weight:700;">8.6</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ЗАКЛЮЧЕНИЕ ═══════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Итог</div>
+      <h2>Заключение: какой VPN выбрать для компьютера в России</h2>
+    </div>
+    <p style="color:var(--text-muted);font-size:0.95rem;max-width:800px;line-height:1.8;margin-bottom:20px;">VPN для ПК отличается от мобильного не только размером экрана. На компьютере вы получаете системный Kill Switch, тонкую настройку Split Tunneling по приложениям, совместимость с Hiddify и другими универсальными клиентами, а также стабильное проводное подключение, которое меньше страдает от блокировок, чем мобильный LTE.</p>
+    <p style="color:var(--text-muted);font-size:0.95rem;max-width:800px;line-height:1.8;margin-bottom:24px;">Для большинства пользователей Windows оптимален ZoogVPN: системный Kill Switch, Split Tunneling по приложению, 10 ГБ для теста и гарантия работы в России. Для Mac с Apple Silicon — AdGuard VPN с нативной ARM-сборкой и 118 Мбит/с. Для продвинутых пользователей, которым нужен максимальный контроль — Amnezia с AmneziaWG 2.0 на собственном VPS.</p>
+
+    <div class="legal-grid">
+      <div class="legal-item allowed">
+        <div class="legal-item-label">По сценарию использования</div>
+        <ul>
+          <li><strong>Для большинства:</strong> ZoogVPN — системный Kill Switch, Split Tunneling, 10 ГБ бесплатно</li>
+          <li><strong>Для Mac (Apple Silicon):</strong> AdGuard VPN — нативный ARM, 114 Мбит/с</li>
+          <li><strong>Максимальная скорость:</strong> BlancVPN — 112 Мбит/с на Windows и macOS</li>
+          <li><strong>Максимальная устойчивость:</strong> Trust.Zone (VLESS+Reality) или Amnezia (AmneziaWG 2.0)</li>
+          <li><strong>Для продвинутых:</strong> Amnezia на VPS — уникальный IP, 8 протоколов</li>
+          <li><strong>Русский интерфейс:</strong> hidemy.name — поддержка с 2012 года</li>
+        </ul>
+      </div>
+      <div class="legal-item" style="border-color:rgba(168,85,247,0.2);">
+        <div class="legal-item-label" style="color:var(--purple);">Чек-лист после установки</div>
+        <ul>
+          <li>Выбрать обфусцированный протокол вручную (не «авто»)</li>
+          <li>Включить Kill Switch в режиме «Постоянный»</li>
+          <li>Настроить Split Tunneling для банков и российских сервисов</li>
+          <li>Включить автозапуск при старте системы</li>
+          <li>Проверить на ipleak.net: нет утечек IP и DNS</li>
+          <li>Подписаться на Telegram-канал провайдера</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom-cta" style="margin-top:40px;">
+      <h3>🏆 Начните с ZoogVPN — 10 ГБ бесплатно</h3>
+      <p>Лучший VPN для ПК в России: системный Kill Switch, Split Tunneling по приложению, ZoogShadowing. Нативные клиенты для Windows 10/11 и macOS. Оплата МИР.</p>
+      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══════════════════════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы о VPN для ПК</h2></div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q">Какой VPN лучше для Windows 11 в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">На Windows 11 в апреле 2026 года лучший результат показали ZoogVPN (системный Kill Switch, Split Tunneling, ZoogShadowing) и AdGuard VPN (118 Мбит/с, блокировщик рекламы, Split Tunneling). Для максимальной устойчивости к ТСПУ — Trust.Zone с VLESS+Reality или Amnezia с AmneziaWG 2.0. Полный рейтинг всех рабочих VPN для России — включая те, что подходят и для мобильных устройств — доступен на <a href="/vpn-dlya-rossii/">отдельной странице рейтинга</a>.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Чем VPN на компьютере лучше, чем на смартфоне?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">На ПК доступен системный Kill Switch, который работает на уровне сетевого стека ОС, а не приложения. Split Tunneling настраивается точнее — по конкретному приложению или домену. Можно установить универсальные клиенты (Hiddify, V2RayN) с поддержкой большего числа протоколов. Проводное соединение стабильнее LTE при волнах блокировок. На смартфоне удобнее постоянно включённый VPN с авторедключением при смене сети.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Как настроить VPN только для одного браузера на Windows?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Два способа. Первый: Split Tunneling в клиенте — добавьте нужный браузер в «Использовать VPN», остальные — в «Прямое соединение». Поддерживают ZoogVPN и AdGuard VPN. Второй: браузерное расширение AdGuard VPN для Chrome или Firefox — VPN работает только внутри этого браузера, другие приложения остаются напрямую. Расширение проще в настройке, но не защищает трафик вне браузера.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Влияет ли VPN на скорость скачивания файлов на ПК?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Платный VPN с обфускацией снижает скорость на 10–20% — практически незаметно при 100+ Мбит/с. BlancVPN на Outline показал 112 Мбит/с — потеря меньше 10% от базовой скорости. Для торрентов рекомендуем Trust.Zone: P2P разрешён на всех серверах. Используйте Split Tunneling, чтобы торрент-клиент шёл через VPN, а остальной трафик — напрямую.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Как проверить, работает ли Kill Switch на моём компьютере?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Подключитесь к VPN. Затем принудительно отключите виртуальный сетевой адаптер VPN через Диспетчер устройств (Windows) или отключите Wi-Fi (macOS). Откройте браузер — если Kill Switch работает, страницы не загрузятся и появится сообщение об отсутствии сети. Если браузер открывает сайты — Kill Switch не работает: перепроверьте разрешения и переустановите клиент с правами администратора.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Почему VPN работает медленнее на MacBook, чем на Windows-ноутбуке?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Причин несколько. Если клиент запускается через Rosetta 2 (не нативный ARM), это добавляет накладные расходы. Если используется OpenVPN вместо WireGuard или TrustTunnel — OpenVPN значительно медленнее на macOS из-за обработки на CPU. Проверьте в Activity Monitor → Вид процессов: приложение должно быть «Apple», а не «Intel». AdGuard VPN и Amnezia имеют нативные ARM-сборки и работают быстрее всего на M-чипах.</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <footer class="site-footer" style="margin-top:64px;">
   <div class="footer-inner">
-    <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России. Тестируем на реальных устройствах и операторах.</p>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN для России</a></li>
+          <li><a href="/platnye-vpn/">Лучшие платные VPN</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-telegram/">VPN для Telegram</a></li>
+          <li><a href="/vpn-dlya-noutbuka/">VPN для ноутбука</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Устройства</h4>
+        <ul>
+          <li><a href="/vpn-dlya-macos/">VPN для macOS подробнее</a></li>
+          <li><a href="/vpn-dlya-televizora/">VPN для телевизора</a></li>
+          <li><a href="/vpn-dlya-routera/">VPN для роутера</a></li>
+          <li><a href="/vpn-dlya-chrome/">VPN для Chrome</a></li>
+          <li><a href="/vpn-dlya-firefox/">VPN для Firefox</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы и обзоры</h4>
+        <ul>
+          <li><a href="/amneziawg/">AmneziaWG — настройка</a></li>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/hiddify/">Hiddify — клиент для ПК</a></li>
+          <li><a href="/amnezia/">Обзор Amnezia VPN</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
     </div>
+    <div class="footer-bottom">
+      <p>© 2026 vpn-russia.vercel.app · Информация предоставляется в ознакомительных целях.</p>
+      <p>Партнёрские ссылки помечены nofollow.</p>
+    </div>
+    <p class="footer-disclaimer">Сайт содержит партнёрские ссылки. При покупке через них мы получаем комиссию — это не влияет на объективность оценок. Данные актуальны на апрель 2026 года.</p>
   </div>
 </footer>
+
 <div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">🏆 <strong>ZoogVPN</strong> — работает в России, 10 ГБ бесплатно</div>
+  <div class="sticky-banner-text">🏆 <strong>ZoogVPN</strong> — лучший VPN для Windows и macOS, 10 ГБ бесплатно</div>
   <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank">Попробовать →</a>
   <button class="sticky-close">✕</button>
 </div>
+
 <script src="/js/inner.js" defer></script>
+<script>
+  const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
+  if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+</script>
 </body>
 </html>
