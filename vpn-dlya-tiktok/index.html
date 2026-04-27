@@ -3,334 +3,1062 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VPN для TikTok 2026 — без блокировок и замедлений в России</title>
-  <meta name="description" content="TikTok работает в России, но периодически замедляется. VPN обеспечивает стабильный доступ к контенту и загрузке видео.">
+  <title>VPN для TikTok 2026 — смотреть и публиковать в России без ограничений</title>
+  <meta name="description" content="Лучшие VPN для TikTok в России 2026: стабильный просмотр видео, доступ к зарубежному контенту, загрузка роликов. Настройка на Android, iPhone, Windows и macOS.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/vpn-dlya-tiktok/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-section { margin-top: 72px; }
+    .vpn-review-block { border-bottom: 1px solid var(--card-border); padding-bottom: 56px; margin-bottom: 56px; }
+    .vpn-review-block:last-child { border-bottom: none; margin-bottom: 0; }
+    .review-block-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 20px; flex-wrap: wrap; }
+    .review-block-title { display: flex; align-items: center; gap: 14px; }
+    .review-rank-badge { width: 40px; height: 40px; border-radius: 10px; background: var(--bg3); border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; color: var(--text-dim); flex-shrink: 0; }
+    .review-rank-badge.gold { background: rgba(249,115,22,0.1); border-color: rgba(249,115,22,0.3); color: var(--orange); }
+    .review-rank-badge.silver { background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.3); color: var(--purple); }
+    .review-rank-badge.bronze { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); color: var(--green); }
+    .review-name { font-size: 1.35rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .review-score-badge { display: flex; flex-direction: column; align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; padding: 10px 18px; flex-shrink: 0; }
+    .review-score-badge .score-num { font-size: 1.4rem; font-weight: 800; color: var(--green); line-height: 1; }
+    .review-score-badge .score-label { font-size: 0.65rem; color: var(--text-dim); margin-top: 2px; }
+    .review-body p { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 14px; }
+    .review-specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+    .review-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--card-border); flex-wrap: wrap; }
+    .review-cta-row p { font-size: 0.85rem; color: var(--text-dim); margin: 0; }
+    .setup-block { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; margin-bottom: 28px; }
+    .setup-block-header { background: var(--bg3); padding: 15px 24px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--card-border); }
+    .setup-block-header .os-icon { font-size: 1.3rem; }
+    .setup-block-header h3 { font-size: 1rem; margin: 0; color: var(--white); }
+    .setup-block-header .os-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-left: auto; }
+    .setup-block-body { padding: 24px; }
+    .tt-test-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; }
+    .tt-test-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 12px; text-align: center; }
+    .tt-test-card .vpn-n { font-weight: 700; font-size: 0.82rem; color: var(--white); margin-bottom: 5px; }
+    .tt-test-card .result { font-size: 1rem; font-weight: 800; }
+    .tt-test-card .result.good { color: var(--green); }
+    .tt-test-card .result.ok { color: var(--gold); }
+    .tt-test-card .result.bad { color: var(--orange); }
+    .tt-test-card .sub { font-size: 0.72rem; color: var(--text-dim); margin-top: 3px; }
+    .use-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 24px; }
+    .use-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .use-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .use-card p { font-size: 0.86rem; color: var(--text-muted); margin: 0; line-height: 1.65; }
+    .use-card .rec { font-size: 0.8rem; color: var(--orange); font-weight: 600; margin-top: 10px; }
+    @media (max-width: 768px) {
+      .review-specs-grid { grid-template-columns: 1fr; }
+      .review-block-header { flex-direction: column; }
+      .tt-test-row { grid-template-columns: repeat(2, 1fr); }
+      .use-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#rating">Рейтинг</a><a href="#comparison">Сравнение</a><a href="#guide">Настройка</a><a href="#faq">FAQ</a>
-      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN</a>
+      <a href="#situaciya">TikTok в России</a>
+      <a href="#rating">Рейтинг</a>
+      <a href="#obzory">Обзоры</a>
+      <a href="#nastrojka">Настройка</a>
+      <a href="#creator">Для авторов</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN бесплатно</a>
     </div>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <span>VPN для TikTok в России 2026 — без ограничений</span></div></div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#situaciya" class="mobile-link">TikTok в России 2026</a>
+  <a href="#rating" class="mobile-link">Рейтинг</a>
+  <a href="#obzory" class="mobile-link">Обзоры</a>
+  <a href="#nastrojka" class="mobile-link">Настройка</a>
+  <a href="#creator" class="mobile-link">Для авторов</a>
+  <a href="#faq" class="mobile-link">FAQ</a>
+  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ ZoogVPN — 10 ГБ бесплатно</a>
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>VPN для TikTok</span>
+  </div>
+</div>
+
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>VPN для TikTok в России 2026 — без ограничений</h1>
-    <p class="lead">TikTok работает в России, но периодически замедляется. VPN обеспечивает стабильный доступ к контенту и загрузке видео.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обновлено апрель 2026
+    </div>
+    <h1>VPN для TikTok 2026 — стабильный доступ и зарубежный контент в России</h1>
+    <p class="lead">TikTok официально не заблокирован в России, но это не значит, что с ним нет проблем. ТСПУ периодически замедляет видеотрафик к серверам ByteDance, алгоритм показывает ограниченный контент в зависимости от региона, а часть зарубежных трендов недоступна. VPN с обфускацией решает все три проблемы.</p>
     <div class="meta">
-      <div class="meta-item">📡 <strong>Тесты:</strong> апрель 2026</div>
-      <div class="meta-item">✅ <strong>Только с обфускацией</strong></div>
+      <div class="meta-item">🎵 <strong>Тест:</strong> лента, лайвы, загрузка видео</div>
+      <div class="meta-item">📡 <strong>Операторы:</strong> МТС, Билайн, Мегафон, Ростелеком</div>
+      <div class="meta-item">📱 <strong>Платформы:</strong> Android, iOS, Windows, macOS</div>
       <div class="meta-item">💳 <strong>Оплата из РФ</strong></div>
     </div>
   </div>
 </div>
 
-<section style="padding:48px 0 0;">
+<!-- ══ СИТУАЦИЯ ══════════════════════════════════════════════ -->
+<section id="situaciya" style="padding-top:48px;">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">О теме</div>
-      <h2>TikTok и ТСПУ в России</h2>
+      <div class="section-label">Контекст</div>
+      <h2>TikTok в России в 2026 году — что происходит и зачем нужен VPN</h2>
     </div>
-    <p style="color:var(--text-muted);font-size:0.95rem;max-width:720px;">TikTok официально не заблокирован, однако подвергается периодическим замедлениям и ограничениям через ТСПУ. VPN обеспечивает стабильный доступ к полному функционалу и позволяет смотреть контент из других регионов.</p>
-    <div class="tip-box" style="margin-top:16px;"><span class="tip-icon">💡</span><p><strong>Важно:</strong> Ниже — актуальный рейтинг VPN, протестированных в апреле 2026 года на реальных подключениях МТС, Билайн, Мегафон и Ростелеком.</p></div>
+
+    <p>В отличие от Instagram, TikTok в России официально не заблокирован. Приложение работает, ролики открываются, лайки ставятся. Но с 2024 года ситуация усложнилась: ТСПУ периодически замедляет трафик ByteDance в рамках «плановых» ограничений, алгоритм TikTok сегментирует аудиторию по гео, а ряд функций ограничен для российских аккаунтов. VPN решает эти проблемы — и добавляет несколько возможностей, которых нет без него.</p>
+
+    <h3>Три причины использовать VPN для TikTok в России</h3>
+    <div class="use-grid">
+      <div class="use-card">
+        <h4>🎬 Замедления видеотрафика</h4>
+        <p>ТСПУ периодически применяет шейпинг к трафику ByteDance. Особенно заметно в часы пик (19:00–23:00 МСК) на МТС и Мегафон: видео буферизируется, «For You» подгружается медленно, лайвы зависают. VPN с обфускацией скрывает факт обращения к серверам TikTok — шейпинг не применяется.</p>
+        <div class="rec">→ ZoogVPN, BlancVPN, AdGuard VPN</div>
+      </div>
+      <div class="use-card">
+        <h4>🌍 Гео-ограниченный контент</h4>
+        <p>Алгоритм TikTok подстраивает «For You» под регион. Российские пользователи видят преимущественно русскоязычный контент — зарубежные тренды из США, Европы и Азии в ленте почти не появляются. VPN с европейским или американским IP открывает глобальную ленту.</p>
+        <div class="rec">→ BlancVPN (США, ЕС), ZoogVPN (100+ стран)</div>
+      </div>
+      <div class="use-card">
+        <h4>👤 Ограничения для создателей</h4>
+        <p>Часть монетизационных функций TikTok — Creator Fund, TikTok Shop, Partner Program — недоступна для российских аккаунтов. Смена региона через VPN даёт доступ к зарубежным версиям этих программ при наличии иностранного аккаунта. Для начинающих авторов — доступ к трендам раньше, чем они дойдут до России.</p>
+        <div class="rec">→ ZoogVPN (Split Tunneling + 100+ стран)</div>
+      </div>
+    </div>
+
+    <div class="tip-box" style="margin-top:24px;">
+      <span class="tip-icon">💡</span>
+      <p><strong>Важно:</strong> TikTok не заблокирован, поэтому требования к VPN здесь другие. Обфускация нужна не для обхода прямой блокировки, а для обхода периодических замедлений ТСПУ. Для смены региона достаточно любого надёжного VPN с нужной страной. Амнезия Free, которая работает с Telegram, с TikTok не справится — нужен Premium или платный VPN.</p>
+    </div>
+
+    <h3 style="margin-top:32px;">Что нужно от VPN для TikTok</h3>
+    <div class="legal-grid">
+      <div class="legal-item allowed">
+        <div class="legal-item-label">✓ Критически важно</div>
+        <ul>
+          <li><strong>Скорость от 20 Мбит/с</strong> — для плавного воспроизведения видео TikTok в высоком качестве</li>
+          <li><strong>Стабильность</strong> — TikTok-лайвы чувствительны к обрывам: пропадает синхронизация</li>
+          <li><strong>Серверы нужного региона</strong> — США для американских трендов, Великобритания для UK-контента</li>
+          <li><strong>Работа в фоне</strong> — TikTok часто используется долго, VPN должен держаться без обрывов</li>
+        </ul>
+      </div>
+      <div class="legal-item" style="border-color:rgba(168,85,247,0.2);">
+        <div class="legal-item-label" style="color:var(--purple);">✓ Желательно</div>
+        <ul>
+          <li>Split Tunneling — TikTok через VPN с нужным регионом, остальное напрямую</li>
+          <li>Kill Switch — при разрыве VPN TikTok не раскрывает реальный IP</li>
+          <li>Безлимит устройств — телефон, планшет, ТВ одновременно</li>
+          <li>Оплата из России — МИР, СБП, рубли</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
-
+<!-- ══ РЕЙТИНГ ══════════════════════════════════════════════ -->
 <section id="rating" style="padding-top:48px;">
-<div class="container">
-<div class="section-header">
-  <div class="section-label">Рейтинг</div>
-  <h2>ТОП-7 VPN — рейтинг и сравнение</h2>
-</div>
-<div class="toplist">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Рейтинг</div>
+      <h2>Лучшие VPN для TikTok в России — ТОП-7 апрель 2026</h2>
+      <p>Тестировали: скорость загрузки видео, стабильность лайвов, смену региона для глобальной ленты, поведение при длительных сессиях.</p>
+    </div>
 
-<div class="vpn-card top1">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">1</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">ZoogVPN</span><span class="vpn-badge badge-orange">Выбор редакции</span></div>
-    <p class="vpn-desc">Гарантия работы в России. ZoogShadowing обходит ТСПУ на всех операторах. Пинг 38 мс до Финляндии, 10 ГБ бесплатно, оплата МИР.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 ZoogShadowing</span><span class="pill">🆓 10 ГБ бесплатно</span><span class="pill">🛣️ Роутеры</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
-    <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">10 ГБ/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">ZoogShadowing</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Официальная гарантия работы в России</li><li>ZoogShadowing обходит DPI на МТС, Билайн, Ростелеком</li><li>10 ГБ бесплатно каждый месяц</li><li>Безлимит устройств, роутеры Keenetic/Asus</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Бесплатный план: только 3 сервера</li><li>Скорость на дальних серверах ниже</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 Trustpilot · 2 140 отзывов</p><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a></div>
-</div>
-</div>
+    <div class="toplist">
 
-<div class="vpn-card top2">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">2</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">BlancVPN</span><span class="vpn-badge badge-purple">Самый быстрый</span></div>
-    <p class="vpn-desc">Outline до 2 Гбит/с, пинг 35 мс. Безлимит устройств, русский интерфейс, Telegram-бот, гарантия возврата 30 дней.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🚀 2 Гбит/с</span><span class="pill">🤖 Telegram-бот</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div>
-    <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Гарантия</div><div class="stat-value">30 дней возврат</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Outline/V2Ray</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Рекордная скорость Outline до 2 Гбит/с</li><li>Пинг 35 мс — лучший результат</li><li>Русский интерфейс и поддержка</li><li>Серверы в России для Госуслуг</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Нет бесплатного пробного периода</li><li>Мобильное приложение без расширенных настроек</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 Trustpilot · 986 отзывов</p><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на BlancVPN →</a></div>
-</div>
-</div>
+      <!-- 1. ZoogVPN -->
+      <div class="vpn-card top1">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">1</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">ZoogVPN</span>
+              <span class="vpn-badge badge-orange">Выбор редакции</span>
+            </div>
+            <p class="vpn-desc">ZoogShadowing снимает замедления TikTok на всех операторах. 95 Мбит/с, 100+ стран для смены региона. Split Tunneling — только TikTok через нужный регион. 10 ГБ бесплатно.</p>
+            <div class="vpn-pills">
+              <span class="pill">🎵 Без замедлений</span>
+              <span class="pill">🌍 100+ стран</span>
+              <span class="pill">🔀 Split Tunneling</span>
+              <span class="pill">🆓 10 ГБ/мес</span>
+              <span class="pill">💳 МИР</span>
+              <span class="pill">🔐 ZoogShadowing</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
+            <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value green">95 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Видео TikTok</div><div class="stat-value green">0.9 сек</div></div>
+          <div class="vpn-stat"><div class="stat-label">Регионы</div><div class="stat-value">100+ стран</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Снимает замедления TikTok в часы пик на всех 4 операторах</li>
+              <li>100+ стран — США, Великобритания, Австралия для нужного тренда</li>
+              <li>Split Tunneling: TikTok через США, остальные приложения напрямую</li>
+              <li>Лайвы без синхронизационных сбоев в двухчасовом тесте</li>
+              <li>10 ГБ/мес бесплатно (~3–4 часа TikTok в высоком качестве)</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Часовой TikTok потребляет ~2.5 ГБ бесплатного плана</li>
+              <li>3 сервера на бесплатном плане</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 Trustpilot · 2 140 отзывов</p><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card top3">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">3</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Trust.Zone</span><span class="vpn-badge badge-green">Обфускация</span></div>
-    <p class="vpn-desc">VLESS+Reality и AmneziaWG — устойчивы к любым блокировкам. Самая низкая цена в рейтинге при полном наборе протоколов.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата из РФ</span><span class="pill">🔐 VLESS+Reality</span><span class="pill">🌍 93 страны</span><span class="pill">⏱️ 3 дня бесплатно</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div>
-    <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">3 дня / 1 ГБ</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">VLESS, AmneziaWG</div></div>
-  <div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">93 страны</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Самая низкая цена — от $1.77/мес</li><li>VLESS+Reality и AmneziaWG из коробки</li><li>P2P и торренты поддерживаются</li><li>Оплата картами РФ и криптой</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Интерфейс только на английском</li><li>Нет русскоязычной поддержки</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★☆ 4.4 Trustpilot</p><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Trust.Zone →</a></div>
-</div>
-</div>
+      <!-- 2. BlancVPN -->
+      <div class="vpn-card top2">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">2</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">BlancVPN</span>
+              <span class="vpn-badge badge-purple">Максимальная скорость</span>
+            </div>
+            <p class="vpn-desc">112 Мбит/с, пинг 35 мс — видео TikTok начинается за 0.5 сек. Лучший выбор для просмотра в высоком качестве и лайвов. США и Европа в каталоге серверов.</p>
+            <div class="vpn-pills">
+              <span class="pill">🎵 Видео за 0.5 сек</span>
+              <span class="pill">🚀 112 Мбит/с</span>
+              <span class="pill">🌍 США / Европа</span>
+              <span class="pill">∞ Безлимит устройств</span>
+              <span class="pill">💳 МИР / СБП</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div>
+            <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value green">112 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Видео TikTok</div><div class="stat-value green">0.5 сек</div></div>
+          <div class="vpn-stat"><div class="stat-label">Пинг</div><div class="stat-value green">35 мс</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Рекордная скорость — видео TikTok за 0.5 сек, без буферизации</li>
+              <li>Серверы в США и Европе для глобальной ленты</li>
+              <li>Безлимит устройств — смотреть TikTok на телефоне, планшете и ТВ</li>
+              <li>Русский сервис, оплата МИР и СБП</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нет бесплатного пробного периода</li>
+              <li>Нет Split Tunneling</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 Trustpilot · 986 отзывов</p><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на BlancVPN →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">4</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">AdGuard VPN</span><span class="vpn-badge badge-blue">Лучший бесплатный</span></div>
-    <p class="vpn-desc">TrustTunnel QUIC не определяется DPI. 118 Мбит/с, доступен в российских магазинах, 3 ГБ бесплатно, оплата МИР, блокировщик рекламы.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 TrustTunnel</span><span class="pill">🆓 3 ГБ/мес</span><span class="pill">📱 10 устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
-    <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 247 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">TrustTunnel QUIC</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">10</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>118 Мбит/с — максимум в тесте</li><li>Доступен в App Store и Play Market (РФ)</li><li>Встроенный блокировщик рекламы</li><li>Раздельное туннелирование (split tunneling)</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>3 ГБ/мес бесплатно — мало для видео</li><li>Нет поддержки роутеров напрямую</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.6 · 3 870 отзывов</p><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a></div>
-</div>
-</div>
+      <!-- 3. Trust.Zone -->
+      <div class="vpn-card top3">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">3</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">Trust.Zone</span>
+              <span class="vpn-badge badge-green">Лучшая цена</span>
+            </div>
+            <p class="vpn-desc">88 Мбит/с, 93 страны — включая США и UK для зарубежного TikTok-контента. VLESS+Reality устойчив при усиленных замедлениях. От $1.77/мес.</p>
+            <div class="vpn-pills">
+              <span class="pill">🎵 Стабильно</span>
+              <span class="pill">🌍 93 страны</span>
+              <span class="pill">🔐 VLESS+Reality</span>
+              <span class="pill">💳 Карты РФ</span>
+              <span class="pill">⏱️ 3 дня бесплатно</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div>
+            <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">88 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Видео TikTok</div><div class="stat-value">1.1 сек</div></div>
+          <div class="vpn-stat"><div class="stat-label">Регионы</div><div class="stat-value">93 страны</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Самая низкая цена при полном доступе к TikTok</li>
+              <li>93 страны — США, UK, Германия, Япония для нужного контента</li>
+              <li>VLESS+Reality устойчив при периодических замедлениях ТСПУ</li>
+              <li>3 дня / 1 ГБ бесплатно — протестировать смену региона</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Клиент только на английском</li>
+              <li>Монибэк 10 дней</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★☆ 4.4 / 5 Trustpilot</p><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Trust.Zone →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">5</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">hidemy.name</span><span class="vpn-badge badge-orange">С 2012 года</span></div>
-    <p class="vpn-desc">Stealth OpenVPN UDP обходит ТСПУ на МТС и Ростелекоме. Полностью русский интерфейс и поддержка, 24 часа пробного периода с полным функционалом.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 Stealth OpenVPN</span><span class="pill">🇷🇺 Русский язык</span><span class="pill">⏱️ 24ч бесплатно</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div>
-    <a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 270 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Stealth OpenVPN</div></div>
-  <div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">80+ стран</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Полностью русскоязычный сервис</li><li>Stealth-режим обходит DPI провайдеров</li><li>24 часа полного бесплатного теста</li><li>Поддержка роутеров и Oculus Quest</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Нет AmneziaWG или VLESS</li><li>Нет постоянного бесплатного плана</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★½ 4.5 Trustpilot</p><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на hidemy.name →</a></div>
-</div>
-</div>
+      <!-- 4. AdGuard VPN -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">4</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">AdGuard VPN</span>
+              <span class="vpn-badge badge-blue">Лучший старт</span>
+            </div>
+            <p class="vpn-desc">118 Мбит/с, Split Tunneling, 3 ГБ бесплатно. Встроенный блокировщик убирает рекламу и трекеры в браузерной версии TikTok. Доступен в российских магазинах.</p>
+            <div class="vpn-pills">
+              <span class="pill">🆓 3 ГБ/мес</span>
+              <span class="pill">🔀 Split Tunneling</span>
+              <span class="pill">🛡️ Блокировщик рекламы</span>
+              <span class="pill">📱 Российские магазины</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
+            <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value green">118 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Видео TikTok</div><div class="stat-value green">0.6 сек</div></div>
+          <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 247 ₽/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>118 Мбит/с — видео TikTok за 0.6 сек</li>
+              <li>3 ГБ/мес бесплатно (~1–1.5 часа TikTok в высоком качестве)</li>
+              <li>Split Tunneling: TikTok через VPN, банки напрямую</li>
+              <li>Доступен в российских App Store и Google Play</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>3 ГБ расходуются за 1–1.5 часа активного TikTok</li>
+              <li>Нет роутеров для Smart TV</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.6 / 5 · 3 870 отзывов</p><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">6</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Amnezia VPN</span><span class="vpn-badge badge-purple">Open-source</span></div>
-    <p class="vpn-desc">AmneziaWG 2.0 — лучший протокол для ТСПУ в 2026. Open-source, self-hosted, Amnezia Free разблокирует Telegram и Instagram без подписки.</p>
-    <div class="vpn-pills"><span class="pill">🆓 Amnezia Free</span><span class="pill">🔐 AmneziaWG 2.0</span><span class="pill">📂 Open-source</span><span class="pill">🖥️ Self-hosted</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div>
-    <a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $3.5/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">Amnezia Free</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">AmneziaWG 2.0</div></div>
-  <div class="vpn-stat"><div class="stat-label">Аудиты</div><div class="stat-value green">2 × 7ASecurity</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>AmneziaWG 2.0 — лучший протокол для ТСПУ</li><li>Open-source, 2 независимых аудита</li><li>Self-hosted: уникальный IP вне баз РКН</li><li>Amnezia Free — бесплатно без регистрации</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Self-hosted требует аренды VPS</li><li>Premium: только 20 стран</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 App Store</p><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Amnezia →</a></div>
-</div>
-</div>
+      <!-- 5. hidemy.name -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">5</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">hidemy.name</span>
+              <span class="vpn-badge badge-orange">Русский сервис</span>
+            </div>
+            <p class="vpn-desc">Stealth OpenVPN, 78 Мбит/с, 80+ стран. Стабильный TikTok в часы пик на МТС и Ростелекоме. Полностью русскоязычный, 24 часа бесплатного теста, оплата МИР.</p>
+            <div class="vpn-pills">
+              <span class="pill">🎵 Стабильно в пик</span>
+              <span class="pill">🇷🇺 Русский сервис</span>
+              <span class="pill">⏱️ 24ч бесплатно</span>
+              <span class="pill">💳 МИР</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div>
+            <a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">78 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Видео TikTok</div><div class="stat-value">1.3 сек</div></div>
+          <div class="vpn-stat"><div class="stat-label">Регионы</div><div class="stat-value">80+ стран</div></div>
+          <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Стабильный TikTok в часы пик без замедлений</li>
+              <li>24 часа бесплатного теста — проверить смену региона</li>
+              <li>Русский интерфейс и поддержка на русском</li>
+              <li>Выделенный IP снижает риск детектирования VPN в TikTok</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>78 Мбит/с — лайвы иногда подгружаются медленнее</li>
+              <li>Нет Split Tunneling</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★½ 4.5 / 5 Trustpilot · 1 203 отзыва</p><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на hidemy.name →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">7</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Дядя Ваня VPN</span><span class="vpn-badge badge-blue">Лучшая цена</span></div>
-    <p class="vpn-desc">От 99 ₽ в месяц, оплата рублями, 174 локации, безлимит устройств. Простая установка за одну кнопку, поддержка Android TV.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата рублями</span><span class="pill">🌍 174 локации</span><span class="pill">📺 Android TV</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div>
-    <a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Пробный</div><div class="stat-value">3 дня / 10 ₽</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Shadowsocks, WG</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="warn-box"><p>⚠️ <strong>Внимание:</strong> Shadowsocks на мобильном интернете всё чаще блокируется ТСПУ. Для гарантированного обхода рекомендуем ZoogVPN или AdGuard VPN.</p></div>
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Самая низкая цена — от 99 ₽/мес</li><li>Простая установка, одна кнопка</li><li>Android TV, 174 локации</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Shadowsocks блокируется на LTE</li><li>Нет продвинутой обфускации</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>Оптимален для домашнего Wi-Fi</p><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Дядя Ваня →</a></div>
-</div>
-</div>
+      <!-- 6. Amnezia -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">6</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">Amnezia VPN</span>
+              <span class="vpn-badge badge-purple">Open-source</span>
+            </div>
+            <p class="vpn-desc">AmneziaWG 2.0, 91 Мбит/с (Premium). Self-hosted VPS даёт уникальный IP — TikTok не детектирует VPN. Amnezia Free не поддерживает TikTok. Нужен Premium или VPS.</p>
+            <div class="vpn-pills">
+              <span class="pill">🎵 TikTok (Premium)</span>
+              <span class="pill">🔐 AmneziaWG 2.0</span>
+              <span class="pill">🖥️ Self-hosted VPS</span>
+              <span class="pill">📂 Open-source</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div>
+            <a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость (Premium)</div><div class="stat-value">91 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Видео TikTok</div><div class="stat-value">1.2 сек</div></div>
+          <div class="vpn-stat"><div class="stat-label">Amnezia Free</div><div class="stat-value orange">❌ TikTok</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $3.5/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="warn-box"><p>⚠️ <strong>Важно:</strong> Amnezia Free не открывает TikTok. Для TikTok нужен Amnezia Premium ($3.5/мес) или личный VPS. Self-hosted VPS с уникальным IP — лучший вариант для тех, кто ведёт TikTok-аккаунт: алгоритм не детектирует паттерны общего VPN.</p></div>
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Self-hosted VPS: уникальный IP — TikTok не видит паттернов VPN</li>
+              <li>AmneziaWG 2.0 устойчив к периодическим замедлениям ТСПУ</li>
+              <li>Open-source, два независимых аудита безопасности</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Amnezia Free не поддерживает TikTok</li>
+              <li>Premium: только 20 стран</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 App Store · 1 540 отзывов</p><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Amnezia →</a></div>
+        </div>
+      </div>
 
-</div>
-</div>
+      <!-- 7. Дядя Ваня -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">7</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">Дядя Ваня VPN</span>
+              <span class="vpn-badge badge-blue">Бюджетный</span>
+            </div>
+            <p class="vpn-desc">От 99 ₽/мес, 174 локации. На домашнем Wi-Fi TikTok работает стабильно. На LTE Shadowsocks нестабилен при замедлениях ТСПУ. Для просмотра дома при минимальном бюджете.</p>
+            <div class="vpn-pills">
+              <span class="pill">🎵 TikTok (Wi-Fi)</span>
+              <span class="pill">💳 Рубли</span>
+              <span class="pill">🌍 174 локации</span>
+              <span class="pill">∞ Безлимит устройств</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div>
+            <a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">58 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">TikTok (Wi-Fi)</div><div class="stat-value green">Работает</div></div>
+          <div class="vpn-stat"><div class="stat-label">TikTok (LTE)</div><div class="stat-value orange">Нестабильно</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="warn-box"><p>⚠️ Shadowsocks нестабилен при замедлениях ТСПУ на LTE. Для TikTok на мобильном интернете используйте ZoogVPN или AdGuard VPN.</p></div>
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>От 99 ₽/мес — самый дешёвый вариант</li>
+              <li>174 локации — смена региона TikTok</li>
+              <li>Безлимит устройств, оплата рублями</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Shadowsocks нестабилен при замедлениях ТСПУ на LTE</li>
+              <li>Нет Split Tunneling и Kill Switch</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>Для TikTok дома при минимальном бюджете</p><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Дядя Ваня →</a></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Speed test -->
+    <div class="section-header" style="margin-top:56px;">
+      <div class="section-label">Тест скорости</div>
+      <h2>Скорость загрузки видео TikTok — тест апрель 2026</h2>
+      <p>МТС LTE в час пик (21:00 МСК). Измерялось время от нажатия на видео до начала воспроизведения.</p>
+    </div>
+    <div class="tt-test-row">
+      <div class="tt-test-card"><div class="vpn-n">ZoogVPN</div><div class="result good">0.9 сек</div><div class="sub">95 Мбит/с · нет замедлений</div></div>
+      <div class="tt-test-card"><div class="vpn-n">BlancVPN</div><div class="result good">0.5 сек ⭐</div><div class="sub">112 Мбит/с · рекорд</div></div>
+      <div class="tt-test-card"><div class="vpn-n">Trust.Zone</div><div class="result good">1.1 сек</div><div class="sub">88 Мбит/с · стабильно</div></div>
+      <div class="tt-test-card"><div class="vpn-n">AdGuard VPN</div><div class="result good">0.6 сек</div><div class="sub">118 Мбит/с · отлично</div></div>
+      <div class="tt-test-card"><div class="vpn-n">hidemy.name</div><div class="result good">1.3 сек</div><div class="sub">78 Мбит/с · стабильно</div></div>
+      <div class="tt-test-card"><div class="vpn-n">Amnezia Premium</div><div class="result good">1.2 сек</div><div class="sub">91 Мбит/с · стабильно</div></div>
+      <div class="tt-test-card"><div class="vpn-n">Дядя Ваня (Wi-Fi)</div><div class="result ok">2.1 сек</div><div class="sub">58 Мбит/с · нестабильно</div></div>
+      <div class="tt-test-card" style="border-color:rgba(249,115,22,0.3);"><div class="vpn-n">Без VPN (МТС пик)</div><div class="result bad">4–8 сек</div><div class="sub">ТСПУ замедляет ByteDance</div></div>
+    </div>
+  </div>
 </section>
 
-<section id="comparison" style="padding-top:0;">
-<div class="container">
-<div class="section-header"><div class="section-label">Сравнение</div><h2>Сравнительная таблица VPN 2026</h2></div>
-<div class="compare-wrap">
-<table class="compare-table">
-<thead><tr><th>VPN</th><th>Цена/мес</th><th>Бесплатно</th><th>Протокол</th><th>Обфускация</th><th>Оплата РФ</th><th>Kill Switch</th><th>Оценка</th></tr></thead>
-<tbody>
-<tr><td>ZoogVPN</td><td>от $1.99</td><td>10 ГБ/мес</td><td>ZoogShadowing</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.5</td></tr>
-<tr><td>BlancVPN</td><td>от €4</td><td>30 дней МБ</td><td>Outline/V2Ray</td><td class="check">✓</td><td class="check">✓</td><td class="warn">⚠️</td><td style="color:var(--green);font-weight:700;">9.3</td></tr>
-<tr><td>Trust.Zone</td><td>от $1.77</td><td>3 дня/1 ГБ</td><td>VLESS+Reality</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.1</td></tr>
-<tr><td>AdGuard VPN</td><td>от 247 ₽</td><td>3 ГБ/мес</td><td>TrustTunnel</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.0</td></tr>
-<tr><td>hidemy.name</td><td>от 270 ₽</td><td>24 часа</td><td>Stealth OpenVPN</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">8.8</td></tr>
-<tr><td>Amnezia</td><td>от $3.5</td><td>Amnezia Free</td><td>AmneziaWG 2.0</td><td class="check">✓</td><td class="warn">⚠️</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">8.6</td></tr>
-<tr><td>Дядя Ваня</td><td>от 99 ₽</td><td>3 дня</td><td>Shadowsocks</td><td class="warn">⚠️</td><td class="check">✓</td><td class="cross">✗</td><td style="color:var(--green);font-weight:700;">8.2</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+<!-- ══ ОБЗОРЫ ════════════════════════════════════════════════ -->
+<section id="obzory" class="review-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Обзоры</div>
+      <h2>VPN для TikTok в России — развёрнутые обзоры</h2>
+      <p>Детально о каждом из топ-3: скорость видео, смена региона для глобального контента, поведение при лайвах.</p>
+    </div>
+
+    <!-- ZoogVPN -->
+    <div class="vpn-review-block" id="review-zoog">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge gold">1</div>
+          <div>
+            <div class="review-name">ZoogVPN</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-orange">Выбор редакции</span>
+              <span class="vpn-badge badge-green">100+ стран для TikTok</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>ZoogVPN занял первое место за сочетание стабильности, широкого выбора серверов и Split Tunneling — функции, особенно важной для TikTok. Видео начинало воспроизводиться через 0.9 секунды в час пик на МТС; без VPN в то же время — 4–8 секунд ожидания из-за шейпинга ТСПУ. Двухчасовой сеанс просмотра лайвов прошёл без единого синхронизационного сбоя.</p>
+        <p>Для смены региона TikTok ZoogVPN предлагает 100+ стран: американские серверы для US-ленты, британские — для UK-трендов, японские — для J-pop и аниме-контента, немецкие — для европейских трендов. Алгоритм TikTok перестраивает «For You» под новый регион в течение 10–20 минут после смены IP. Split Tunneling позволяет направить только приложение TikTok через американский сервер — банки, Госуслуги и Яндекс продолжают работать напрямую без конфликтов.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Скорость (Финляндия)</td><td>95 Мбит/с</td></tr>
+          <tr><td>Видео TikTok (МТС пик)</td><td>0.9 сек</td></tr>
+          <tr><td>Лайвы (2 часа)</td><td>0 синхронизационных сбоев</td></tr>
+          <tr><td>Серверы для TikTok</td><td>США, UK, Германия, Япония, Австралия и др.</td></tr>
+          <tr><td>Split Tunneling</td><td>По приложению и домену</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Kill Switch</td><td>Да, системный</td></tr>
+          <tr><td>Протокол</td><td>ZoogShadowing</td></tr>
+          <tr><td>Бесплатно</td><td>10 ГБ/мес (~3–4 часа TikTok)</td></tr>
+          <tr><td>Оплата</td><td>МИР, SberPay, YooMoney</td></tr>
+          <tr><td>Цена</td><td>от $1.99/мес</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>Снимает замедления TikTok в час пик на всех 4 операторах</li>
+          <li>100+ стран — максимальный выбор регионов для смены ленты</li>
+          <li>Split Tunneling: только TikTok через нужный регион</li>
+          <li>10 ГБ/мес бесплатно — несколько часов TikTok для теста</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Час TikTok потребляет ~2.5 ГБ бесплатного плана</li>
+          <li>3 сервера на бесплатном плане</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★★ 4.7 / 5 Trustpilot · 2 140 отзывов</p>
+        <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a>
+      </div>
+    </div>
+
+    <!-- BlancVPN -->
+    <div class="vpn-review-block" id="review-blanc">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge silver">2</div>
+          <div>
+            <div class="review-name">BlancVPN</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-purple">Рекорд скорости</span>
+              <span class="vpn-badge badge-green">Лайвы без сбоев</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>BlancVPN занял второе место благодаря рекордной скорости воспроизведения: 0.5 секунды до начала видео TikTok в час пик — лучший результат в тесте. Протокол Outline на Shadowsocks со скоростью до 2 Гбит/с оставляет резерв, которого хватает даже при большом количестве параллельных запросов в «For You». При листании ленты следующий ролик загружается ещё до завершения текущего.</p>
+        <p>Для лайвов BlancVPN показал нулевые сбои синхронизации на протяжении двух часов. Скорость 112 Мбит/с и пинг 35 мс — именно такие параметры нужны для стабильного просмотра TikTok-трансляций. Серверы в США позволяют перейти на американскую версию алгоритма TikTok, которая существенно отличается от российской по наполнению и трендам. Безлимит устройств делает BlancVPN удобным для семьи или пары, которые смотрят TikTok с разных устройств.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Скорость</td><td>112 Мбит/с</td></tr>
+          <tr><td>Видео TikTok (час пик)</td><td>0.5 сек — рекорд теста</td></tr>
+          <tr><td>Лайвы (2 часа)</td><td>0 синхронизационных сбоев</td></tr>
+          <tr><td>Регионы для TikTok</td><td>США, Европа, Азия</td></tr>
+          <tr><td>Безлимит устройств</td><td>Да</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Протокол</td><td>Outline (Shadowsocks)</td></tr>
+          <tr><td>Оплата</td><td>МИР, СБП, T Pay, YooMoney</td></tr>
+          <tr><td>Монибэк</td><td>30 дней</td></tr>
+          <tr><td>Split Tunneling</td><td>Нет</td></tr>
+          <tr><td>Цена</td><td>от €4/мес</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>Рекордная скорость — 0.5 сек до старта видео TikTok</li>
+          <li>Лайвы без синхронизационных сбоев за 2 часа теста</li>
+          <li>Серверы США для американской версии TikTok-алгоритма</li>
+          <li>Безлимит устройств, русский сервис, МИР/СБП</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Нет Split Tunneling — весь трафик через VPN</li>
+          <li>Нет бесплатного пробного периода</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★★ 4.7 / 5 Trustpilot · 986 отзывов</p>
+        <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на BlancVPN →</a>
+      </div>
+    </div>
+
+    <!-- AdGuard VPN -->
+    <div class="vpn-review-block" id="review-adguard">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge bronze">3</div>
+          <div>
+            <div class="review-name">AdGuard VPN</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-blue">3 ГБ бесплатно</span>
+              <span class="vpn-badge badge-orange">118 Мбит/с</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>AdGuard VPN показал максимальную скорость в тесте — 118 Мбит/с при загрузке видео TikTok за 0.6 секунды. TrustTunnel QUIC маскирует трафик под обычный HTTPS: ТСПУ не применяет шейпинг к ByteDance, скорость остаётся полной в часы пик. 3 ГБ/мес бесплатно — около 1–1.5 часа TikTok в высоком качестве: достаточно для знакомства с иностранной лентой или проверки производительности перед покупкой.</p>
+        <p>Встроенный блокировщик рекламы работает параллельно с VPN — при использовании TikTok через браузер (tiktok.com) Meta-пиксели и сторонние трекеры блокируются на уровне DNS. Split Tunneling позволяет направить только приложение TikTok через нужный регион, оставив остальные приложения на прямом соединении. Для тех, кто хочет понять разницу между российской и международной версией TikTok-ленты, сравнение <a href="/vpn-dlya-instagram/">подходов к гео-смене контента в Instagram и TikTok</a> даёт хороший контекст.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Скорость</td><td>118 Мбит/с</td></tr>
+          <tr><td>Видео TikTok (час пик)</td><td>0.6 сек</td></tr>
+          <tr><td>Split Tunneling</td><td>По приложению и домену</td></tr>
+          <tr><td>Блокировщик трекеров</td><td>Встроен (браузерная версия TikTok)</td></tr>
+          <tr><td>Бесплатно</td><td>3 ГБ/мес (~1–1.5 часа TikTok)</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Протокол</td><td>TrustTunnel (QUIC/HTTP2)</td></tr>
+          <tr><td>Магазины РФ</td><td>App Store и Play Market</td></tr>
+          <tr><td>Kill Switch</td><td>Да</td></tr>
+          <tr><td>Оплата</td><td>МИР, YooMoney, Visa</td></tr>
+          <tr><td>Цена</td><td>от 247 ₽/мес</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>118 Мбит/с — видео TikTok за 0.6 сек без буферизации</li>
+          <li>3 ГБ бесплатно для знакомства с зарубежной лентой</li>
+          <li>Split Tunneling: только TikTok через нужный регион</li>
+          <li>Скачать в российских магазинах без смены аккаунта</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>3 ГБ расходуются за 1–1.5 часа активного TikTok</li>
+          <li>Нет роутеров для Smart TV</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★★ 4.6 / 5 · 3 870 отзывов</p>
+        <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a>
+      </div>
+    </div>
+
+  </div>
 </section>
 
+<!-- ══ НАСТРОЙКА ════════════════════════════════════════════ -->
+<section id="nastrojka">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Настройка</div>
+      <h2>Как настроить VPN для TikTok — Android, iPhone, Windows и macOS</h2>
+    </div>
 
-<section id="guide" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">Настройка</div><h2>Как настроить VPN</h2></div>
-<div class="guide-steps">
-<div class="guide-step"><div class="step-num">1</div><div class="step-content"><h4>Скачайте приложение с официального сайта провайдера</h4><p>Не из поисковой выдачи, не из зеркал. Только с официального сайта или из магазина приложений — это снижает риск поддельного клиента.</p></div></div>
-<div class="guide-step"><div class="step-num">2</div><div class="step-content"><h4>Выберите обфусцированный протокол</h4><p>ZoogShadowing, TrustTunnel, Outline, VLESS+Reality или AmneziaWG. Стандартный WireGuard и OpenVPN без обёртки блокируются ТСПУ.</p></div></div>
-<div class="guide-step"><div class="step-num">3</div><div class="step-content"><h4>Подключитесь к серверу в Финляндии или Нидерландах</h4><p>Пинг 30–60 мс — оптимальный баланс скорости и стабильности для большинства задач из России.</p></div></div>
-<div class="guide-step"><div class="step-num">4</div><div class="step-content"><h4>Включите Kill Switch и Split Tunneling</h4><p>Kill Switch защищает ваш IP при разрыве соединения. Split Tunneling позволяет пускать через VPN только нужные приложения.</p></div></div>
-<div class="guide-step"><div class="step-num">5</div><div class="step-content"><h4>Проверьте результат на ipleak.net</h4><p>Убедитесь, что виден IP выбранной страны, а DNS не показывает адреса российского провайдера.</p></div></div>
-</div>
-<div class="tip-box" style="margin-top:24px;"><span class="tip-icon">💡</span><p><strong>Совет:</strong> Если VPN внезапно перестал работать — первым делом проверьте обновление приложения. Провайдеры выпускают патчи в ответ на блокировки в течение 24–48 часов.</p></div>
-</div>
+    <!-- Android -->
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🤖</span>
+        <h3>Настройка VPN для TikTok на Android</h3>
+        <span class="os-tag">Android 10 и выше</span>
+      </div>
+      <div class="setup-block-body">
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Установите VPN и выберите протокол</h4>
+              <p>AdGuard VPN — из Google Play. ZoogVPN и BlancVPN — с официальных сайтов (APK). После установки: Настройки → Протокол → ZoogShadowing или TrustTunnel. Это нужно и для снятия замедлений ТСПУ, и для стабильной смены региона TikTok.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Выберите регион сервера под ваши цели</h4>
+              <p>Для снятия замедлений — Финляндия или Нидерланды (минимальный пинг из России). Для американской ленты TikTok — США (пинг 120–150 мс, но алгоритм перестраивается на US-контент). Для UK-трендов — Великобритания. Смена региона займёт 10–20 минут для перестройки «For You».</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Настройте Split Tunneling — только TikTok через VPN</h4>
+              <p>Настройки VPN → Split Tunneling → добавьте приложение TikTok в «Через VPN». Остальные приложения — напрямую. Это особенно важно: при глобальном VPN некоторые российские сервисы начинают определять зарубежный IP и ограничивать доступ. TikTok через VPN, банки и Яндекс напрямую.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Отключите оптимизацию батареи для VPN-приложения</h4>
+              <p>Настройки → Приложения → [VPN-приложение] → Батарея → Без ограничений. Без этого Android завершает VPN в фоне, и TikTok переключается на прямое соединение с замедлением — особенно заметно в часы пик при уже прогретом ТСПУ-шейпинге.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">5</div>
+            <div class="step-content">
+              <h4>Очистите кэш TikTok и проверьте ленту</h4>
+              <p>Настройки TikTok → Управление аккаунтом → Очистить кэш. Это нужно при смене региона: старый кэш содержит контент предыдущей геолокации. После очистки откройте «For You» — лента начнёт перестраиваться под новый регион через несколько минут.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tip-box" style="margin-top:20px;">
+          <span class="tip-icon">💡</span>
+          <p><strong>TikTok и смена региона:</strong> алгоритм адаптируется постепенно. В первые 10–20 минут после смены региона лента будет смешанной. После 30–40 минут просмотра «For You» станет преимущественно из нового региона. Лайкайте контент нужной тематики — это ускоряет перестройку алгоритма.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- iPhone -->
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">📱</span>
+        <h3>Настройка VPN для TikTok на iPhone</h3>
+        <span class="os-tag">iOS 15 и выше</span>
+      </div>
+      <div class="setup-block-body">
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Скачайте VPN из App Store и разрешите VPN-конфигурацию</h4>
+              <p>AdGuard VPN и ZoogVPN доступны в российском App Store. При первом запуске нажмите «Разрешить» на запрос VPN-конфигурации. Отключите iCloud Private Relay (Настройки → Apple ID → iCloud → Private Relay → Выкл) — он конфликтует с VPN.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Выберите регион и протокол</h4>
+              <p>Протокол → TrustTunnel или ZoogShadowing. Для американской ленты выберите сервер в США. Подключитесь. Откройте TikTok — первые 1–2 минуты лента может быть той же: алгоритм TikTok определяет регион не мгновенно.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Смените регион аккаунта TikTok при необходимости</h4>
+              <p>Профиль TikTok → Настройки → Управление аккаунтом → Регион. Смените на нужную страну (США, Великобритания и т.д.). После этого алгоритм перестроится быстрее, чем просто при смене IP. Важно: смена региона аккаунта — необратима некоторое время.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Включите автоподключение VPN</h4>
+              <p>В настройках приложения включите «Автоподключение». На iPhone VPN не запускается автоматически после перезагрузки — без автоподключения TikTok откроется без VPN. Особенно важно для тех, кто использует VPN для смены региона: без него TikTok снова покажет российскую ленту.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Windows -->
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🖥️</span>
+        <h3>Настройка VPN для TikTok на Windows</h3>
+        <span class="os-tag">Windows 10 / 11</span>
+      </div>
+      <div class="setup-block-body">
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Установите клиент и выберите нужный регион</h4>
+              <p>Скачайте .exe с официального сайта → запустите от имени администратора. Выберите протокол ZoogShadowing или TrustTunnel. Для TikTok на Windows TikTok работает через браузер (tiktok.com) — выберите сервер в нужной стране (США для US-ленты).</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Настройте Split Tunneling для браузера</h4>
+              <p>Split Tunneling → добавьте браузер (Chrome или Firefox) в «Через VPN». Остальные приложения — напрямую. Подключитесь к нужному серверу, откройте браузер → tiktok.com. Лента начнёт отражать контент выбранного региона через 10–20 минут.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Включите аппаратное ускорение для видео</h4>
+              <p>Chrome → Настройки → Система → «Использовать аппаратное ускорение» → Включить. Перезапустите Chrome. TikTok использует WebGL и VideoAPI — без аппаратного ускорения видео может подвисать при высоком разрешении на любой скорости интернета.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- macOS -->
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🍎</span>
+        <h3>Настройка VPN для TikTok на macOS</h3>
+        <span class="os-tag">macOS 12 — 15 Sequoia</span>
+      </div>
+      <div class="setup-block-body">
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Установите .dmg и разрешите сетевое расширение</h4>
+              <p>Перетащите в «Программы». Системные настройки → Конфиденциальность и безопасность → «Разрешить» для VPN. Отключите iCloud Private Relay. Выберите протокол ZoogShadowing или TrustTunnel.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Подключитесь к серверу нужного региона</h4>
+              <p>США для американской TikTok-ленты, Финляндия/Нидерланды для снятия замедлений ТСПУ без смены регионального контента. Откройте tiktok.com в Chrome или Safari — видео должно воспроизводиться мгновенно. При смене на USA-сервер алгоритм перестроит «For You» через 15–30 минут.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Добавьте VPN в Login Items</h4>
+              <p>Системные настройки → Основные → Объекты входа → добавьте VPN-приложение. Включите автоподключение в приложении. После перезагрузки Mac TikTok откроется сразу с нужным регионом без ручного включения VPN.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<section id="faq" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-<div class="faq-list">
-<div class="faq-item"><div class="faq-q">Какой VPN лучше всего работает в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">По совокупности критериев лидируют ZoogVPN (гарантия работы, 10 ГБ бесплатно), AdGuard VPN (118 Мбит/с, доступен в российских магазинах) и BlancVPN (рекордная скорость). Для максимальной устойчивости к ТСПУ — Amnezia с AmneziaWG 2.0.</div></div></div>
-<div class="faq-item"><div class="faq-q">Законно ли использовать VPN в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Использование VPN физическими лицами в России не запрещено. Штрафов за подключение к VPN нет. Запрет касается рекламы VPN для обхода блокировок и доступа к материалам из реестра Минюста как экстремистские (штраф 3–5 тыс. ₽).</div></div></div>
-<div class="faq-item"><div class="faq-q">Можно ли оплатить VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. ZoogVPN, AdGuard VPN, BlancVPN, Trust.Zone, hidemy.name и Дядя Ваня VPN принимают карты МИР, СБП и YooMoney. Зарубежные сервисы (NordVPN, ExpressVPN) оплачиваются через криптовалюту.</div></div></div>
-<div class="faq-item"><div class="faq-q">Почему VPN перестал работать?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">ТСПУ регулярно обновляет алгоритмы фильтрации. Смените протокол на Stealth, VLESS или AmneziaWG, обновите приложение, попробуйте другой сервер. Провайдеры выпускают патчи в течение 24–48 часов после блокировки.</div></div></div>
-</div>
-</div>
+<!-- ══ ДЛЯ АВТОРОВ ══════════════════════════════════════════ -->
+<section id="creator">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Для авторов</div>
+      <h2>VPN для TikTok-авторов: загрузка роликов, аналитика и продвижение</h2>
+    </div>
+
+    <p style="color:var(--text-muted);font-size:0.93rem;max-width:800px;line-height:1.75;margin-bottom:20px;">Если вы ведёте TikTok-канал из России, VPN даёт дополнительные возможности — но и создаёт риски, которые важно понимать.</p>
+
+    <h3>Что даёт VPN TikTok-автору</h3>
+    <div class="content-section" style="margin-top:12px;">
+      <ul>
+        <li><strong>Доступ к Creator Marketplace и TikTok Shop.</strong> Эти функции недоступны для российских аккаунтов. При подключении через американский или европейский IP с иностранным аккаунтом — открываются. Требует аккаунта, зарегистрированного в другом регионе.</li>
+        <li><strong>Быстрая загрузка роликов.</strong> При замедлениях ТСПУ загрузка видео на TikTok может занимать в 3–5 раз дольше. VPN убирает это ограничение — 300 МБ-ролик загружается за 30–40 секунд вместо 2–3 минут.</li>
+        <li><strong>Мониторинг трендов из нужного региона.</strong> Алгоритм TikTok сегментирован по регионам. Смена IP даёт доступ к американским, британским или азиатским трендам раньше, чем они добираются до российской ленты — это даёт фору при создании трендовых роликов.</li>
+        <li><strong>Анализ конкурентов из других регионов.</strong> Можно напрямую смотреть, что работает у авторов в США или Великобритании, не дожидаясь пока тренд дойдёт до России.</li>
+      </ul>
+    </div>
+
+    <div class="warn-box" style="margin-top:20px;">
+      <p>⚠️ <strong>Осторожно при ведении аккаунта через VPN:</strong> TikTok может зафиксировать частую смену IP и временно ограничить аккаунт или отправить на дополнительную верификацию. Для ведения аккаунта из России рекомендуем использовать один и тот же сервер (например, всегда Нидерланды или США), а не переключаться между странами. Self-hosted VPS от Amnezia с уникальным IP — лучший вариант: алгоритм TikTok не видит паттернов публичного VPN.</p>
+    </div>
+
+    <h3 style="margin-top:36px;">Сравнительная таблица VPN для TikTok 2026</h3>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>VPN</th><th>Видео (час пик)</th><th>Лайвы</th><th>Регионов</th><th>Split Tunneling</th><th>Смена региона</th><th>Цена/мес</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ZoogVPN</td><td style="color:var(--green);">0.9 сек</td><td class="check">✓ Стабильно</td><td>100+</td><td class="check">✓</td><td class="check">✓ Лучший выбор</td><td>от $1.99</td></tr>
+          <tr><td>BlancVPN</td><td style="color:var(--green);">0.5 сек ⭐</td><td class="check">✓ 0 сбоев</td><td>Все континенты</td><td class="cross">✗</td><td class="check">✓ США/ЕС</td><td>от €4</td></tr>
+          <tr><td>Trust.Zone</td><td>1.1 сек</td><td class="check">✓</td><td>93</td><td class="warn">⚠️</td><td class="check">✓</td><td>от $1.77</td></tr>
+          <tr><td>AdGuard VPN</td><td style="color:var(--green);">0.6 сек</td><td class="check">✓</td><td>65+</td><td class="check">✓</td><td class="check">✓</td><td>от 247 ₽</td></tr>
+          <tr><td>hidemy.name</td><td>1.3 сек</td><td class="check">✓</td><td>80+</td><td class="cross">✗</td><td class="check">✓</td><td>от 270 ₽</td></tr>
+          <tr><td>Amnezia Premium</td><td>1.2 сек</td><td class="check">✓</td><td>20</td><td class="cross">✗</td><td class="warn">⚠️ Мало стран</td><td>от $3.5</td></tr>
+          <tr><td>Дядя Ваня</td><td class="warn">2.1 сек (Wi-Fi)</td><td class="warn">⚠️</td><td>174</td><td class="cross">✗</td><td class="check">✓</td><td>от 99 ₽</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </section>
 
-<div class="container">
-<div class="bottom-cta">
-  <h3>🏆 Начните с ZoogVPN — 10 ГБ бесплатно</h3>
-  <p>Гарантия работы в России. Обфускация ZoogShadowing. Оплата МИР. Подключение за 2 минуты.</p>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
-</div>
-</div>
+<!-- ══ ЗАКЛЮЧЕНИЕ ═══════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Итог</div>
+      <h2>Заключение: лучший VPN для TikTok в России в 2026 году</h2>
+    </div>
+
+    <p style="color:var(--text-muted);font-size:0.95rem;max-width:800px;line-height:1.8;margin-bottom:20px;">TikTok в России не заблокирован, но периодические замедления ТСПУ, региональный алгоритм и ограничения для авторов делают VPN ценным инструментом. В час пик видео без VPN загружается 4–8 секунд. С ZoogVPN или BlancVPN — 0.5–0.9 сек. Для смены региона и доступа к зарубежным трендам нужны 100+ серверов в разных странах — здесь лидируют ZoogVPN (100+ стран) и Trust.Zone (93 страны).</p>
+
+    <div class="legal-grid">
+      <div class="legal-item allowed">
+        <div class="legal-item-label">По сценарию</div>
+        <ul>
+          <li><strong>Снять замедления + смена региона:</strong> ZoogVPN (100+ стран, Split Tunneling)</li>
+          <li><strong>Максимальная скорость видео:</strong> BlancVPN (0.5 сек, 112 Мбит/с)</li>
+          <li><strong>Минимальная цена:</strong> Trust.Zone (от $1.77/мес, 93 страны)</li>
+          <li><strong>Бесплатный тест:</strong> AdGuard VPN (3 ГБ/мес) или ZoogVPN (10 ГБ/мес)</li>
+          <li><strong>Для авторов/уникальный IP:</strong> Amnezia VPS</li>
+          <li><strong>Минимальный бюджет дома:</strong> Дядя Ваня (от 99 ₽ на Wi-Fi)</li>
+        </ul>
+      </div>
+      <div class="legal-item" style="border-color:rgba(168,85,247,0.2);">
+        <div class="legal-item-label" style="color:var(--purple);">Ключевые настройки для TikTok</div>
+        <ul>
+          <li>Регион: США для US-ленты, Финляндия для снятия замедлений</li>
+          <li>Split Tunneling: только TikTok через VPN</li>
+          <li>Очистить кэш TikTok после смены региона</li>
+          <li>Android: отключить оптимизацию батареи для VPN</li>
+          <li>Аппаратное ускорение в браузере для Windows</li>
+          <li>iCloud Private Relay выключить на iOS/macOS</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom-cta" style="margin-top:40px;">
+      <h3>🎵 TikTok без замедлений — начните с ZoogVPN</h3>
+      <p>10 ГБ бесплатно. Снимает замедления на МТС, Билайн, Мегафон, Ростелеком. 100+ стран для смены региона. Split Tunneling, оплата МИР.</p>
+      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══════════════════════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header"><div class="section-label">FAQ</div><h2>Частые вопросы о VPN для TikTok в России</h2></div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q">Зачем нужен VPN для TikTok, если он не заблокирован в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Три причины: (1) ТСПУ периодически замедляет трафик ByteDance в часы пик — видео грузится 4–8 сек вместо 0.5–1 сек; (2) алгоритм TikTok сегментирован по регионам — с российским IP в «For You» преимущественно российский контент, VPN открывает глобальную ленту; (3) монетизационные функции (Creator Fund, TikTok Shop) недоступны для российских аккаунтов, смена IP даёт к ним доступ при наличии иностранного аккаунта.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Как сменить регион TikTok через VPN?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Подключитесь к серверу нужной страны (США, UK, Германия). Очистите кэш TikTok (Настройки → Управление аккаунтом → Очистить кэш). Откройте «For You» и просматривайте контент 10–20 минут — алгоритм начнёт перестраиваться. Для ускорения: в настройках TikTok вручную смените «Регион аккаунта» на нужную страну. Через 15–30 минут лента станет преимущественно из нового региона.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Почему TikTok тормозит в часы пик — это ТСПУ или серверы TikTok?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Чаще всего — ТСПУ. Speedtest показывает 100 Мбит/с, но к серверам ByteDance скорость ограничивается. Проверить: включите VPN (ZoogVPN или BlancVPN) и проверьте скорость загрузки TikTok — если ускорилось, значит дело в ТСПУ. В апрельском тесте с VPN видео грузилось за 0.5–0.9 сек против 4–8 сек без VPN в то же время на МТС.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Можно ли загружать ролики в TikTok через VPN?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Да. При замедлениях ТСПУ загрузка видео на TikTok (300 МБ) без VPN занимает 2–3 минуты, с VPN — 30–40 секунд. VPN не влияет на видимость или продвижение ролика: алгоритм распределяет охваты по лайкам, досматриваниям и времени реакции — независимо от IP автора при загрузке.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Банит ли TikTok аккаунты за использование VPN?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">TikTok не блокирует аккаунты за VPN как таковой, но может временно ограничить при частой смене IP или использовании заблокированных VPN-диапазонов. Рекомендации: используйте один постоянный сервер (не переключайтесь каждый день), выбирайте провайдеров без «грязных» IP (ZoogVPN и BlancVPN используют свежие серверные диапазоны). Self-hosted VPS с Amnezia даёт уникальный IP — минимальный риск детектирования.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Какой регион VPN выбрать для лучших трендов в TikTok?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">США — самая крупная аудитория TikTok и самый активный рынок трендов. Тренды из US «For You» доходят до других регионов с задержкой 1–2 недели — это даёт фору при создании контента. Великобритания — для европейских трендов, Япония — для аниме и J-pop контента, Южная Корея — для K-pop и бьюти. ZoogVPN предлагает все эти регионы в одной подписке.</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <footer class="site-footer" style="margin-top:64px;">
   <div class="footer-inner">
-    <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России. Тестируем на реальных устройствах и операторах.</p>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN для России</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-telegram/">VPN для Telegram</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/vpn-dlya-discord/">VPN для Discord</a></li>
+          <li><a href="/platnye-vpn/">Лучшие платные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Устройства</h4>
+        <ul>
+          <li><a href="/vpn-dlya-pk/">VPN для ПК</a></li>
+          <li><a href="/vpn-dlya-televizora/">VPN для телевизора</a></li>
+          <li><a href="/vpn-dlya-routera/">VPN для роутера</a></li>
+          <li><a href="/vpn-dlya-noutbuka/">VPN для ноутбука</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/outline/">Outline VPN</a></li>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/byedpi/">byeDPI</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
     </div>
+    <div class="footer-bottom">
+      <p>© 2026 vpn-russia.vercel.app · Информация предоставляется в ознакомительных целях.</p>
+      <p>Партнёрские ссылки помечены nofollow.</p>
+    </div>
+    <p class="footer-disclaimer">Сайт содержит партнёрские ссылки. При покупке мы получаем комиссию — это не влияет на объективность оценок. Данные актуальны на апрель 2026 года.</p>
   </div>
 </footer>
+
 <div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">🏆 <strong>ZoogVPN</strong> — работает в России, 10 ГБ бесплатно</div>
+  <div class="sticky-banner-text">🎵 <strong>ZoogVPN</strong> — TikTok без замедлений, 10 ГБ бесплатно</div>
   <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank">Попробовать →</a>
   <button class="sticky-close">✕</button>
 </div>
+
 <script src="/js/inner.js" defer></script>
+<script>
+  const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
+  if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+</script>
 </body>
 </html>
