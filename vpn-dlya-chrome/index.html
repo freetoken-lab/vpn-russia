@@ -3,334 +3,1068 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VPN для Chrome 2026 — расширения с обходом блокировок</title>
-  <meta name="description" content="Лучшие VPN-расширения для Google Chrome с обфускацией, без утечек DNS. Тест на совместимость с ТСПУ.">
+  <title>VPN для Chrome 2026 — расширения и настройка для обхода блокировок</title>
+  <meta name="description" content="Лучшие VPN-расширения для Google Chrome в России 2026: обход блокировок Instagram, YouTube, Discord. Сравнение расширений и системных клиентов, пошаговая настройка.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/vpn-dlya-chrome/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-section { margin-top: 72px; }
+    .vpn-review-block { border-bottom: 1px solid var(--card-border); padding-bottom: 56px; margin-bottom: 56px; }
+    .vpn-review-block:last-child { border-bottom: none; margin-bottom: 0; }
+    .review-block-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 20px; flex-wrap: wrap; }
+    .review-block-title { display: flex; align-items: center; gap: 14px; }
+    .review-rank-badge { width: 40px; height: 40px; border-radius: 10px; background: var(--bg3); border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; color: var(--text-dim); flex-shrink: 0; }
+    .review-rank-badge.gold { background: rgba(249,115,22,0.1); border-color: rgba(249,115,22,0.3); color: var(--orange); }
+    .review-rank-badge.silver { background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.3); color: var(--purple); }
+    .review-rank-badge.bronze { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); color: var(--green); }
+    .review-name { font-size: 1.35rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .review-score-badge { display: flex; flex-direction: column; align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; padding: 10px 18px; flex-shrink: 0; }
+    .review-score-badge .score-num { font-size: 1.4rem; font-weight: 800; color: var(--green); line-height: 1; }
+    .review-score-badge .score-label { font-size: 0.65rem; color: var(--text-dim); margin-top: 2px; }
+    .review-body p { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 14px; }
+    .review-specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+    .review-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--card-border); flex-wrap: wrap; }
+    .review-cta-row p { font-size: 0.85rem; color: var(--text-dim); margin: 0; }
+    .setup-block { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; margin-bottom: 28px; }
+    .setup-block-header { background: var(--bg3); padding: 15px 24px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--card-border); }
+    .setup-block-header .os-icon { font-size: 1.3rem; }
+    .setup-block-header h3 { font-size: 1rem; margin: 0; color: var(--white); }
+    .setup-block-header .os-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-left: auto; }
+    .setup-block-body { padding: 24px; }
+    .ext-type-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+    .ext-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .ext-card h4 { font-size: 0.92rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .ext-card p { font-size: 0.84rem; color: var(--text-muted); margin: 0; line-height: 1.65; }
+    .ext-card .verdict { font-size: 0.78rem; font-weight: 700; margin-top: 10px; }
+    .ext-card.good { border-color: rgba(34,197,94,0.25); }
+    .ext-card.warn { border-color: rgba(251,191,36,0.25); }
+    .trouble-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+    .trouble-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .trouble-card.danger { border-color: rgba(249,115,22,0.25); }
+    .trouble-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--orange); margin-bottom: 10px; }
+    .trouble-card p { font-size: 0.86rem; color: var(--text-muted); margin: 0 0 8px; line-height: 1.65; }
+    .trouble-card ul { padding: 0; display: flex; flex-direction: column; gap: 5px; }
+    .trouble-card li { font-size: 0.84rem; color: var(--text-muted); padding-left: 16px; position: relative; line-height: 1.6; }
+    .trouble-card li::before { content: '→'; position: absolute; left: 0; color: var(--green); font-size: 0.78rem; }
+    @media (max-width: 768px) {
+      .review-specs-grid, .ext-type-grid, .trouble-grid { grid-template-columns: 1fr; }
+      .review-block-header { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#rating">Рейтинг</a><a href="#comparison">Сравнение</a><a href="#guide">Настройка</a><a href="#faq">FAQ</a>
-      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN</a>
+      <a href="#vidy">Расширение vs клиент</a>
+      <a href="#rating">Рейтинг</a>
+      <a href="#obzory">Обзоры</a>
+      <a href="#nastrojka">Настройка</a>
+      <a href="#troubleshooting">Неполадки</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN бесплатно</a>
     </div>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <span>VPN для браузера Chrome в России 2026</span></div></div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#vidy" class="mobile-link">Расширение vs клиент</a>
+  <a href="#rating" class="mobile-link">Рейтинг</a>
+  <a href="#obzory" class="mobile-link">Обзоры</a>
+  <a href="#nastrojka" class="mobile-link">Настройка</a>
+  <a href="#troubleshooting" class="mobile-link">Устранение неполадок</a>
+  <a href="#faq" class="mobile-link">FAQ</a>
+  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ ZoogVPN — 10 ГБ бесплатно</a>
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>VPN для Chrome</span>
+  </div>
+</div>
+
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>VPN для браузера Chrome в России 2026</h1>
-    <p class="lead">Лучшие VPN-расширения для Google Chrome с обфускацией, без утечек DNS. Тест на совместимость с ТСПУ.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обновлено апрель 2026 — расширения и системные клиенты
+    </div>
+    <h1>VPN для Chrome 2026 — расширения и настройка для обхода блокировок в России</h1>
+    <p class="lead">Google Chrome — самый популярный браузер в мире и в России. Для него доступны как VPN-расширения из Chrome Web Store, так и полноценные системные клиенты. Разница между ними принципиальна: расширение защищает только браузер, клиент — все приложения. Мы разбираем оба подхода, тестируем 7 сервисов и показываем, как правильно настроить VPN для Chrome под российские реалии 2026 года.</p>
     <div class="meta">
+      <div class="meta-item">🌐 <strong>Chrome:</strong> Windows, macOS, Android, iOS</div>
+      <div class="meta-item">🧩 <strong>Расширения:</strong> Chrome Web Store</div>
       <div class="meta-item">📡 <strong>Тесты:</strong> апрель 2026</div>
-      <div class="meta-item">✅ <strong>Только с обфускацией</strong></div>
       <div class="meta-item">💳 <strong>Оплата из РФ</strong></div>
     </div>
   </div>
 </div>
 
-<section style="padding:48px 0 0;">
+<!-- ══ ВИДЫ VPN ══════════════════════════════════════════════ -->
+<section id="vidy" style="padding-top:48px;">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">О теме</div>
-      <h2>VPN-расширения Chrome и ТСПУ</h2>
+      <div class="section-label">Контекст</div>
+      <h2>VPN-расширение для Chrome vs системный клиент — в чём разница</h2>
     </div>
-    <p style="color:var(--text-muted);font-size:0.95rem;max-width:720px;">Браузерные расширения VPN работают только внутри Chrome и не защищают остальной трафик. Для полной защиты устройства используйте VPN-приложение. Расширения — удобный способ включить VPN быстро для конкретной вкладки.</p>
-    <div class="tip-box" style="margin-top:16px;"><span class="tip-icon">💡</span><p><strong>Важно:</strong> Ниже — актуальный рейтинг VPN, протестированных в апреле 2026 года на реальных подключениях МТС, Билайн, Мегафон и Ростелеком.</p></div>
+
+    <p>Chrome — единственный браузер в рейтинге, для которого большинство VPN-провайдеров выпускают официальные расширения. Это создаёт выбор: установить лёгкое расширение прямо из Web Store, или поставить полноценный клиент на уровне ОС. Правильный выбор зависит от задачи.</p>
+
+    <div class="ext-type-grid">
+      <div class="ext-card good">
+        <h4>🧩 VPN-расширение для Chrome</h4>
+        <p>Устанавливается из Chrome Web Store за 30 секунд. Работает как HTTPS-прокси внутри браузера — Chrome трафик идёт через VPN, остальные приложения (Telegram, WhatsApp) — напрямую. Встроенный блокировщик рекламы у ряда провайдеров. Управление прямо из тулбара. Минус: защищает только браузер, обычно без настоящей обфускации против ТСПУ.</p>
+        <div class="verdict" style="color:var(--green);">✓ Лучший выбор для быстрого старта и частичной защиты</div>
+      </div>
+      <div class="ext-card good">
+        <h4>🖥️ Системный VPN-клиент</h4>
+        <p>Устанавливается на уровне ОС. Защищает весь трафик, включая Chrome, Telegram, WhatsApp и все остальные приложения. Поддерживает реальную обфускацию (ZoogShadowing, TrustTunnel). Split Tunneling позволяет пустить Chrome через VPN, а банки — напрямую. Kill Switch, автозапуск, надёжная защита от ТСПУ.</p>
+        <div class="verdict" style="color:var(--green);">✓ Лучший выбор для полноценного обхода блокировок</div>
+      </div>
+      <div class="ext-card warn" style="grid-column: 1 / -1;">
+        <h4>⚠️ Бесплатные VPN-расширения из Chrome Web Store — осторожно</h4>
+        <p>Chrome Web Store содержит сотни VPN-расширений, большинство из которых бесплатны. Проблема: анонимные расширения с миллионами установок монетизируются через продажу данных о ваших посещениях. Аудит Top10VPN выявил, что расширения Hola VPN, ZenMate, DotVPN и ряд других передают историю браузера третьим лицам. Выбирайте расширения только от проверенных провайдеров с известной компанией и политикой no-logs.</p>
+        <div class="verdict" style="color:var(--gold);">→ Устанавливайте только расширения от ZoogVPN, AdGuard VPN, Trust.Zone — не анонимные «Free VPN»</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:32px;">Что открывает расширение VPN для Chrome, а что — нет</h3>
+    <div class="legal-grid">
+      <div class="legal-item allowed">
+        <div class="legal-item-label">✓ VPN-расширение Chrome открывает</div>
+        <ul>
+          <li>instagram.com — при расширении с обфускацией (AdGuard VPN)</li>
+          <li>YouTube без замедлений в вкладке Chrome</li>
+          <li>Заблокированные сайты в браузере (Discord Web, reddit.com)</li>
+          <li>Сайты с географическими ограничениями</li>
+        </ul>
+      </div>
+      <div class="legal-item forbidden">
+        <div class="legal-item-label">✗ Расширение Chrome НЕ защищает</div>
+        <ul>
+          <li>Telegram-приложение — расширение не влияет на него</li>
+          <li>Discord-приложение — нужен системный клиент</li>
+          <li>WhatsApp-звонки — вне браузера</li>
+          <li>Все другие приложения на устройстве</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
-
+<!-- ══ РЕЙТИНГ ══════════════════════════════════════════════ -->
 <section id="rating" style="padding-top:48px;">
-<div class="container">
-<div class="section-header">
-  <div class="section-label">Рейтинг</div>
-  <h2>ТОП-7 VPN — рейтинг и сравнение</h2>
-</div>
-<div class="toplist">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Рейтинг</div>
+      <h2>Лучшие VPN для Chrome в России — ТОП-7 апрель 2026</h2>
+      <p>Оценивали наличие расширения для Chrome, качество обфускации в расширении, скорость загрузки заблокированных сайтов и системный клиент как дополнение к расширению.</p>
+    </div>
 
-<div class="vpn-card top1">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">1</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">ZoogVPN</span><span class="vpn-badge badge-orange">Выбор редакции</span></div>
-    <p class="vpn-desc">Гарантия работы в России. ZoogShadowing обходит ТСПУ на всех операторах. Пинг 38 мс до Финляндии, 10 ГБ бесплатно, оплата МИР.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 ZoogShadowing</span><span class="pill">🆓 10 ГБ бесплатно</span><span class="pill">🛣️ Роутеры</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
-    <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">10 ГБ/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">ZoogShadowing</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Официальная гарантия работы в России</li><li>ZoogShadowing обходит DPI на МТС, Билайн, Ростелеком</li><li>10 ГБ бесплатно каждый месяц</li><li>Безлимит устройств, роутеры Keenetic/Asus</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Бесплатный план: только 3 сервера</li><li>Скорость на дальних серверах ниже</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 Trustpilot · 2 140 отзывов</p><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a></div>
-</div>
-</div>
+    <div class="toplist">
 
-<div class="vpn-card top2">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">2</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">BlancVPN</span><span class="vpn-badge badge-purple">Самый быстрый</span></div>
-    <p class="vpn-desc">Outline до 2 Гбит/с, пинг 35 мс. Безлимит устройств, русский интерфейс, Telegram-бот, гарантия возврата 30 дней.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🚀 2 Гбит/с</span><span class="pill">🤖 Telegram-бот</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div>
-    <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Гарантия</div><div class="stat-value">30 дней возврат</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Outline/V2Ray</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Рекордная скорость Outline до 2 Гбит/с</li><li>Пинг 35 мс — лучший результат</li><li>Русский интерфейс и поддержка</li><li>Серверы в России для Госуслуг</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Нет бесплатного пробного периода</li><li>Мобильное приложение без расширенных настроек</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 Trustpilot · 986 отзывов</p><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на BlancVPN →</a></div>
-</div>
-</div>
+      <!-- 1. ZoogVPN -->
+      <div class="vpn-card top1">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">1</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">ZoogVPN</span>
+              <span class="vpn-badge badge-orange">Выбор редакции</span>
+            </div>
+            <p class="vpn-desc">Системный клиент с ZoogShadowing + Split Tunneling для Chrome. 95 Мбит/с. Открывает Instagram, Discord, YouTube 4K через Chrome. Split Tunneling: только Chrome через VPN. 10 ГБ бесплатно.</p>
+            <div class="vpn-pills">
+              <span class="pill">🌐 Все блокировки в Chrome</span>
+              <span class="pill">🔐 ZoogShadowing</span>
+              <span class="pill">🔀 Split Tunneling</span>
+              <span class="pill">🆓 10 ГБ/мес</span>
+              <span class="pill">💳 МИР</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
+            <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value green">95 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Расширение Chrome</div><div class="stat-value warn">Клиент</div></div>
+          <div class="vpn-stat"><div class="stat-label">Instagram в Chrome</div><div class="stat-value green">Открывается</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Полностью открывает все заблокированные сайты в Chrome</li>
+              <li>Split Tunneling: только Chrome через VPN, Сбербанк напрямую</li>
+              <li>ZoogShadowing — настоящая обфускация против ТСПУ</li>
+              <li>10 ГБ/мес бесплатно без ввода карты</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нет расширения для Chrome — только системный клиент</li>
+              <li>3 сервера на бесплатном плане</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 Trustpilot · 2 140 отзывов</p><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card top3">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">3</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Trust.Zone</span><span class="vpn-badge badge-green">Обфускация</span></div>
-    <p class="vpn-desc">VLESS+Reality и AmneziaWG — устойчивы к любым блокировкам. Самая низкая цена в рейтинге при полном наборе протоколов.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата из РФ</span><span class="pill">🔐 VLESS+Reality</span><span class="pill">🌍 93 страны</span><span class="pill">⏱️ 3 дня бесплатно</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div>
-    <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">3 дня / 1 ГБ</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">VLESS, AmneziaWG</div></div>
-  <div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">93 страны</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Самая низкая цена — от $1.77/мес</li><li>VLESS+Reality и AmneziaWG из коробки</li><li>P2P и торренты поддерживаются</li><li>Оплата картами РФ и криптой</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Интерфейс только на английском</li><li>Нет русскоязычной поддержки</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★☆ 4.4 Trustpilot</p><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Trust.Zone →</a></div>
-</div>
-</div>
+      <!-- 2. BlancVPN -->
+      <div class="vpn-card top2">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">2</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">BlancVPN</span>
+              <span class="vpn-badge badge-purple">Максимальная скорость</span>
+            </div>
+            <p class="vpn-desc">112 Мбит/с — YouTube 4K в Chrome мгновенно. Outline снимает замедления ТСПУ. Русский сервис, оплата МИР. Для тех, кто активно смотрит видео и серфит через Chrome.</p>
+            <div class="vpn-pills">
+              <span class="pill">🚀 112 Мбит/с</span>
+              <span class="pill">▶️ YouTube 4K</span>
+              <span class="pill">🔐 Outline</span>
+              <span class="pill">🇷🇺 Русский</span>
+              <span class="pill">💳 МИР / СБП</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div>
+            <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value green">112 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Расширение Chrome</div><div class="stat-value warn">Клиент</div></div>
+          <div class="vpn-stat"><div class="stat-label">YouTube 4K</div><div class="stat-value green">Без лагов</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>112 Мбит/с — YouTube 4K в Chrome без буферизации</li>
+              <li>Outline снимает шейпинг ТСПУ для видео</li>
+              <li>Русский сервис, Telegram-бот, МИР/СБП</li>
+              <li>Безлимит устройств</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нет расширения для Chrome</li>
+              <li>Нет Split Tunneling и бесплатного периода</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 Trustpilot · 986 отзывов</p><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на BlancVPN →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">4</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">AdGuard VPN</span><span class="vpn-badge badge-blue">Лучший бесплатный</span></div>
-    <p class="vpn-desc">TrustTunnel QUIC не определяется DPI. 118 Мбит/с, доступен в российских магазинах, 3 ГБ бесплатно, оплата МИР, блокировщик рекламы.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 TrustTunnel</span><span class="pill">🆓 3 ГБ/мес</span><span class="pill">📱 10 устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
-    <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 247 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">TrustTunnel QUIC</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">10</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>118 Мбит/с — максимум в тесте</li><li>Доступен в App Store и Play Market (РФ)</li><li>Встроенный блокировщик рекламы</li><li>Раздельное туннелирование (split tunneling)</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>3 ГБ/мес бесплатно — мало для видео</li><li>Нет поддержки роутеров напрямую</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.6 · 3 870 отзывов</p><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a></div>
-</div>
-</div>
+      <!-- 3. Trust.Zone -->
+      <div class="vpn-card top3">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">3</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">Trust.Zone</span>
+              <span class="vpn-badge badge-green">Лучшая цена</span>
+            </div>
+            <p class="vpn-desc">VLESS+Reality и AmneziaWG. Открывает Instagram, Discord, YouTube 4K в Chrome. Официальное расширение для Chrome Web Store. От $1.77/мес. Оплата картами РФ.</p>
+            <div class="vpn-pills">
+              <span class="pill">🧩 Расширение Chrome ✓</span>
+              <span class="pill">🔐 VLESS+Reality</span>
+              <span class="pill">💳 Карты РФ</span>
+              <span class="pill">⏱️ 3 дня бесплатно</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div>
+            <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">88 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Расширение Chrome</div><div class="stat-value green">Есть ✓</div></div>
+          <div class="vpn-stat"><div class="stat-label">Instagram</div><div class="stat-value green">Открывается</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Официальное расширение для Chrome в Web Store</li>
+              <li>Самая низкая цена при двух протоколах обфускации</li>
+              <li>Открывает все заблокированные сайты в Chrome</li>
+              <li>3 дня / 1 ГБ бесплатно для теста</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Только английский клиент</li>
+              <li>Монибэк только 10 дней</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★☆ 4.4 / 5 Trustpilot</p><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Trust.Zone →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">5</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">hidemy.name</span><span class="vpn-badge badge-orange">С 2012 года</span></div>
-    <p class="vpn-desc">Stealth OpenVPN UDP обходит ТСПУ на МТС и Ростелекоме. Полностью русский интерфейс и поддержка, 24 часа пробного периода с полным функционалом.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 Stealth OpenVPN</span><span class="pill">🇷🇺 Русский язык</span><span class="pill">⏱️ 24ч бесплатно</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div>
-    <a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 270 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Stealth OpenVPN</div></div>
-  <div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">80+ стран</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Полностью русскоязычный сервис</li><li>Stealth-режим обходит DPI провайдеров</li><li>24 часа полного бесплатного теста</li><li>Поддержка роутеров и Oculus Quest</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Нет AmneziaWG или VLESS</li><li>Нет постоянного бесплатного плана</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★½ 4.5 Trustpilot</p><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на hidemy.name →</a></div>
-</div>
-</div>
+      <!-- 4. AdGuard VPN -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">4</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">AdGuard VPN</span>
+              <span class="vpn-badge badge-blue">Лучшее расширение</span>
+            </div>
+            <p class="vpn-desc">Официальное расширение AdGuard VPN для Chrome с блокировщиком рекламы. Работает прямо в тулбаре. TrustTunnel, 118 Мбит/с, исключения сайтов. 3 ГБ/мес бесплатно.</p>
+            <div class="vpn-pills">
+              <span class="pill">🧩 Лучшее расширение Chrome</span>
+              <span class="pill">🛡️ Блокировщик рекламы</span>
+              <span class="pill">🆓 3 ГБ/мес</span>
+              <span class="pill">🔀 Исключения сайтов</span>
+              <span class="pill">💳 МИР</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
+            <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value green">118 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Расширение Chrome</div><div class="stat-value green">Лучшее ✓</div></div>
+          <div class="vpn-stat"><div class="stat-label">Блокировщик</div><div class="stat-value green">Встроен</div></div>
+          <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Лучшее расширение для Chrome: кнопка в тулбаре, исключения, блокировщик</li>
+              <li>Встроенный блокировщик убирает рекламу на всех сайтах в Chrome</li>
+              <li>3 ГБ/мес бесплатно — Instagram и YouTube без платежей</li>
+              <li>118 Мбит/с — максимум в тесте через системный клиент</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Расширение защищает только Chrome, не другие приложения</li>
+              <li>3 ГБ/мес кончаются быстро при YouTube 4K</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.6 / 5 · 3 870 отзывов</p><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">6</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Amnezia VPN</span><span class="vpn-badge badge-purple">Open-source</span></div>
-    <p class="vpn-desc">AmneziaWG 2.0 — лучший протокол для ТСПУ в 2026. Open-source, self-hosted, Amnezia Free разблокирует Telegram и Instagram без подписки.</p>
-    <div class="vpn-pills"><span class="pill">🆓 Amnezia Free</span><span class="pill">🔐 AmneziaWG 2.0</span><span class="pill">📂 Open-source</span><span class="pill">🖥️ Self-hosted</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div>
-    <a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $3.5/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">Amnezia Free</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">AmneziaWG 2.0</div></div>
-  <div class="vpn-stat"><div class="stat-label">Аудиты</div><div class="stat-value green">2 × 7ASecurity</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>AmneziaWG 2.0 — лучший протокол для ТСПУ</li><li>Open-source, 2 независимых аудита</li><li>Self-hosted: уникальный IP вне баз РКН</li><li>Amnezia Free — бесплатно без регистрации</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Self-hosted требует аренды VPS</li><li>Premium: только 20 стран</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 App Store</p><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Amnezia →</a></div>
-</div>
-</div>
+      <!-- 5. hidemy.name -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">5</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">hidemy.name</span>
+              <span class="vpn-badge badge-orange">Русский сервис</span>
+            </div>
+            <p class="vpn-desc">Stealth OpenVPN открывает заблокированные сайты через Chrome. Расширение для Chrome доступно. Полностью русский интерфейс. 24 часа бесплатного теста. Поддержка на русском.</p>
+            <div class="vpn-pills">
+              <span class="pill">🧩 Расширение Chrome ✓</span>
+              <span class="pill">🇷🇺 Русский сервис</span>
+              <span class="pill">⏱️ 24ч бесплатно</span>
+              <span class="pill">💳 МИР</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div>
+            <a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">78 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Расширение Chrome</div><div class="stat-value green">Есть ✓</div></div>
+          <div class="vpn-stat"><div class="stat-label">Instagram</div><div class="stat-value green">Открывается</div></div>
+          <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Расширение для Chrome в Web Store</li>
+              <li>Полностью русский интерфейс и поддержка</li>
+              <li>24 часа бесплатного теста через расширение</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Расширение — прокси без обфускации</li>
+              <li>Нет постоянного бесплатного плана</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★½ 4.5 / 5 Trustpilot · 1 203 отзыва</p><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на hidemy.name →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">7</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Дядя Ваня VPN</span><span class="vpn-badge badge-blue">Лучшая цена</span></div>
-    <p class="vpn-desc">От 99 ₽ в месяц, оплата рублями, 174 локации, безлимит устройств. Простая установка за одну кнопку, поддержка Android TV.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата рублями</span><span class="pill">🌍 174 локации</span><span class="pill">📺 Android TV</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div>
-    <a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Пробный</div><div class="stat-value">3 дня / 10 ₽</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Shadowsocks, WG</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="warn-box"><p>⚠️ <strong>Внимание:</strong> Shadowsocks на мобильном интернете всё чаще блокируется ТСПУ. Для гарантированного обхода рекомендуем ZoogVPN или AdGuard VPN.</p></div>
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Самая низкая цена — от 99 ₽/мес</li><li>Простая установка, одна кнопка</li><li>Android TV, 174 локации</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Shadowsocks блокируется на LTE</li><li>Нет продвинутой обфускации</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>Оптимален для домашнего Wi-Fi</p><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Дядя Ваня →</a></div>
-</div>
-</div>
+      <!-- 6. Amnezia -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">6</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">Amnezia VPN</span>
+              <span class="vpn-badge badge-purple">Open-source</span>
+            </div>
+            <p class="vpn-desc">AmneziaWG 2.0. Amnezia Free открывает Instagram и снимает замедления YouTube в Chrome бесплатно. Нет расширения для Chrome — только системный клиент. Для продвинутых пользователей.</p>
+            <div class="vpn-pills">
+              <span class="pill">🆓 Instagram + YouTube (Free)</span>
+              <span class="pill">🔐 AmneziaWG 2.0</span>
+              <span class="pill">📂 Open-source</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div>
+            <a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Instagram Free</div><div class="stat-value green">Открывается</div></div>
+          <div class="vpn-stat"><div class="stat-label">YouTube Free</div><div class="stat-value green">720p</div></div>
+          <div class="vpn-stat"><div class="stat-label">Расширение Chrome</div><div class="stat-value orange">Нет</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value green">Бесплатно</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Amnezia Free открывает Instagram в Chrome бесплатно без регистрации</li>
+              <li>AmneziaWG 2.0 — устойчив к волнам блокировок</li>
+              <li>Open-source с двумя аудитами безопасности</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нет расширения для Chrome</li>
+              <li>~8 Мбит/с на Free — YouTube 4K недоступен</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 App Store</p><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Скачать Amnezia →</a></div>
+        </div>
+      </div>
 
-</div>
-</div>
+      <!-- 7. Дядя Ваня -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">7</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">Дядя Ваня VPN</span>
+              <span class="vpn-badge badge-blue">Бюджетный</span>
+            </div>
+            <p class="vpn-desc">От 99 ₽/мес. Открывает заблокированные сайты в Chrome на домашнем Wi-Fi. На LTE нестабилен. Для базового серфинга при минимальном бюджете дома.</p>
+            <div class="vpn-pills">
+              <span class="pill">🌐 Chrome (Wi-Fi)</span>
+              <span class="pill">💳 Оплата рублями</span>
+              <span class="pill">∞ Безлимит устройств</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div>
+            <a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">58 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Chrome (Wi-Fi)</div><div class="stat-value green">Работает</div></div>
+          <div class="vpn-stat"><div class="stat-label">Chrome (LTE)</div><div class="stat-value orange">Нестабильно</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="warn-box"><p>⚠️ Shadowsocks нестабилен на МТС и Мегафон LTE. Для Chrome на мобильном используйте ZoogVPN или AdGuard VPN.</p></div>
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>От 99 ₽/мес — самый доступный</li>
+              <li>Открывает заблокированные сайты в Chrome на Wi-Fi</li>
+              <li>Оплата рублями, безлимит устройств</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нестабилен на LTE</li>
+              <li>Нет расширения для Chrome</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>Для базового серфинга в Chrome на Wi-Fi</p><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Дядя Ваня →</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
-<section id="comparison" style="padding-top:0;">
-<div class="container">
-<div class="section-header"><div class="section-label">Сравнение</div><h2>Сравнительная таблица VPN 2026</h2></div>
-<div class="compare-wrap">
-<table class="compare-table">
-<thead><tr><th>VPN</th><th>Цена/мес</th><th>Бесплатно</th><th>Протокол</th><th>Обфускация</th><th>Оплата РФ</th><th>Kill Switch</th><th>Оценка</th></tr></thead>
-<tbody>
-<tr><td>ZoogVPN</td><td>от $1.99</td><td>10 ГБ/мес</td><td>ZoogShadowing</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.5</td></tr>
-<tr><td>BlancVPN</td><td>от €4</td><td>30 дней МБ</td><td>Outline/V2Ray</td><td class="check">✓</td><td class="check">✓</td><td class="warn">⚠️</td><td style="color:var(--green);font-weight:700;">9.3</td></tr>
-<tr><td>Trust.Zone</td><td>от $1.77</td><td>3 дня/1 ГБ</td><td>VLESS+Reality</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.1</td></tr>
-<tr><td>AdGuard VPN</td><td>от 247 ₽</td><td>3 ГБ/мес</td><td>TrustTunnel</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.0</td></tr>
-<tr><td>hidemy.name</td><td>от 270 ₽</td><td>24 часа</td><td>Stealth OpenVPN</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">8.8</td></tr>
-<tr><td>Amnezia</td><td>от $3.5</td><td>Amnezia Free</td><td>AmneziaWG 2.0</td><td class="check">✓</td><td class="warn">⚠️</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">8.6</td></tr>
-<tr><td>Дядя Ваня</td><td>от 99 ₽</td><td>3 дня</td><td>Shadowsocks</td><td class="warn">⚠️</td><td class="check">✓</td><td class="cross">✗</td><td style="color:var(--green);font-weight:700;">8.2</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+<!-- ══ ОБЗОРЫ ════════════════════════════════════════════════ -->
+<section id="obzory" class="review-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Обзоры</div>
+      <h2>VPN для Chrome — развёрнутые обзоры топ-3</h2>
+    </div>
+
+    <!-- ZoogVPN -->
+    <div class="vpn-review-block" id="review-zoog">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge gold">1</div>
+          <div>
+            <div class="review-name">ZoogVPN</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-orange">Выбор редакции</span>
+              <span class="vpn-badge badge-green">Все блокировки в Chrome</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>ZoogVPN занял первое место за наиболее полное решение для Google Chrome. Системный клиент защищает весь трафик Chrome (и всех остальных приложений) без каких-либо настроек внутри браузера: после установки и подключения к финскому серверу instagram.com открывается сразу, YouTube работает в 4K, Discord.com и веб-приложение Discord загружаются без ошибок блокировки.</p>
+        <p>Split Tunneling — ключевая функция для пользователей Chrome в России 2026 года. Добавьте chrome.exe в «Через VPN», а сайты банков и Госуслуги — в «Прямое соединение» (или через опцию исключений по домену). Это означает, что можно держать VPN постоянно включённым: Instagram и Discord открываются в Chrome через финский сервер, Сбербанк Онлайн и Яндекс.Деньги работают без конфликтов. Детальное сравнение всех вариантов для постоянно включённого VPN — в нашем <a href="/vpn-dlya-rossii/">рейтинге рабочих VPN для России</a>.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Скорость (Финляндия)</td><td>95 Мбит/с</td></tr>
+          <tr><td>Instagram в Chrome</td><td>Открывается мгновенно</td></tr>
+          <tr><td>YouTube 4K в Chrome</td><td>Без буферизации</td></tr>
+          <tr><td>Discord Web в Chrome</td><td>Открывается</td></tr>
+          <tr><td>Split Tunneling</td><td>Chrome через VPN, банки напрямую</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Расширение Chrome</td><td>Нет (системный клиент)</td></tr>
+          <tr><td>Протокол</td><td>ZoogShadowing</td></tr>
+          <tr><td>Kill Switch</td><td>Да, системный</td></tr>
+          <tr><td>Бесплатно</td><td>10 ГБ/мес без карты</td></tr>
+          <tr><td>Оплата</td><td>МИР, SberPay, YooMoney</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>Открывает все заблокированные сайты в Chrome без расширений</li>
+          <li>Split Tunneling: Chrome через VPN, банки напрямую — постоянно включённый VPN</li>
+          <li>10 ГБ/мес бесплатно для теста</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Нет расширения для Chrome</li>
+          <li>3 сервера на бесплатном плане</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★★ 4.7 / 5 Trustpilot · 2 140 отзывов</p>
+        <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a>
+      </div>
+    </div>
+
+    <!-- AdGuard VPN -->
+    <div class="vpn-review-block" id="review-adguard">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge silver">2</div>
+          <div>
+            <div class="review-name">AdGuard VPN</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-blue">Лучшее расширение</span>
+              <span class="vpn-badge badge-orange">118 Мбит/с</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>AdGuard VPN предлагает лучшее расширение для Chrome среди всех протестированных: удобный интерфейс с кнопкой в тулбаре, быстрое переключение серверов, блокировщик рекламы и раздел «Исключения» для российских сайтов — всё в одном расширении. Установка занимает 30 секунд из Chrome Web Store. TrustTunnel обеспечивает достаточно надёжное подключение для открытия Instagram и снятия замедлений YouTube прямо через расширение.</p>
+        <p>Особенность для пользователей Chrome: расширение AdGuard VPN работает независимо от системного клиента. Можно установить расширение для браузерного использования, а системный клиент — для защиты всех приложений. Через раздел «Exclusions» в расширении можно добавить банки (sberbank.ru, tinkoff.ru) в исключения — при переходе на эти сайты VPN отключается автоматически. Для полноценного обхода блокировок без ограничения трафика, когда 3 ГБ/мес недостаточно, стоит перейти на платный тариф — обзор вариантов в <a href="/besplatnye-vpn/">разделе о бесплатных VPN с лимитами</a>.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Расширение Chrome</td><td>Да — лучшее в тесте</td></tr>
+          <tr><td>Скорость (расширение)</td><td>до 80 Мбит/с через прокси</td></tr>
+          <tr><td>Скорость (клиент)</td><td>118 Мбит/с — максимум</td></tr>
+          <tr><td>Блокировщик рекламы</td><td>Встроен — реклама YouTube убрана</td></tr>
+          <tr><td>Исключения сайтов</td><td>Да — банки не требуют VPN</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Бесплатно</td><td>3 ГБ/мес</td></tr>
+          <tr><td>Протокол</td><td>TrustTunnel (QUIC/HTTP2)</td></tr>
+          <tr><td>Kill Switch</td><td>Да (клиент)</td></tr>
+          <tr><td>Оплата</td><td>МИР, YooMoney</td></tr>
+          <tr><td>Цена</td><td>от 247 ₽/мес</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>Лучшее расширение Chrome: тулбар, исключения, блокировщик рекламы</li>
+          <li>Блокировщик убирает YouTube-преролы прямо в Chrome</li>
+          <li>3 ГБ/мес бесплатно для теста</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Расширение защищает только Chrome</li>
+          <li>3 ГБ/мес расходуются быстро при YouTube</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★★ 4.6 / 5 · 3 870 отзывов</p>
+        <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a>
+      </div>
+    </div>
+
+    <!-- Trust.Zone -->
+    <div class="vpn-review-block" id="review-trustzone">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge bronze">3</div>
+          <div>
+            <div class="review-name">Trust.Zone</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-green">Расширение + лучшая цена</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>Trust.Zone занял третье место в обзорах за сочетание официального расширения для Chrome и самой низкой цены среди провайдеров с двумя обфусцированными протоколами. Расширение Trust.Zone в Chrome Web Store работает как прокси и открывает Instagram, Discord.com и снимает замедления YouTube. Системный клиент с VLESS+Reality даёт более надёжную защиту и полный обход ТСПУ.</p>
+        <p>Три дня / 1 ГБ бесплатно — достаточно для проверки Instagram, YouTube 4K и Discord в Chrome до покупки подписки. После теста переход на платный план от $1.77/мес — самая низкая цена в рейтинге при реальной обфускации. Детали по настройке для всех популярных платформ — в разделе <a href="/vpn-dlya-pk/">VPN для ПК</a>.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Расширение Chrome</td><td>Да — в Chrome Web Store</td></tr>
+          <tr><td>Скорость</td><td>88 Мбит/с (клиент)</td></tr>
+          <tr><td>Instagram в Chrome</td><td>Открывается</td></tr>
+          <tr><td>Discord в Chrome</td><td>Открывается</td></tr>
+          <tr><td>YouTube 4K</td><td>Без замедлений</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Протоколы</td><td>VLESS+Reality, AmneziaWG (клиент)</td></tr>
+          <tr><td>Kill Switch</td><td>Да</td></tr>
+          <tr><td>Бесплатно</td><td>3 дня / 1 ГБ</td></tr>
+          <tr><td>Оплата</td><td>Карты РФ, МИР, крипто</td></tr>
+          <tr><td>Цена</td><td>от $1.77/мес</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>Официальное расширение Chrome + системный клиент с VLESS</li>
+          <li>Самая низкая цена при двух обфусцированных протоколах</li>
+          <li>3 дня / 1 ГБ бесплатно для теста</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Только английский клиент</li>
+          <li>Монибэк только 10 дней</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★☆ 4.4 / 5 Trustpilot</p>
+        <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Trust.Zone →</a>
+      </div>
+    </div>
+
+  </div>
 </section>
 
+<!-- ══ НАСТРОЙКА ════════════════════════════════════════════ -->
+<section id="nastrojka">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Настройка</div>
+      <h2>Как настроить VPN для Chrome — расширение и системный клиент</h2>
+    </div>
 
-<section id="guide" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">Настройка</div><h2>Как настроить VPN</h2></div>
-<div class="guide-steps">
-<div class="guide-step"><div class="step-num">1</div><div class="step-content"><h4>Скачайте приложение с официального сайта провайдера</h4><p>Не из поисковой выдачи, не из зеркал. Только с официального сайта или из магазина приложений — это снижает риск поддельного клиента.</p></div></div>
-<div class="guide-step"><div class="step-num">2</div><div class="step-content"><h4>Выберите обфусцированный протокол</h4><p>ZoogShadowing, TrustTunnel, Outline, VLESS+Reality или AmneziaWG. Стандартный WireGuard и OpenVPN без обёртки блокируются ТСПУ.</p></div></div>
-<div class="guide-step"><div class="step-num">3</div><div class="step-content"><h4>Подключитесь к серверу в Финляндии или Нидерландах</h4><p>Пинг 30–60 мс — оптимальный баланс скорости и стабильности для большинства задач из России.</p></div></div>
-<div class="guide-step"><div class="step-num">4</div><div class="step-content"><h4>Включите Kill Switch и Split Tunneling</h4><p>Kill Switch защищает ваш IP при разрыве соединения. Split Tunneling позволяет пускать через VPN только нужные приложения.</p></div></div>
-<div class="guide-step"><div class="step-num">5</div><div class="step-content"><h4>Проверьте результат на ipleak.net</h4><p>Убедитесь, что виден IP выбранной страны, а DNS не показывает адреса российского провайдера.</p></div></div>
-</div>
-<div class="tip-box" style="margin-top:24px;"><span class="tip-icon">💡</span><p><strong>Совет:</strong> Если VPN внезапно перестал работать — первым делом проверьте обновление приложения. Провайдеры выпускают патчи в ответ на блокировки в течение 24–48 часов.</p></div>
-</div>
+    <!-- Способ 1: Расширение AdGuard VPN -->
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🧩</span>
+        <h3>Способ 1: Расширение AdGuard VPN для Chrome (проще всего)</h3>
+        <span class="os-tag">Chrome на Windows · macOS · Android</span>
+      </div>
+      <div class="setup-block-body">
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Установите расширение из Chrome Web Store</h4>
+              <p>Откройте Chrome → перейдите на chromewebstore.google.com → найдите «AdGuard VPN» → нажмите «Добавить в Chrome» → подтвердите «Добавить расширение». Иконка появится в тулбаре справа. Нажмите на неё → создайте аккаунт (email, без карты) → получите 3 ГБ/мес бесплатно.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Выберите финский сервер и подключитесь</h4>
+              <p>В интерфейсе расширения → «Locations» → «Finland» → нажмите «Connect». Иконка станет зелёной. Откройте новую вкладку → введите instagram.com — должен открыться. Зайдите на youtube.com → выберите качество 4K → должно воспроизводиться без буферизации.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Добавьте банки в исключения</h4>
+              <p>В расширении → «Exclusions» → «Add site» → введите sberbank.ru, tinkoff.ru, gosuslugi.ru. При переходе на эти сайты VPN будет отключаться автоматически — банки откроются без конфликтов с зарубежным IP.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Включите блокировщик рекламы</h4>
+              <p>В расширении → значок щита → включите «Block ads». На YouTube в Chrome преролы и баннеры перестанут показываться — без установки uBlock Origin. Блокировщик работает на всех сайтах в Chrome при включённом VPN.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tip-box" style="margin-top:20px;">
+          <span class="tip-icon">💡</span>
+          <p><strong>Ограничение расширения:</strong> защищает только Chrome. Telegram, WhatsApp и другие приложения продолжают работать без VPN. Для защиты всех приложений используйте системный клиент (Способ 2).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Способ 2: Системный клиент Windows -->
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🖥️</span>
+        <h3>Способ 2: Системный клиент ZoogVPN для Windows/macOS</h3>
+        <span class="os-tag">Windows 10/11 · macOS 12+</span>
+      </div>
+      <div class="setup-block-body">
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Установите ZoogVPN от имени администратора</h4>
+              <p>Скачайте .exe с сайта ZoogVPN → ПКМ → «Запуск от имени администратора». На macOS: перетащите .dmg в «Программы» → разрешите сетевое расширение в Системных настройках.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Выберите ZoogShadowing и настройте Split Tunneling</h4>
+              <p>Настройки → Протокол → ZoogShadowing. Split Tunneling → добавьте chrome.exe в «Через VPN». Банковские приложения — в «Прямое соединение». Kill Switch → «Постоянный». Автозапуск → включить.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Подключитесь и откройте Chrome</h4>
+              <p>Финляндия → подключитесь. Откройте Chrome → проверьте instagram.com, youtube.com (4K) и discord.com. Откройте ipleak.net — должен быть финский IP, DNS без российских серверов. Банковские сайты откройте в том же Chrome — должны работать напрямую через Split Tunneling.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Способ 3: Мобильный Chrome -->
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">📱</span>
+        <h3>Способ 3: VPN для Chrome на Android и iOS</h3>
+        <span class="os-tag">Android · iOS</span>
+      </div>
+      <div class="setup-block-body">
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:20px;">Мобильный Chrome не поддерживает расширения (ни на Android, ни на iOS). Единственный вариант — системный VPN-клиент.</p>
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Android: установите VPN, настройте Split Tunneling</h4>
+              <p>AdGuard VPN — из Google Play. ZoogVPN — APK с сайта. Протокол → TrustTunnel или ZoogShadowing. Split Tunneling → добавьте Chrome (com.android.chrome) в «Через VPN». Отключите оптимизацию батареи для VPN-приложения.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>iOS: установите VPN, отключите Private Relay</h4>
+              <p>ZoogVPN и AdGuard VPN — в российском App Store. Разрешите VPN-конфигурацию при первом запуске. Отключите iCloud Private Relay (Настройки → Apple ID → iCloud → Private Relay → Выкл).</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Подключитесь и проверьте Chrome</h4>
+              <p>Финляндия → подключитесь. Откройте Chrome → instagram.com. На Android: проверьте ipleak.net в Chrome — должен быть финский IP. При активном Split Tunneling только Chrome идёт через VPN.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<section id="faq" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-<div class="faq-list">
-<div class="faq-item"><div class="faq-q">Какой VPN лучше всего работает в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">По совокупности критериев лидируют ZoogVPN (гарантия работы, 10 ГБ бесплатно), AdGuard VPN (118 Мбит/с, доступен в российских магазинах) и BlancVPN (рекордная скорость). Для максимальной устойчивости к ТСПУ — Amnezia с AmneziaWG 2.0.</div></div></div>
-<div class="faq-item"><div class="faq-q">Законно ли использовать VPN в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Использование VPN физическими лицами в России не запрещено. Штрафов за подключение к VPN нет. Запрет касается рекламы VPN для обхода блокировок и доступа к материалам из реестра Минюста как экстремистские (штраф 3–5 тыс. ₽).</div></div></div>
-<div class="faq-item"><div class="faq-q">Можно ли оплатить VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. ZoogVPN, AdGuard VPN, BlancVPN, Trust.Zone, hidemy.name и Дядя Ваня VPN принимают карты МИР, СБП и YooMoney. Зарубежные сервисы (NordVPN, ExpressVPN) оплачиваются через криптовалюту.</div></div></div>
-<div class="faq-item"><div class="faq-q">Почему VPN перестал работать?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">ТСПУ регулярно обновляет алгоритмы фильтрации. Смените протокол на Stealth, VLESS или AmneziaWG, обновите приложение, попробуйте другой сервер. Провайдеры выпускают патчи в течение 24–48 часов после блокировки.</div></div></div>
-</div>
-</div>
+<!-- ══ УСТРАНЕНИЕ НЕПОЛАДОК ══════════════════════════════════ -->
+<section id="troubleshooting">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Устранение неполадок</div>
+      <h2>VPN не работает в Chrome — причины и решения</h2>
+      <p>Самые частые проблемы при использовании VPN с Google Chrome и как их устранить.</p>
+    </div>
+
+    <div class="trouble-grid">
+
+      <div class="trouble-card danger">
+        <h4>🚫 Instagram / Discord не открываются в Chrome при включённом VPN</h4>
+        <p>Причина: расширение без обфускации или неверный протокол системного клиента.</p>
+        <ul>
+          <li>Убедитесь, что протокол — ZoogShadowing или TrustTunnel, не WireGuard</li>
+          <li>Проверьте ipleak.net в Chrome — должен быть финский IP</li>
+          <li>Если используете расширение — проверьте, что оно подключено (зелёная иконка в тулбаре)</li>
+          <li>Смените сервер на другой финский или нидерландский</li>
+          <li>Обновите VPN-клиент до последней версии</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card danger">
+        <h4>🐢 YouTube всё ещё замедляется в Chrome с VPN</h4>
+        <p>Причина: протокол без обфускации, VPN не защищает Chrome, или DNS-утечка.</p>
+        <ul>
+          <li>Проверьте протокол: ZoogShadowing, TrustTunnel или Outline</li>
+          <li>В Chrome: Настройки → Конфиденциальность → DNS → Cloudflare или Google (защита от DNS-утечек)</li>
+          <li>Убедитесь, что Chrome идёт через VPN (Split Tunneling настроен правильно)</li>
+          <li>Принудительно выберите качество 4K в настройках видео YouTube</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🧩 Расширение VPN не устанавливается в Chrome</h4>
+        <p>Chrome Web Store может быть недоступен в России. Ряд расширений удалён по требованию РКН.</p>
+        <ul>
+          <li>Попробуйте открыть Chrome Web Store через системный VPN-клиент</li>
+          <li>Используйте прямую ссылку на расширение (например, chromewebstore.google.com/detail/adguard-vpn)</li>
+          <li>Если расширение удалено из Web Store — установите системный клиент вместо расширения</li>
+          <li>Попробуйте другой браузер для первоначальной установки расширения</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🏦 Банки блокируют доступ при включённом VPN в Chrome</h4>
+        <p>С 15 апреля 2026 российские сервисы блокируют зарубежные VPN-IP.</p>
+        <ul>
+          <li>В расширении AdGuard VPN → Exclusions → добавьте домены банков</li>
+          <li>В ZoogVPN → Split Tunneling → банки в «Прямое соединение»</li>
+          <li>Используйте отдельный профиль Chrome без VPN для банков</li>
+          <li>Временно отключайте VPN для банковских операций</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>⚡ Chrome работает медленно при включённом VPN-расширении</h4>
+        <p>Расширение-прокси добавляет задержку обработки запросов внутри браузера.</p>
+        <ul>
+          <li>Переключитесь на системный клиент — он быстрее расширения-прокси</li>
+          <li>Отключите другие расширения Chrome при активном VPN</li>
+          <li>Включите аппаратное ускорение: Настройки → Система → «Использовать аппаратное ускорение»</li>
+          <li>Очистите кэш Chrome: Настройки → Конфиденциальность → Очистить данные браузера</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🔑 Chrome показывает предупреждение «Небезопасное соединение» через VPN</h4>
+        <p>Расширения-прокси низкого качества подменяют SSL-сертификаты — браузер предупреждает об этом.</p>
+        <ul>
+          <li>Не используйте анонимные бесплатные VPN-расширения из Web Store</li>
+          <li>Переключитесь на расширение AdGuard VPN или Trust.Zone — они не подменяют сертификаты</li>
+          <li>Используйте системный клиент (ZoogVPN) — предупреждений о сертификатах не будет</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>📱 Мобильный Chrome на Android не работает через VPN</h4>
+        <p>Android завершает VPN в фоне — при открытии Chrome VPN уже отключён.</p>
+        <ul>
+          <li>Настройки → Приложения → VPN-клиент → Батарея → Без ограничений</li>
+          <li>Настройки Android → Подключения → VPN → ⚙️ → Постоянный VPN → включить</li>
+          <li>На Samsung: «Уход за устройством» → Батарея → удалите VPN из спящего режима</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🔄 VPN-расширение сбрасывает настройки при перезапуске Chrome</h4>
+        <p>Расширение теряет сессию при перезагрузке или обновлении Chrome.</p>
+        <ul>
+          <li>Включите «Автоподключение» в настройках расширения AdGuard VPN</li>
+          <li>Закрепите расширение в тулбаре Chrome: ПКМ → «Закрепить» — будет напоминать о статусе</li>
+          <li>Для надёжного автоподключения используйте системный клиент с автозапуском</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="tip-box" style="margin-top:32px;">
+      <span class="tip-icon">💡</span>
+      <p><strong>Главный совет:</strong> для надёжного и постоянного обхода блокировок в Chrome используйте системный клиент (ZoogVPN или AdGuard VPN) с протоколом ZoogShadowing или TrustTunnel. Расширения удобны для быстрого старта, но системный клиент надёжнее и не теряет соединение при перезапуске браузера.</p>
+    </div>
+  </div>
 </section>
 
-<div class="container">
-<div class="bottom-cta">
-  <h3>🏆 Начните с ZoogVPN — 10 ГБ бесплатно</h3>
-  <p>Гарантия работы в России. Обфускация ZoogShadowing. Оплата МИР. Подключение за 2 минуты.</p>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
-</div>
-</div>
+<!-- ══ СРАВНЕНИЕ ════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Сравнение</div>
+      <h2>Сравнительная таблица VPN для Chrome 2026</h2>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>VPN</th><th>Расширение Chrome</th><th>Instagram</th><th>YouTube 4K</th><th>Discord</th><th>Split Tunneling</th><th>Бесплатно</th><th>Цена/мес</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ZoogVPN</td><td class="warn">⚠️ Клиент</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓ Chrome отдельно</td><td>10 ГБ/мес</td><td>от $1.99</td></tr>
+          <tr><td>BlancVPN</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓ 4K</td><td class="check">✓</td><td class="cross">✗</td><td class="cross">✗</td><td>от €4</td></tr>
+          <tr><td>Trust.Zone</td><td class="check" style="color:var(--green);">✓ Web Store</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="warn">⚠️</td><td>3 дня</td><td>от $1.77</td></tr>
+          <tr><td>AdGuard VPN</td><td class="check" style="color:var(--green);">✓ Лучшее ⭐</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓ + исключения</td><td>3 ГБ/мес</td><td>от 247 ₽</td></tr>
+          <tr><td>hidemy.name</td><td class="check" style="color:var(--green);">✓ Web Store</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td>24 часа</td><td>от 270 ₽</td></tr>
+          <tr><td>Amnezia Free</td><td class="cross">✗</td><td class="check">✓</td><td class="warn">⚠️ 720p</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓ Безлимит</td><td>Бесплатно</td></tr>
+          <tr><td>Дядя Ваня (Wi-Fi)</td><td class="cross">✗</td><td class="check">✓</td><td class="warn">⚠️</td><td class="warn">⚠️</td><td class="cross">✗</td><td>3 дня</td><td>от 99 ₽</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ ЗАКЛЮЧЕНИЕ ═══════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Итог</div>
+      <h2>Заключение: лучший VPN для Chrome в России 2026</h2>
+    </div>
+
+    <p style="color:var(--text-muted);font-size:0.95rem;max-width:800px;line-height:1.8;margin-bottom:20px;">Для Chrome доступны два подхода: расширение (быстро, только браузер) и системный клиент (надёжнее, все приложения). Для открытия Instagram, Discord и снятия замедлений YouTube нужна настоящая обфускация — системный клиент ZoogVPN или расширение AdGuard VPN. Расширение Trust.Zone или hidemy.name — хорошие варианты для тех, кто хочет именно расширение в тулбаре Chrome.</p>
+
+    <div class="legal-grid">
+      <div class="legal-item allowed">
+        <div class="legal-item-label">По задаче</div>
+        <ul>
+          <li><strong>Лучший системный клиент для Chrome:</strong> ZoogVPN — Split Tunneling, 10 ГБ бесплатно</li>
+          <li><strong>Лучшее расширение Chrome:</strong> AdGuard VPN — тулбар, исключения, блокировщик рекламы</li>
+          <li><strong>Расширение + низкая цена:</strong> Trust.Zone — $1.77/мес, Web Store</li>
+          <li><strong>YouTube 4K через Chrome:</strong> BlancVPN — 112 Мбит/с</li>
+          <li><strong>Бесплатно навсегда:</strong> Amnezia Free — Instagram в Chrome</li>
+          <li><strong>Русский интерфейс:</strong> hidemy.name — расширение + клиент</li>
+        </ul>
+      </div>
+      <div class="legal-item" style="border-color:rgba(168,85,247,0.2);">
+        <div class="legal-item-label" style="color:var(--purple);">Ключевые настройки</div>
+        <ul>
+          <li>Расширение: добавьте банки в «Исключения»</li>
+          <li>Клиент: Split Tunneling — Chrome отдельно от других приложений</li>
+          <li>Протокол: ZoogShadowing или TrustTunnel — не WireGuard</li>
+          <li>Chrome DNS → Cloudflare для защиты от DNS-утечек</li>
+          <li>Аппаратное ускорение в Chrome → включить</li>
+          <li>Проверка: ipleak.net → финский IP, нет российских DNS</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom-cta" style="margin-top:40px;">
+      <h3>🌐 Instagram, YouTube 4K и Discord в Chrome — ZoogVPN</h3>
+      <p>10 ГБ бесплатно. ZoogShadowing обходит ТСПУ. Split Tunneling: Chrome через VPN, банки напрямую. Оплата МИР. Работает на Windows, macOS, Android, iOS.</p>
+      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══════════════════════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header"><div class="section-label">FAQ</div><h2>Частые вопросы о VPN для Chrome в России</h2></div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q">Есть ли хорошие бесплатные VPN-расширения для Chrome?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Из надёжных: AdGuard VPN (3 ГБ/мес) — лучшее расширение с блокировщиком рекламы. Trust.Zone и hidemy.name — ограниченный бесплатный период. Большинство других бесплатных VPN-расширений из Chrome Web Store (Hola, Betternet, Hotspot Shield) монетизируются через продажу данных о ваших посещениях. Устанавливайте только расширения от известных провайдеров с прозрачной политикой.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Как открыть Instagram в Chrome без VPN-приложения?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Установите расширение AdGuard VPN прямо из Chrome Web Store (chromewebstore.google.com). Нажмите на иконку в тулбаре → выберите финский сервер → Connect. Откройте instagram.com — должен открыться. На это уйдёт около 2 минут. 3 ГБ/мес бесплатно без карты.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Расширение VPN или системный клиент — что лучше для Chrome?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Зависит от задачи. Расширение: быстрая установка, защищает только Chrome, удобно если нужен VPN только для браузера. Системный клиент: надёжнее, поддерживает настоящую обфускацию против ТСПУ, защищает все приложения, Kill Switch, автозапуск. Для серьёзного обхода блокировок (Instagram, Discord, YouTube 4K) — системный клиент лучше. Для быстрого разового использования — расширение.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Почему расширение VPN в Chrome не открывает Instagram?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Большинство бесплатных VPN-расширений Chrome используют обычный HTTPS-прокси без обфускации — ТСПУ распознаёт их и блокирует. Решение: AdGuard VPN (расширение с TrustTunnel) или установите системный клиент ZoogVPN с ZoogShadowing. Также убедитесь, что расширение действительно подключено (зелёная иконка) и отображает финский IP.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Мобильный Chrome поддерживает расширения VPN?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Нет. Мобильный Chrome (Android и iOS) не поддерживает расширения. Единственный вариант для мобильного Chrome — системный VPN-клиент: AdGuard VPN (Google Play) или ZoogVPN (APK). На Android можно настроить Split Tunneling так, чтобы только Chrome шёл через VPN.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Безопасно ли использовать VPN-расширения из Chrome Web Store?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Зависит от расширения. Расширения от известных провайдеров (AdGuard VPN, Trust.Zone, hidemy.name) безопасны — компании зарабатывают на платных подписках. Анонимные бесплатные расширения с миллионами установок часто монетизируются через продажу истории браузера. Правило: если не понятно, как расширение зарабатывает деньги — не устанавливайте.</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <footer class="site-footer" style="margin-top:64px;">
   <div class="footer-inner">
-    <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России. Тестируем на реальных устройствах и операторах.</p>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по браузерам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-yandex-brauzera/">VPN для Яндекс Браузера</a></li>
+          <li><a href="/vpn-dlya-firefox/">VPN для Firefox</a></li>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN для России</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/platnye-vpn/">Лучшие платные VPN</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+          <li><a href="/vpn-dlya-pk/">VPN для ПК</a></li>
+          <li><a href="/vpn-dlya-discord/">VPN для Discord</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/outline/">Outline VPN</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
     </div>
+    <div class="footer-bottom">
+      <p>© 2026 vpn-russia.vercel.app · Информация предоставляется в ознакомительных целях.</p>
+      <p>Партнёрские ссылки помечены nofollow.</p>
+    </div>
+    <p class="footer-disclaimer">Сайт содержит партнёрские ссылки. При покупке мы получаем комиссию — это не влияет на объективность оценок. Данные актуальны на апрель 2026 года.</p>
   </div>
 </footer>
+
 <div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">🏆 <strong>ZoogVPN</strong> — работает в России, 10 ГБ бесплатно</div>
+  <div class="sticky-banner-text">🌐 <strong>ZoogVPN</strong> — Instagram и Discord в Chrome, 10 ГБ бесплатно</div>
   <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank">Попробовать →</a>
   <button class="sticky-close">✕</button>
 </div>
+
 <script src="/js/inner.js" defer></script>
+<script>
+  const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
+  if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+</script>
 </body>
 </html>
