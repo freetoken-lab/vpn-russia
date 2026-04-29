@@ -3,334 +3,1091 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VPN для Firefox 2026 — расширения и приложения</title>
-  <meta name="description" content="Лучшие VPN для Firefox: расширения из Mozilla Add-ons и полноценные приложения с обходом блокировок.">
+  <title>VPN для Firefox 2026 — встроенный VPN, Mozilla VPN и расширения для России</title>
+  <meta name="description" content="VPN для Firefox в России 2026: встроенный VPN Firefox 149, Mozilla VPN, расширения из Web Store. Что работает в России, что нет — честное сравнение и настройка.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/vpn-dlya-firefox/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-section { margin-top: 72px; }
+    .vpn-review-block { border-bottom: 1px solid var(--card-border); padding-bottom: 56px; margin-bottom: 56px; }
+    .vpn-review-block:last-child { border-bottom: none; margin-bottom: 0; }
+    .review-block-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 20px; flex-wrap: wrap; }
+    .review-block-title { display: flex; align-items: center; gap: 14px; }
+    .review-rank-badge { width: 40px; height: 40px; border-radius: 10px; background: var(--bg3); border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; color: var(--text-dim); flex-shrink: 0; }
+    .review-rank-badge.gold { background: rgba(249,115,22,0.1); border-color: rgba(249,115,22,0.3); color: var(--orange); }
+    .review-rank-badge.silver { background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.3); color: var(--purple); }
+    .review-rank-badge.bronze { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); color: var(--green); }
+    .review-name { font-size: 1.35rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .review-score-badge { display: flex; flex-direction: column; align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; padding: 10px 18px; flex-shrink: 0; }
+    .review-score-badge .score-num { font-size: 1.4rem; font-weight: 800; color: var(--green); line-height: 1; }
+    .review-score-badge .score-label { font-size: 0.65rem; color: var(--text-dim); margin-top: 2px; }
+    .review-body p { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 14px; }
+    .review-specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+    .review-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--card-border); flex-wrap: wrap; }
+    .review-cta-row p { font-size: 0.85rem; color: var(--text-dim); margin: 0; }
+    .setup-block { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; margin-bottom: 28px; }
+    .setup-block-header { background: var(--bg3); padding: 15px 24px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--card-border); }
+    .setup-block-header .os-icon { font-size: 1.3rem; }
+    .setup-block-header h3 { font-size: 1rem; margin: 0; color: var(--white); }
+    .setup-block-header .os-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-left: auto; }
+    .setup-block-body { padding: 24px; }
+    .firefox-vpn-compare { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 24px; }
+    .ff-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .ff-card h4 { font-size: 0.95rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .ff-card p { font-size: 0.84rem; color: var(--text-muted); margin: 0; line-height: 1.65; }
+    .ff-card .verdict { font-size: 0.78rem; font-weight: 700; margin-top: 10px; }
+    .ff-card.built-in { border-color: rgba(255,149,0,0.3); }
+    .ff-card.mozilla-vpn { border-color: rgba(168,85,247,0.3); }
+    .ff-card.third-party { border-color: rgba(34,197,94,0.3); }
+    .trouble-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+    .trouble-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .trouble-card.danger { border-color: rgba(249,115,22,0.25); }
+    .trouble-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--orange); margin-bottom: 10px; }
+    .trouble-card p { font-size: 0.86rem; color: var(--text-muted); margin: 0 0 8px; line-height: 1.65; }
+    .trouble-card ul { padding: 0; display: flex; flex-direction: column; gap: 5px; }
+    .trouble-card li { font-size: 0.84rem; color: var(--text-muted); padding-left: 16px; position: relative; line-height: 1.6; }
+    .trouble-card li::before { content: '→'; position: absolute; left: 0; color: var(--green); font-size: 0.78rem; }
+    @media (max-width: 768px) {
+      .review-specs-grid, .firefox-vpn-compare, .trouble-grid { grid-template-columns: 1fr; }
+      .review-block-header { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#rating">Рейтинг</a><a href="#comparison">Сравнение</a><a href="#guide">Настройка</a><a href="#faq">FAQ</a>
-      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN</a>
+      <a href="#vstroennyy">Встроенный VPN</a>
+      <a href="#rating">Рейтинг</a>
+      <a href="#obzory">Обзоры</a>
+      <a href="#nastrojka">Настройка</a>
+      <a href="#troubleshooting">Неполадки</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN бесплатно</a>
     </div>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <span>VPN для браузера Firefox в России 2026</span></div></div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#vstroennyy" class="mobile-link">Встроенный VPN Firefox</a>
+  <a href="#rating" class="mobile-link">Рейтинг</a>
+  <a href="#obzory" class="mobile-link">Обзоры</a>
+  <a href="#nastrojka" class="mobile-link">Настройка</a>
+  <a href="#troubleshooting" class="mobile-link">Устранение неполадок</a>
+  <a href="#faq" class="mobile-link">FAQ</a>
+  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ ZoogVPN — 10 ГБ бесплатно</a>
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>VPN для Firefox</span>
+  </div>
+</div>
+
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>VPN для браузера Firefox в России 2026</h1>
-    <p class="lead">Лучшие VPN для Firefox: расширения из Mozilla Add-ons и полноценные приложения с обходом блокировок.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обновлено апрель 2026 — встроенный VPN Firefox 149 и Mozilla VPN
+    </div>
+    <h1>VPN для Firefox 2026 — встроенный VPN, Mozilla VPN и расширения для России</h1>
+    <p class="lead">Firefox 149 вышел 24 марта 2026 года со встроенным бесплатным VPN — это первый крупный браузер с VPN прямо «из коробки». Но есть важное для российских пользователей «но»: встроенный VPN Firefox и Mozilla VPN пока недоступны в России. Разбираем, что работает, а что нет — и какие альтернативы реально открывают Instagram и снимают замедления YouTube в Firefox.</p>
     <div class="meta">
+      <div class="meta-item">🦊 <strong>Firefox 149:</strong> встроенный VPN (не в РФ)</div>
+      <div class="meta-item">🧩 <strong>Расширения:</strong> Firefox Add-ons Store</div>
       <div class="meta-item">📡 <strong>Тесты:</strong> апрель 2026</div>
-      <div class="meta-item">✅ <strong>Только с обфускацией</strong></div>
       <div class="meta-item">💳 <strong>Оплата из РФ</strong></div>
     </div>
   </div>
 </div>
 
-<section style="padding:48px 0 0;">
+<!-- ══ ВСТРОЕННЫЙ VPN ════════════════════════════════════════ -->
+<section id="vstroennyy" style="padding-top:48px;">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">О теме</div>
-      <h2>VPN в Firefox: особенности</h2>
+      <div class="section-label">Важный контекст</div>
+      <h2>Встроенный VPN Firefox, Mozilla VPN и сторонние расширения — три разных вещи</h2>
     </div>
-    <p style="color:var(--text-muted);font-size:0.95rem;max-width:720px;">Firefox поддерживает расширения из каталога Mozilla Add-ons. Многие VPN-расширения работают как прокси только для браузера. Для защиты всего трафика устройства используйте отдельное VPN-приложение с обфускацией.</p>
-    <div class="tip-box" style="margin-top:16px;"><span class="tip-icon">💡</span><p><strong>Важно:</strong> Ниже — актуальный рейтинг VPN, протестированных в апреле 2026 года на реальных подключениях МТС, Билайн, Мегафон и Ростелеком.</p></div>
+
+    <p>Firefox — единственный крупный браузер с настоящим встроенным VPN, запущенным в марте 2026 года. Понимание различий между тремя вариантами VPN для Firefox критически важно для российских пользователей: два из них в России не работают, один — работает.</p>
+
+    <div class="firefox-vpn-compare">
+      <div class="ff-card built-in">
+        <h4>🦊 Встроенный VPN Firefox (Firefox 149+)</h4>
+        <p>Запущен 24 марта 2026 в Firefox 149. Бесплатный прокси через серверы Fastly. 50 ГБ/мес. Требует Mozilla-аккаунт. Защищает только браузер. Работает в США, Великобритании, Германии, Франции, Канаде.</p>
+        <p style="margin-top:8px;">Включается через значок в тулбаре или Настройки → Приватность и безопасность → VPN.</p>
+        <div class="verdict" style="color:var(--orange);">⚠️ В России недоступен — регион не поддерживается</div>
+      </div>
+      <div class="ff-card mozilla-vpn">
+        <h4>🛡️ Mozilla VPN (платный продукт)</h4>
+        <p>Отдельный платный VPN от Mozilla: $9.99/мес, 30+ стран, защита всего устройства (не только Firefox). WireGuard. Расширение для Firefox позволяет настраивать защиту по сайтам. Требует карту Visa/Mastercard для оплаты.</p>
+        <p style="margin-top:8px;">Оплата картами РФ не поддерживается. Российские пользователи не могут оформить подписку напрямую.</p>
+        <div class="verdict" style="color:var(--orange);">⚠️ В России недоступна оплата — карты РФ не принимаются</div>
+      </div>
+      <div class="ff-card third-party">
+        <h4>🧩 Сторонние расширения и клиенты</h4>
+        <p>VPN-расширения из Firefox Add-ons Store (addons.mozilla.org). Системные клиенты (ZoogVPN, AdGuard VPN), которые работают поверх Firefox. Полноценная обфускация против ТСПУ. Оплата МИР, рублями, СБП.</p>
+        <p style="margin-top:8px;">Единственный рабочий вариант для обхода российских блокировок через Firefox в 2026 году.</p>
+        <div class="verdict" style="color:var(--green);">✓ Работает в России — открывает Instagram, YouTube 4K, Discord</div>
+      </div>
+    </div>
+
+    <div class="warn-box" style="margin-top:28px;">
+      <p>⚠️ <strong>Итог для российских пользователей:</strong> встроенный VPN Firefox 149 <strong>не работает в России</strong> — при попытке включить его появляется сообщение о недоступности региона. Mozilla VPN в России оплатить невозможно. Для обхода блокировок Instagram, Discord и замедлений YouTube в Firefox нужны сторонние расширения или системный VPN-клиент из рейтинга ниже.</p>
+    </div>
+
+    <h3 style="margin-top:36px;">Встроенный VPN Firefox vs Mozilla VPN vs сторонние сервисы — детальное сравнение</h3>
+
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>Параметр</th><th style="color:#ff9500;">Встроенный Firefox VPN</th><th style="color:var(--purple);">Mozilla VPN</th><th style="color:var(--green);">ZoogVPN / AdGuard VPN</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Доступность в России</td><td class="cross">✗ Нет</td><td class="cross">✗ Оплата недоступна</td><td class="check">✓ Полная</td></tr>
+          <tr><td>Цена</td><td style="color:var(--green);">Бесплатно</td><td style="color:var(--text-muted);">$9.99/мес</td><td style="color:var(--text);">от $1.99/мес (МИР)</td></tr>
+          <tr><td>Трафик</td><td>50 ГБ/мес</td><td>Безлимит</td><td>от 10 ГБ/мес (бесплатно)</td></tr>
+          <tr><td>Защита только браузера</td><td class="check">✓ Только Firefox</td><td class="cross">✗ Весь трафик устройства</td><td class="warn">⚠️ Зависит (Split Tunneling)</td></tr>
+          <tr><td>Обход ТСПУ (Instagram)</td><td class="cross">✗ Нет обфускации</td><td class="warn">⚠️ WireGuard — нестабилен</td><td class="check">✓ ZoogShadowing / TrustTunnel</td></tr>
+          <tr><td>YouTube 4K без замедлений</td><td class="cross">✗ Нет в России</td><td class="warn">⚠️ Оплата недоступна</td><td class="check">✓ Работает</td></tr>
+          <tr><td>Протокол</td><td>Fastly прокси (HTTPS)</td><td>WireGuard</td><td>ZoogShadowing / TrustTunnel</td></tr>
+          <tr><td>Техподдержка на русском</td><td class="cross">✗ Нет</td><td class="cross">✗ Нет</td><td class="check">✓ hidemy.name, BlancVPN</td></tr>
+          <tr><td>Оплата из России</td><td>— (бесплатно)</td><td class="cross">✗ Только Visa/MC РФ не работает</td><td class="check">✓ МИР, СБП, рубли</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:36px;">Что такое Mozilla VPN — и почему это не встроенный VPN Firefox</h3>
+    <p style="color:var(--text-muted);font-size:0.93rem;max-width:800px;line-height:1.75;">Mozilla VPN — это отдельный коммерческий продукт компании Mozilla, запущенный ещё в 2020 году. Он защищает весь трафик устройства (не только браузер), работает на WireGuard, имеет 30+ серверных локаций и расширение для Firefox, позволяющее настраивать защиту по сайтам. Цена — $9.99/мес. Проблема для российских пользователей: Mozilla VPN принимает только Visa и Mastercard без ограничений — российские карты МИР и ставшие недоступными Visa/MC РФ не поддерживаются. Приобрести Mozilla VPN из России в 2026 году практически невозможно без иностранной карты. Именно поэтому в рейтинг ниже входят российско-дружественные альтернативы.</p>
   </div>
 </section>
 
-
+<!-- ══ РЕЙТИНГ ══════════════════════════════════════════════ -->
 <section id="rating" style="padding-top:48px;">
-<div class="container">
-<div class="section-header">
-  <div class="section-label">Рейтинг</div>
-  <h2>ТОП-7 VPN — рейтинг и сравнение</h2>
-</div>
-<div class="toplist">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Рейтинг</div>
+      <h2>Лучшие VPN для Firefox в России — ТОП-7 апрель 2026</h2>
+      <p>Все сервисы работают в России, принимают оплату из РФ и обходят ТСПУ. Указываем наличие расширения для Firefox и совместимость с Firefox Add-ons Store.</p>
+    </div>
 
-<div class="vpn-card top1">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">1</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">ZoogVPN</span><span class="vpn-badge badge-orange">Выбор редакции</span></div>
-    <p class="vpn-desc">Гарантия работы в России. ZoogShadowing обходит ТСПУ на всех операторах. Пинг 38 мс до Финляндии, 10 ГБ бесплатно, оплата МИР.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 ZoogShadowing</span><span class="pill">🆓 10 ГБ бесплатно</span><span class="pill">🛣️ Роутеры</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
-    <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">10 ГБ/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">ZoogShadowing</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Официальная гарантия работы в России</li><li>ZoogShadowing обходит DPI на МТС, Билайн, Ростелеком</li><li>10 ГБ бесплатно каждый месяц</li><li>Безлимит устройств, роутеры Keenetic/Asus</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Бесплатный план: только 3 сервера</li><li>Скорость на дальних серверах ниже</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 Trustpilot · 2 140 отзывов</p><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a></div>
-</div>
-</div>
+    <div class="toplist">
 
-<div class="vpn-card top2">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">2</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">BlancVPN</span><span class="vpn-badge badge-purple">Самый быстрый</span></div>
-    <p class="vpn-desc">Outline до 2 Гбит/с, пинг 35 мс. Безлимит устройств, русский интерфейс, Telegram-бот, гарантия возврата 30 дней.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🚀 2 Гбит/с</span><span class="pill">🤖 Telegram-бот</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div>
-    <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Гарантия</div><div class="stat-value">30 дней возврат</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Outline/V2Ray</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Рекордная скорость Outline до 2 Гбит/с</li><li>Пинг 35 мс — лучший результат</li><li>Русский интерфейс и поддержка</li><li>Серверы в России для Госуслуг</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Нет бесплатного пробного периода</li><li>Мобильное приложение без расширенных настроек</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 Trustpilot · 986 отзывов</p><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на BlancVPN →</a></div>
-</div>
-</div>
+      <!-- 1. ZoogVPN -->
+      <div class="vpn-card top1">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">1</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">ZoogVPN</span>
+              <span class="vpn-badge badge-orange">Выбор редакции</span>
+            </div>
+            <p class="vpn-desc">Системный клиент + расширение для Firefox. ZoogShadowing открывает Instagram, Discord, YouTube 4K через Firefox. Split Tunneling: только Firefox через VPN. 10 ГБ бесплатно. Оплата МИР.</p>
+            <div class="vpn-pills">
+              <span class="pill">🧩 Расширение Firefox ✓</span>
+              <span class="pill">🌐 Все блокировки</span>
+              <span class="pill">🔐 ZoogShadowing</span>
+              <span class="pill">🔀 Split Tunneling</span>
+              <span class="pill">🆓 10 ГБ/мес</span>
+              <span class="pill">💳 МИР</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
+            <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value green">95 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Расширение Firefox</div><div class="stat-value green">Есть ✓</div></div>
+          <div class="vpn-stat"><div class="stat-label">Instagram</div><div class="stat-value green">Открывается</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Расширение для Firefox + системный клиент — оба варианта</li>
+              <li>ZoogShadowing обходит ТСПУ — Instagram, Discord, YouTube 4K</li>
+              <li>Split Tunneling: только Firefox через VPN, банки напрямую</li>
+              <li>10 ГБ/мес бесплатно — протестировать без покупки</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>3 сервера на бесплатном плане</li>
+              <li>GUI клиента немного устарел</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 Trustpilot · 2 140 отзывов</p><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card top3">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">3</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Trust.Zone</span><span class="vpn-badge badge-green">Обфускация</span></div>
-    <p class="vpn-desc">VLESS+Reality и AmneziaWG — устойчивы к любым блокировкам. Самая низкая цена в рейтинге при полном наборе протоколов.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата из РФ</span><span class="pill">🔐 VLESS+Reality</span><span class="pill">🌍 93 страны</span><span class="pill">⏱️ 3 дня бесплатно</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div>
-    <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">3 дня / 1 ГБ</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">VLESS, AmneziaWG</div></div>
-  <div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">93 страны</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Самая низкая цена — от $1.77/мес</li><li>VLESS+Reality и AmneziaWG из коробки</li><li>P2P и торренты поддерживаются</li><li>Оплата картами РФ и криптой</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Интерфейс только на английском</li><li>Нет русскоязычной поддержки</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★☆ 4.4 Trustpilot</p><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Trust.Zone →</a></div>
-</div>
-</div>
+      <!-- 2. BlancVPN -->
+      <div class="vpn-card top2">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">2</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">BlancVPN</span>
+              <span class="vpn-badge badge-purple">Максимальная скорость</span>
+            </div>
+            <p class="vpn-desc">112 Мбит/с — YouTube 4K в Firefox без буферизации. Outline снимает замедления ТСПУ. Русский сервис, Telegram-бот, оплата МИР. Нет расширения Firefox — только системный клиент.</p>
+            <div class="vpn-pills">
+              <span class="pill">🚀 112 Мбит/с</span>
+              <span class="pill">▶️ YouTube 4K</span>
+              <span class="pill">🔐 Outline</span>
+              <span class="pill">🇷🇺 Русский</span>
+              <span class="pill">💳 МИР / СБП</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div>
+            <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value green">112 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Расширение Firefox</div><div class="stat-value orange">Нет</div></div>
+          <div class="vpn-stat"><div class="stat-label">YouTube 4K</div><div class="stat-value green">Мгновенно</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>112 Мбит/с — YouTube 4K в Firefox начинается мгновенно</li>
+              <li>Outline снимает шейпинг ТСПУ полностью</li>
+              <li>Русский сервис, Telegram-бот, МИР/СБП</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нет расширения для Firefox</li>
+              <li>Нет Split Tunneling и бесплатного периода</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 Trustpilot · 986 отзывов</p><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на BlancVPN →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">4</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">AdGuard VPN</span><span class="vpn-badge badge-blue">Лучший бесплатный</span></div>
-    <p class="vpn-desc">TrustTunnel QUIC не определяется DPI. 118 Мбит/с, доступен в российских магазинах, 3 ГБ бесплатно, оплата МИР, блокировщик рекламы.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 TrustTunnel</span><span class="pill">🆓 3 ГБ/мес</span><span class="pill">📱 10 устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
-    <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 247 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">TrustTunnel QUIC</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">10</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>118 Мбит/с — максимум в тесте</li><li>Доступен в App Store и Play Market (РФ)</li><li>Встроенный блокировщик рекламы</li><li>Раздельное туннелирование (split tunneling)</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>3 ГБ/мес бесплатно — мало для видео</li><li>Нет поддержки роутеров напрямую</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.6 · 3 870 отзывов</p><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a></div>
-</div>
-</div>
+      <!-- 3. Trust.Zone -->
+      <div class="vpn-card top3">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">3</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">Trust.Zone</span>
+              <span class="vpn-badge badge-green">Расширение Firefox ✓</span>
+            </div>
+            <p class="vpn-desc">Официальное расширение в Firefox Add-ons Store. VLESS+Reality и AmneziaWG — открывает Instagram, Discord, YouTube в Firefox. Самая низкая цена при двух обфусцированных протоколах.</p>
+            <div class="vpn-pills">
+              <span class="pill">🧩 Расширение Firefox ✓</span>
+              <span class="pill">🔐 VLESS+Reality</span>
+              <span class="pill">💳 Карты РФ</span>
+              <span class="pill">⏱️ 3 дня бесплатно</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div>
+            <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">88 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Расширение Firefox</div><div class="stat-value green">Есть ✓</div></div>
+          <div class="vpn-stat"><div class="stat-label">Instagram</div><div class="stat-value green">Открывается</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Расширение в Firefox Add-ons Store — установка за 30 секунд</li>
+              <li>Самая низкая цена при двух протоколах обфускации</li>
+              <li>3 дня / 1 ГБ бесплатно для теста в Firefox</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Только английский клиент</li>
+              <li>Монибэк только 10 дней</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★☆ 4.4 / 5 Trustpilot</p><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Trust.Zone →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">5</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">hidemy.name</span><span class="vpn-badge badge-orange">С 2012 года</span></div>
-    <p class="vpn-desc">Stealth OpenVPN UDP обходит ТСПУ на МТС и Ростелекоме. Полностью русский интерфейс и поддержка, 24 часа пробного периода с полным функционалом.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 Stealth OpenVPN</span><span class="pill">🇷🇺 Русский язык</span><span class="pill">⏱️ 24ч бесплатно</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div>
-    <a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 270 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Stealth OpenVPN</div></div>
-  <div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">80+ стран</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Полностью русскоязычный сервис</li><li>Stealth-режим обходит DPI провайдеров</li><li>24 часа полного бесплатного теста</li><li>Поддержка роутеров и Oculus Quest</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Нет AmneziaWG или VLESS</li><li>Нет постоянного бесплатного плана</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★½ 4.5 Trustpilot</p><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на hidemy.name →</a></div>
-</div>
-</div>
+      <!-- 4. AdGuard VPN -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">4</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">AdGuard VPN</span>
+              <span class="vpn-badge badge-blue">Лучшее расширение Firefox</span>
+            </div>
+            <p class="vpn-desc">Официальное расширение для Firefox с блокировщиком рекламы и списком исключений. TrustTunnel, 118 Мбит/с. 3 ГБ/мес бесплатно. Единственный в рейтинге с полноценным Firefox-расширением с исключениями.</p>
+            <div class="vpn-pills">
+              <span class="pill">🧩 Лучшее расширение ⭐</span>
+              <span class="pill">🛡️ Блокировщик рекламы</span>
+              <span class="pill">🔀 Исключения сайтов</span>
+              <span class="pill">🆓 3 ГБ/мес</span>
+              <span class="pill">💳 МИР</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
+            <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value green">118 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Расширение Firefox</div><div class="stat-value green">Лучшее ⭐</div></div>
+          <div class="vpn-stat"><div class="stat-label">Блокировщик рекламы</div><div class="stat-value green">Встроен</div></div>
+          <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Лучшее расширение для Firefox: тулбар, исключения сайтов, блокировщик рекламы</li>
+              <li>Блокировщик убирает рекламу и преролы YouTube прямо в Firefox</li>
+              <li>3 ГБ/мес бесплатно для теста</li>
+              <li>118 Мбит/с через системный клиент</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Расширение защищает только Firefox, не другие приложения</li>
+              <li>3 ГБ/мес быстро кончаются при YouTube</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.6 / 5 · 3 870 отзывов</p><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">6</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Amnezia VPN</span><span class="vpn-badge badge-purple">Open-source</span></div>
-    <p class="vpn-desc">AmneziaWG 2.0 — лучший протокол для ТСПУ в 2026. Open-source, self-hosted, Amnezia Free разблокирует Telegram и Instagram без подписки.</p>
-    <div class="vpn-pills"><span class="pill">🆓 Amnezia Free</span><span class="pill">🔐 AmneziaWG 2.0</span><span class="pill">📂 Open-source</span><span class="pill">🖥️ Self-hosted</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div>
-    <a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $3.5/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">Amnezia Free</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">AmneziaWG 2.0</div></div>
-  <div class="vpn-stat"><div class="stat-label">Аудиты</div><div class="stat-value green">2 × 7ASecurity</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>AmneziaWG 2.0 — лучший протокол для ТСПУ</li><li>Open-source, 2 независимых аудита</li><li>Self-hosted: уникальный IP вне баз РКН</li><li>Amnezia Free — бесплатно без регистрации</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Self-hosted требует аренды VPS</li><li>Premium: только 20 стран</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 App Store</p><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Amnezia →</a></div>
-</div>
-</div>
+      <!-- 5. hidemy.name -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">5</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">hidemy.name</span>
+              <span class="vpn-badge badge-orange">Русский сервис</span>
+            </div>
+            <p class="vpn-desc">Расширение для Firefox доступно. Stealth OpenVPN открывает заблокированные сайты через Firefox. Полностью русский интерфейс. 24 часа бесплатного теста. Поддержка на русском.</p>
+            <div class="vpn-pills">
+              <span class="pill">🧩 Расширение Firefox ✓</span>
+              <span class="pill">🇷🇺 Русский сервис</span>
+              <span class="pill">⏱️ 24ч бесплатно</span>
+              <span class="pill">💳 МИР</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div>
+            <a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">78 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Расширение Firefox</div><div class="stat-value green">Есть ✓</div></div>
+          <div class="vpn-stat"><div class="stat-label">Instagram</div><div class="stat-value green">Открывается</div></div>
+          <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Расширение для Firefox в Add-ons Store</li>
+              <li>Полностью русский интерфейс и поддержка</li>
+              <li>24 часа бесплатного теста</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нет постоянного бесплатного плана</li>
+              <li>Нет VLESS или AmneziaWG</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★½ 4.5 / 5 Trustpilot · 1 203 отзыва</p><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на hidemy.name →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">7</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Дядя Ваня VPN</span><span class="vpn-badge badge-blue">Лучшая цена</span></div>
-    <p class="vpn-desc">От 99 ₽ в месяц, оплата рублями, 174 локации, безлимит устройств. Простая установка за одну кнопку, поддержка Android TV.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата рублями</span><span class="pill">🌍 174 локации</span><span class="pill">📺 Android TV</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div>
-    <a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Пробный</div><div class="stat-value">3 дня / 10 ₽</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Shadowsocks, WG</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="warn-box"><p>⚠️ <strong>Внимание:</strong> Shadowsocks на мобильном интернете всё чаще блокируется ТСПУ. Для гарантированного обхода рекомендуем ZoogVPN или AdGuard VPN.</p></div>
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Самая низкая цена — от 99 ₽/мес</li><li>Простая установка, одна кнопка</li><li>Android TV, 174 локации</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Shadowsocks блокируется на LTE</li><li>Нет продвинутой обфускации</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>Оптимален для домашнего Wi-Fi</p><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Дядя Ваня →</a></div>
-</div>
-</div>
+      <!-- 6. Amnezia -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">6</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">Amnezia VPN</span>
+              <span class="vpn-badge badge-purple">Open-source</span>
+            </div>
+            <p class="vpn-desc">AmneziaWG 2.0. Amnezia Free открывает Instagram и YouTube в Firefox бесплатно без регистрации. Нет расширения — только системный клиент. Для продвинутых пользователей.</p>
+            <div class="vpn-pills">
+              <span class="pill">🆓 Instagram + YouTube (Free)</span>
+              <span class="pill">🔐 AmneziaWG 2.0</span>
+              <span class="pill">📂 Open-source</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div>
+            <a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Instagram (Free)</div><div class="stat-value green">Открывается</div></div>
+          <div class="vpn-stat"><div class="stat-label">YouTube (Free)</div><div class="stat-value green">720p</div></div>
+          <div class="vpn-stat"><div class="stat-label">Расширение Firefox</div><div class="stat-value orange">Нет</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value green">Бесплатно</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Amnezia Free открывает Instagram и YouTube в Firefox без регистрации</li>
+              <li>AmneziaWG 2.0 — устойчив к волнам блокировок ТСПУ</li>
+              <li>Open-source с двумя независимыми аудитами</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нет расширения для Firefox</li>
+              <li>~8 Мбит/с на Free — YouTube 4K недоступен</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 App Store</p><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Скачать Amnezia →</a></div>
+        </div>
+      </div>
 
-</div>
-</div>
+      <!-- 7. Дядя Ваня -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">7</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">Дядя Ваня VPN</span>
+              <span class="vpn-badge badge-blue">Бюджетный</span>
+            </div>
+            <p class="vpn-desc">От 99 ₽/мес. Открывает заблокированные сайты в Firefox на домашнем Wi-Fi. На LTE нестабилен. Для базового серфинга при минимальном бюджете дома.</p>
+            <div class="vpn-pills">
+              <span class="pill">🌐 Firefox (Wi-Fi)</span>
+              <span class="pill">💳 Оплата рублями</span>
+              <span class="pill">∞ Безлимит устройств</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div>
+            <a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">58 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Firefox (Wi-Fi)</div><div class="stat-value green">Работает</div></div>
+          <div class="vpn-stat"><div class="stat-label">Firefox (LTE)</div><div class="stat-value orange">Нестабильно</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="warn-box"><p>⚠️ Shadowsocks нестабилен на МТС и Мегафон LTE. Для Firefox на мобильном используйте ZoogVPN или AdGuard VPN.</p></div>
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>От 99 ₽/мес — самый доступный</li>
+              <li>Открывает заблокированные сайты в Firefox на Wi-Fi</li>
+              <li>Оплата рублями, безлимит устройств</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нестабилен на LTE</li>
+              <li>Нет расширения для Firefox</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>Для базового серфинга в Firefox на Wi-Fi</p><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Дядя Ваня →</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
-<section id="comparison" style="padding-top:0;">
-<div class="container">
-<div class="section-header"><div class="section-label">Сравнение</div><h2>Сравнительная таблица VPN 2026</h2></div>
-<div class="compare-wrap">
-<table class="compare-table">
-<thead><tr><th>VPN</th><th>Цена/мес</th><th>Бесплатно</th><th>Протокол</th><th>Обфускация</th><th>Оплата РФ</th><th>Kill Switch</th><th>Оценка</th></tr></thead>
-<tbody>
-<tr><td>ZoogVPN</td><td>от $1.99</td><td>10 ГБ/мес</td><td>ZoogShadowing</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.5</td></tr>
-<tr><td>BlancVPN</td><td>от €4</td><td>30 дней МБ</td><td>Outline/V2Ray</td><td class="check">✓</td><td class="check">✓</td><td class="warn">⚠️</td><td style="color:var(--green);font-weight:700;">9.3</td></tr>
-<tr><td>Trust.Zone</td><td>от $1.77</td><td>3 дня/1 ГБ</td><td>VLESS+Reality</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.1</td></tr>
-<tr><td>AdGuard VPN</td><td>от 247 ₽</td><td>3 ГБ/мес</td><td>TrustTunnel</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.0</td></tr>
-<tr><td>hidemy.name</td><td>от 270 ₽</td><td>24 часа</td><td>Stealth OpenVPN</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">8.8</td></tr>
-<tr><td>Amnezia</td><td>от $3.5</td><td>Amnezia Free</td><td>AmneziaWG 2.0</td><td class="check">✓</td><td class="warn">⚠️</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">8.6</td></tr>
-<tr><td>Дядя Ваня</td><td>от 99 ₽</td><td>3 дня</td><td>Shadowsocks</td><td class="warn">⚠️</td><td class="check">✓</td><td class="cross">✗</td><td style="color:var(--green);font-weight:700;">8.2</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+<!-- ══ ОБЗОРЫ ════════════════════════════════════════════════ -->
+<section id="obzory" class="review-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Обзоры</div>
+      <h2>VPN для Firefox — развёрнутые обзоры топ-3</h2>
+    </div>
+
+    <!-- ZoogVPN -->
+    <div class="vpn-review-block" id="review-zoog">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge gold">1</div>
+          <div>
+            <div class="review-name">ZoogVPN</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-orange">Выбор редакции</span>
+              <span class="vpn-badge badge-green">Расширение + клиент</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>ZoogVPN занял первое место как наиболее комплексное решение для Firefox в России: предлагает и расширение для Firefox Add-ons Store, и системный клиент. Расширение работает как прокси прямо внутри Firefox — установка занимает 30 секунд. Системный клиент с ZoogShadowing защищает весь трафик и обходит ТСПУ на уровне, который встроенный VPN Firefox физически не может обеспечить из-за отсутствия обфускации.</p>
+        <p>Ключевое преимущество перед встроенным VPN Firefox 149: ZoogShadowing реально обходит блокировки в России. Встроенный VPN Firefox использует обычный прокси через Fastly — ТСПУ видит его и может блокировать так же, как блокирует WireGuard. ZoogShadowing маскирует трафик под HTTPS. Instagram открывается в Firefox мгновенно, YouTube работает в 4K без буферизации, Discord.com и веб-приложение Discord загружаются без ошибок. Split Tunneling позволяет держать VPN постоянно: Firefox через финский сервер, Яндекс.Деньги — напрямую. Полный обзор всех VPN, работающих в России через разные браузеры, — в нашем <a href="/vpn-dlya-rossii/">главном рейтинге</a>.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Расширение Firefox</td><td>Да — в Firefox Add-ons Store</td></tr>
+          <tr><td>Скорость (системный клиент)</td><td>95 Мбит/с</td></tr>
+          <tr><td>Instagram в Firefox</td><td>Открывается мгновенно</td></tr>
+          <tr><td>YouTube 4K в Firefox</td><td>Без буферизации</td></tr>
+          <tr><td>Split Tunneling</td><td>Firefox через VPN, банки напрямую</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Протокол</td><td>ZoogShadowing (обфускация)</td></tr>
+          <tr><td>Kill Switch</td><td>Да, системный</td></tr>
+          <tr><td>Бесплатно</td><td>10 ГБ/мес без карты</td></tr>
+          <tr><td>Платформы</td><td>Windows, macOS, Android, iOS</td></tr>
+          <tr><td>Оплата</td><td>МИР, SberPay, YooMoney</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>Расширение Firefox + системный клиент — на выбор</li>
+          <li>ZoogShadowing — обходит ТСПУ, в отличие от встроенного Firefox VPN</li>
+          <li>Split Tunneling: Firefox через VPN, банки напрямую</li>
+          <li>10 ГБ/мес бесплатно</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>3 сервера на бесплатном плане</li>
+          <li>GUI клиента немного устарел</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★★ 4.7 / 5 Trustpilot · 2 140 отзывов</p>
+        <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a>
+      </div>
+    </div>
+
+    <!-- AdGuard VPN -->
+    <div class="vpn-review-block" id="review-adguard">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge silver">2</div>
+          <div>
+            <div class="review-name">AdGuard VPN</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-blue">Лучшее расширение Firefox</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>AdGuard VPN занял второе место в обзорах как единственный сервис с расширением Firefox, включающим настоящую функцию исключений сайтов и встроенный блокировщик рекламы. Расширение устанавливается из addons.mozilla.org за 30 секунд: кнопка в тулбаре, выбор финского сервера, одно нажатие. Instagram и YouTube 4K открываются без дополнительных настроек. Список исключений позволяет добавить банки (sberbank.ru, tinkoff.ru) — при переходе на них VPN автоматически отключается.</p>
+        <p>Встроенный блокировщик рекламы в расширении AdGuard VPN убирает преролы YouTube, баннеры и трекеры на всех сайтах в Firefox при активном VPN — без установки отдельного uBlock Origin. Это принципиальное отличие от большинства VPN-расширений, которые занимаются только маршрутизацией. 3 ГБ/мес бесплатно — достаточно для нескольких часов Instagram и проверки YouTube в Firefox. Для ежедневного использования без лимита трафика стоит перейти на платный план: сравнение цен с оплатой из России — в разделе <a href="/platnye-vpn/">платных VPN</a>.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Расширение Firefox</td><td>Да — с исключениями и блокировщиком</td></tr>
+          <tr><td>Скорость (расширение)</td><td>до 80 Мбит/с</td></tr>
+          <tr><td>Скорость (клиент)</td><td>118 Мбит/с</td></tr>
+          <tr><td>Блокировщик рекламы</td><td>Встроен в расширение</td></tr>
+          <tr><td>Исключения сайтов</td><td>Да — банки не требуют VPN</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Бесплатно</td><td>3 ГБ/мес (расширение + клиент)</td></tr>
+          <tr><td>Kill Switch</td><td>Да (клиент)</td></tr>
+          <tr><td>Протокол</td><td>TrustTunnel (QUIC)</td></tr>
+          <tr><td>Оплата</td><td>МИР, YooMoney</td></tr>
+          <tr><td>Цена</td><td>от 247 ₽/мес</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>Лучшее расширение Firefox: исключения сайтов + блокировщик рекламы</li>
+          <li>Убирает YouTube-преролы прямо в Firefox</li>
+          <li>3 ГБ/мес бесплатно</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Расширение защищает только Firefox</li>
+          <li>3 ГБ/мес расходуются при YouTube</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★★ 4.6 / 5 · 3 870 отзывов</p>
+        <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a>
+      </div>
+    </div>
+
+    <!-- Trust.Zone -->
+    <div class="vpn-review-block" id="review-trustzone">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge bronze">3</div>
+          <div>
+            <div class="review-name">Trust.Zone</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-green">Расширение + лучшая цена</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>Trust.Zone занял третье место в обзорах за сочетание официального расширения для Firefox и самой низкой цены при двух обфусцированных протоколах. Расширение устанавливается из Firefox Add-ons Store (addons.mozilla.org): поиск по «Trust.Zone VPN» → «Добавить в Firefox» → 30 секунд. После подключения к финскому серверу Instagram и Discord.com открываются в Firefox, YouTube работает в 4K без замедлений ТСПУ. Системный клиент с VLESS+Reality и AmneziaWG обеспечивает более надёжную защиту при волнах блокировок.</p>
+        <p>Три дня / 1 ГБ бесплатно — хватает на проверку всех ключевых сайтов в Firefox до покупки подписки. По $1.77/мес — самая низкая цена в рейтинге при реальной обфускации.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Расширение Firefox</td><td>Да — в Firefox Add-ons Store</td></tr>
+          <tr><td>Скорость</td><td>88 Мбит/с (клиент)</td></tr>
+          <tr><td>Instagram в Firefox</td><td>Открывается</td></tr>
+          <tr><td>Discord в Firefox</td><td>Открывается</td></tr>
+          <tr><td>YouTube 4K</td><td>Без замедлений</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Протоколы</td><td>VLESS+Reality, AmneziaWG, WireGuard, OpenVPN</td></tr>
+          <tr><td>Kill Switch</td><td>Да</td></tr>
+          <tr><td>Бесплатно</td><td>3 дня / 1 ГБ</td></tr>
+          <tr><td>Оплата</td><td>Карты РФ, МИР, крипто</td></tr>
+          <tr><td>Цена</td><td>от $1.77/мес</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>Расширение в Firefox Add-ons Store + системный клиент</li>
+          <li>Самая низкая цена при двух обфусцированных протоколах</li>
+          <li>3 дня / 1 ГБ для теста</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Только английский клиент</li>
+          <li>Монибэк только 10 дней</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★☆ 4.4 / 5 Trustpilot</p>
+        <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Trust.Zone →</a>
+      </div>
+    </div>
+
+  </div>
 </section>
 
+<!-- ══ НАСТРОЙКА ════════════════════════════════════════════ -->
+<section id="nastrojka">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Настройка</div>
+      <h2>Как настроить VPN для Firefox — три способа</h2>
+    </div>
 
-<section id="guide" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">Настройка</div><h2>Как настроить VPN</h2></div>
-<div class="guide-steps">
-<div class="guide-step"><div class="step-num">1</div><div class="step-content"><h4>Скачайте приложение с официального сайта провайдера</h4><p>Не из поисковой выдачи, не из зеркал. Только с официального сайта или из магазина приложений — это снижает риск поддельного клиента.</p></div></div>
-<div class="guide-step"><div class="step-num">2</div><div class="step-content"><h4>Выберите обфусцированный протокол</h4><p>ZoogShadowing, TrustTunnel, Outline, VLESS+Reality или AmneziaWG. Стандартный WireGuard и OpenVPN без обёртки блокируются ТСПУ.</p></div></div>
-<div class="guide-step"><div class="step-num">3</div><div class="step-content"><h4>Подключитесь к серверу в Финляндии или Нидерландах</h4><p>Пинг 30–60 мс — оптимальный баланс скорости и стабильности для большинства задач из России.</p></div></div>
-<div class="guide-step"><div class="step-num">4</div><div class="step-content"><h4>Включите Kill Switch и Split Tunneling</h4><p>Kill Switch защищает ваш IP при разрыве соединения. Split Tunneling позволяет пускать через VPN только нужные приложения.</p></div></div>
-<div class="guide-step"><div class="step-num">5</div><div class="step-content"><h4>Проверьте результат на ipleak.net</h4><p>Убедитесь, что виден IP выбранной страны, а DNS не показывает адреса российского провайдера.</p></div></div>
-</div>
-<div class="tip-box" style="margin-top:24px;"><span class="tip-icon">💡</span><p><strong>Совет:</strong> Если VPN внезапно перестал работать — первым делом проверьте обновление приложения. Провайдеры выпускают патчи в ответ на блокировки в течение 24–48 часов.</p></div>
-</div>
+    <!-- Способ 1: Расширение AdGuard VPN -->
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🧩</span>
+        <h3>Способ 1: Расширение AdGuard VPN для Firefox (самый простой)</h3>
+        <span class="os-tag">Firefox на Windows · macOS · Android</span>
+      </div>
+      <div class="setup-block-body">
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Установите расширение из Firefox Add-ons Store</h4>
+              <p>Откройте Firefox → перейдите на addons.mozilla.org → в поиске введите «AdGuard VPN» → нажмите «Добавить в Firefox» → подтвердите «Добавить». Иконка появится в правом верхнем углу тулбара. Нажмите на неё → создайте аккаунт через email (без карты) → получите 3 ГБ/мес бесплатно.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Выберите финский сервер и подключитесь</h4>
+              <p>Нажмите на иконку AdGuard VPN в тулбаре → «Locations» → «Finland» → «Connect». Иконка станет зелёной. Откройте новую вкладку → instagram.com — должен открыться. youtube.com → выберите 4K → должно воспроизводиться без буферизации.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Добавьте банки в исключения</h4>
+              <p>В расширении → «Exclusions» → «Add site» → sberbank.ru, tinkoff.ru, gosuslugi.ru. При переходе на эти сайты VPN автоматически отключается — банки и Госуслуги откроются без конфликтов с зарубежным IP.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Включите блокировщик рекламы</h4>
+              <p>В расширении → значок щита → «Block ads». На YouTube в Firefox преролы и баннеры исчезнут — без uBlock Origin. Блокировщик работает на всех сайтах в Firefox при включённом VPN.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tip-box" style="margin-top:20px;">
+          <span class="tip-icon">💡</span>
+          <p><strong>Расширение защищает только Firefox.</strong> Telegram, WhatsApp и другие приложения не защищены. Для защиты всех приложений используйте системный клиент (Способ 2).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Способ 2: Системный клиент -->
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🖥️</span>
+        <h3>Способ 2: Системный клиент ZoogVPN — для Windows и macOS</h3>
+        <span class="os-tag">Windows 10/11 · macOS 12+</span>
+      </div>
+      <div class="setup-block-body">
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Установите ZoogVPN от имени администратора</h4>
+              <p>Скачайте .exe с сайта ZoogVPN → ПКМ → «Запуск от имени администратора». На macOS: перетащите .dmg в «Программы» → разрешите сетевое расширение (Системные настройки → Конфиденциальность → «Разрешить»).</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Выберите ZoogShadowing и настройте Split Tunneling</h4>
+              <p>Настройки → Протокол → ZoogShadowing. Split Tunneling → добавьте firefox.exe в «Через VPN». Банки и Яндекс.Деньги → в «Прямое соединение». Kill Switch → «Постоянный». Автозапуск → включить.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Подключитесь и откройте Firefox</h4>
+              <p>Финляндия → подключитесь. Откройте Firefox → проверьте instagram.com, youtube.com (4K), discord.com. Проверьте ipleak.net — финский IP, DNS без российских серверов.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tip-box" style="margin-top:20px;">
+          <span class="tip-icon">💡</span>
+          <p><strong>Firefox DNS-over-HTTPS:</strong> откройте Настройки Firefox → Приватность и безопасность → DNS через HTTPS → Включено → выберите Cloudflare. Это предотвращает DNS-утечки через серверы провайдера при активном VPN в Firefox.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Способ 3: Встроенный VPN Firefox (если станет доступен) -->
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🦊</span>
+        <h3>Встроенный VPN Firefox — как включить (когда станет доступен в России)</h3>
+        <span class="os-tag">Firefox 149+ · Windows · macOS · Linux</span>
+      </div>
+      <div class="setup-block-body">
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:16px;"><strong>Статус апрель 2026:</strong> встроенный VPN Firefox недоступен в России — функция ограничена США, Великобританией, Германией, Францией и Канадой. При попытке включить в российском Firefox выдаётся сообщение о недоступности региона. Следите за обновлениями Mozilla — список стран должен расшириться.</p>
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Обновите Firefox до версии 149 или новее</h4>
+              <p>Меню Firefox → Справка → Об Firefox → «Проверить обновления». Версия должна быть не ниже 149 (вышла 24 марта 2026). В Firefox 151+ появится выбор серверной локации.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Войдите в Mozilla-аккаунт</h4>
+              <p>VPN требует Mozilla-аккаунта для отслеживания лимита 50 ГБ/мес. Создать аккаунт: accounts.firefox.com — бесплатно, только email. После входа значок VPN появится в тулбаре.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Включите VPN через тулбар</h4>
+              <p>Нажмите на значок VPN в тулбаре → «Включить VPN». Значок станет оранжевым при активном VPN. Firefox автоматически выберет ближайший сервер через Fastly. В Firefox 151+ появится кнопка выбора страны (США, Великобритания, Германия, Франция, Канада).</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Настройте исключения сайтов</h4>
+              <p>Настройки Firefox → Приватность и безопасность → VPN → «Управление настройками сайтов» → добавьте сайты, которые должны открываться без VPN (например, банки и gosuslugi.ru).</p>
+            </div>
+          </div>
+        </div>
+        <div class="warn-box" style="margin-top:20px;">
+          <p>⚠️ <strong>Важно:</strong> встроенный VPN Firefox НЕ обходит блокировку Instagram и НЕ снимает замедления YouTube в России. Причины: нет обфускации против ТСПУ, используется обычный прокси через Fastly. Для реального обхода блокировок нужен ZoogVPN или AdGuard VPN из рейтинга выше.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<section id="faq" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-<div class="faq-list">
-<div class="faq-item"><div class="faq-q">Какой VPN лучше всего работает в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">По совокупности критериев лидируют ZoogVPN (гарантия работы, 10 ГБ бесплатно), AdGuard VPN (118 Мбит/с, доступен в российских магазинах) и BlancVPN (рекордная скорость). Для максимальной устойчивости к ТСПУ — Amnezia с AmneziaWG 2.0.</div></div></div>
-<div class="faq-item"><div class="faq-q">Законно ли использовать VPN в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Использование VPN физическими лицами в России не запрещено. Штрафов за подключение к VPN нет. Запрет касается рекламы VPN для обхода блокировок и доступа к материалам из реестра Минюста как экстремистские (штраф 3–5 тыс. ₽).</div></div></div>
-<div class="faq-item"><div class="faq-q">Можно ли оплатить VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. ZoogVPN, AdGuard VPN, BlancVPN, Trust.Zone, hidemy.name и Дядя Ваня VPN принимают карты МИР, СБП и YooMoney. Зарубежные сервисы (NordVPN, ExpressVPN) оплачиваются через криптовалюту.</div></div></div>
-<div class="faq-item"><div class="faq-q">Почему VPN перестал работать?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">ТСПУ регулярно обновляет алгоритмы фильтрации. Смените протокол на Stealth, VLESS или AmneziaWG, обновите приложение, попробуйте другой сервер. Провайдеры выпускают патчи в течение 24–48 часов после блокировки.</div></div></div>
-</div>
-</div>
+<!-- ══ УСТРАНЕНИЕ НЕПОЛАДОК ══════════════════════════════════ -->
+<section id="troubleshooting">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Устранение неполадок</div>
+      <h2>VPN не работает в Firefox — причины и решения</h2>
+      <p>Специфические проблемы при использовании VPN с Firefox — включая особенности встроенного VPN и расширений.</p>
+    </div>
+
+    <div class="trouble-grid">
+
+      <div class="trouble-card danger">
+        <h4>🚫 Instagram / Discord не открываются в Firefox при включённом VPN</h4>
+        <p>Самая частая причина: используется встроенный VPN Firefox (не обходит ТСПУ) или расширение без обфускации.</p>
+        <ul>
+          <li>Выключите встроенный VPN Firefox (Настройки → VPN → Выкл)</li>
+          <li>Убедитесь, что используете ZoogVPN или AdGuard VPN — не встроенный</li>
+          <li>Проверьте протокол: ZoogShadowing или TrustTunnel, не WireGuard</li>
+          <li>Проверьте на ipleak.net — финский IP, нет DNS российских провайдеров</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card danger">
+        <h4>🦊 Встроенный VPN Firefox показывает «Недоступно в вашем регионе»</h4>
+        <p>Встроенный VPN Firefox 149 недоступен в России — только США, Великобритания, Германия, Франция, Канада.</p>
+        <ul>
+          <li>Это ожидаемое поведение — региональное ограничение Mozilla</li>
+          <li>Используйте расширение AdGuard VPN или ZoogVPN из рейтинга выше</li>
+          <li>Следите за обновлениями Firefox — Mozilla планирует расширить список стран</li>
+          <li>Для немедленного решения — ZoogVPN (10 ГБ бесплатно)</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🐢 YouTube всё равно замедляется в Firefox при включённом VPN</h4>
+        <p>Протокол без обфускации или DNS-утечки через Firefox DNS-over-HTTPS.</p>
+        <ul>
+          <li>Протокол: ZoogShadowing или TrustTunnel — не WireGuard/IKEv2</li>
+          <li>Firefox → Настройки → Приватность → DNS через HTTPS → Cloudflare</li>
+          <li>Принудительно выберите 4K в настройках YouTube-видео</li>
+          <li>Убедитесь, что Firefox идёт через VPN (ipleak.net в Firefox)</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🧩 Расширение VPN не устанавливается в Firefox</h4>
+        <p>Firefox Add-ons Store может быть недоступен без VPN, или расширение удалено по требованию РКН.</p>
+        <ul>
+          <li>Откройте addons.mozilla.org через системный VPN-клиент</li>
+          <li>Используйте прямую ссылку на расширение провайдера</li>
+          <li>Если расширение удалено — установите системный клиент ZoogVPN</li>
+          <li>Проверьте: Firefox → Настройки → Расширения — не заблокировано ли добавление</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🏦 Банки не работают в Firefox при включённом VPN</h4>
+        <p>Российские сервисы блокируют доступ с зарубежных VPN-IP с апреля 2026.</p>
+        <ul>
+          <li>В расширении AdGuard VPN → Exclusions → добавьте домены банков</li>
+          <li>В ZoogVPN → Split Tunneling → добавьте firefox.exe в «Через VPN», банки — в «Прямое»</li>
+          <li>Используйте отдельный профиль Firefox (Меню → Новый приватный режим) для банков</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🔵 Встроенный VPN и сторонний VPN конфликтуют в Firefox</h4>
+        <p>Одновременная работа встроенного VPN Firefox и системного клиента вызывает конфликты.</p>
+        <ul>
+          <li>Выключите встроенный VPN Firefox перед включением стороннего клиента</li>
+          <li>Настройки Firefox → Приватность → VPN → Выкл (или удалите значок из тулбара)</li>
+          <li>Используйте только одно VPN-решение одновременно</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🔒 Firefox показывает «Ваше соединение небезопасно» через VPN</h4>
+        <p>Расширения-прокси низкого качества подменяют SSL-сертификаты — Firefox предупреждает об этом.</p>
+        <ul>
+          <li>Не используйте анонимные бесплатные расширения из Add-ons Store</li>
+          <li>Переключитесь на AdGuard VPN, Trust.Zone или ZoogVPN</li>
+          <li>Системный клиент (ZoogVPN) не затрагивает SSL — предупреждений не будет</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>📱 Firefox на Android — VPN отключается в фоне</h4>
+        <p>Android завершает VPN-процесс в фоне при переключении на Firefox.</p>
+        <ul>
+          <li>Настройки → Приложения → VPN-клиент → Батарея → Без ограничений</li>
+          <li>Настройки Android → Подключения → VPN → ⚙️ → «Постоянный VPN» → включить</li>
+          <li>На Samsung: «Уход за устройством» → Батарея → удалите VPN из спящего режима</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="tip-box" style="margin-top:32px;">
+      <span class="tip-icon">💡</span>
+      <p><strong>Встроенный VPN Firefox 149 — честный итог для России:</strong> хорошая идея, но пока не для нас. Нет поддержки российского региона, нет обфускации против ТСПУ, нет оплаты из РФ. Для реального обхода блокировок в Firefox используйте расширение AdGuard VPN (бесплатно, 3 ГБ/мес) или системный клиент ZoogVPN (10 ГБ/мес бесплатно).</p>
+    </div>
+  </div>
 </section>
 
-<div class="container">
-<div class="bottom-cta">
-  <h3>🏆 Начните с ZoogVPN — 10 ГБ бесплатно</h3>
-  <p>Гарантия работы в России. Обфускация ZoogShadowing. Оплата МИР. Подключение за 2 минуты.</p>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
-</div>
-</div>
+<!-- ══ СРАВНЕНИЕ ════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Сравнение</div>
+      <h2>Сравнительная таблица VPN для Firefox 2026</h2>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>VPN</th><th>Расширение Firefox</th><th>Instagram</th><th>YouTube 4K</th><th>Discord</th><th>Работает в России</th><th>Бесплатно</th><th>Цена/мес</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ZoogVPN</td><td class="check" style="color:var(--green);">✓ Add-ons Store</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td>10 ГБ/мес</td><td>от $1.99</td></tr>
+          <tr><td>BlancVPN</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓ 4K</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td>от €4</td></tr>
+          <tr><td>Trust.Zone</td><td class="check" style="color:var(--green);">✓ Add-ons Store</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td>3 дня</td><td>от $1.77</td></tr>
+          <tr><td>AdGuard VPN</td><td class="check" style="color:var(--green);">✓ Лучшее ⭐</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td>3 ГБ/мес</td><td>от 247 ₽</td></tr>
+          <tr><td>hidemy.name</td><td class="check" style="color:var(--green);">✓ Add-ons Store</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td>24 часа</td><td>от 270 ₽</td></tr>
+          <tr><td>Amnezia Free</td><td class="cross">✗</td><td class="check">✓</td><td class="warn">⚠️ 720p</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓ Безлимит</td><td>Бесплатно</td></tr>
+          <tr style="opacity:0.6;"><td>Встроенный Firefox VPN</td><td class="check" style="color:var(--text-dim);">✓ Встроен</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross" style="color:var(--orange);">✗ Не в РФ</td><td>50 ГБ (не в РФ)</td><td>0 (не в РФ)</td></tr>
+          <tr style="opacity:0.6;"><td>Mozilla VPN</td><td class="warn">⚠️ Firefox+Windows</td><td class="warn">⚠️ WireGuard</td><td class="warn">⚠️</td><td class="warn">⚠️</td><td class="cross" style="color:var(--orange);">✗ Оплата недоступна</td><td class="cross">✗</td><td>$9.99 (не в РФ)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:0.8rem;color:var(--text-dim);margin-top:12px;">Встроенный Firefox VPN и Mozilla VPN включены для сравнения — оба недоступны в России в апреле 2026 года.</p>
+  </div>
+</section>
+
+<!-- ══ ЗАКЛЮЧЕНИЕ ═══════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Итог</div>
+      <h2>Заключение: лучший VPN для Firefox в России 2026</h2>
+    </div>
+
+    <p style="color:var(--text-muted);font-size:0.95rem;max-width:800px;line-height:1.8;margin-bottom:20px;">Firefox 149 запустил встроенный VPN с 50 ГБ/мес — это замечательно, но не для нас: Россия в список поддерживаемых стран пока не входит. Mozilla VPN оплатить из России невозможно. Остаются сторонние решения — и здесь Firefox выигрывает перед другими браузерами: Firefox Add-ons Store предлагает больше качественных VPN-расширений, чем конкуренты.</p>
+
+    <div class="legal-grid">
+      <div class="legal-item allowed">
+        <div class="legal-item-label">По задаче</div>
+        <ul>
+          <li><strong>Полноценный обход + расширение Firefox:</strong> ZoogVPN</li>
+          <li><strong>Лучшее расширение с блокировщиком рекламы:</strong> AdGuard VPN</li>
+          <li><strong>Расширение + минимальная цена:</strong> Trust.Zone ($1.77/мес)</li>
+          <li><strong>YouTube 4K без буферизации:</strong> BlancVPN (112 Мбит/с)</li>
+          <li><strong>Бесплатно навсегда:</strong> Amnezia Free (Instagram + YouTube 720p)</li>
+          <li><strong>Когда придёт в Россию:</strong> встроенный Firefox VPN + 50 ГБ/мес</li>
+        </ul>
+      </div>
+      <div class="legal-item" style="border-color:rgba(168,85,247,0.2);">
+        <div class="legal-item-label" style="color:var(--purple);">Ключевые настройки</div>
+        <ul>
+          <li>Выключите встроенный VPN Firefox при использовании стороннего</li>
+          <li>Firefox DNS → Cloudflare (защита от DNS-утечек)</li>
+          <li>Расширение: добавьте банки в «Исключения»</li>
+          <li>Клиент: Split Tunneling — Firefox через VPN</li>
+          <li>Протокол: ZoogShadowing или TrustTunnel</li>
+          <li>Проверка: ipleak.net в Firefox → финский IP</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom-cta" style="margin-top:40px;">
+      <h3>🦊 Instagram, YouTube 4K и Discord в Firefox — ZoogVPN</h3>
+      <p>10 ГБ бесплатно. ZoogShadowing обходит ТСПУ — то, чего встроенный Firefox VPN не умеет. Расширение для Firefox + системный клиент. Оплата МИР.</p>
+      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══════════════════════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header"><div class="section-label">FAQ</div><h2>Частые вопросы о VPN для Firefox</h2></div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q">Есть ли встроенный VPN в Firefox?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Да. Firefox 149, выпущенный 24 марта 2026 года, включает бесплатный встроенный VPN с 50 ГБ/мес. Это прокси-сервер через Fastly, который маскирует IP-адрес при браузинге. Встроенный VPN защищает только трафик Firefox, не другие приложения, и доступен в США, Великобритании, Германии, Франции и Канаде. В России функция пока недоступна — при попытке включить выдаётся сообщение о недоступности региона.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Почему встроенный VPN Firefox не работает в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Встроенный VPN Firefox доступен только в США, Великобритании, Германии, Франции и Канаде, с планами расширения на другие страны. Россия в первоначальный список стран не вошла. Сроки добавления России Mozilla не объявила. Используйте расширение AdGuard VPN или ZoogVPN — они работают в России прямо сейчас.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Что такое Mozilla VPN — это то же самое, что встроенный Firefox VPN?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Нет, это разные продукты. Встроенный VPN Firefox — бесплатная функция, защищающая только браузер. Mozilla VPN — платный продукт ($9.99/мес), защищающий весь трафик устройства. Mozilla VPN использует WireGuard и имеет расширение для Firefox. Проблема для россиян: Mozilla VPN не принимает карты МИР и недоступные Visa/MC РФ — оплатить из России практически невозможно.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Обходит ли встроенный VPN Firefox блокировки Instagram и YouTube в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Нет, и по двум причинам. Во-первых, встроенный Firefox VPN недоступен в России. Во-вторых, даже если бы был доступен — он использует обычный прокси через Fastly без настоящей обфускации против ТСПУ. ТСПУ видит и блокирует такие соединения так же, как обычный WireGuard. Для обхода блокировок Instagram и замедлений YouTube нужны ZoogShadowing (ZoogVPN) или TrustTunnel (AdGuard VPN).</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Какое VPN-расширение лучше для Firefox в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">AdGuard VPN — лучшее расширение для Firefox: встроенный блокировщик рекламы, список исключений сайтов, 3 ГБ/мес бесплатно. Trust.Zone и ZoogVPN также имеют расширения в Firefox Add-ons Store. Для максимальной надёжности рекомендуется использовать системный клиент ZoogVPN (10 ГБ бесплатно) — он обеспечивает настоящую обфускацию против ТСПУ, которой расширения-прокси не имеют.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Можно ли одновременно использовать встроенный VPN Firefox и сторонний?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Не рекомендуется. Одновременная работа встроенного VPN Firefox и системного клиента или расширения создаёт конфликты маршрутизации — трафик может не идти ни через один из них корректно. Используйте только один VPN одновременно. Если хотите использовать ZoogVPN или AdGuard VPN — сначала выключите встроенный Firefox VPN через Настройки → Приватность → VPN → Выкл.</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <footer class="site-footer" style="margin-top:64px;">
   <div class="footer-inner">
-    <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России. Тестируем на реальных устройствах и операторах.</p>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по браузерам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-chrome/">VPN для Chrome</a></li>
+          <li><a href="/vpn-dlya-yandex-brauzera/">VPN для Яндекс Браузера</a></li>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN для России</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/platnye-vpn/">Лучшие платные VPN</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+          <li><a href="/vpn-dlya-pk/">VPN для ПК</a></li>
+          <li><a href="/vpn-dlya-discord/">VPN для Discord</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/outline/">Outline VPN</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
     </div>
+    <div class="footer-bottom">
+      <p>© 2026 vpn-russia.vercel.app · Информация предоставляется в ознакомительных целях.</p>
+      <p>Партнёрские ссылки помечены nofollow.</p>
+    </div>
+    <p class="footer-disclaimer">Сайт содержит партнёрские ссылки. При покупке мы получаем комиссию — это не влияет на объективность оценок. Данные актуальны на апрель 2026 года.</p>
   </div>
 </footer>
+
 <div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">🏆 <strong>ZoogVPN</strong> — работает в России, 10 ГБ бесплатно</div>
+  <div class="sticky-banner-text">🦊 <strong>ZoogVPN</strong> — Instagram и Discord в Firefox, 10 ГБ бесплатно</div>
   <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank">Попробовать →</a>
   <button class="sticky-close">✕</button>
 </div>
+
 <script src="/js/inner.js" defer></script>
+<script>
+  const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
+  if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+</script>
 </body>
 </html>
