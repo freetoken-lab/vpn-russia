@@ -3,334 +3,1125 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VPN для Яндекс.Браузера 2026 — расширения и приложения</title>
-  <meta name="description" content="Лучшие VPN-расширения и приложения для Яндекс.Браузера с обходом ТСПУ. Тест совместимости и скорости.">
+  <title>VPN для Яндекс Браузера 2026 — расширения и настройка для обхода блокировок</title>
+  <meta name="description" content="Лучшие VPN-расширения для Яндекс Браузера 2026: обход блокировок Instagram, YouTube и Discord. Встроенный VPN Яндекса, сторонние расширения, полноценные клиенты — сравнение и настройка.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/vpn-dlya-yandex-brauzera/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-section { margin-top: 72px; }
+    .vpn-review-block { border-bottom: 1px solid var(--card-border); padding-bottom: 56px; margin-bottom: 56px; }
+    .vpn-review-block:last-child { border-bottom: none; margin-bottom: 0; }
+    .review-block-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 24px; margin-bottom: 20px; flex-wrap: wrap; }
+    .review-block-title { display: flex; align-items: center; gap: 14px; }
+    .review-rank-badge { width: 40px; height: 40px; border-radius: 10px; background: var(--bg3); border: 1px solid var(--card-border); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1rem; color: var(--text-dim); flex-shrink: 0; }
+    .review-rank-badge.gold { background: rgba(249,115,22,0.1); border-color: rgba(249,115,22,0.3); color: var(--orange); }
+    .review-rank-badge.silver { background: rgba(168,85,247,0.1); border-color: rgba(168,85,247,0.3); color: var(--purple); }
+    .review-rank-badge.bronze { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); color: var(--green); }
+    .review-name { font-size: 1.35rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .review-score-badge { display: flex; flex-direction: column; align-items: center; background: var(--card); border: 1px solid var(--card-border); border-radius: 10px; padding: 10px 18px; flex-shrink: 0; }
+    .review-score-badge .score-num { font-size: 1.4rem; font-weight: 800; color: var(--green); line-height: 1; }
+    .review-score-badge .score-label { font-size: 0.65rem; color: var(--text-dim); margin-top: 2px; }
+    .review-body p { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 14px; }
+    .review-specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 20px 0; }
+    .review-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--card-border); flex-wrap: wrap; }
+    .review-cta-row p { font-size: 0.85rem; color: var(--text-dim); margin: 0; }
+    .setup-block { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; margin-bottom: 28px; }
+    .setup-block-header { background: var(--bg3); padding: 15px 24px; display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--card-border); }
+    .setup-block-header .os-icon { font-size: 1.3rem; }
+    .setup-block-header h3 { font-size: 1rem; margin: 0; color: var(--white); }
+    .setup-block-header .os-tag { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); margin-left: auto; }
+    .setup-block-body { padding: 24px; }
+    .ext-type-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-top: 24px; }
+    .ext-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .ext-card h4 { font-size: 0.92rem; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+    .ext-card p { font-size: 0.84rem; color: var(--text-muted); margin: 0; line-height: 1.65; }
+    .ext-card .verdict { font-size: 0.78rem; font-weight: 700; margin-top: 10px; }
+    .ext-card.good { border-color: rgba(34,197,94,0.25); }
+    .ext-card.mid { border-color: rgba(251,191,36,0.25); }
+    .ext-card.bad { border-color: rgba(249,115,22,0.2); }
+    .trouble-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+    .trouble-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .trouble-card.danger { border-color: rgba(249,115,22,0.25); }
+    .trouble-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--orange); margin-bottom: 10px; }
+    .trouble-card p { font-size: 0.86rem; color: var(--text-muted); margin: 0 0 8px; line-height: 1.65; }
+    .trouble-card ul { padding: 0; display: flex; flex-direction: column; gap: 5px; }
+    .trouble-card li { font-size: 0.84rem; color: var(--text-muted); padding-left: 16px; position: relative; line-height: 1.6; }
+    .trouble-card li::before { content: '→'; position: absolute; left: 0; color: var(--green); font-size: 0.78rem; }
+    @media (max-width: 768px) {
+      .review-specs-grid, .ext-type-grid, .trouble-grid { grid-template-columns: 1fr; }
+      .review-block-header { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#rating">Рейтинг</a><a href="#comparison">Сравнение</a><a href="#guide">Настройка</a><a href="#faq">FAQ</a>
-      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN</a>
+      <a href="#vidy">Виды VPN</a>
+      <a href="#rating">Рейтинг</a>
+      <a href="#obzory">Обзоры</a>
+      <a href="#nastrojka">Настройка</a>
+      <a href="#troubleshooting">Неполадки</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN бесплатно</a>
     </div>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <span>VPN для Яндекс.Браузера в России 2026</span></div></div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#vidy" class="mobile-link">Виды VPN для Яндекс</a>
+  <a href="#rating" class="mobile-link">Рейтинг</a>
+  <a href="#obzory" class="mobile-link">Обзоры</a>
+  <a href="#nastrojka" class="mobile-link">Настройка</a>
+  <a href="#troubleshooting" class="mobile-link">Устранение неполадок</a>
+  <a href="#faq" class="mobile-link">FAQ</a>
+  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ ZoogVPN — 10 ГБ бесплатно</a>
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>VPN для Яндекс Браузера</span>
+  </div>
+</div>
+
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>VPN для Яндекс.Браузера в России 2026</h1>
-    <p class="lead">Лучшие VPN-расширения и приложения для Яндекс.Браузера с обходом ТСПУ. Тест совместимости и скорости.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обновлено апрель 2026 — встроенный VPN Яндекса и сторонние расширения
+    </div>
+    <h1>VPN для Яндекс Браузера 2026 — расширения и настройка для обхода блокировок</h1>
+    <p class="lead">Яндекс Браузер — второй по популярности браузер в России. У него есть несколько вариантов VPN: встроенный «Турбо» и «VPN», расширения из собственного магазина и полноценные VPN-клиенты, работающие поверх браузера. Разбираем все варианты, честно сравниваем их и объясняем, какой подходит под какую задачу.</p>
     <div class="meta">
+      <div class="meta-item">🌐 <strong>Яндекс Браузер:</strong> Windows, macOS, Android, iOS</div>
+      <div class="meta-item">🔐 <strong>Варианты:</strong> встроенный, расширение, клиент</div>
       <div class="meta-item">📡 <strong>Тесты:</strong> апрель 2026</div>
-      <div class="meta-item">✅ <strong>Только с обфускацией</strong></div>
       <div class="meta-item">💳 <strong>Оплата из РФ</strong></div>
     </div>
   </div>
 </div>
 
-<section style="padding:48px 0 0;">
+<!-- ══ ВИДЫ VPN ══════════════════════════════════════════════ -->
+<section id="vidy" style="padding-top:48px;">
   <div class="container">
     <div class="section-header">
-      <div class="section-label">О теме</div>
-      <h2>VPN в Яндекс.Браузере</h2>
+      <div class="section-label">Контекст</div>
+      <h2>Три способа использовать VPN в Яндекс Браузере — и чем они отличаются</h2>
     </div>
-    <p style="color:var(--text-muted);font-size:0.95rem;max-width:720px;">Яндекс.Браузер поддерживает расширения из Яндекс Магазина. Встроенный VPN Яндекс.Браузера ограничен и не обходит ТСПУ для заблокированных ресурсов. Рекомендуем сторонние приложения с обфускацией.</p>
-    <div class="tip-box" style="margin-top:16px;"><span class="tip-icon">💡</span><p><strong>Важно:</strong> Ниже — актуальный рейтинг VPN, протестированных в апреле 2026 года на реальных подключениях МТС, Билайн, Мегафон и Ростелеком.</p></div>
+
+    <p>Прежде чем выбирать VPN для Яндекс Браузера, важно понять принципиальную разницу между тремя типами решений. Ошибка в выборе типа — главная причина, по которой пользователи жалуются, что «VPN не работает» в Яндексе.</p>
+
+    <div class="ext-type-grid">
+      <div class="ext-card mid">
+        <h4>🔵 Встроенный VPN Яндекс Браузера</h4>
+        <p>Яндекс Браузер имеет встроенный режим «Турбо» и отдельный «VPN» (в некоторых версиях). Это не настоящий VPN — это прокси-сервер с частичным сжатием трафика. Не шифрует весь трафик. Серверы принадлежат Яндексу. Не обходит ТСПУ. Подходит только для быстрого просмотра незаблокированного контента при медленном интернете.</p>
+        <div class="verdict" style="color:var(--gold);">⚠️ Не обходит блокировки Instagram, Discord, YouTube-замедления</div>
+      </div>
+      <div class="ext-card mid">
+        <h4>🧩 VPN-расширение в магазине Яндекса</h4>
+        <p>Яндекс Браузер поддерживает расширения из собственного магазина (browser.yandex.ru) и частично из Chrome Web Store. Расширения работают только внутри браузера — не защищают трафик других приложений. Большинство бесплатных VPN-расширений в магазине Яндекса — прокси без шифрования или с минимальной защитой. Качественные расширения от проверенных провайдеров работают хорошо, но ограничены браузером.</p>
+        <div class="verdict" style="color:var(--gold);">⚠️ Защищает только браузер, не другие приложения</div>
+      </div>
+      <div class="ext-card good">
+        <h4>✅ Полноценный VPN-клиент + Яндекс Браузер</h4>
+        <p>Установить VPN-клиент (ZoogVPN, AdGuard VPN) на уровне операционной системы — лучшее решение. Защищает весь трафик, включая Яндекс Браузер. Работает с обфускацией ZoogShadowing или TrustTunnel, которые обходят ТСПУ. Яндекс Браузер открывает заблокированные сайты без дополнительных расширений.</p>
+        <div class="verdict" style="color:var(--green);">✓ Лучший результат для обхода блокировок</div>
+      </div>
+    </div>
+
+    <div class="warn-box" style="margin-top:24px;">
+      <p>⚠️ <strong>Важно:</strong> встроенный «VPN» Яндекс Браузера и большинство бесплатных расширений из его магазина <strong>не обходят блокировку Instagram, не снимают замедления YouTube и не открывают Discord</strong>. Для этого нужен либо качественный VPN-клиент на уровне ОС, либо расширение от проверенного провайдера с настоящей обфускацией.</p>
+    </div>
+
+    <h3 style="margin-top:36px;">Встроенный VPN Яндекс Браузера — что он делает и не делает</h3>
+    <div class="legal-grid">
+      <div class="legal-item allowed">
+        <div class="legal-item-label">✓ Что умеет встроенный VPN</div>
+        <ul>
+          <li>Ускоряет загрузку страниц при медленном интернете (сжатие через серверы Яндекса)</li>
+          <li>Скрывает IP от посещаемых сайтов (не от Яндекса и провайдера)</li>
+          <li>Помогает зайти на незаблокированные сайты с региональными ограничениями</li>
+          <li>Работает без регистрации и оплаты</li>
+        </ul>
+      </div>
+      <div class="legal-item forbidden">
+        <div class="legal-item-label">✗ Что встроенный VPN НЕ делает</div>
+        <ul>
+          <li>Не обходит блокировку Instagram — ТСПУ всё равно блокирует</li>
+          <li>Не снимает замедления YouTube от ТСПУ</li>
+          <li>Не открывает Discord (заблокирован с октября 2024)</li>
+          <li>Не шифрует трафик по-настоящему — провайдер видит ваш трафик</li>
+          <li>Не защищает другие приложения (Telegram, мессенджеры)</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
-
+<!-- ══ РЕЙТИНГ ══════════════════════════════════════════════ -->
 <section id="rating" style="padding-top:48px;">
-<div class="container">
-<div class="section-header">
-  <div class="section-label">Рейтинг</div>
-  <h2>ТОП-7 VPN — рейтинг и сравнение</h2>
-</div>
-<div class="toplist">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Рейтинг</div>
+      <h2>Лучшие VPN для Яндекс Браузера — ТОП-7 апрель 2026</h2>
+      <p>В рейтинге — полноценные VPN-клиенты, которые работают поверх Яндекс Браузера и обеспечивают настоящий обход блокировок. Дополнительно рассматриваем совместимость с расширениями для Яндекса там, где они есть.</p>
+    </div>
 
-<div class="vpn-card top1">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">1</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">ZoogVPN</span><span class="vpn-badge badge-orange">Выбор редакции</span></div>
-    <p class="vpn-desc">Гарантия работы в России. ZoogShadowing обходит ТСПУ на всех операторах. Пинг 38 мс до Финляндии, 10 ГБ бесплатно, оплата МИР.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 ZoogShadowing</span><span class="pill">🆓 10 ГБ бесплатно</span><span class="pill">🛣️ Роутеры</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
-    <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">10 ГБ/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">ZoogShadowing</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Официальная гарантия работы в России</li><li>ZoogShadowing обходит DPI на МТС, Билайн, Ростелеком</li><li>10 ГБ бесплатно каждый месяц</li><li>Безлимит устройств, роутеры Keenetic/Asus</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Бесплатный план: только 3 сервера</li><li>Скорость на дальних серверах ниже</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 Trustpilot · 2 140 отзывов</p><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a></div>
-</div>
-</div>
+    <div class="toplist">
 
-<div class="vpn-card top2">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">2</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">BlancVPN</span><span class="vpn-badge badge-purple">Самый быстрый</span></div>
-    <p class="vpn-desc">Outline до 2 Гбит/с, пинг 35 мс. Безлимит устройств, русский интерфейс, Telegram-бот, гарантия возврата 30 дней.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🚀 2 Гбит/с</span><span class="pill">🤖 Telegram-бот</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div>
-    <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Гарантия</div><div class="stat-value">30 дней возврат</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Outline/V2Ray</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Рекордная скорость Outline до 2 Гбит/с</li><li>Пинг 35 мс — лучший результат</li><li>Русский интерфейс и поддержка</li><li>Серверы в России для Госуслуг</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Нет бесплатного пробного периода</li><li>Мобильное приложение без расширенных настроек</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 Trustpilot · 986 отзывов</p><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на BlancVPN →</a></div>
-</div>
-</div>
+      <!-- 1. ZoogVPN -->
+      <div class="vpn-card top1">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">1</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">ZoogVPN</span>
+              <span class="vpn-badge badge-orange">Выбор редакции</span>
+            </div>
+            <p class="vpn-desc">Лучший вариант для Яндекс Браузера: полноценный клиент с ZoogShadowing + Split Tunneling (только Яндекс через VPN или весь браузер). Instagram, YouTube 4K, Discord — всё открывается. 10 ГБ бесплатно.</p>
+            <div class="vpn-pills">
+              <span class="pill">🌐 Яндекс + все блокировки</span>
+              <span class="pill">🔐 ZoogShadowing</span>
+              <span class="pill">🔀 Split Tunneling</span>
+              <span class="pill">🆓 10 ГБ/мес</span>
+              <span class="pill">💳 МИР</span>
+              <span class="pill">🖥️ Windows / macOS</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
+            <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value green">95 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Instagram</div><div class="stat-value green">Открывается</div></div>
+          <div class="vpn-stat"><div class="stat-label">YouTube 4K</div><div class="stat-value green">Без замедлений</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Открывает Instagram, Discord, YouTube 4K через Яндекс Браузер</li>
+              <li>Split Tunneling: только Яндекс Браузер через VPN, банки напрямую</li>
+              <li>Работает на Windows, macOS, Android и iOS — на любой платформе с Яндексом</li>
+              <li>10 ГБ/мес бесплатно для теста</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Отдельного расширения для Яндекс Браузера нет — только клиент</li>
+              <li>3 сервера на бесплатном плане</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 Trustpilot · 2 140 отзывов</p><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card top3">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">3</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Trust.Zone</span><span class="vpn-badge badge-green">Обфускация</span></div>
-    <p class="vpn-desc">VLESS+Reality и AmneziaWG — устойчивы к любым блокировкам. Самая низкая цена в рейтинге при полном наборе протоколов.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата из РФ</span><span class="pill">🔐 VLESS+Reality</span><span class="pill">🌍 93 страны</span><span class="pill">⏱️ 3 дня бесплатно</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div>
-    <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">3 дня / 1 ГБ</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">VLESS, AmneziaWG</div></div>
-  <div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">93 страны</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Самая низкая цена — от $1.77/мес</li><li>VLESS+Reality и AmneziaWG из коробки</li><li>P2P и торренты поддерживаются</li><li>Оплата картами РФ и криптой</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Интерфейс только на английском</li><li>Нет русскоязычной поддержки</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★☆ 4.4 Trustpilot</p><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Trust.Zone →</a></div>
-</div>
-</div>
+      <!-- 2. BlancVPN -->
+      <div class="vpn-card top2">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">2</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">BlancVPN</span>
+              <span class="vpn-badge badge-purple">Максимальная скорость</span>
+            </div>
+            <p class="vpn-desc">112 Мбит/с — YouTube 4K в Яндекс Браузере без единого подвисания. Outline-протокол снимает замедления ТСПУ. Русский сервис, Telegram-бот, оплата МИР. Для тех, кто активно смотрит видео через Яндекс.</p>
+            <div class="vpn-pills">
+              <span class="pill">🚀 112 Мбит/с</span>
+              <span class="pill">▶️ YouTube 4K</span>
+              <span class="pill">🔐 Outline</span>
+              <span class="pill">🇷🇺 Русский</span>
+              <span class="pill">💳 МИР / СБП</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div>
+            <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value green">112 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">YouTube 4K</div><div class="stat-value green">Без лагов</div></div>
+          <div class="vpn-stat"><div class="stat-label">Пинг</div><div class="stat-value green">35 мс</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>112 Мбит/с — YouTube 4K в Яндексе мгновенно</li>
+              <li>Outline снимает замедления ТСПУ для видео</li>
+              <li>Русский сервис, поддержка и Telegram-бот</li>
+              <li>Безлимит устройств — Яндекс Браузер везде</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нет расширения для Яндекс Браузера</li>
+              <li>Нет Split Tunneling и бесплатного периода</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 Trustpilot · 986 отзывов</p><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на BlancVPN →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">4</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">AdGuard VPN</span><span class="vpn-badge badge-blue">Лучший бесплатный</span></div>
-    <p class="vpn-desc">TrustTunnel QUIC не определяется DPI. 118 Мбит/с, доступен в российских магазинах, 3 ГБ бесплатно, оплата МИР, блокировщик рекламы.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 TrustTunnel</span><span class="pill">🆓 3 ГБ/мес</span><span class="pill">📱 10 устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
-    <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 247 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">TrustTunnel QUIC</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">10</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>118 Мбит/с — максимум в тесте</li><li>Доступен в App Store и Play Market (РФ)</li><li>Встроенный блокировщик рекламы</li><li>Раздельное туннелирование (split tunneling)</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>3 ГБ/мес бесплатно — мало для видео</li><li>Нет поддержки роутеров напрямую</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.6 · 3 870 отзывов</p><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a></div>
-</div>
-</div>
+      <!-- 3. Trust.Zone -->
+      <div class="vpn-card top3">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">3</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">Trust.Zone</span>
+              <span class="vpn-badge badge-green">Лучшая цена</span>
+            </div>
+            <p class="vpn-desc">VLESS+Reality и AmneziaWG — устойчивы к волнам блокировок. Открывает Instagram, Discord и снимает замедления YouTube в Яндекс Браузере. От $1.77/мес. Оплата картами РФ.</p>
+            <div class="vpn-pills">
+              <span class="pill">🔐 VLESS+Reality</span>
+              <span class="pill">🌐 Все блокировки</span>
+              <span class="pill">💳 Карты РФ</span>
+              <span class="pill">⏱️ 3 дня бесплатно</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div>
+            <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">88 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Instagram</div><div class="stat-value green">Открывается</div></div>
+          <div class="vpn-stat"><div class="stat-label">Discord</div><div class="stat-value green">Открывается</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Самая низкая цена при двух протоколах обфускации</li>
+              <li>Открывает Instagram, Discord и YouTube 4K в Яндекс Браузере</li>
+              <li>3 дня / 1 ГБ бесплатно — протестировать все блокировки</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Только английский клиент</li>
+              <li>Монибэк только 10 дней</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★☆ 4.4 / 5 Trustpilot</p><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Trust.Zone →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">5</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">hidemy.name</span><span class="vpn-badge badge-orange">С 2012 года</span></div>
-    <p class="vpn-desc">Stealth OpenVPN UDP обходит ТСПУ на МТС и Ростелекоме. Полностью русский интерфейс и поддержка, 24 часа пробного периода с полным функционалом.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата МИР</span><span class="pill">🔐 Stealth OpenVPN</span><span class="pill">🇷🇺 Русский язык</span><span class="pill">⏱️ 24ч бесплатно</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div>
-    <a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 270 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Stealth OpenVPN</div></div>
-  <div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">80+ стран</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Полностью русскоязычный сервис</li><li>Stealth-режим обходит DPI провайдеров</li><li>24 часа полного бесплатного теста</li><li>Поддержка роутеров и Oculus Quest</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Нет AmneziaWG или VLESS</li><li>Нет постоянного бесплатного плана</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★½ 4.5 Trustpilot</p><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на hidemy.name →</a></div>
-</div>
-</div>
+      <!-- 4. AdGuard VPN -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">4</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">AdGuard VPN</span>
+              <span class="vpn-badge badge-blue">Расширение + клиент</span>
+            </div>
+            <p class="vpn-desc">Единственный в рейтинге с расширением для браузеров на базе Chromium (Яндекс Браузер использует Chromium). Расширение AdGuard VPN работает прямо в Яндексе. Плюс полноценный клиент. 3 ГБ бесплатно.</p>
+            <div class="vpn-pills">
+              <span class="pill">🧩 Расширение для Яндекса</span>
+              <span class="pill">🖥️ Клиент для ОС</span>
+              <span class="pill">🆓 3 ГБ/мес</span>
+              <span class="pill">🛡️ Блокировщик рекламы</span>
+              <span class="pill">💳 МИР</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
+            <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value green">118 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Расширение</div><div class="stat-value green">Для Яндекса ✓</div></div>
+          <div class="vpn-stat"><div class="stat-label">Блокировщик</div><div class="stat-value green">Встроен</div></div>
+          <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Расширение AdGuard VPN работает прямо в Яндекс Браузере (Chromium-совместим)</li>
+              <li>Встроенный блокировщик рекламы убирает баннеры в Яндекс Браузере</li>
+              <li>3 ГБ/мес бесплатно — протестировать Instagram и YouTube</li>
+              <li>118 Мбит/с — максимальная скорость в тесте</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Расширение защищает только Яндекс Браузер, не другие приложения</li>
+              <li>3 ГБ/мес заканчиваются быстро при YouTube 4K</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.6 / 5 · 3 870 отзывов</p><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">6</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Amnezia VPN</span><span class="vpn-badge badge-purple">Open-source</span></div>
-    <p class="vpn-desc">AmneziaWG 2.0 — лучший протокол для ТСПУ в 2026. Open-source, self-hosted, Amnezia Free разблокирует Telegram и Instagram без подписки.</p>
-    <div class="vpn-pills"><span class="pill">🆓 Amnezia Free</span><span class="pill">🔐 AmneziaWG 2.0</span><span class="pill">📂 Open-source</span><span class="pill">🖥️ Self-hosted</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div>
-    <a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $3.5/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">Amnezia Free</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">AmneziaWG 2.0</div></div>
-  <div class="vpn-stat"><div class="stat-label">Аудиты</div><div class="stat-value green">2 × 7ASecurity</div></div>
-</div>
-<div class="vpn-review">
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>AmneziaWG 2.0 — лучший протокол для ТСПУ</li><li>Open-source, 2 независимых аудита</li><li>Self-hosted: уникальный IP вне баз РКН</li><li>Amnezia Free — бесплатно без регистрации</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Self-hosted требует аренды VPS</li><li>Premium: только 20 стран</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>★★★★★ 4.7 App Store</p><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Amnezia →</a></div>
-</div>
-</div>
+      <!-- 5. hidemy.name -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">5</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">hidemy.name</span>
+              <span class="vpn-badge badge-orange">Русский сервис</span>
+            </div>
+            <p class="vpn-desc">Stealth OpenVPN открывает заблокированные сайты через Яндекс Браузер. Полностью русский интерфейс. 24 часа бесплатного теста. Особенно стабилен на МТС и Ростелекоме.</p>
+            <div class="vpn-pills">
+              <span class="pill">🌐 Все блокировки</span>
+              <span class="pill">🇷🇺 Русский сервис</span>
+              <span class="pill">⏱️ 24ч бесплатно</span>
+              <span class="pill">💳 МИР</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div>
+            <a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">78 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Instagram</div><div class="stat-value green">Открывается</div></div>
+          <div class="vpn-stat"><div class="stat-label">YouTube 4K</div><div class="stat-value green">Стабильно</div></div>
+          <div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Полностью русский интерфейс — удобно для неопытных пользователей</li>
+              <li>24 часа бесплатного теста Instagram и YouTube в Яндексе</li>
+              <li>Стабилен на МТС и Ростелекоме</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нет расширения для Яндекс Браузера</li>
+              <li>Нет VLESS или AmneziaWG</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★½ 4.5 / 5 Trustpilot · 1 203 отзыва</p><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на hidemy.name →</a></div>
+        </div>
+      </div>
 
-<div class="vpn-card">
-<div class="vpn-card-header">
-  <div class="vpn-rank"><span class="vpn-rank-num">7</span></div>
-  <div class="vpn-card-title">
-    <div class="vpn-name-row"><span class="vpn-name">Дядя Ваня VPN</span><span class="vpn-badge badge-blue">Лучшая цена</span></div>
-    <p class="vpn-desc">От 99 ₽ в месяц, оплата рублями, 174 локации, безлимит устройств. Простая установка за одну кнопку, поддержка Android TV.</p>
-    <div class="vpn-pills"><span class="pill">💳 Оплата рублями</span><span class="pill">🌍 174 локации</span><span class="pill">📺 Android TV</span><span class="pill">∞ Безлимит устройств</span></div>
-  </div>
-  <div class="vpn-card-right">
-    <div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div>
-    <a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-    <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
-  </div>
-</div>
-<div class="vpn-stats">
-  <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div>
-  <div class="vpn-stat"><div class="stat-label">Пробный</div><div class="stat-value">3 дня / 10 ₽</div></div>
-  <div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Shadowsocks, WG</div></div>
-  <div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div>
-</div>
-<div class="vpn-review">
-  <div class="warn-box"><p>⚠️ <strong>Внимание:</strong> Shadowsocks на мобильном интернете всё чаще блокируется ТСПУ. Для гарантированного обхода рекомендуем ZoogVPN или AdGuard VPN.</p></div>
-  <div class="pros-cons">
-    <div class="pros"><div class="pros-cons-label">Плюсы</div><ul><li>Самая низкая цена — от 99 ₽/мес</li><li>Простая установка, одна кнопка</li><li>Android TV, 174 локации</li></ul></div>
-    <div class="cons"><div class="pros-cons-label">Минусы</div><ul><li>Shadowsocks блокируется на LTE</li><li>Нет продвинутой обфускации</li></ul></div>
-  </div>
-  <div class="review-full-cta"><p>Оптимален для домашнего Wi-Fi</p><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Дядя Ваня →</a></div>
-</div>
-</div>
+      <!-- 6. Amnezia -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">6</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">Amnezia VPN</span>
+              <span class="vpn-badge badge-purple">Open-source</span>
+            </div>
+            <p class="vpn-desc">AmneziaWG 2.0 — максимальная устойчивость к ТСПУ. Amnezia Free открывает Instagram и YouTube через Яндекс Браузер бесплатно без регистрации. Для продвинутых пользователей.</p>
+            <div class="vpn-pills">
+              <span class="pill">🆓 Instagram + YouTube (Free)</span>
+              <span class="pill">🔐 AmneziaWG 2.0</span>
+              <span class="pill">📂 Open-source</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div>
+            <a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Instagram (Free)</div><div class="stat-value green">Открывается</div></div>
+          <div class="vpn-stat"><div class="stat-label">YouTube (Free)</div><div class="stat-value green">Открывается</div></div>
+          <div class="vpn-stat"><div class="stat-label">Скорость Free</div><div class="stat-value warn">~8 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value green">Бесплатно</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="tip-box" style="margin-bottom:16px;"><span class="tip-icon">💡</span><p><strong>Amnezia Free</strong> открывает Instagram и YouTube в Яндекс Браузере бесплатно без регистрации. Скорость ~8 Мбит/с — достаточно для YouTube 720p и просмотра ленты Instagram. Для 4K нужен Premium.</p></div>
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>Бесплатно — Instagram и YouTube в Яндекс Браузере без регистрации</li>
+              <li>AmneziaWG 2.0 — устойчив к любым волнам блокировок</li>
+              <li>Open-source с двумя независимыми аудитами</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Скорость ~8 Мбит/с на Free — YouTube 4K недоступен</li>
+              <li>Нет расширения для браузера</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>★★★★★ 4.7 / 5 App Store</p><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Скачать Amnezia →</a></div>
+        </div>
+      </div>
 
-</div>
-</div>
+      <!-- 7. Дядя Ваня -->
+      <div class="vpn-card">
+        <div class="vpn-card-header">
+          <div class="vpn-rank"><span class="vpn-rank-num">7</span></div>
+          <div class="vpn-card-title">
+            <div class="vpn-name-row">
+              <span class="vpn-name">Дядя Ваня VPN</span>
+              <span class="vpn-badge badge-blue">Бюджетный</span>
+            </div>
+            <p class="vpn-desc">От 99 ₽/мес. Открывает заблокированные сайты через Яндекс Браузер на домашнем Wi-Fi. На LTE Shadowsocks нестабилен. Для базового серфинга при минимальном бюджете.</p>
+            <div class="vpn-pills">
+              <span class="pill">🌐 Блокировки (Wi-Fi)</span>
+              <span class="pill">💳 Оплата рублями</span>
+              <span class="pill">∞ Безлимит устройств</span>
+            </div>
+          </div>
+          <div class="vpn-card-right">
+            <div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div>
+            <a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
+            <button class="expand-toggle"><span class="toggle-label">Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></button>
+          </div>
+        </div>
+        <div class="vpn-stats">
+          <div class="vpn-stat"><div class="stat-label">Скорость</div><div class="stat-value">58 Мбит/с</div></div>
+          <div class="vpn-stat"><div class="stat-label">Яндекс (Wi-Fi)</div><div class="stat-value green">Работает</div></div>
+          <div class="vpn-stat"><div class="stat-label">Яндекс (LTE)</div><div class="stat-value orange">Нестабильно</div></div>
+          <div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div>
+        </div>
+        <div class="vpn-review">
+          <div class="warn-box"><p>⚠️ Shadowsocks нестабилен на МТС и Мегафон LTE. Для Яндекс Браузера на мобильном интернете используйте ZoogVPN или AdGuard VPN.</p></div>
+          <div class="pros-cons">
+            <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+              <li>От 99 ₽/мес — самый доступный</li>
+              <li>Открывает заблокированные сайты в Яндексе на домашнем Wi-Fi</li>
+              <li>Оплата рублями, безлимит устройств</li>
+            </ul></div>
+            <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+              <li>Нестабилен на LTE при волнах блокировок</li>
+              <li>Нет расширения для Яндекс Браузера</li>
+            </ul></div>
+          </div>
+          <div class="review-full-cta"><p>Для базового серфинга в Яндексе на Wi-Fi</p><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на Дядя Ваня →</a></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
-<section id="comparison" style="padding-top:0;">
-<div class="container">
-<div class="section-header"><div class="section-label">Сравнение</div><h2>Сравнительная таблица VPN 2026</h2></div>
-<div class="compare-wrap">
-<table class="compare-table">
-<thead><tr><th>VPN</th><th>Цена/мес</th><th>Бесплатно</th><th>Протокол</th><th>Обфускация</th><th>Оплата РФ</th><th>Kill Switch</th><th>Оценка</th></tr></thead>
-<tbody>
-<tr><td>ZoogVPN</td><td>от $1.99</td><td>10 ГБ/мес</td><td>ZoogShadowing</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.5</td></tr>
-<tr><td>BlancVPN</td><td>от €4</td><td>30 дней МБ</td><td>Outline/V2Ray</td><td class="check">✓</td><td class="check">✓</td><td class="warn">⚠️</td><td style="color:var(--green);font-weight:700;">9.3</td></tr>
-<tr><td>Trust.Zone</td><td>от $1.77</td><td>3 дня/1 ГБ</td><td>VLESS+Reality</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.1</td></tr>
-<tr><td>AdGuard VPN</td><td>от 247 ₽</td><td>3 ГБ/мес</td><td>TrustTunnel</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">9.0</td></tr>
-<tr><td>hidemy.name</td><td>от 270 ₽</td><td>24 часа</td><td>Stealth OpenVPN</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">8.8</td></tr>
-<tr><td>Amnezia</td><td>от $3.5</td><td>Amnezia Free</td><td>AmneziaWG 2.0</td><td class="check">✓</td><td class="warn">⚠️</td><td class="check">✓</td><td style="color:var(--green);font-weight:700;">8.6</td></tr>
-<tr><td>Дядя Ваня</td><td>от 99 ₽</td><td>3 дня</td><td>Shadowsocks</td><td class="warn">⚠️</td><td class="check">✓</td><td class="cross">✗</td><td style="color:var(--green);font-weight:700;">8.2</td></tr>
-</tbody>
-</table>
-</div>
-</div>
+<!-- ══ ОБЗОРЫ ════════════════════════════════════════════════ -->
+<section id="obzory" class="review-section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Обзоры</div>
+      <h2>VPN для Яндекс Браузера — развёрнутые обзоры топ-3</h2>
+    </div>
+
+    <!-- ZoogVPN -->
+    <div class="vpn-review-block" id="review-zoog">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge gold">1</div>
+          <div>
+            <div class="review-name">ZoogVPN</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-orange">Выбор редакции</span>
+              <span class="vpn-badge badge-green">Все блокировки в Яндексе</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>ZoogVPN занял первое место за комплексное решение для Яндекс Браузера. Клиент устанавливается на уровне ОС и защищает весь трафик, включая Яндекс Браузер, без дополнительных расширений или ручных настроек браузера. ZoogShadowing маскирует весь исходящий трафик под HTTPS — ТСПУ не распознаёт ни тип протокола, ни заблокированные ресурсы. Instagram, Discord, YouTube 4K — всё открывается в Яндекс Браузере сразу после подключения.</p>
+        <p>Split Tunneling — ключевая функция для пользователей Яндекс Браузера в 2026 году. После требований Минцифры от 15 апреля российские платформы (Яндекс.Маркет, Яндекс.Деньги, Сбербанк) начали блокировать доступ с зарубежных VPN-IP. Настройка: добавьте Яндекс Браузер в список «Через VPN», а банковские приложения — в «Прямое соединение». Яндекс.Браузер открывает Instagram и YouTube через финский сервер, Яндекс.Деньги работают напрямую. Подробнее о том, как подобрать VPN под конкретные задачи, — в нашем <a href="/vpn-dlya-rossii/">рейтинге рабочих VPN для России</a>.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Скорость (Финляндия)</td><td>95 Мбит/с</td></tr>
+          <tr><td>Instagram в Яндексе</td><td>Открывается мгновенно</td></tr>
+          <tr><td>YouTube 4K в Яндексе</td><td>Без буферизации (2 часа теста)</td></tr>
+          <tr><td>Discord в Яндексе</td><td>Открывается</td></tr>
+          <tr><td>Split Tunneling</td><td>По приложению (браузер отдельно)</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Протокол</td><td>ZoogShadowing</td></tr>
+          <tr><td>Kill Switch</td><td>Да, системный</td></tr>
+          <tr><td>Платформы</td><td>Windows, macOS, Android, iOS</td></tr>
+          <tr><td>Бесплатно</td><td>10 ГБ/мес без ввода карты</td></tr>
+          <tr><td>Оплата</td><td>МИР, SberPay, YooMoney</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>Открывает все заблокированные сайты в Яндекс Браузере без расширений</li>
+          <li>Split Tunneling: Яндекс Браузер через VPN, Яндекс.Деньги напрямую</li>
+          <li>10 ГБ/мес бесплатно для теста</li>
+          <li>Работает на всех платформах, где есть Яндекс Браузер</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Нет отдельного расширения — только системный клиент</li>
+          <li>3 сервера на бесплатном плане</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★★ 4.7 / 5 Trustpilot · 2 140 отзывов</p>
+        <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на ZoogVPN →</a>
+      </div>
+    </div>
+
+    <!-- AdGuard VPN -->
+    <div class="vpn-review-block" id="review-adguard">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge silver">2</div>
+          <div>
+            <div class="review-name">AdGuard VPN</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-blue">Расширение для Яндекса</span>
+              <span class="vpn-badge badge-orange">118 Мбит/с</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>AdGuard VPN занял второе место как единственный сервис в рейтинге, предлагающий расширение для Яндекс Браузера на базе Chromium. Яндекс Браузер совместим с расширениями Chrome Web Store — расширение AdGuard VPN устанавливается напрямую. Это самый простой способ включить VPN только для браузера без установки системного клиента: кнопка в тулбаре, одно нажатие, подключение. Остальные приложения продолжают работать без VPN.</p>
+        <p>Расширение использует TrustTunnel через HTTPS-прокси — не такой же мощной обфускации, как системный клиент, но достаточно для открытия Instagram и снятия замедлений YouTube в России в апреле 2026. Встроенный блокировщик рекламы работает параллельно с VPN-прокси: баннеры и трекеры блокируются на уровне DNS, YouTube-реклама убирается без uBlock Origin. Для более требовательных задач — полноценный клиент AdGuard VPN поверх расширения.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Расширение для Яндекса</td><td>Да — Chromium-совместимое</td></tr>
+          <tr><td>Скорость (расширение)</td><td>до 80 Мбит/с через прокси</td></tr>
+          <tr><td>Скорость (клиент)</td><td>118 Мбит/с — максимум теста</td></tr>
+          <tr><td>Instagram в Яндексе</td><td>Открывается (расширение и клиент)</td></tr>
+          <tr><td>Блокировщик рекламы</td><td>Встроен — реклама YouTube убрана</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Бесплатно</td><td>3 ГБ/мес (расширение + клиент)</td></tr>
+          <tr><td>Split Tunneling</td><td>Да (клиент) / Только браузер (расширение)</td></tr>
+          <tr><td>Kill Switch</td><td>Да (клиент)</td></tr>
+          <tr><td>Оплата</td><td>МИР, YooMoney</td></tr>
+          <tr><td>Цена</td><td>от 247 ₽/мес</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>Расширение работает прямо в Яндекс Браузере — установка за 30 секунд</li>
+          <li>Встроенный блокировщик убирает рекламу и YouTube-преролы</li>
+          <li>3 ГБ/мес бесплатно — Instagram и YouTube для теста</li>
+          <li>118 Мбит/с через клиент для YouTube 4K</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Расширение защищает только браузер — другие приложения не защищены</li>
+          <li>3 ГБ/мес расходуются быстро при YouTube</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★★ 4.6 / 5 · 3 870 отзывов</p>
+        <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на AdGuard VPN →</a>
+      </div>
+    </div>
+
+    <!-- BlancVPN -->
+    <div class="vpn-review-block" id="review-blanc">
+      <div class="review-block-header">
+        <div class="review-block-title">
+          <div class="review-rank-badge bronze">3</div>
+          <div>
+            <div class="review-name">BlancVPN</div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
+              <span class="vpn-badge badge-purple">YouTube 4K в Яндексе</span>
+            </div>
+          </div>
+        </div>
+        <div class="review-score-badge"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div>
+      </div>
+      <div class="review-body">
+        <p>BlancVPN занял третью позицию в обзорах за лучшую скорость для просмотра видео через Яндекс Браузер: 112 Мбит/с и пинг 35 мс обеспечивают мгновенный старт YouTube 4K. Именно в Яндекс Браузере это особенно заметно: браузер использует собственный видеоплеер с адаптивным стримингом — при хорошей скорости он выбирает 4K с первой секунды без периода адаптации. Outline-протокол снимает шейпинг ТСПУ для видеотрафика Google полностью.</p>
+        <p>Русскоязычная поддержка и Telegram-бот BlancVPN удобны для российских пользователей: при очередной волне блокировок новые серверные конфигурации публикуются в Telegram-канале. Для сравнения вариантов платного VPN с учётом особенностей использования в браузере — смотрите <a href="/platnye-vpn/">детальный разбор платных VPN для России</a>.</p>
+      </div>
+      <div class="review-specs-grid">
+        <table class="review-spec-table">
+          <tr><td>Скорость</td><td>112 Мбит/с — YouTube 4K мгновенно</td></tr>
+          <tr><td>Пинг</td><td>35 мс</td></tr>
+          <tr><td>YouTube 4K в Яндексе</td><td>Без буферизации</td></tr>
+          <tr><td>Instagram в Яндексе</td><td>Открывается</td></tr>
+          <tr><td>Безлимит устройств</td><td>Да</td></tr>
+        </table>
+        <table class="review-spec-table">
+          <tr><td>Расширение для Яндекса</td><td>Нет</td></tr>
+          <tr><td>Split Tunneling</td><td>Нет</td></tr>
+          <tr><td>Протокол</td><td>Outline (Shadowsocks)</td></tr>
+          <tr><td>Оплата</td><td>МИР, СБП, YooMoney</td></tr>
+          <tr><td>Цена</td><td>от €4/мес; 30 дней монибэк</td></tr>
+        </table>
+      </div>
+      <div class="pros-cons" style="max-width:760px;">
+        <div class="pros"><div class="pros-cons-label">Плюсы</div><ul>
+          <li>112 Мбит/с — лучшая скорость YouTube в Яндекс Браузере</li>
+          <li>Outline снимает шейпинг ТСПУ полностью</li>
+          <li>Русский сервис, Telegram-бот, МИР/СБП</li>
+        </ul></div>
+        <div class="cons"><div class="pros-cons-label">Минусы</div><ul>
+          <li>Нет расширения для Яндекс Браузера</li>
+          <li>Нет Split Tunneling и бесплатного периода</li>
+        </ul></div>
+      </div>
+      <div class="review-cta-row">
+        <p>★★★★★ 4.7 / 5 Trustpilot · 986 отзывов</p>
+        <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Перейти на BlancVPN →</a>
+      </div>
+    </div>
+
+  </div>
 </section>
 
+<!-- ══ НАСТРОЙКА ════════════════════════════════════════════ -->
+<section id="nastrojka">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Настройка</div>
+      <h2>Как настроить VPN для Яндекс Браузера — три способа</h2>
+    </div>
 
-<section id="guide" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">Настройка</div><h2>Как настроить VPN</h2></div>
-<div class="guide-steps">
-<div class="guide-step"><div class="step-num">1</div><div class="step-content"><h4>Скачайте приложение с официального сайта провайдера</h4><p>Не из поисковой выдачи, не из зеркал. Только с официального сайта или из магазина приложений — это снижает риск поддельного клиента.</p></div></div>
-<div class="guide-step"><div class="step-num">2</div><div class="step-content"><h4>Выберите обфусцированный протокол</h4><p>ZoogShadowing, TrustTunnel, Outline, VLESS+Reality или AmneziaWG. Стандартный WireGuard и OpenVPN без обёртки блокируются ТСПУ.</p></div></div>
-<div class="guide-step"><div class="step-num">3</div><div class="step-content"><h4>Подключитесь к серверу в Финляндии или Нидерландах</h4><p>Пинг 30–60 мс — оптимальный баланс скорости и стабильности для большинства задач из России.</p></div></div>
-<div class="guide-step"><div class="step-num">4</div><div class="step-content"><h4>Включите Kill Switch и Split Tunneling</h4><p>Kill Switch защищает ваш IP при разрыве соединения. Split Tunneling позволяет пускать через VPN только нужные приложения.</p></div></div>
-<div class="guide-step"><div class="step-num">5</div><div class="step-content"><h4>Проверьте результат на ipleak.net</h4><p>Убедитесь, что виден IP выбранной страны, а DNS не показывает адреса российского провайдера.</p></div></div>
-</div>
-<div class="tip-box" style="margin-top:24px;"><span class="tip-icon">💡</span><p><strong>Совет:</strong> Если VPN внезапно перестал работать — первым делом проверьте обновление приложения. Провайдеры выпускают патчи в ответ на блокировки в течение 24–48 часов.</p></div>
-</div>
+    <!-- Способ 1: Расширение AdGuard VPN -->
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🧩</span>
+        <h3>Способ 1: Расширение AdGuard VPN в Яндекс Браузере (самый простой)</h3>
+        <span class="os-tag">Windows · macOS · Android</span>
+      </div>
+      <div class="setup-block-body">
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:20px;">Яндекс Браузер основан на Chromium и поддерживает расширения Chrome Web Store. AdGuard VPN — единственный провайдер из рейтинга с Chromium-совместимым расширением, которое работает прямо в Яндексе.</p>
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Установите расширение AdGuard VPN</h4>
+              <p>Откройте Яндекс Браузер → перейдите на страницу расширения AdGuard VPN в Chrome Web Store (chromewebstore.google.com/detail/adguard-vpn). Нажмите «Установить в Chrome» — Яндекс Браузер установит его так же, как Chrome-расширение. Иконка появится в правом верхнем углу панели инструментов.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Войдите в аккаунт или создайте новый</h4>
+              <p>Нажмите на иконку AdGuard VPN в тулбаре. Войдите в аккаунт (или создайте — бесплатно, получите 3 ГБ/мес). Аккаунт создаётся через email, без карты.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Выберите финский сервер и включите VPN</h4>
+              <p>В интерфейсе расширения: нажмите на список серверов → выберите «Finland» или «Netherlands». Нажмите большую кнопку «Connect». Иконка станет зелёной. Теперь откройте instagram.com — должен открыться.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Настройте исключения сайтов (при необходимости)</h4>
+              <p>В расширении AdGuard VPN → «Exclusions» → добавьте российские банки и Госуслуги в список исключений. Для этих сайтов VPN будет автоматически отключаться — Яндекс.Деньги и Сбербанк Онлайн откроются без конфликтов.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tip-box" style="margin-top:20px;">
+          <span class="tip-icon">💡</span>
+          <p><strong>Ограничение расширения:</strong> расширение AdGuard VPN защищает только трафик Яндекс Браузера. Telegram, WhatsApp и другие приложения при этом работают без VPN. Для защиты всех приложений используйте полноценный клиент (Способ 2).</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Способ 2: Системный клиент -->
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🖥️</span>
+        <h3>Способ 2: Системный VPN-клиент (ZoogVPN) — для Windows и macOS</h3>
+        <span class="os-tag">Windows 10/11 · macOS 12+</span>
+      </div>
+      <div class="setup-block-body">
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:20px;">Лучший вариант для полноценного обхода блокировок. Защищает весь трафик системы, включая Яндекс Браузер, без каких-либо настроек внутри браузера.</p>
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Установите ZoogVPN от имени администратора (Windows)</h4>
+              <p>Скачайте .exe с официального сайта ZoogVPN → ПКМ → «Запуск от имени администратора». На macOS: перетащите .dmg в «Программы», разрешите сетевое расширение в Системных настройках → Конфиденциальность.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Выберите протокол ZoogShadowing</h4>
+              <p>Настройки → Протокол → ZoogShadowing. Это критично: стандартный WireGuard замедляется ТСПУ так же, как сам YouTube. ZoogShadowing маскирует весь трафик под HTTPS — Яндекс Браузер открывает заблокированные сайты без ограничений.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Настройте Split Tunneling для Яндекс Браузера</h4>
+              <p>Настройки → Split Tunneling → добавьте «browser.exe» (Яндекс Браузер) в «Через VPN». Банковские приложения и Яндекс.Деньги добавьте в «Прямое соединение». Так только Яндекс Браузер использует VPN — остальные приложения работают напрямую.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">4</div>
+            <div class="step-content">
+              <h4>Подключитесь и откройте Яндекс Браузер</h4>
+              <p>Финляндия → подключитесь. Откройте Яндекс Браузер → перейдите на instagram.com. Страница должна открыться без ошибки блокировки. Откройте YouTube → выберите качество 4K → должно воспроизводиться без буферизации.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Способ 3: Мобильный -->
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">📱</span>
+        <h3>Способ 3: VPN для Яндекс Браузера на Android и iOS</h3>
+        <span class="os-tag">Android · iOS</span>
+      </div>
+      <div class="setup-block-body">
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:20px;">На мобильных устройствах Яндекс Браузер не поддерживает расширения. Единственный вариант — системный VPN-клиент.</p>
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Android: установите VPN и настройте Split Tunneling</h4>
+              <p>AdGuard VPN — из Google Play. ZoogVPN — APK с сайта. Протокол → TrustTunnel или ZoogShadowing. Split Tunneling → добавьте «Яндекс Браузер» в «Через VPN». Отключите оптимизацию батареи для VPN-приложения (Настройки → Приложения → VPN → Батарея → Без ограничений).</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>iOS: установите VPN и отключите Private Relay</h4>
+              <p>ZoogVPN и AdGuard VPN — в российском App Store. При первом запуске нажмите «Разрешить» на запрос VPN-конфигурации. Отключите iCloud Private Relay (Настройки → Apple ID → iCloud → Private Relay → Выкл) — конфликтует с VPN. На iOS Split Tunneling по приложению для браузера недоступен — VPN работает глобально.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Подключитесь и откройте Яндекс Браузер</h4>
+              <p>Финский сервер → подключитесь. Откройте Яндекс Браузер → перейдите на instagram.com или youtube.com. Instagram должен открываться без ошибки. YouTube должен показывать контент без принудительного понижения качества до 144p.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tip-box" style="margin-top:20px;">
+          <span class="tip-icon">💡</span>
+          <p><strong>Яндекс Браузер на Android имеет встроенный «VPN»</strong> (режим Турбо). Он полезен для ускорения медленных сайтов, но не обходит блокировки Instagram или Discord. Не путайте его с настоящим VPN-клиентом.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Настройка встроенного VPN Яндекса -->
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🔵</span>
+        <h3>Встроенный VPN Яндекс Браузера — как включить и когда использовать</h3>
+        <span class="os-tag">Windows · macOS · Android · iOS</span>
+      </div>
+      <div class="setup-block-body">
+        <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:20px;">Встроенный VPN Яндекса не обходит блокировки ТСПУ. Но у него есть свои сценарии применения — объясняем, как включить и когда это имеет смысл.</p>
+        <div class="guide-steps">
+          <div class="guide-step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h4>Включить VPN на ПК</h4>
+              <p>Яндекс Браузер → Настройки (⋮) → «Защита» → раздел «VPN» → включить переключатель. Или: нажмите на иконку щита в адресной строке. В некоторых версиях Яндекс Браузера VPN называется «Турбо» — он работает по схожему принципу.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h4>Включить на Android</h4>
+              <p>Яндекс Браузер → кнопка «≡» → «Настройки» → «Безопасность» → «Защита с помощью VPN» → включить. На Android дополнительно: Яндекс Браузер → строка поиска → нажмите на значок молнии ⚡ для режима Турбо.</p>
+            </div>
+          </div>
+          <div class="guide-step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h4>Когда встроенный VPN полезен (и когда нет)</h4>
+              <p><strong>Полезен:</strong> ускорение медленных незаблокированных сайтов; скрытие IP от конкретного сайта; обход простых географических ограничений (не от ТСПУ). <strong>Не поможет:</strong> Instagram, Discord, YouTube-замедления ТСПУ, Telegram-замедления — для этого нужен настоящий VPN-клиент из рейтинга выше.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </section>
 
-<section id="faq" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-<div class="faq-list">
-<div class="faq-item"><div class="faq-q">Какой VPN лучше всего работает в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">По совокупности критериев лидируют ZoogVPN (гарантия работы, 10 ГБ бесплатно), AdGuard VPN (118 Мбит/с, доступен в российских магазинах) и BlancVPN (рекордная скорость). Для максимальной устойчивости к ТСПУ — Amnezia с AmneziaWG 2.0.</div></div></div>
-<div class="faq-item"><div class="faq-q">Законно ли использовать VPN в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Использование VPN физическими лицами в России не запрещено. Штрафов за подключение к VPN нет. Запрет касается рекламы VPN для обхода блокировок и доступа к материалам из реестра Минюста как экстремистские (штраф 3–5 тыс. ₽).</div></div></div>
-<div class="faq-item"><div class="faq-q">Можно ли оплатить VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. ZoogVPN, AdGuard VPN, BlancVPN, Trust.Zone, hidemy.name и Дядя Ваня VPN принимают карты МИР, СБП и YooMoney. Зарубежные сервисы (NordVPN, ExpressVPN) оплачиваются через криптовалюту.</div></div></div>
-<div class="faq-item"><div class="faq-q">Почему VPN перестал работать?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">ТСПУ регулярно обновляет алгоритмы фильтрации. Смените протокол на Stealth, VLESS или AmneziaWG, обновите приложение, попробуйте другой сервер. Провайдеры выпускают патчи в течение 24–48 часов после блокировки.</div></div></div>
-</div>
-</div>
+<!-- ══ УСТРАНЕНИЕ НЕПОЛАДОК ══════════════════════════════════ -->
+<section id="troubleshooting">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Устранение неполадок</div>
+      <h2>VPN не работает в Яндекс Браузере — причины и решения</h2>
+      <p>Самые частые проблемы при использовании VPN с Яндекс Браузером — и конкретные шаги для их устранения.</p>
+    </div>
+
+    <div class="trouble-grid">
+
+      <div class="trouble-card danger">
+        <h4>🚫 Instagram / Discord не открываются даже с VPN</h4>
+        <p>Наиболее частая проблема. Причина: встроенный «VPN» Яндекса или расширение без обфускации не обходят ТСПУ.</p>
+        <ul>
+          <li>Убедитесь, что используете системный VPN-клиент (ZoogVPN, AdGuard VPN), а не встроенный VPN Яндекса</li>
+          <li>Проверьте протокол в клиенте: должен быть ZoogShadowing или TrustTunnel, не WireGuard/IKEv2</li>
+          <li>Проверьте на ipleak.net в Яндекс Браузере — должен отображаться финский IP</li>
+          <li>Смените сервер на другой финский или нидерландский</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card danger">
+        <h4>🐢 YouTube всё ещё тормозит при включённом VPN</h4>
+        <p>Причина: протокол без обфускации — ТСПУ замедляет VPN-трафик так же, как трафик Google.</p>
+        <ul>
+          <li>Проверьте протокол: ZoogShadowing, TrustTunnel или Outline — не WireGuard</li>
+          <li>Убедитесь, что VPN-клиент активен и YouTube идёт именно через него (ipleak.net)</li>
+          <li>В Яндекс Браузере принудительно выберите качество 4K в настройках видео</li>
+          <li>Отключите встроенный VPN/Турбо Яндекса при включённом системном VPN-клиенте — они конфликтуют</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🏦 Банки и Яндекс.Деньги не работают при включённом VPN</h4>
+        <p>Причина: с 15 апреля 2026 российские сервисы блокируют доступ с зарубежных VPN-IP.</p>
+        <ul>
+          <li>Настройте Split Tunneling: банки и Яндекс.Деньги — в «Прямое соединение»</li>
+          <li>В расширении AdGuard VPN → Exclusions → добавьте sberbank.ru, yoomoney.ru</li>
+          <li>Если Split Tunneling недоступен — временно выключайте VPN для банковских операций</li>
+          <li>Используйте отдельный браузер (не Яндекс) для банков без VPN</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🔵 Встроенный VPN Яндекса мешает системному VPN</h4>
+        <p>При одновременном включении встроенного VPN Яндекса и системного клиента возникают конфликты маршрутизации.</p>
+        <ul>
+          <li>Выключите встроенный VPN Яндекса: Настройки → Защита → VPN → Выкл</li>
+          <li>Выключите режим Турбо: Настройки → Производительность → Турбо → Выкл</li>
+          <li>Используйте либо встроенный VPN, либо системный клиент — не оба одновременно</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🧩 Расширение VPN не устанавливается в Яндекс Браузер</h4>
+        <p>Некоторые версии Яндекс Браузера блокируют расширения не из официального магазина Яндекса.</p>
+        <ul>
+          <li>Перейдите в Настройки Яндекс Браузера → Дополнения → включите «Разрешить расширения из других источников»</li>
+          <li>Попробуйте установить расширение из официального магазина Яндекса (browser.yandex.ru)</li>
+          <li>Используйте системный VPN-клиент вместо расширения — более надёжный вариант</li>
+          <li>Обновите Яндекс Браузер до последней версии — старые версии хуже поддерживают Chrome-расширения</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>📱 На мобильном Яндекс Браузере VPN не работает в фоне</h4>
+        <p>Android завершает VPN-процесс в фоне — при переходе в Яндекс Браузер VPN уже не активен.</p>
+        <ul>
+          <li>Android: Настройки → Приложения → VPN-клиент → Батарея → Без ограничений</li>
+          <li>Включите «Постоянный VPN»: Настройки Android → Подключения → VPN → ⚙️ → Постоянный VPN</li>
+          <li>На Samsung и Xiaomi дополнительно отключите «Оптимизацию батареи» для VPN-приложения</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🔒 Яндекс Браузер показывает «Небезопасное соединение» через VPN</h4>
+        <p>Некоторые VPN-прокси используют собственный SSL-сертификат — браузер помечает соединение как небезопасное.</p>
+        <ul>
+          <li>Это нормально только для расширений-прокси — не для системного VPN</li>
+          <li>Переключитесь с расширения-прокси на системный клиент ZoogVPN или AdGuard VPN</li>
+          <li>Системный VPN не изменяет SSL-сертификаты — Яндекс Браузер не будет показывать предупреждения</li>
+        </ul>
+      </div>
+
+      <div class="trouble-card">
+        <h4>🔄 VPN включён, но Яндекс Браузер показывает российский IP</h4>
+        <p>Яндекс Браузер может использовать встроенный DNS Яндекса вместо DNS VPN-сервера, раскрывая реальный IP.</p>
+        <ul>
+          <li>В Яндекс Браузере: Настройки → Конфиденциальность → «Использовать безопасный DNS-сервер» → Cloudflare или Google</li>
+          <li>Это предотвратит DNS-утечки через серверы Яндекса при активном VPN</li>
+          <li>Проверьте на ipleak.net — в разделе DNS не должно быть адресов Яндекса</li>
+          <li>Убедитесь, что Kill Switch в VPN-клиенте включён</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="tip-box" style="margin-top:32px;">
+      <span class="tip-icon">💡</span>
+      <p><strong>Главное правило:</strong> встроенный VPN Яндекс Браузера и системный VPN-клиент — разные вещи. Для обхода блокировок Instagram, Discord и замедлений YouTube нужен именно системный клиент с обфускацией. Встроенный VPN Яндекса для этих задач не предназначен.</p>
+    </div>
+  </div>
 </section>
 
-<div class="container">
-<div class="bottom-cta">
-  <h3>🏆 Начните с ZoogVPN — 10 ГБ бесплатно</h3>
-  <p>Гарантия работы в России. Обфускация ZoogShadowing. Оплата МИР. Подключение за 2 минуты.</p>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
-</div>
-</div>
+<!-- ══ СРАВНЕНИЕ ════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Сравнение</div>
+      <h2>Сравнительная таблица VPN для Яндекс Браузера 2026</h2>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare-table">
+        <thead>
+          <tr><th>VPN</th><th>Расширение для Яндекса</th><th>Instagram</th><th>YouTube 4K</th><th>Split Tunneling</th><th>Бесплатно</th><th>Цена/мес</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>ZoogVPN</td><td class="warn">⚠️ Только клиент</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓ По приложению</td><td>10 ГБ/мес</td><td>от $1.99</td></tr>
+          <tr><td>BlancVPN</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓ 4K быстро</td><td class="cross">✗</td><td class="cross">✗</td><td>от €4</td></tr>
+          <tr><td>Trust.Zone</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td><td class="warn">⚠️</td><td>3 дня</td><td>от $1.77</td></tr>
+          <tr><td>AdGuard VPN</td><td class="check" style="color:var(--green);">✓ Chromium-расш.</td><td class="check">✓</td><td class="check">✓</td><td class="check">✓ + исключения</td><td>3 ГБ/мес</td><td>от 247 ₽</td></tr>
+          <tr><td>hidemy.name</td><td class="cross">✗</td><td class="check">✓</td><td class="check">✓</td><td class="cross">✗</td><td>24 часа</td><td>от 270 ₽</td></tr>
+          <tr><td>Amnezia Free</td><td class="cross">✗</td><td class="check">✓</td><td class="warn">⚠️ 720p</td><td class="cross">✗</td><td class="check">✓ Безлимит</td><td>Бесплатно</td></tr>
+          <tr><td>Встроенный Яндекс</td><td class="check" style="color:var(--text-dim);">✓ Встроен</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="check">✓ Бесплатно</td><td>0 ₽</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:0.8rem;color:var(--text-dim);margin-top:12px;">Встроенный VPN Яндекса включён для сравнения — он не обходит блокировки ТСПУ.</p>
+  </div>
+</section>
+
+<!-- ══ ЗАКЛЮЧЕНИЕ ═══════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">Итог</div>
+      <h2>Заключение: лучший VPN для Яндекс Браузера в России 2026</h2>
+    </div>
+
+    <p style="color:var(--text-muted);font-size:0.95rem;max-width:800px;line-height:1.8;margin-bottom:20px;">Главный вывод: встроенный VPN Яндекс Браузера не обходит блокировки Instagram, Discord и не снимает замедления YouTube. Для этих задач нужен системный VPN-клиент с обфускацией. Лучший вариант для большинства — ZoogVPN (системный клиент, Split Tunneling, 10 ГБ бесплатно). Если нужно именно расширение — AdGuard VPN (Chromium-совместимо, устанавливается в Яндекс Браузер, 3 ГБ бесплатно).</p>
+
+    <div class="legal-grid">
+      <div class="legal-item allowed">
+        <div class="legal-item-label">По задаче</div>
+        <ul>
+          <li><strong>Открыть Instagram и Discord:</strong> ZoogVPN или AdGuard VPN — не встроенный VPN Яндекса</li>
+          <li><strong>YouTube 4K без замедлений:</strong> BlancVPN (112 Мбит/с) или ZoogVPN (95 Мбит/с)</li>
+          <li><strong>Расширение прямо в Яндекс Браузере:</strong> AdGuard VPN (Chromium-совместимое)</li>
+          <li><strong>Бесплатно навсегда:</strong> Amnezia Free (Instagram + YouTube 720p)</li>
+          <li><strong>Минимальная цена:</strong> Trust.Zone от $1.77/мес</li>
+          <li><strong>Русский интерфейс:</strong> hidemy.name или BlancVPN</li>
+        </ul>
+      </div>
+      <div class="legal-item" style="border-color:rgba(168,85,247,0.2);">
+        <div class="legal-item-label" style="color:var(--purple);">Ключевые настройки</div>
+        <ul>
+          <li>Выключите встроенный VPN Яндекса при использовании системного клиента</li>
+          <li>Протокол: ZoogShadowing или TrustTunnel — не WireGuard</li>
+          <li>Split Tunneling: Яндекс Браузер через VPN, банки напрямую</li>
+          <li>DNS в Яндексе → Cloudflare (1.1.1.1) для защиты от DNS-утечек</li>
+          <li>Проверка: ipleak.net в Яндекс Браузере — финский IP, нет DNS Яндекса</li>
+          <li>Android: отключить оптимизацию батареи для VPN-клиента</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom-cta" style="margin-top:40px;">
+      <h3>🌐 Instagram, YouTube 4K и Discord в Яндекс Браузере — ZoogVPN</h3>
+      <p>10 ГБ бесплатно. ZoogShadowing обходит ТСПУ. Split Tunneling: Яндекс через VPN, банки напрямую. Оплата МИР. Работает на Windows, macOS, Android, iOS.</p>
+      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══════════════════════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header"><div class="section-label">FAQ</div><h2>Частые вопросы о VPN для Яндекс Браузера</h2></div>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q">Есть ли встроенный VPN в Яндекс Браузере?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Да. В Яндекс Браузере есть встроенный VPN (режим «Защита» → «VPN») и режим «Турбо». Это не полноценный VPN — это прокси-сервер с сжатием трафика через серверы Яндекса. Он не обходит блокировки Instagram, Discord или замедления YouTube от ТСПУ. Для обхода блокировок нужен системный VPN-клиент с настоящей обфускацией.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Как открыть Instagram в Яндекс Браузере?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Установите системный VPN-клиент — ZoogVPN (10 ГБ/мес бесплатно) или AdGuard VPN (расширение для Яндекса + 3 ГБ/мес бесплатно). Выберите финский сервер, подключитесь. Откройте Яндекс Браузер → введите instagram.com. Страница должна открыться. Встроенный VPN Яндекса и большинство бесплатных расширений из магазина Яндекса Instagram не открывают.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Работают ли расширения VPN в Яндекс Браузере?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Яндекс Браузер основан на Chromium и совместим с расширениями Chrome Web Store. Расширение AdGuard VPN устанавливается прямо в Яндекс Браузер и работает как VPN-прокси только для браузера. Расширения других провайдеров из рейтинга (ZoogVPN, BlancVPN) для Яндекс Браузера не предоставляют. Для полноценного обхода блокировок лучше использовать системный клиент.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Почему при включённом VPN Яндекс.Деньги и Сбербанк не открываются?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">С 15 апреля 2026 российские сервисы (Яндекс.Деньги, Сбербанк Онлайн, Ozon) блокируют доступ с зарубежных VPN-IP. Решение: настройте Split Tunneling — добавьте банковские сайты в «Прямое соединение». В расширении AdGuard VPN → Exclusions → добавьте sberbank.ru, yoomoney.ru. Тогда банки работают напрямую, Instagram и YouTube — через финский VPN-сервер.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Лучший бесплатный VPN для Яндекс Браузера?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Три варианта. ZoogVPN Free (10 ГБ/мес) — лучший: открывает Instagram, YouTube 4K, Discord в Яндекс Браузере с настоящей обфускацией. AdGuard VPN Free (3 ГБ/мес) — расширение прямо в Яндексе. Amnezia Free — безлимит трафика, открывает Instagram и YouTube 720p, но скорость ~8 Мбит/с. Встроенный VPN Яндекса — бесплатно, но не открывает заблокированные сайты.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Режим «Турбо» в Яндекс Браузере — это VPN?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Нет. Режим Турбо — это сжатие трафика через серверы Яндекса для ускорения загрузки страниц при медленном соединении. Он не шифрует трафик полноценно, не скрывает ваши данные от провайдера и не обходит блокировки ТСПУ. Instagram и Discord через Турбо не откроются.</div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <footer class="site-footer" style="margin-top:64px;">
   <div class="footer-inner">
-    <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России. Тестируем на реальных устройствах и операторах.</p>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по браузерам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-chrome/">VPN для Chrome</a></li>
+          <li><a href="/vpn-dlya-firefox/">VPN для Firefox</a></li>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN для России</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/platnye-vpn/">Лучшие платные VPN</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+          <li><a href="/vpn-dlya-pk/">VPN для ПК</a></li>
+          <li><a href="/vpn-dlya-discord/">VPN для Discord</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/outline/">Outline VPN</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
     </div>
+    <div class="footer-bottom">
+      <p>© 2026 vpn-russia.vercel.app · Информация предоставляется в ознакомительных целях.</p>
+      <p>Партнёрские ссылки помечены nofollow.</p>
+    </div>
+    <p class="footer-disclaimer">Сайт содержит партнёрские ссылки. При покупке мы получаем комиссию — это не влияет на объективность оценок. Данные актуальны на апрель 2026 года.</p>
   </div>
 </footer>
+
 <div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">🏆 <strong>ZoogVPN</strong> — работает в России, 10 ГБ бесплатно</div>
+  <div class="sticky-banner-text">🌐 <strong>ZoogVPN</strong> — Instagram и YouTube в Яндекс Браузере, 10 ГБ бесплатно</div>
   <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank">Попробовать →</a>
   <button class="sticky-close">✕</button>
 </div>
+
 <script src="/js/inner.js" defer></script>
+<script>
+  const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
+  if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+</script>
 </body>
 </html>
