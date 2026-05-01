@@ -3,96 +3,424 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Outline VPN для России 2026 — настройка Shadowsocks-сервера</title>
-  <meta name="description" content="Outline от Jigsaw/Google — простой способ развернуть личный VPN на Shadowsocks. Работает ли в России в 2026 году и как настроить.">
+  <title>Outline VPN — что это, как работает, настройка и статус в России 2026</title>
+  <meta name="description" content="Полный гайд по Outline VPN: принцип работы на базе Shadowsocks, настройка сервера и клиентов на Android, iPhone, Windows, macOS, сравнение с другими протоколами, статус РКН май 2026.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/outline/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .content-body { max-width: 820px; }
+    .content-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; }
+    .content-body h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); margin: 32px 0 12px; }
+    .content-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .content-body ul, .content-body ol { padding-left: 0; margin-bottom: 20px; }
+    .content-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 8px; }
+    .content-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .content-body ol { counter-reset: item; }
+    .content-body ol li { counter-increment: item; }
+    .content-body ol li::before { content: counter(item)'.'; color: var(--orange); font-weight: 700; top: 1px; }
+    .proto-compare { width: 100%; border-collapse: collapse; margin: 24px 0; }
+    .proto-compare th { background: var(--bg3); padding: 11px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .proto-compare td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.86rem; color: var(--text-muted); vertical-align: middle; }
+    .proto-compare td:first-child { font-weight: 700; color: var(--white); }
+    .proto-compare tr.highlight td { background: rgba(249,115,22,0.05); }
+    .setup-block { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; margin-bottom: 24px; }
+    .setup-block-header { background: var(--bg3); padding: 13px 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--card-border); }
+    .setup-block-header .os-icon { font-size: 1.2rem; }
+    .setup-block-header h4 { font-size: 0.95rem; margin: 0; color: var(--white); font-weight: 700; }
+    .setup-block-body { padding: 20px; }
+    .setup-block-body ol { margin: 0; }
+    .setup-block-body li { font-size: 0.88rem; }
+    .vpn-card-single { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-card-single .vpn-name-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .vpn-card-single .vpn-name { font-size: 1.2rem; font-weight: 800; color: var(--white); }
+    .vpn-card-single p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-card-single .vpn-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; }
+    .status-ok   { background: rgba(34,197,94,0.12);  color: var(--green);  border: 1px solid rgba(34,197,94,0.25); }
+    .status-warn { background: rgba(251,191,36,0.12); color: var(--gold);   border: 1px solid rgba(251,191,36,0.25); }
+    .status-bad  { background: rgba(249,115,22,0.12); color: var(--orange); border: 1px solid rgba(249,115,22,0.25); }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#content">О теме</a><a href="#vpn">Рейтинг VPN</a><a href="#faq">FAQ</a>
-      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">VPN →</a>
+      <a href="#chto-takoe">Что такое</a>
+      <a href="#kak-rabotaet">Как работает</a>
+      <a href="#nastrojka">Настройка</a>
+      <a href="#sravnenie">Сравнение</a>
+      <a href="#rkn">Статус РКН</a>
+      <a href="#troubleshooting">Неполадки</a>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="nav-cta">▶ BlancVPN</a>
     </div>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <span>Outline VPN — настройка и использование в России 2026</span></div></div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#chto-takoe" class="mobile-link">Что такое Outline</a>
+  <a href="#kak-rabotaet" class="mobile-link">Как работает</a>
+  <a href="#nastrojka" class="mobile-link">Настройка</a>
+  <a href="#sravnenie" class="mobile-link">Сравнение протоколов</a>
+  <a href="#rkn" class="mobile-link">Статус РКН 2026</a>
+  <a href="#troubleshooting" class="mobile-link">Устранение неполадок</a>
+  <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ BlancVPN</a>
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>Outline VPN</span>
+  </div>
+</div>
+
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>Outline VPN — настройка и использование в России 2026</h1>
-    <p class="lead">Outline от Jigsaw/Google — простой способ развернуть личный VPN на Shadowsocks. Работает ли в России в 2026 году и как настроить.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обновлено май 2026 — актуальный статус блокировок РКН
+    </div>
+    <h1>Outline VPN — полный гайд: принцип работы, настройка и статус в России</h1>
+    <p class="lead">Outline — инструмент для развёртывания VPN-серверов на базе протокола Shadowsocks, созданный командой Jigsaw (подразделение Google) в 2018 году. Изначально разрабатывался для журналистов и правозащитников, работающих в условиях цензуры. Сегодня Outline активно используется в России как один из наиболее простых способов запустить собственный обфусцированный прокси-сервер на VPS.</p>
     <div class="meta">
-      <div class="meta-item">📡 <strong>Тесты:</strong> апрель 2026</div>
-      <div class="meta-item">✅ <strong>Только с обфускацией</strong></div>
-      <div class="meta-item">💳 <strong>Оплата из РФ</strong></div>
+      <div class="meta-item">🔐 <strong>Протокол:</strong> Shadowsocks (AEAD)</div>
+      <div class="meta-item">🏗️ <strong>Разработчик:</strong> Jigsaw (Google)</div>
+      <div class="meta-item">📡 <strong>Статус РКН:</strong> <span class="status-badge status-warn">⚠️ Частично блокируется</span></div>
     </div>
   </div>
 </div>
 
-<section id="content" style="padding-top:48px;">
-<div class="container">
-  <div class="section-header"><div class="section-label">Обзор</div><h2>Что такое Outline VPN</h2></div>
-  <p style="color:var(--text-muted);font-size:0.95rem;max-width:720px;margin-bottom:14px;">Outline — бесплатный open-source проект от Jigsaw (подразделение Google). Основан на Shadowsocks. Вы арендуете VPS (~$5/мес), устанавливаете Outline Manager за пару кликов и получаете личный VPN с уникальным IP вне баз РКН.</p>
-  <p style='color:var(--text-muted);font-size:0.95rem;max-width:720px;'>На домашних провайдерах Outline работает стабильно. На мобильных операторах (МТС, Билайн) Shadowsocks периодически блокируется ТСПУ в 2026 году. BlancVPN использует Outline с дополнительной обфускацией и показал скорость до 2 Гбит/с в тестах.</p>
-  <div class="tip-box" style="margin-top:20px;"><span class="tip-icon">💡</span><p><strong>Важно:</strong> Все VPN в рейтинге ниже протестированы в апреле 2026 года на реальных подключениях МТС, Билайн, Мегафон и Ростелеком.</p></div>
-</div>
-</section>
+<div class="container" style="padding-top: 48px; padding-bottom: 80px;">
+  <div class="content-body">
 
-<section id="vpn">
-<div class="container">
-<div class="section-header" style="margin-bottom:24px;">
-  <div class="section-label">Рейтинг</div>
-  <h2>ТОП-7 VPN — проверены в апреле 2026</h2>
-</div>
-<div class="toplist">
-<div class="vpn-card top1"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">1</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">ZoogVPN</span><span class="vpn-badge badge-orange">Выбор редакции</span></div><p class="vpn-desc">Гарантия работы в России. ZoogShadowing обходит ТСПУ на МТС, Билайн, Мегафон, Ростелеком. 10 ГБ бесплатно, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🔐 ZoogShadowing</span><span class="pill">🆓 10 ГБ</span><span class="pill">∞ Безлимит устройств</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">10 ГБ/мес</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">ZoogShadowing</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">Безлимит</div></div></div></div>
-<div class="vpn-card top2"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">2</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">BlancVPN</span><span class="vpn-badge badge-purple">Самый быстрый</span></div><p class="vpn-desc">Outline до 2 Гбит/с, пинг 35 мс. Безлимит устройств, русский интерфейс, Telegram-бот.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🚀 2 Гбит/с</span><span class="pill">∞ Безлимит</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div><div class="vpn-stat"><div class="stat-label">Гарантия</div><div class="stat-value">30 дней</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Outline/V2Ray</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div></div></div>
-<div class="vpn-card top3"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">3</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Trust.Zone</span><span class="vpn-badge badge-green">Обфускация</span></div><p class="vpn-desc">VLESS+Reality и AmneziaWG — устойчивы к любым блокировкам. Самая низкая цена в рейтинге.</p><div class="vpn-pills"><span class="pill">💳 РФ</span><span class="pill">🔐 VLESS</span><span class="pill">от $1.77</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">3 дня/1 ГБ</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">VLESS+Reality</div></div><div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">93 страны</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">4</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">AdGuard VPN</span><span class="vpn-badge badge-blue">Лучший бесплатный</span></div><p class="vpn-desc">TrustTunnel QUIC — 118 Мбит/с. Доступен в российских магазинах, 3 ГБ бесплатно, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🔐 TrustTunnel</span><span class="pill">🆓 3 ГБ</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 247 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">TrustTunnel</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">10</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">5</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">hidemy.name</span><span class="vpn-badge badge-orange">С 2012 года</span></div><p class="vpn-desc">Stealth OpenVPN UDP. Русский интерфейс и поддержка, 24 часа бесплатного теста, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🇷🇺 Русский</span><span class="pill">⏱️ 24ч бесплатно</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 270 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Stealth OpenVPN</div></div><div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">80+ стран</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">6</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Amnezia VPN</span><span class="vpn-badge badge-purple">Open-source</span></div><p class="vpn-desc">AmneziaWG 2.0 — лучший протокол для ТСПУ в 2026. Open-source, self-hosted, Amnezia Free бесплатно.</p><div class="vpn-pills"><span class="pill">🆓 Бесплатно</span><span class="pill">🔐 AmneziaWG 2.0</span><span class="pill">📂 Open-source</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $3.5/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">Amnezia Free</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">AmneziaWG 2.0</div></div><div class="vpn-stat"><div class="stat-label">Аудиты</div><div class="stat-value green">2 × 7ASecurity</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">7</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Дядя Ваня VPN</span><span class="vpn-badge badge-blue">Лучшая цена</span></div><p class="vpn-desc">От 99 ₽/мес, оплата рублями, 174 локации, безлимит устройств, Android TV.</p><div class="vpn-pills"><span class="pill">💳 Рубли</span><span class="pill">📺 Android TV</span><span class="pill">∞ Безлимит</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Пробный</div><div class="stat-value">3 дня / 10 ₽</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Shadowsocks</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div></div></div>
-</div>
-</div>
-</section>
+    <!-- ЧТО ТАКОЕ OUTLINE -->
+    <h2 id="chto-takoe">Что такое Outline VPN</h2>
 
-<section id="faq" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-<div class="faq-list">
-<div class="faq-item"><div class="faq-q">Какой VPN лучше для России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">По результатам тестов апреля 2026 года лидируют ZoogVPN (гарантия работы, 10 ГБ бесплатно) и AdGuard VPN (118 Мбит/с, доступен в российских магазинах). Для максимальной устойчивости к ТСПУ — Amnezia с AmneziaWG 2.0.</div></div></div>
-<div class="faq-item"><div class="faq-q">Законно ли использовать VPN в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. Использование VPN физическими лицами в России не запрещено. Штрафов за подключение нет. Запрет касается рекламы VPN для обхода блокировок.</div></div></div>
-<div class="faq-item"><div class="faq-q">Что такое обфускация и зачем она нужна?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Обфускация маскирует VPN-трафик под обычный HTTPS. Без неё ТСПУ распознаёт VPN-соединение и блокирует его. В 2026 году обфускация обязательна для стабильной работы VPN в России.</div></div></div>
-<div class="faq-item"><div class="faq-q">Можно ли оплатить VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. ZoogVPN, AdGuard VPN, BlancVPN, Trust.Zone, hidemy.name и Дядя Ваня VPN принимают карты МИР, СБП и YooMoney. Зарубежные сервисы — через криптовалюту.</div></div></div>
+    <p>Outline — это не протокол сам по себе, а <strong>программный пакет</strong> из двух компонентов: <strong>Outline Manager</strong> (серверная часть для администратора — позволяет установить сервер на VPS и управлять доступами) и <strong>Outline Client</strong> (клиентское приложение для конечных пользователей). Под капотом оба используют протокол <strong>Shadowsocks с шифрованием AEAD</strong> (Authenticated Encryption with Associated Data) — конкретно chacha20-ietf-poly1305 или aes-256-gcm.</p>
+
+    <p>Главная идея Outline: сделать запуск личного прокси-сервера максимально простым. Установка сервера через Outline Manager занимает 5 минут — нужны лишь VPS и доступ к Docker. После этого сервер генерирует «ключи доступа» (access keys) — короткие URL вида <code>ss://…</code> — которые можно раздать пользователям. Клиент просто сканирует QR или вставляет ссылку.
+
+    <p>Outline — проект с открытым исходным кодом (GitHub: Jigsaw-Code/outline-server и outline-client), проходил независимые аудиты безопасности от Radically Open Security и Cure53.</p>
+
+    <!-- BLANCVPN БЛОК — сразу после интро -->
+    <div class="vpn-card-single">
+      <div class="vpn-name-row">
+        <span class="vpn-name">BlancVPN</span>
+        <span class="vpn-badge badge-purple">Использует Outline (Shadowsocks)</span>
+      </div>
+      <p>Русскоязычный VPN-сервис на базе Outline/Shadowsocks с V2Ray резервом. 112 Мбит/с, безлимит устройств, оплата МИР и СБП. Готовые клиенты для Windows, macOS, Android и iOS — не нужно настраивать VPS самостоятельно.</p>
+      <div class="vpn-pills">
+        <span class="pill">🔐 Outline / Shadowsocks</span>
+        <span class="pill">🚀 112 Мбит/с</span>
+        <span class="pill">∞ Безлимит устройств</span>
+        <span class="pill">🇷🇺 Русский сервис</span>
+        <span class="pill">💳 МИР / СБП</span>
+      </div>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Перейти на BlancVPN →</a>
+    </div>
+
+    <!-- КАК РАБОТАЕТ -->
+    <h2 id="kak-rabotaet">Как работает Outline VPN</h2>
+
+    <h3>Shadowsocks и AEAD-шифрование</h3>
+    <p>Shadowsocks — протокол, разработанный в Китае около 2012 года для обхода «Великого китайского файрвола». Его принцип: трафик оборачивается в зашифрованный поток, который статистически похож на случайный шум или обычный HTTPS. В отличие от VPN, Shadowsocks работает как SOCKS5-прокси — приложения сами указывают, направлять ли трафик через прокси, или это делает системный туннель.</p>
+
+    <p>Outline использует <strong>Shadowsocks-AEAD</strong> — современный вариант с аутентифицированным шифрованием. AEAD решает проблему более ранних версий Shadowsocks, у которых были известные уязвимости к активному зондированию (active probing). В AEAD-версии каждый пакет содержит тег аутентификации — сервер отбрасывает любые соединения, которые не могут предоставить корректный тег, что делает сервер «невидимым» для DPI-сканеров.</p>
+
+    <h3>Outline Manager — как устроена серверная часть</h3>
+    <p>Outline Manager запускает сервер внутри Docker-контейнера. На VPS поднимается два порта: управляющий API (случайный порт, только для администратора) и порт для клиентских подключений. Каждый «ключ доступа» — это отдельная пара логин/пароль для Shadowsocks, плюс настройки лимита трафика и имя пользователя. Администратор видит статистику потребления трафика по каждому ключу и может отозвать доступ в один клик.</p>
+
+    <h3>Outline Client — как работает на устройстве</h3>
+    <p>Outline Client создаёт локальный SOCKS5-прокси и системный туннель, направляя весь трафик устройства через него. На Android и iOS приложение работает через VPN API операционной системы (создаёт TUN-интерфейс). На Windows и macOS — аналогично, через системный VPN-адаптер. В отличие от браузерных расширений, Outline Client защищает весь трафик устройства, а не только браузер.</p>
+
+    <!-- НАСТРОЙКА -->
+    <h2 id="nastrojka">Настройка Outline — сервер и клиенты</h2>
+
+    <h3>Шаг 1: установка сервера через Outline Manager</h3>
+    <p>Нужен VPS с Ubuntu 20.04+ и минимум 512 МБ RAM. Стоимость — от $3–5/мес (Hetzner, DigitalOcean, Vultr). В Outline Manager на ПК: нажмите «Настроить Outline» → выберите облачного провайдера или «Настроить вручную» → скопируйте однострочную команду установки и выполните на сервере через SSH. Сервер установится автоматически. После этого Outline Manager покажет QR-код для первого клиента.</p>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🤖</span>
+        <h4>Android — Outline Client</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Установите <strong>Outline</strong> из Google Play или APK с официального сайта getoutline.org</li>
+          <li>Нажмите «+» → «Добавить сервер»</li>
+          <li>Вставьте ссылку-ключ <code>ss://…</code> или отсканируйте QR-код от администратора</li>
+          <li>Нажмите «Подключиться» → разрешите VPN-запрос системы</li>
+          <li>Статус «Подключено» + зелёный замок = всё работает</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">📱</span>
+        <h4>iPhone — Outline Client</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Установите <strong>Outline</strong> из российского App Store (бесплатно)</li>
+          <li>Нажмите «+» → вставьте ключ <code>ss://…</code> или отсканируйте QR</li>
+          <li>Нажмите «Подключиться» → разрешите «Добавить конфигурации VPN»</li>
+          <li>При активном подключении иконка VPN появится в строке статуса</li>
+          <li>Отключите iCloud Private Relay: Настройки → Apple ID → iCloud → Private Relay → Выкл</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🖥️</span>
+        <h4>Windows — Outline Client</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Скачайте <strong>Outline Client</strong> с getoutline.org/get-outline → Windows</li>
+          <li>Установите → при первом запуске разрешите сетевой адаптер (UAC-запрос)</li>
+          <li>Нажмите «+» → вставьте ключ <code>ss://…</code></li>
+          <li>«Подключиться» → статус «Подключено» в интерфейсе</li>
+          <li>Добавьте папку Outline в исключения антивируса для стабильной работы</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🍎</span>
+        <h4>macOS — Outline Client</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Скачайте <strong>Outline Client</strong> с getoutline.org → macOS или из Mac App Store</li>
+          <li>Откройте → разрешите сетевое расширение в Системных настройках → Конфиденциальность</li>
+          <li>Вставьте ключ <code>ss://…</code> → «Подключиться»</li>
+          <li>Отключите iCloud Private Relay перед подключением</li>
+        </ol>
+      </div>
+    </div>
+
+    <h3>Настройка Outline на роутере Keenetic</h3>
+    <p>Keenetic поддерживает Shadowsocks через компонент Entware. После установки Entware через SSH: <code>opkg install shadowsocks-libev</code>. Конфиг задаётся в <code>/opt/etc/shadowsocks.json</code> с параметрами сервера из ключа Outline (адрес, порт, пароль, метод шифрования). Подробнее о настройке VPN на роутере — в разделе <a href="/vpn-dlya-routera/">VPN для роутера Keenetic</a>.</p>
+
+    <!-- СРАВНЕНИЕ -->
+    <h2 id="sravnenie">Outline vs другие протоколы и инструменты</h2>
+
+    <table class="proto-compare">
+      <thead>
+        <tr><th>Протокол / инструмент</th><th>Обфускация</th><th>Сложность установки</th><th>Open-source</th><th>Детектируется ТСПУ</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td>Outline (Shadowsocks AEAD)</td>
+          <td>✓ Частичная</td>
+          <td>Низкая (Manager)</td>
+          <td>✓ Да</td>
+          <td>⚠️ Иногда</td>
+        </tr>
+        <tr>
+          <td>VLESS+Reality</td>
+          <td>✓ TLS-имитация</td>
+          <td>Средняя</td>
+          <td>✓ Да</td>
+          <td>❌ Нет</td>
+        </tr>
+        <tr>
+          <td>AmneziaWG</td>
+          <td>✓ Рандомизация</td>
+          <td>Средняя</td>
+          <td>✓ Да</td>
+          <td>❌ Нет</td>
+        </tr>
+        <tr>
+          <td>WireGuard</td>
+          <td>❌ Нет</td>
+          <td>Низкая</td>
+          <td>✓ Да</td>
+          <td>✓ Легко</td>
+        </tr>
+        <tr>
+          <td>OpenVPN</td>
+          <td>❌ Нет (без obfs)</td>
+          <td>Средняя</td>
+          <td>✓ Да</td>
+          <td>✓ Да</td>
+        </tr>
+        <tr>
+          <td>Psiphon</td>
+          <td>✓ Есть</td>
+          <td>Минимальная</td>
+          <td>⚠️ Частично</td>
+          <td>⚠️ Иногда</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Преимущества Outline</h3>
+    <ul>
+      <li><strong>Простейшая установка сервера.</strong> Outline Manager разворачивает всё автоматически через Docker — не нужно разбираться в конфигурационных файлах. Это главное преимущество перед VLESS и AmneziaWG.</li>
+      <li><strong>Удобное управление доступами.</strong> Раздать ключи семье или команде, отозвать доступ, установить лимит трафика — всё из графического интерфейса.</li>
+      <li><strong>Аудированный открытый код.</strong> Два независимых аудита безопасности делают Outline доверенным инструментом.</li>
+      <li><strong>Официальные клиенты для всех платформ.</strong> Android, iOS, Windows, macOS, ChromeOS — нет необходимости искать сторонние приложения.</li>
+      <li><strong>Минимальная нагрузка на CPU.</strong> Shadowsocks-AEAD с chacha20 работает быстрее OpenVPN на слабых VPS и роутерах.</li>
+    </ul>
+
+    <h3>Недостатки и уязвимости</h3>
+    <ul>
+      <li><strong>Shadowsocks детектируется продвинутым DPI.</strong> Несмотря на AEAD-обновление, активное зондирование с replay-атаками может выявить Shadowsocks-сервер. VLESS+Reality и AmneziaWG устойчивее к активному зондированию в 2026 году.</li>
+      <li><strong>Нет встроенного Kill Switch.</strong> Официальный Outline Client не имеет Kill Switch — при разрыве соединения трафик идёт напрямую. Для критичных сценариев использования это уязвимость.</li>
+      <li><strong>Требует VPS.</strong> Outline — инструмент для self-hosted серверов. Без своего VPS нужно использовать провайдеров на базе Shadowsocks (BlancVPN), которые управляют серверами сами.</li>
+      <li><strong>Нет встроенного Split Tunneling.</strong> Стандартный Outline Client направляет весь трафик через прокси без возможности выбрать отдельные приложения. Обходится сторонними клиентами (Hiddify) с поддержкой Shadowsocks.</li>
+      <li><strong>UDP-трафик по умолчанию отключён.</strong> Outline туннелирует только TCP. UDP (важно для игр и VoIP) требует отдельной настройки через UDP relay.</li>
+    </ul>
+
+    <!-- СТАТУС РКН -->
+    <h2 id="rkn">Статус Outline VPN в России — май 2026</h2>
+
+    <p>Ситуация с Outline в России неоднозначна. Протокол Shadowsocks в базовой конфигурации <strong>частично блокируется ТСПУ</strong> — особенно на МТС и Мегафон. РКН научился выявлять характерные паттерны Shadowsocks трафика: нестандартное распределение длин пакетов и характерный handshake. Серверы с популярными Shadowsocks-портами (8388, 8080) периодически вносятся в реестр.</p>
+
+    <p>При этом <strong>хорошо настроенный Outline с AEAD-шифрованием на нестандартном порту остаётся рабочим</strong> в большинстве случаев. Ключевые параметры, снижающие риск блокировки: использование порта 443 (HTTPS), случайный пароль достаточной длины, свежий VPS-IP без истории блокировок. BlancVPN и другие коммерческие провайдеры на базе Outline/Shadowsocks справляются с блокировками за счёт оперативной ротации серверов.</p>
+
+    <p><strong>Сравнение с другими протоколами:</strong> для максимальной устойчивости в России в 2026 году предпочтительнее <a href="/vless/">VLESS+Reality</a> или <a href="/amneziawg/">AmneziaWG 2.0</a> — они сложнее в обнаружении. Outline остаётся хорошим выбором как простой и быстрый вариант с самостоятельным управлением, особенно при регулярной смене серверных IP.</p>
+
+    <!-- УСТРАНЕНИЕ НЕПОЛАДОК -->
+    <h2 id="troubleshooting">Устранение неполадок Outline VPN</h2>
+
+    <h3>Не подключается после обновления Android или iOS</h3>
+    <ul>
+      <li>Переустановите Outline Client — обновления ОС иногда сбрасывают разрешения VPN</li>
+      <li>Убедитесь, что приложению разрешён «VPN» в настройках конфиденциальности</li>
+      <li>На Android: Настройки → Подключения → VPN → убедитесь, что Outline не отключён</li>
+    </ul>
+
+    <h3>Подключение есть, но сайты не открываются</h3>
+    <ul>
+      <li>Проверьте ipleak.net — IP должен быть серверным, а не российским</li>
+      <li>Убедитесь, что DNS не утекает: в Outline Client DNS-over-TCP проксируется автоматически, но проверьте в ipleak.net раздел DNS</li>
+      <li>Попробуйте явно указать DNS 8.8.8.8 в настройках сети устройства</li>
+    </ul>
+
+    <h3>Outline перестал работать после волны блокировок</h3>
+    <ul>
+      <li>Проверьте, доступен ли IP сервера из России: откройте браузер → введите IP:PORT. Если таймаут — IP заблокирован</li>
+      <li>В Outline Manager нажмите «Показать ключ» → обновите ключ с новым IP после смены IP на хостинге</li>
+      <li>Смените порт на 443 или 80 в настройках Outline Manager → обновите ключ у клиентов</li>
+      <li>Рассмотрите переход на <a href="/v2ray/">V2Ray</a> поверх Outline для дополнительной обфускации</li>
+    </ul>
+
+    <h3>Slow connection — скорость ниже ожидаемой</h3>
+    <ul>
+      <li>Выберите метод шифрования <code>chacha20-ietf-poly1305</code> вместо AES — он быстрее на устройствах без AES-NI (старые смартфоны)</li>
+      <li>Убедитесь, что VPS находится в Европе (Финляндия, Германия, Нидерланды) — пинг &lt;60 мс из России</li>
+      <li>Проверьте загрузку CPU VPS: <code>top</code> — при превышении 80% нужен более мощный тариф</li>
+    </ul>
+
+    <div class="tip-box" style="margin: 32px 0;">
+      <span class="tip-icon">💡</span>
+      <p><strong>Лучшая практика для Outline в России:</strong> порт 443 + метод chacha20-ietf-poly1305 + VPS в Финляндии с IP, не засветившимся в базах РКН. Такая конфигурация работала стабильно на протяжении всего 2025–2026 года по опыту пользователей.</p>
+    </div>
+
+    <!-- ЗАКЛЮЧЕНИЕ -->
+    <h2>Итог: когда выбирать Outline</h2>
+
+    <p>Outline — оптимальный выбор, если нужно быстро поднять собственный VPN-сервер для себя или небольшой группы без глубокого погружения в технические детали. Ключевое преимущество — простота Outline Manager. Ключевое ограничение — Shadowsocks хуже скрывается от ТСПУ по сравнению с VLESS+Reality и AmneziaWG.</p>
+
+    <p>Если устойчивость к блокировкам важнее простоты — рассмотрите <a href="/amneziawg/">AmneziaWG</a> или <a href="/vless/">VLESS+Reality</a>. Если важна простота и не хочется возиться с VPS — BlancVPN предоставляет готовый Shadowsocks/Outline без самостоятельной настройки. Полный список рабочих VPN для России с оплатой из РФ — в нашем <a href="/vpn-dlya-rossii/">главном рейтинге</a>.</p>
+
+    <!-- FAQ -->
+    <h2 id="faq">FAQ по Outline VPN</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">Outline VPN бесплатный?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Программное обеспечение Outline (Manager и Client) полностью бесплатно и с открытым кодом. Платите только за VPS-сервер — от $3–5/мес. Если используете BlancVPN или другого провайдера на базе Outline, стоимость зависит от тарифа провайдера.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">В чём разница между Outline и обычным Shadowsocks?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Outline — это удобная надстройка над Shadowsocks от команды Jigsaw (Google). Технически Outline использует Shadowsocks-AEAD. Главная разница — Outline Manager упрощает установку и управление сервером, а официальные клиенты работают без ручной настройки. Клиенты для «голого» Shadowsocks (shadowsocks-libev, sing-box) гибче в настройке, но требуют больше технических знаний.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Можно ли использовать Outline без собственного VPS?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Да. Если у вас нет VPS, получить доступ к серверу можно через: (1) BlancVPN — коммерческий провайдер на базе Outline/Shadowsocks с оплатой МИР; (2) попросить кого-то с VPS создать вам ключ в их Outline Manager; (3) организации, раздающие бесплатные Outline-ключи (например, некоторые правозащитные НКО). Ключ выглядит как <code>ss://…</code> и работает в стандартном Outline Client.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Outline работает в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Работает, но с оговорками. Shadowsocks-трафик ТСПУ умеет выявлять и иногда блокировать. Стабильность зависит от конфигурации: порт 443, свежий IP, chacha20-шифрование. Коммерческие провайдеры на базе Outline справляются с блокировками за счёт ротации серверов. Для максимальной устойчивости рассмотрите VLESS+Reality или AmneziaWG.</div></div>
+      </div>
+
+    </div>
+
+  </div>
 </div>
-</div>
-</section>
-<div class="container">
-<div class="bottom-cta">
-  <h3>🏆 Начните с ZoogVPN — 10 ГБ бесплатно</h3>
-  <p>Гарантия работы в России. Обфускация ZoogShadowing. Оплата МИР. Подключение за 2 минуты.</p>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
-</div>
-</div>
-<footer class="site-footer" style="margin-top:64px;">
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/v2ray/">V2Ray</a></li>
+          <li><a href="/wireguard/">WireGuard</a></li>
+          <li><a href="/shadowsocks/">Shadowsocks</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN для России</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Настройка</h4>
+        <ul>
+          <li><a href="/vpn-dlya-routera/">VPN для роутера</a></li>
+          <li><a href="/vpn-dlya-pk/">VPN для ПК</a></li>
+          <li><a href="/vpn-dlya-macos/">VPN для Mac</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Информация предоставляется в ознакомительных целях.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">🏆 <strong>ZoogVPN</strong> — работает в России, 10 ГБ бесплатно</div>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
+<script>
+  const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
+  if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
+</script>
 </body>
 </html>
