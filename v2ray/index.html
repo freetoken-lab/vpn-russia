@@ -3,96 +3,527 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>V2Ray и V2RayNG — настройка для обхода блокировок в России 2026</title>
-  <meta name="description" content="V2Ray — мощная платформа с поддержкой VLESS, VMess, Shadowsocks, Trojan и гибкой маршрутизацией. Инструкция по настройке для новичков.">
+  <title>V2Ray и Xray — что это, v2rayN для Windows, v2rayNG для Android, настройка 2026</title>
+  <meta name="description" content="Полный гайд по V2Ray и Xray: что это такое, разница между V2Ray и Xray-core, настройка v2rayN на Windows с пресетом «Россия», v2rayNG на Android, установка xray-core на Linux, где взять конфигурации. Статус РКН май 2026.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/v2ray/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .content-body { max-width: 820px; }
+    .content-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; }
+    .content-body h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); margin: 32px 0 12px; }
+    .content-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .content-body ul, .content-body ol { padding-left: 0; margin-bottom: 20px; }
+    .content-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 8px; }
+    .content-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .content-body ol { counter-reset: item; }
+    .content-body ol li { counter-increment: item; }
+    .content-body ol li::before { content: counter(item)'.'; color: var(--orange); font-weight: 700; top: 1px; }
+    .content-body code { background: var(--bg3); border: 1px solid var(--card-border); border-radius: 4px; padding: 2px 7px; font-size: 0.85rem; color: var(--green); font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+    .content-body pre { background: var(--bg3); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 16px 20px; overflow-x: auto; margin: 16px 0 24px; }
+    .content-body pre code { background: none; border: none; padding: 0; font-size: 0.83rem; color: var(--text); }
+    .proto-compare { width: 100%; border-collapse: collapse; margin: 24px 0; }
+    .proto-compare th { background: var(--bg3); padding: 11px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .proto-compare td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.86rem; color: var(--text-muted); vertical-align: middle; }
+    .proto-compare td:first-child { font-weight: 700; color: var(--white); }
+    .proto-compare tr.highlight td { background: rgba(249,115,22,0.05); }
+    .setup-block { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; margin-bottom: 24px; }
+    .setup-block-header { background: var(--bg3); padding: 13px 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--card-border); }
+    .setup-block-header .os-icon { font-size: 1.2rem; }
+    .setup-block-header h4 { font-size: 0.95rem; margin: 0; color: var(--white); font-weight: 700; }
+    .setup-block-body { padding: 20px; }
+    .setup-block-body ol { margin: 0; }
+    .setup-block-body li { font-size: 0.88rem; }
+    .vpn-card-single { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-card-single .vpn-name-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .vpn-card-single .vpn-name { font-size: 1.2rem; font-weight: 800; color: var(--white); }
+    .vpn-card-single p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-card-single .vpn-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; }
+    .status-ok   { background: rgba(34,197,94,0.12);  color: var(--green);  border: 1px solid rgba(34,197,94,0.25); }
+    .status-warn { background: rgba(251,191,36,0.12); color: var(--gold);   border: 1px solid rgba(251,191,36,0.25); }
+    .ecosystem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+    .eco-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 18px; }
+    .eco-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--orange); margin-bottom: 6px; }
+    .eco-card p { font-size: 0.84rem; color: var(--text-muted); margin: 0; line-height: 1.65; }
+    @media (max-width: 680px) { .ecosystem-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#content">О теме</a><a href="#vpn">Рейтинг VPN</a><a href="#faq">FAQ</a>
-      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">VPN →</a>
+      <a href="#chto-takoe">Что такое V2Ray</a>
+      <a href="#nastrojka">Настройка</a>
+      <a href="#configs">Конфиги</a>
+      <a href="#linux">Xray на Linux</a>
+      <a href="#sravnenie">Сравнение</a>
+      <a href="#rkn">Статус РКН</a>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="nav-cta">▶ BlancVPN</a>
     </div>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <span>V2Ray / V2RayNG — настройка для России 2026</span></div></div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#chto-takoe" class="mobile-link">Что такое V2Ray / Xray</a>
+  <a href="#nastrojka" class="mobile-link">Настройка v2rayN и v2rayNG</a>
+  <a href="#configs" class="mobile-link">Где взять конфиги</a>
+  <a href="#linux" class="mobile-link">Xray-core на Linux</a>
+  <a href="#sravnenie" class="mobile-link">Сравнение протоколов</a>
+  <a href="#rkn" class="mobile-link">Статус РКН</a>
+  <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ BlancVPN</a>
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>V2Ray / Xray</span>
+  </div>
+</div>
+
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>V2Ray / V2RayNG — настройка для России 2026</h1>
-    <p class="lead">V2Ray — мощная платформа с поддержкой VLESS, VMess, Shadowsocks, Trojan и гибкой маршрутизацией. Инструкция по настройке для новичков.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обновлено май 2026 — актуальный статус блокировок РКН
+    </div>
+    <h1>V2Ray и Xray — полный гайд: v2rayN для Windows, v2rayNG для Android, настройка 2026</h1>
+    <p class="lead">V2Ray — это платформа-экосистема для обхода цензуры, поддерживающая множество протоколов: VMess, VLESS, Trojan, Shadowsocks. Её современный форк Xray-core добавил VLESS+Reality и XTLS. Для большинства пользователей «V2Ray» и «Xray» — взаимозаменяемые понятия. На этой странице — полное руководство: чем они отличаются, как установить v2rayN на Windows с пресетом «Россия», v2rayNG на Android, xray-core на Linux, где взять готовые конфигурации.</p>
     <div class="meta">
-      <div class="meta-item">📡 <strong>Тесты:</strong> апрель 2026</div>
-      <div class="meta-item">✅ <strong>Только с обфускацией</strong></div>
-      <div class="meta-item">💳 <strong>Оплата из РФ</strong></div>
+      <div class="meta-item">🏗️ <strong>Ядро:</strong> Xray-core (XTLS Labs)</div>
+      <div class="meta-item">🖥️ <strong>Windows/Linux:</strong> v2rayN</div>
+      <div class="meta-item">🤖 <strong>Android:</strong> v2rayNG</div>
+      <div class="meta-item">📡 <strong>Статус РКН:</strong> <span class="status-badge status-warn">⚠️ Зависит от протокола</span></div>
     </div>
   </div>
 </div>
 
-<section id="content" style="padding-top:48px;">
-<div class="container">
-  <div class="section-header"><div class="section-label">Обзор</div><h2>Что такое V2Ray и чем он отличается от VPN</h2></div>
-  <p style="color:var(--text-muted);font-size:0.95rem;max-width:720px;margin-bottom:14px;">V2Ray — платформа с открытым кодом для обхода интернет-цензуры. Поддерживает VMess, VLESS, Shadowsocks, Trojan и другие протоколы. Гибкая маршрутизация позволяет направлять российские сайты напрямую, а заблокированные — через сервер.</p>
-  <p style='color:var(--text-muted);font-size:0.95rem;max-width:720px;'>Клиенты: V2RayNG (Android), V2RayN (Windows), Hiddify (все платформы), Shadowrocket (iOS). Требует личного VPS-сервера или готовой конфигурации от провайдера. Сложнее стандартного VPN, но даёт максимальный контроль над трафиком.</p>
-  <div class="tip-box" style="margin-top:20px;"><span class="tip-icon">💡</span><p><strong>Важно:</strong> Все VPN в рейтинге ниже протестированы в апреле 2026 года на реальных подключениях МТС, Билайн, Мегафон и Ростелеком.</p></div>
-</div>
-</section>
+<div class="container" style="padding-top: 48px; padding-bottom: 80px;">
+  <div class="content-body">
 
-<section id="vpn">
-<div class="container">
-<div class="section-header" style="margin-bottom:24px;">
-  <div class="section-label">Рейтинг</div>
-  <h2>ТОП-7 VPN — проверены в апреле 2026</h2>
-</div>
-<div class="toplist">
-<div class="vpn-card top1"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">1</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">ZoogVPN</span><span class="vpn-badge badge-orange">Выбор редакции</span></div><p class="vpn-desc">Гарантия работы в России. ZoogShadowing обходит ТСПУ на МТС, Билайн, Мегафон, Ростелеком. 10 ГБ бесплатно, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🔐 ZoogShadowing</span><span class="pill">🆓 10 ГБ</span><span class="pill">∞ Безлимит устройств</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">10 ГБ/мес</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">ZoogShadowing</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">Безлимит</div></div></div></div>
-<div class="vpn-card top2"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">2</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">BlancVPN</span><span class="vpn-badge badge-purple">Самый быстрый</span></div><p class="vpn-desc">Outline до 2 Гбит/с, пинг 35 мс. Безлимит устройств, русский интерфейс, Telegram-бот.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🚀 2 Гбит/с</span><span class="pill">∞ Безлимит</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div><div class="vpn-stat"><div class="stat-label">Гарантия</div><div class="stat-value">30 дней</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Outline/V2Ray</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div></div></div>
-<div class="vpn-card top3"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">3</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Trust.Zone</span><span class="vpn-badge badge-green">Обфускация</span></div><p class="vpn-desc">VLESS+Reality и AmneziaWG — устойчивы к любым блокировкам. Самая низкая цена в рейтинге.</p><div class="vpn-pills"><span class="pill">💳 РФ</span><span class="pill">🔐 VLESS</span><span class="pill">от $1.77</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">3 дня/1 ГБ</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">VLESS+Reality</div></div><div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">93 страны</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">4</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">AdGuard VPN</span><span class="vpn-badge badge-blue">Лучший бесплатный</span></div><p class="vpn-desc">TrustTunnel QUIC — 118 Мбит/с. Доступен в российских магазинах, 3 ГБ бесплатно, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🔐 TrustTunnel</span><span class="pill">🆓 3 ГБ</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 247 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">TrustTunnel</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">10</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">5</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">hidemy.name</span><span class="vpn-badge badge-orange">С 2012 года</span></div><p class="vpn-desc">Stealth OpenVPN UDP. Русский интерфейс и поддержка, 24 часа бесплатного теста, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🇷🇺 Русский</span><span class="pill">⏱️ 24ч бесплатно</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 270 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Stealth OpenVPN</div></div><div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">80+ стран</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">6</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Amnezia VPN</span><span class="vpn-badge badge-purple">Open-source</span></div><p class="vpn-desc">AmneziaWG 2.0 — лучший протокол для ТСПУ в 2026. Open-source, self-hosted, Amnezia Free бесплатно.</p><div class="vpn-pills"><span class="pill">🆓 Бесплатно</span><span class="pill">🔐 AmneziaWG 2.0</span><span class="pill">📂 Open-source</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $3.5/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">Amnezia Free</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">AmneziaWG 2.0</div></div><div class="vpn-stat"><div class="stat-label">Аудиты</div><div class="stat-value green">2 × 7ASecurity</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">7</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Дядя Ваня VPN</span><span class="vpn-badge badge-blue">Лучшая цена</span></div><p class="vpn-desc">От 99 ₽/мес, оплата рублями, 174 локации, безлимит устройств, Android TV.</p><div class="vpn-pills"><span class="pill">💳 Рубли</span><span class="pill">📺 Android TV</span><span class="pill">∞ Безлимит</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Пробный</div><div class="stat-value">3 дня / 10 ₽</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Shadowsocks</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div></div></div>
-</div>
-</div>
-</section>
+    <!-- ЧТО ТАКОЕ -->
+    <h2 id="chto-takoe">Что такое V2Ray, Xray и в чём разница</h2>
 
-<section id="faq" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-<div class="faq-list">
-<div class="faq-item"><div class="faq-q">Какой VPN лучше для России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">По результатам тестов апреля 2026 года лидируют ZoogVPN (гарантия работы, 10 ГБ бесплатно) и AdGuard VPN (118 Мбит/с, доступен в российских магазинах). Для максимальной устойчивости к ТСПУ — Amnezia с AmneziaWG 2.0.</div></div></div>
-<div class="faq-item"><div class="faq-q">Законно ли использовать VPN в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. Использование VPN физическими лицами в России не запрещено. Штрафов за подключение нет. Запрет касается рекламы VPN для обхода блокировок.</div></div></div>
-<div class="faq-item"><div class="faq-q">Что такое обфускация и зачем она нужна?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Обфускация маскирует VPN-трафик под обычный HTTPS. Без неё ТСПУ распознаёт VPN-соединение и блокирует его. В 2026 году обфускация обязательна для стабильной работы VPN в России.</div></div></div>
-<div class="faq-item"><div class="faq-q">Можно ли оплатить VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. ZoogVPN, AdGuard VPN, BlancVPN, Trust.Zone, hidemy.name и Дядя Ваня VPN принимают карты МИР, СБП и YooMoney. Зарубежные сервисы — через криптовалюту.</div></div></div>
+    <p><strong>V2Ray</strong> — открытая платформа, созданная в 2015 году под псевдонимом «Victoria Raymond», изначально для обхода «Великого китайского файрвола». Это не протокол, а <strong>фреймворк</strong>: ядро (v2ray-core), поддерживающее несколько инбаундов и аутбаундов одновременно, гибкую маршрутизацию трафика, DNS-фильтрацию и множество протоколов. Основной протокол V2Ray — <strong>VMess</strong> (шифрованный проприетарный протокол).</p>
+
+    <p><strong>Xray-core</strong> — форк V2Ray, созданный командой XTLS Labs в 2020 году. Xray совместим со всеми конфигурациями V2Ray, но добавляет:</p>
+    <ul>
+      <li>Протокол <strong>VLESS</strong> — облегчённая альтернатива VMess без лишнего шифрования</li>
+      <li>Технологию <strong>XTLS / Reality</strong> — маскировка под реальный TLS-трафик (подробнее в разделе <a href="/vless/">VLESS+Reality</a>)</li>
+      <li>Улучшенную производительность и активную разработку</li>
+    </ul>
+
+    <p>На практике: <strong>большинство людей, говорящих «V2Ray», используют именно Xray-core</strong>. Клиенты v2rayN и v2rayNG по умолчанию загружают Xray-core, а не оригинальный v2ray-core. Понятия используются взаимозаменяемо.</p>
+
+    <h3>Экосистема клиентов — кто что используется</h3>
+    <div class="ecosystem-grid">
+      <div class="eco-card">
+        <h4>v2rayN — Windows, Linux, macOS</h4>
+        <p>GUI-клиент от разработчика «2dust» (github.com/2dust/v2rayN). Поддерживает Xray-core, sing-box и оригинальный v2ray-core. Имеет пресет «Россия», встроенную маршрутизацию и подписки.</p>
+      </div>
+      <div class="eco-card">
+        <h4>v2rayNG — Android</h4>
+        <p>GUI-клиент для Android от того же разработчика (github.com/2dust/v2rayNG). Поддерживает Xray-core и v2fly-core. Импорт конфигов через QR-код или ссылку.</p>
+      </div>
+      <div class="eco-card">
+        <h4>Hiddify — Windows, macOS, Android, iOS</h4>
+        <p>Современный кросс-платформенный клиент с поддержкой Xray-core и sing-box. Проще в интерфейсе, чем v2rayN. Хорошо подходит для новичков.</p>
+      </div>
+      <div class="eco-card">
+        <h4>Shadowrocket / Streisand — iOS</h4>
+        <p>Платные клиенты для iPhone ($2.99 и $1.99). Shadowrocket — самый популярный в русскоязычном сообществе, поддерживает все протоколы Xray.</p>
+      </div>
+    </div>
+
+    <!-- BLANCVPN — сразу после введения -->
+    <div class="vpn-card-single">
+      <div class="vpn-name-row">
+        <span class="vpn-name">BlancVPN</span>
+        <span class="vpn-badge badge-purple">Готовый V2Ray без настройки VPS</span>
+      </div>
+      <p>Русскоязычный VPN-сервис на базе V2Ray/Outline с резервным протоколом. 112 Мбит/с, безлимит устройств, готовые приложения для Windows, macOS, Android и iOS. Оплата МИР и СБП — не нужно настраивать ни ядро, ни конфиги вручную.</p>
+      <div class="vpn-pills">
+        <span class="pill">🔐 V2Ray / Outline</span>
+        <span class="pill">🚀 112 Мбит/с</span>
+        <span class="pill">∞ Безлимит устройств</span>
+        <span class="pill">🇷🇺 Русский сервис</span>
+        <span class="pill">💳 МИР / СБП</span>
+      </div>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Перейти на BlancVPN →</a>
+    </div>
+
+    <!-- НАСТРОЙКА v2rayN WINDOWS -->
+    <h2 id="nastrojka">Настройка v2rayN на Windows — пошагово</h2>
+
+    <h3>Установка v2rayN</h3>
+    <ol>
+      <li>Перейдите на <strong>github.com/2dust/v2rayN/releases</strong> → найдите последнюю версию (v7.x и выше)</li>
+      <li>Скачайте файл <code>v2rayN-With-Core.zip</code> — он содержит v2rayN и Xray-core вместе</li>
+      <li>Извлеките архив в любую папку — например, <code>C:\v2rayN</code></li>
+      <li>Запустите <code>v2rayN.exe</code> от имени администратора</li>
+      <li>При первом запуске Windows Defender может заблокировать — нажмите «Подробнее» → «Запустить всё равно» и добавьте папку в исключения антивируса</li>
+      <li>Для русского интерфейса: нажмите на три точки в правом верхнем углу → «Язык» → выберите «ru» → перезапустите</li>
+    </ol>
+
+    <h3>Пресет «Россия» в v2rayN</h3>
+    <p>Начиная с v2rayN версии 7.x появился встроенный пресет маршрутизации для России. Он автоматически настраивает правила так, чтобы трафик к российским сайтам (Яндекс, ВКонтакте, банки) шёл напрямую, а к заблокированным (Instagram, YouTube, Discord) — через прокси.</p>
+    <ol>
+      <li>Откройте v2rayN → меню <strong>Настройки → Маршрутизация</strong> (или нажмите F3)</li>
+      <li>Нажмите кнопку <strong>«Базовые настройки»</strong> (или «Пресеты»)</li>
+      <li>Выберите <strong>«Россия»</strong> из списка пресетов — он добавляет правила блокировки для ru-доменов на прямой маршрут</li>
+      <li>Нажмите «Применить» → перезапустите ядро (кнопка «Перезапустить» на главном экране)</li>
+    </ol>
+    <p>После этого работает <strong>раздельная маршрутизация</strong>: Сбербанк, Яндекс.Почта, gosuslugi.ru — напрямую без прокси; YouTube, Instagram, Discord, Wikipedia — через VPN-сервер.</p>
+
+    <h3>Добавление сервера в v2rayN</h3>
+    <ol>
+      <li>На главном экране нажмите <strong>«Серверы» → «Добавить сервер VMess/VLESS»</strong> или нажмите клавишу <code>A</code></li>
+      <li>Вставьте ссылку формата <code>vmess://…</code>, <code>vless://…</code> или <code>trojan://…</code> в поле «Адрес сервера» — либо используйте «Импорт из буфера обмена»</li>
+      <li>Нажмите <strong>«Сохранить»</strong></li>
+      <li>ПКМ на добавленном сервере → <strong>«Установить как активный»</strong></li>
+      <li>На главном экране включите <strong>«Системный прокси»</strong> — переключатель внизу</li>
+      <li>Проверьте в браузере: откройте <strong>ipleak.net</strong> — должен быть нероссийский IP</li>
+    </ol>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🤖</span>
+        <h4>Android — v2rayNG</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Установите <strong>v2rayNG</strong> из Google Play или APK с github.com/2dust/v2rayNG/releases</li>
+          <li>Нажмите «+» в правом верхнем углу → «Импортировать конфиг из буфера обмена» или «Сканировать QR-код»</li>
+          <li>Вставьте ссылку <code>vmess://…</code> или <code>vless://…</code></li>
+          <li>Нажмите на добавленный сервер → выберите «Приоритет» → подключитесь кнопкой ▶ внизу</li>
+          <li>Разрешите VPN-запрос → статус «Запущено» = подключено</li>
+          <li>Для проверки: откройте браузер → ipleak.net</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">📱</span>
+        <h4>iPhone — Shadowrocket</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Установите <strong>Shadowrocket</strong> из App Store ($2.99) — альтернатива Streisand (бесплатно)</li>
+          <li>Нажмите «+» → выберите тип «VMess» или «VLESS»</li>
+          <li>Введите параметры сервера: адрес, порт, UUID, транспорт (WebSocket/TCP), TLS</li>
+          <li>Или: нажмите «+» → «Тип: URL» → вставьте ссылку <code>vmess://…</code></li>
+          <li>Включите переключатель на главном экране → разрешите VPN-конфигурацию</li>
+          <li>Отключите iCloud Private Relay (Настройки → Apple ID → iCloud)</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🍎</span>
+        <h4>macOS — v2rayN или Hiddify</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Скачайте <strong>v2rayN</strong> с github.com/2dust/v2rayN/releases (macOS-версия) или <strong>Hiddify</strong> с hiddify.com</li>
+          <li>Перетащите в «Программы» → разрешите сетевое расширение в Системных настройках</li>
+          <li>Добавьте сервер через «Серверы» → «Добавить» → вставьте ссылку</li>
+          <li>Включите «Системный прокси» в настройках клиента</li>
+          <li>Отключите iCloud Private Relay перед подключением</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- КОНФИГИ -->
+    <h2 id="configs">Где взять конфигурационные файлы V2Ray</h2>
+
+    <p>Конфигурация V2Ray/Xray — это строка-ссылка формата <code>vmess://base64…</code> или <code>vless://uuid@host:port?…</code>, которую копируют в клиент. Существует несколько источников:</p>
+
+    <h3>1. Собственный VPS — лучший вариант</h3>
+    <p>Самый надёжный и устойчивый способ. Арендуете VPS за рубежом (Hetzner, DigitalOcean, Vultr — от $4/мес), устанавливаете Xray-core или панель управления 3X-UI, создаёте пользователей. Никто кроме вас не знает IP сервера — риск блокировки минимален. Подробно об установке — в разделе ниже.</p>
+
+    <h3>2. Коммерческие провайдеры с поддержкой V2Ray</h3>
+    <p>VPN-провайдеры, поддерживающие VMess, VLESS или V2Ray-транспорт, предоставляют ссылки-конфиги в личном кабинете. BlancVPN предоставляет готовую конфигурацию через приложение. Trust.Zone поддерживает VLESS. Список рабочих VPN с оплатой из России — в нашем <a href="/vpn-dlya-rossii/">главном рейтинге</a>.</p>
+
+    <h3>3. Бесплатные конфиги из Telegram-каналов</h3>
+    <p>В Telegram существуют публичные каналы, раздающие бесплатные V2Ray/Xray-конфиги: ссылки вида <code>vmess://…</code> или <code>vless://…</code> публикуются несколько раз в день. Популярные каналы: @freev2ray, @v2rayng_config, @V2rayCollector. <strong>Важно понимать ограничения:</strong> бесплатные серверы часто перегружены, работают нестабильно, IP быстро блокируются РКН, а оператор сервера теоретически может видеть ваш трафик. Для регулярного использования предпочтительнее собственный VPS или платный провайдер.</p>
+
+    <h3>4. Подписки (Subscription URL)</h3>
+    <p>Многие провайдеры и Telegram-боты предоставляют URL-подписку — одну ссылку, содержащую список серверов в base64. В v2rayN: «Серверы» → «Добавить по ссылке-подписке» → вставьте URL → «Обновить». Клиент автоматически загрузит актуальный список серверов. При обновлении подписки список обновляется без ручного добавления каждого сервера.</p>
+
+    <div class="tip-box" style="margin: 24px 0;">
+      <span class="tip-icon">⚠️</span>
+      <p><strong>Безопасность бесплатных конфигов:</strong> используя чужой сервер, вы направляете через него весь ваш трафик. Операторы таких серверов могут анализировать незашифрованные DNS-запросы и незащищённый HTTP-трафик. Для банковских операций и паролей используйте только собственный VPS или проверенного коммерческого провайдера.</p>
+    </div>
+
+    <!-- XRAY НА LINUX -->
+    <h2 id="linux">Установка xray-core на Linux (VPS)</h2>
+
+    <p>Если у вас есть VPS с Ubuntu или Debian, установить Xray-core можно за несколько минут. Xray будет работать как сервер, к которому вы подключаетесь через v2rayN или v2rayNG.</p>
+
+    <h3>Быстрая установка через официальный скрипт</h3>
+    <pre><code># Подключитесь к VPS через SSH
+# Затем выполните:
+bash -c "$(curl -L https://github.com/XTLS/Xray-install/raw/main/install-release.sh)" @ install</code></pre>
+
+    <p>Скрипт автоматически установит Xray-core, создаст systemd-сервис и настроит автозапуск. Конфиг находится в <code>/usr/local/etc/xray/config.json</code>.</p>
+
+    <h3>Установка панели 3X-UI — проще для управления</h3>
+    <p>Если не хочется редактировать JSON вручную, используйте <strong>3X-UI</strong> — веб-панель для управления Xray с графическим интерфейсом. Создаёт пользователей, выдаёт QR-коды и ссылки, показывает трафик.</p>
+    <pre><code>bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)</code></pre>
+
+    <p>После установки панель доступна по адресу <code>http://IP_сервера:2053</code>. Логин/пароль по умолчанию: admin/admin — смените сразу. В панели: «Inbounds» → «+» → выберите протокол (VLESS+Reality или VMess+WS+TLS) → нажмите «QR» — получите конфиг для клиента.</p>
+
+    <h3>Минимальный конфиг VMess+WS+TLS вручную</h3>
+    <pre><code>{
+  "inbounds": [{
+    "port": 443,
+    "protocol": "vmess",
+    "settings": {
+      "clients": [{ "id": "ваш-uuid-здесь", "alterId": 0 }]
+    },
+    "streamSettings": {
+      "network": "ws",
+      "security": "tls",
+      "wsSettings": { "path": "/ray" },
+      "tlsSettings": {
+        "certificates": [{
+          "certificateFile": "/etc/ssl/xray/cert.crt",
+          "keyFile": "/etc/ssl/xray/key.key"
+        }]
+      }
+    }
+  }],
+  "outbounds": [{ "protocol": "freedom" }]
+}</code></pre>
+
+    <p>UUID генерируется командой <code>xray uuid</code>. TLS-сертификат можно получить бесплатно через Let's Encrypt (<code>certbot</code>) или использовать самоподписанный для тестирования.</p>
+
+    <!-- СРАВНЕНИЕ -->
+    <h2 id="sravnenie">V2Ray/Xray vs другие протоколы</h2>
+
+    <table class="proto-compare">
+      <thead>
+        <tr><th>Решение</th><th>Протоколы</th><th>Обфускация</th><th>Сложность</th><th>Детектируется РКН</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td>Xray (VMess+WS+TLS)</td>
+          <td>VMess, VLESS, Trojan</td>
+          <td>✓ HTTPS-туннель</td>
+          <td>Средняя</td>
+          <td>⚠️ Иногда</td>
+        </tr>
+        <tr class="highlight">
+          <td>Xray (VLESS+Reality)</td>
+          <td>VLESS</td>
+          <td>✓ TLS-имитация</td>
+          <td>Средняя</td>
+          <td>❌ Нет</td>
+        </tr>
+        <tr>
+          <td>AmneziaWG</td>
+          <td>WireGuard+обф.</td>
+          <td>✓ Рандомизация</td>
+          <td>Низкая</td>
+          <td>❌ Нет</td>
+        </tr>
+        <tr>
+          <td>Outline (Shadowsocks)</td>
+          <td>Shadowsocks AEAD</td>
+          <td>✓ Частичная</td>
+          <td>Низкая</td>
+          <td>⚠️ Частично</td>
+        </tr>
+        <tr>
+          <td>WireGuard</td>
+          <td>WireGuard</td>
+          <td>❌ Нет</td>
+          <td>Низкая</td>
+          <td>✓ Легко</td>
+        </tr>
+        <tr>
+          <td>OpenVPN</td>
+          <td>OpenVPN</td>
+          <td>❌ Нет</td>
+          <td>Низкая</td>
+          <td>✓ Да</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Преимущества V2Ray/Xray</h3>
+    <ul>
+      <li><strong>Многопротокольность.</strong> Один Xray-сервер поддерживает VMess, VLESS, Trojan, Shadowsocks — клиенты могут выбирать протокол под условия сети.</li>
+      <li><strong>Гибкая маршрутизация.</strong> Xray умеет направлять разные домены через разные исходящие: YouTube через прокси, российские сайты напрямую, торренты заблокировать полностью.</li>
+      <li><strong>Поддержка транспортов.</strong> TCP, WebSocket, HTTP/2, gRPC, mKCP — трафик можно завернуть в разные транспортные обёртки для усиления маскировки.</li>
+      <li><strong>VLESS+Reality как топ-уровень обфускации.</strong> Лучший вариант маскировки из всех доступных в 2026 году.</li>
+    </ul>
+
+    <h3>Недостатки</h3>
+    <ul>
+      <li><strong>Сложнее, чем WireGuard или Outline.</strong> Для самостоятельного сервера нужно разобраться в конфиг-файлах JSON или научиться работать с панелями (3X-UI, Marzban).</li>
+      <li><strong>VMess+WS устаревает.</strong> Классическая связка VMess+WebSocket+TLS теперь детектируется некоторыми DPI-системами. Для максимальной устойчивости в России переходите на VLESS+Reality.</li>
+      <li><strong>Нет официального «стандартного» приложения.</strong> В отличие от WireGuard или Outline, V2Ray/Xray требует выбора из нескольких клиентов — это сбивает с толку новичков.</li>
+    </ul>
+
+    <!-- СТАТУС РКН -->
+    <h2 id="rkn">Статус V2Ray/Xray в России — май 2026</h2>
+
+    <p>Ситуация неоднородна и зависит от выбранного протокола и транспорта:</p>
+    <ul>
+      <li><strong>VMess+WebSocket+TLS</strong> — <span class="status-badge status-warn" style="font-size:0.8rem;">⚠️ Частично блокируется</span>. Классическая конфигурация стала детектироваться некоторыми DPI-системами. При использовании CDN (Cloudflare) — работает надёжно, без CDN — нестабильно на МТС и Мегафон.</li>
+      <li><strong>VLESS+Reality</strong> — <span class="status-badge status-ok" style="font-size:0.8rem;">✓ Не блокируется</span>. Лучший выбор в 2026 году. Подробнее — в разделе <a href="/vless/">VLESS+Reality</a>.</li>
+      <li><strong>VMess+gRPC+TLS</strong> — <span class="status-badge status-warn" style="font-size:0.8rem;">⚠️ Нестабильно</span>. gRPC-трафик выделяется статистически.</li>
+      <li><strong>Trojan</strong> — <span class="status-badge status-warn" style="font-size:0.8rem;">⚠️ Частично</span>. Похож на HTTPS, но Trojan-серверы выявляются по активному зондированию.</li>
+    </ul>
+
+    <p><strong>Рекомендация для России в 2026 году:</strong> если используете Xray-core, настройте <strong>VLESS+Reality</strong> — это даёт максимальную устойчивость. VMess+WS+TLS как резервный вариант через CDN (Cloudflare workers) также работает. Бесплатные конфиги из Telegram чаще всего используют VMess — они могут работать нестабильно при волнах блокировок.</p>
+
+    <!-- УСТРАНЕНИЕ НЕПОЛАДОК -->
+    <h2 id="troubleshooting">Устранение неполадок V2Ray / v2rayN</h2>
+
+    <h3>v2rayN не подключается — «Xray core not running»</h3>
+    <ul>
+      <li>Убедитесь, что скачали <code>v2rayN-With-Core.zip</code>, а не только <code>v2rayN.zip</code> без ядра</li>
+      <li>Проверьте, что папка <code>bin\Xray</code> содержит файл <code>xray.exe</code></li>
+      <li>Запустите v2rayN от имени администратора</li>
+      <li>Добавьте папку v2rayN в исключения Windows Defender и антивируса</li>
+    </ul>
+
+    <h3>Сервер добавлен, но интернет не работает</h3>
+    <ul>
+      <li>Убедитесь, что «Системный прокси» включён в нижней части главного экрана v2rayN</li>
+      <li>Проверьте порт прокси — по умолчанию 10808; убедитесь, что он не занят другим приложением</li>
+      <li>Нажмите ПКМ на сервере → «Проверить реальную задержку» — если таймаут, сервер недоступен</li>
+      <li>Попробуйте другой сервер или обновите конфиг</li>
+    </ul>
+
+    <h3>Пресет «Россия» не работает — российские сайты тоже идут через прокси</h3>
+    <ul>
+      <li>Убедитесь, что правила маршрутизации применены: Настройки → Маршрутизация → в списке должны быть правила с «direct» для ru-доменов</li>
+      <li>После изменения маршрутизации нажмите «Перезапустить» на главном экране</li>
+      <li>Проверьте через v2rayN → «Журнал» — должны быть записи с «direct» для российских адресов</li>
+    </ul>
+
+    <h3>Перестало работать после волны блокировок</h3>
+    <ul>
+      <li>Если используете бесплатный конфиг — IP сервера, вероятно, заблокирован. Найдите новый конфиг в Telegram-канале</li>
+      <li>Если собственный VPS — смените IP-адрес сервера в панели хостинга, обновите конфиг</li>
+      <li>Переключитесь на протокол VLESS+Reality — он устойчивее к блокировкам</li>
+      <li>Попробуйте завернуть VMess+WS через Cloudflare CDN — это скроет реальный IP сервера</li>
+    </ul>
+
+    <div class="tip-box" style="margin: 32px 0;">
+      <span class="tip-icon">💡</span>
+      <p><strong>Лог v2rayN — ваш лучший инструмент отладки:</strong> нажмите «Журнал» на главном экране → включите уровень «Информация» (Info). Каждое соединение будет видно с указанием, через какой аутбаунд оно прошло (proxy/direct/block). Это быстро покажет, работает ли маршрутизация корректно.</p>
+    </div>
+
+    <!-- ЗАКЛЮЧЕНИЕ -->
+    <h2>Итог</h2>
+
+    <p>V2Ray/Xray — наиболее гибкая и мощная платформа для обхода блокировок, превосходящая WireGuard и Shadowsocks по возможностям маскировки. Для Windows используйте <strong>v2rayN</strong> с пресетом «Россия» и протоколом VLESS+Reality. Для Android — <strong>v2rayNG</strong>. Для iPhone — <strong>Shadowrocket</strong> или <strong>Hiddify</strong>. Сервер удобнее всего развернуть через 3X-UI панель на VPS.</p>
+
+    <p>Если не хочется возиться с настройкой VPS и конфигами — BlancVPN предоставляет готовый V2Ray/Outline-сервис с оплатой МИР. Полный список рабочих VPN для России — в нашем <a href="/vpn-dlya-rossii/">главном рейтинге</a>. Для максимальной устойчивости рассмотрите <a href="/amneziawg/">AmneziaWG</a> — он проще в настройке при сопоставимой защите.</p>
+
+    <!-- FAQ -->
+    <h2 id="faq">FAQ по V2Ray и Xray</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">В чём разница между V2Ray и Xray?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">V2Ray — оригинальная платформа (v2fly/v2ray-core). Xray — его активно развиваемый форк от XTLS Labs, добавивший VLESS, Reality и XTLS-технологии. Клиенты v2rayN и v2rayNG по умолчанию используют Xray-core. На практике оба термина взаимозаменяемы — говоря «V2Ray», большинство имеют в виду Xray.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">v2rayN и v2rayNG — это разные программы?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Да, это разные клиенты от одного разработчика («2dust»). v2rayN — клиент для Windows, Linux и macOS (github.com/2dust/v2rayN). v2rayNG — клиент для Android (github.com/2dust/v2rayNG). Оба работают на Xray-core и поддерживают одни и те же протоколы, но имеют разные интерфейсы под свои платформы.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Где взять бесплатные V2Ray-конфиги?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Бесплатные конфиги публикуются в Telegram-каналах: @freev2ray, @v2rayng_config, @V2rayCollector и других. Конфиги выглядят как ссылки <code>vmess://…</code> или <code>vless://…</code>. Предупреждение: бесплатные серверы часто перегружены и нестабильны, их IP быстро блокируются РКН. Для регулярного использования лучше подходит собственный VPS или BlancVPN.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Что такое пресет «Россия» в v2rayN?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Это встроенный набор правил маршрутизации, оптимизированный для российских пользователей. Он автоматически направляет трафик к российским доменам (.ru, .рф) и IP-адресам напрямую без прокси, а трафик к заблокированным ресурсам — через VPN-сервер. Это избавляет от ручной настройки исключений и позволяет держать V2Ray включённым постоянно без конфликтов с банками и госуслугами.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Какой протокол V2Ray выбрать для России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">VLESS+Reality — лучший выбор по устойчивости к ТСПУ. VMess+WS+TLS через Cloudflare CDN — надёжная альтернатива если нет возможности настроить Reality. Классический VMess+TCP без обфускации в 2026 году работает нестабильно на МТС и Мегафон. Подробно о VLESS+Reality — в нашем разделе <a href="/vless/">VLESS+Reality</a>.</div></div>
+      </div>
+
+    </div>
+
+  </div>
 </div>
-</div>
-</section>
-<div class="container">
-<div class="bottom-cta">
-  <h3>🏆 Начните с ZoogVPN — 10 ГБ бесплатно</h3>
-  <p>Гарантия работы в России. Обфускация ZoogShadowing. Оплата МИР. Подключение за 2 минуты.</p>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
-</div>
-</div>
-<footer class="site-footer" style="margin-top:64px;">
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/outline/">Outline VPN</a></li>
+          <li><a href="/wireguard/">WireGuard</a></li>
+          <li><a href="/shadowsocks/">Shadowsocks</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN для России</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Устройства</h4>
+        <ul>
+          <li><a href="/vpn-dlya-pk/">VPN для ПК</a></li>
+          <li><a href="/vpn-dlya-routera/">VPN для роутера</a></li>
+          <li><a href="/vpn-dlya-macos/">VPN для Mac</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Информация предоставляется в ознакомительных целях.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">🏆 <strong>ZoogVPN</strong> — работает в России, 10 ГБ бесплатно</div>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
+<script>
+  const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
+  if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
+</script>
 </body>
 </html>
