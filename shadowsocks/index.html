@@ -3,96 +3,456 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shadowsocks в России 2026 — настройка и актуальный статус протокола</title>
-  <meta name="description" content="Shadowsocks — классика обхода цензуры. Работает ли в России в 2026 году? Настройка через Outline, BlancVPN и личный сервер.">
+  <title>Shadowsocks — что это, настройка на Windows, Android, iPhone, Linux, статус в России 2026</title>
+  <meta name="description" content="Полный гайд по Shadowsocks: принцип работы, настройка на Windows (shadowsocks-windows), Android (v2rayNG), iPhone, macOS и Linux, сравнение с другими протоколами, статус РКН май 2026.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/shadowsocks/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .content-body { max-width: 820px; }
+    .content-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; }
+    .content-body h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); margin: 32px 0 12px; }
+    .content-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .content-body ul, .content-body ol { padding-left: 0; margin-bottom: 20px; }
+    .content-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 8px; }
+    .content-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .content-body ol { counter-reset: item; }
+    .content-body ol li { counter-increment: item; }
+    .content-body ol li::before { content: counter(item)'.'; color: var(--orange); font-weight: 700; top: 1px; }
+    .content-body code { background: var(--bg3); border: 1px solid var(--card-border); border-radius: 4px; padding: 2px 7px; font-size: 0.85rem; color: var(--green); font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+    .content-body pre { background: var(--bg3); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 16px 20px; overflow-x: auto; margin: 16px 0 24px; }
+    .content-body pre code { background: none; border: none; padding: 0; font-size: 0.83rem; color: var(--text); }
+    .proto-compare { width: 100%; border-collapse: collapse; margin: 24px 0; }
+    .proto-compare th { background: var(--bg3); padding: 11px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .proto-compare td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.86rem; color: var(--text-muted); vertical-align: middle; }
+    .proto-compare td:first-child { font-weight: 700; color: var(--white); }
+    .proto-compare tr.highlight td { background: rgba(249,115,22,0.05); }
+    .setup-block { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; margin-bottom: 24px; }
+    .setup-block-header { background: var(--bg3); padding: 13px 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--card-border); }
+    .setup-block-header .os-icon { font-size: 1.2rem; }
+    .setup-block-header h4 { font-size: 0.95rem; margin: 0; color: var(--white); font-weight: 700; }
+    .setup-block-body { padding: 20px; }
+    .setup-block-body ol { margin: 0; }
+    .setup-block-body li { font-size: 0.88rem; }
+    .vpn-card-single { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-card-single .vpn-name-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .vpn-card-single .vpn-name { font-size: 1.2rem; font-weight: 800; color: var(--white); }
+    .vpn-card-single p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-card-single .vpn-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; }
+    .status-ok   { background: rgba(34,197,94,0.12);  color: var(--green);  border: 1px solid rgba(34,197,94,0.25); }
+    .status-warn { background: rgba(251,191,36,0.12); color: var(--gold);   border: 1px solid rgba(251,191,36,0.25); }
+    .status-bad  { background: rgba(249,115,22,0.12); color: var(--orange); border: 1px solid rgba(249,115,22,0.25); }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#content">О теме</a><a href="#vpn">Рейтинг VPN</a><a href="#faq">FAQ</a>
-      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">VPN →</a>
+      <a href="#chto-takoe">Что такое</a>
+      <a href="#kak-rabotaet">Как работает</a>
+      <a href="#nastrojka">Настройка</a>
+      <a href="#sravnenie">Сравнение</a>
+      <a href="#rkn">Статус РКН</a>
+      <a href="#troubleshooting">Неполадки</a>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="nav-cta">▶ BlancVPN</a>
     </div>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <span>Shadowsocks в России 2026 — настройка и актуальный статус</span></div></div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#chto-takoe" class="mobile-link">Что такое Shadowsocks</a>
+  <a href="#kak-rabotaet" class="mobile-link">Как работает</a>
+  <a href="#nastrojka" class="mobile-link">Настройка</a>
+  <a href="#sravnenie" class="mobile-link">Сравнение протоколов</a>
+  <a href="#rkn" class="mobile-link">Статус РКН 2026</a>
+  <a href="#troubleshooting" class="mobile-link">Устранение неполадок</a>
+  <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ BlancVPN</a>
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>Shadowsocks</span>
+  </div>
+</div>
+
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>Shadowsocks в России 2026 — настройка и актуальный статус</h1>
-    <p class="lead">Shadowsocks — классика обхода цензуры. Работает ли в России в 2026 году? Настройка через Outline, BlancVPN и личный сервер.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обновлено май 2026 — актуальный статус блокировок РКН
+    </div>
+    <h1>Shadowsocks — что это, настройка и статус в России 2026</h1>
+    <p class="lead">Shadowsocks — прокси-протокол, разработанный китайским программистом «clowwindy» около 2012 года специально для обхода «Великого китайского файрвола». Основная идея: трафик выглядит как случайный зашифрованный поток, а не как VPN. Shadowsocks лежит в основе Outline VPN и входит в состав V2Ray/Xray как один из поддерживаемых транспортов. Понимание Shadowsocks необходимо всем, кто использует Outline или настраивает обфускацию для России.</p>
     <div class="meta">
-      <div class="meta-item">📡 <strong>Тесты:</strong> апрель 2026</div>
-      <div class="meta-item">✅ <strong>Только с обфускацией</strong></div>
-      <div class="meta-item">💳 <strong>Оплата из РФ</strong></div>
+      <div class="meta-item">🔐 <strong>Тип:</strong> зашифрованный SOCKS5-прокси</div>
+      <div class="meta-item">🏗️ <strong>Разработчик:</strong> clowwindy (2012), сообщество</div>
+      <div class="meta-item">📡 <strong>Статус РКН:</strong> <span class="status-badge status-warn">⚠️ Частично блокируется</span></div>
     </div>
   </div>
 </div>
 
-<section id="content" style="padding-top:48px;">
-<div class="container">
-  <div class="section-header"><div class="section-label">Обзор</div><h2>Shadowsocks и ТСПУ в России в 2026 году</h2></div>
-  <p style="color:var(--text-muted);font-size:0.95rem;max-width:720px;margin-bottom:14px;">Shadowsocks был создан для обхода Великого китайского файрвола. В 2026 году ТСПУ начал распознавать протокол на мобильных операторах. На домашних провайдерах Shadowsocks работает стабильнее. Тест: Ростелеком (домашний) — работает. МТС (LTE) — периодические обрывы.</p>
-  <p style='color:var(--text-muted);font-size:0.95rem;max-width:720px;'>BlancVPN использует Shadowsocks (Outline) с дополнительной обфускацией на скорости до 2 Гбит/с. Для личного сервера: Outline Manager разворачивает Shadowsocks автоматически за 5 минут. Для максимальной устойчивости переходите на VLESS+Reality или AmneziaWG.</p>
-  <div class="tip-box" style="margin-top:20px;"><span class="tip-icon">💡</span><p><strong>Важно:</strong> Все VPN в рейтинге ниже протестированы в апреле 2026 года на реальных подключениях МТС, Билайн, Мегафон и Ростелеком.</p></div>
-</div>
-</section>
+<div class="container" style="padding-top: 48px; padding-bottom: 80px;">
+  <div class="content-body">
 
-<section id="vpn">
-<div class="container">
-<div class="section-header" style="margin-bottom:24px;">
-  <div class="section-label">Рейтинг</div>
-  <h2>ТОП-7 VPN — проверены в апреле 2026</h2>
-</div>
-<div class="toplist">
-<div class="vpn-card top1"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">1</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">ZoogVPN</span><span class="vpn-badge badge-orange">Выбор редакции</span></div><p class="vpn-desc">Гарантия работы в России. ZoogShadowing обходит ТСПУ на МТС, Билайн, Мегафон, Ростелеком. 10 ГБ бесплатно, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🔐 ZoogShadowing</span><span class="pill">🆓 10 ГБ</span><span class="pill">∞ Безлимит устройств</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">10 ГБ/мес</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">ZoogShadowing</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">Безлимит</div></div></div></div>
-<div class="vpn-card top2"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">2</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">BlancVPN</span><span class="vpn-badge badge-purple">Самый быстрый</span></div><p class="vpn-desc">Outline до 2 Гбит/с, пинг 35 мс. Безлимит устройств, русский интерфейс, Telegram-бот.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🚀 2 Гбит/с</span><span class="pill">∞ Безлимит</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div><div class="vpn-stat"><div class="stat-label">Гарантия</div><div class="stat-value">30 дней</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Outline/V2Ray</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div></div></div>
-<div class="vpn-card top3"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">3</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Trust.Zone</span><span class="vpn-badge badge-green">Обфускация</span></div><p class="vpn-desc">VLESS+Reality и AmneziaWG — устойчивы к любым блокировкам. Самая низкая цена в рейтинге.</p><div class="vpn-pills"><span class="pill">💳 РФ</span><span class="pill">🔐 VLESS</span><span class="pill">от $1.77</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">3 дня/1 ГБ</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">VLESS+Reality</div></div><div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">93 страны</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">4</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">AdGuard VPN</span><span class="vpn-badge badge-blue">Лучший бесплатный</span></div><p class="vpn-desc">TrustTunnel QUIC — 118 Мбит/с. Доступен в российских магазинах, 3 ГБ бесплатно, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🔐 TrustTunnel</span><span class="pill">🆓 3 ГБ</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 247 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">TrustTunnel</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">10</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">5</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">hidemy.name</span><span class="vpn-badge badge-orange">С 2012 года</span></div><p class="vpn-desc">Stealth OpenVPN UDP. Русский интерфейс и поддержка, 24 часа бесплатного теста, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🇷🇺 Русский</span><span class="pill">⏱️ 24ч бесплатно</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 270 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Stealth OpenVPN</div></div><div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">80+ стран</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">6</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Amnezia VPN</span><span class="vpn-badge badge-purple">Open-source</span></div><p class="vpn-desc">AmneziaWG 2.0 — лучший протокол для ТСПУ в 2026. Open-source, self-hosted, Amnezia Free бесплатно.</p><div class="vpn-pills"><span class="pill">🆓 Бесплатно</span><span class="pill">🔐 AmneziaWG 2.0</span><span class="pill">📂 Open-source</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $3.5/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">Amnezia Free</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">AmneziaWG 2.0</div></div><div class="vpn-stat"><div class="stat-label">Аудиты</div><div class="stat-value green">2 × 7ASecurity</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">7</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Дядя Ваня VPN</span><span class="vpn-badge badge-blue">Лучшая цена</span></div><p class="vpn-desc">От 99 ₽/мес, оплата рублями, 174 локации, безлимит устройств, Android TV.</p><div class="vpn-pills"><span class="pill">💳 Рубли</span><span class="pill">📺 Android TV</span><span class="pill">∞ Безлимит</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Пробный</div><div class="stat-value">3 дня / 10 ₽</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Shadowsocks</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div></div></div>
-</div>
-</div>
-</section>
+    <!-- ЧТО ТАКОЕ -->
+    <h2 id="chto-takoe">Что такое Shadowsocks</h2>
 
-<section id="faq" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-<div class="faq-list">
-<div class="faq-item"><div class="faq-q">Какой VPN лучше для России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">По результатам тестов апреля 2026 года лидируют ZoogVPN (гарантия работы, 10 ГБ бесплатно) и AdGuard VPN (118 Мбит/с, доступен в российских магазинах). Для максимальной устойчивости к ТСПУ — Amnezia с AmneziaWG 2.0.</div></div></div>
-<div class="faq-item"><div class="faq-q">Законно ли использовать VPN в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. Использование VPN физическими лицами в России не запрещено. Штрафов за подключение нет. Запрет касается рекламы VPN для обхода блокировок.</div></div></div>
-<div class="faq-item"><div class="faq-q">Что такое обфускация и зачем она нужна?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Обфускация маскирует VPN-трафик под обычный HTTPS. Без неё ТСПУ распознаёт VPN-соединение и блокирует его. В 2026 году обфускация обязательна для стабильной работы VPN в России.</div></div></div>
-<div class="faq-item"><div class="faq-q">Можно ли оплатить VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. ZoogVPN, AdGuard VPN, BlancVPN, Trust.Zone, hidemy.name и Дядя Ваня VPN принимают карты МИР, СБП и YooMoney. Зарубежные сервисы — через криптовалюту.</div></div></div>
+    <p>Shadowsocks — это не полноценный VPN, а <strong>зашифрованный прокси-протокол</strong>. Разница существенная: VPN создаёт туннель для всего трафика устройства на уровне ОС, тогда как Shadowsocks работает как SOCKS5-прокси — приложения явно указывают, использовать ли его, или это настраивается системным прокси. На практике клиентские приложения Shadowsocks создают TUN-интерфейс, перехватывающий весь трафик, — разница становится незаметна.</p>
+
+    <p>Оригинальный Shadowsocks использовал RC4 и AES-CFB шифрование. Современный стандарт — <strong>Shadowsocks-AEAD</strong> с шифрами <code>chacha20-ietf-poly1305</code> или <code>aes-256-gcm</code>. AEAD (Authenticated Encryption with Associated Data) добавляет аутентификацию к каждому пакету — сервер отбрасывает любые данные, не прошедшие проверку. Это закрывает уязвимость старых версий к атакам активного зондирования (active probing), когда DPI мог «прощупать» сервер специально сконструированными пакетами.</p>
+
+    <p>Ключевые реализации Shadowsocks в 2026 году: <strong>shadowsocks-libev</strong> (C, лёгкий, для роутеров и серверов), <strong>shadowsocks-rust</strong> (Rust, быстрый, активно развивается), <strong>sing-box</strong> (новое универсальное ядро, заменяет shadowsocks-libev во многих сценариях). Клиентская часть — Outline Client, v2rayNG, Hiddify, Shadowrocket.</p>
+
+    <!-- BLANCVPN — сразу после введения -->
+    <div class="vpn-card-single">
+      <div class="vpn-name-row">
+        <span class="vpn-name">BlancVPN</span>
+        <span class="vpn-badge badge-purple">На базе Shadowsocks (Outline)</span>
+      </div>
+      <p>Русскоязычный VPN-сервис на базе Outline/Shadowsocks с AEAD-шифрованием. Не нужно разбираться в конфигурации сервера — готовые приложения для всех платформ с оплатой МИР и СБП. 112 Мбит/с, безлимит устройств, серверы в Европе и США.</p>
+      <div class="vpn-pills">
+        <span class="pill">🔐 Shadowsocks AEAD</span>
+        <span class="pill">🚀 112 Мбит/с</span>
+        <span class="pill">∞ Безлимит устройств</span>
+        <span class="pill">🇷🇺 Русский сервис</span>
+        <span class="pill">💳 МИР / СБП</span>
+      </div>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Перейти на BlancVPN →</a>
+    </div>
+
+    <!-- КАК РАБОТАЕТ -->
+    <h2 id="kak-rabotaet">Как работает Shadowsocks</h2>
+
+    <h3>Принцип работы SOCKS5 + шифрование</h3>
+    <p>Клиент Shadowsocks устанавливает локальный SOCKS5-прокси (обычно на порту 1080) и системный прокси. Когда браузер делает запрос к instagram.com, запрос идёт не к серверу Instagram напрямую, а к локальному прокси. Тот шифрует его AEAD-алгоритмом и отправляет на удалённый Shadowsocks-сервер. Сервер расшифровывает и делает реальный запрос к Instagram. Ответ проходит обратно по тому же зашифрованному каналу.</p>
+
+    <p>С точки зрения провайдера и ТСПУ: клиент устанавливает TCP/UDP-соединение с каким-то зарубежным IP по какому-то порту. Данные — зашифрованный поток без чётко выраженной структуры, статистически похожий на случайный шум. В этом отличие от OpenVPN, у которого есть TLS-handshake с опознаваемым fingerprint, и WireGuard с его характерными 148-байтными пакетами.</p>
+
+    <h3>AEAD vs старый Shadowsocks — ключевые отличия</h3>
+    <p>Старые версии Shadowsocks (RC4-MD5, AES-CFB) имели несколько известных уязвимостей. Важнейшая — отсутствие аутентификации пакетов: DPI-системы научились «разматывать» зашифрованный поток, эксплуатируя предсказуемость потокового шифра. AEAD закрывает это: каждый блок данных имеет 16-байтовый тег аутентификации, без знания ключа невозможно ни прочитать, ни подделать данные. Сервер отбрасывает любые пакеты с неверным тегом, не отвечая на них — это делает его «невидимым» для DPI-сканеров.</p>
+
+    <h3>Shadowsocks в составе других протоколов</h3>
+    <p>Shadowsocks входит как транспорт в V2Ray/Xray (один из outbound-протоколов), Outline (основной протокол), sing-box (универсальное ядро нового поколения) и многие VPN-провайдеры, использующие его как «невидимый слой» под другими протоколами. Понимание Shadowsocks помогает разобраться с настройкой <a href="/outline/">Outline VPN</a> и конфигурацией <a href="/v2ray/">V2Ray</a>.</p>
+
+    <!-- НАСТРОЙКА -->
+    <h2 id="nastrojka">Настройка Shadowsocks на устройствах</h2>
+
+    <p>Для подключения к Shadowsocks нужны четыре параметра: адрес сервера, порт, пароль и метод шифрования. Обычно они упакованы в ссылку формата <code>ss://base64(метод:пароль)@сервер:порт#название</code> или в QR-код.</p>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🖥️</span>
+        <h4>Windows — shadowsocks-windows или Hiddify</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Скачайте <strong>shadowsocks-windows</strong> с github.com/shadowsocks/shadowsocks-windows/releases или <strong>Hiddify</strong> с hiddify.com — Hiddify предпочтительнее как более современное решение</li>
+          <li>Распакуйте → запустите от имени администратора</li>
+          <li>В shadowsocks-windows: ПКМ на иконке в трее → «Servers» → «Add Servers» → введите адрес, порт, пароль, выберите метод (chacha20-ietf-poly1305)</li>
+          <li>В Hiddify: «Add profile» → вставьте <code>ss://…</code>-ссылку</li>
+          <li>Включите «System Proxy» — трафик пойдёт через Shadowsocks</li>
+          <li>Проверьте: ipleak.net в браузере — нероссийский IP</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🤖</span>
+        <h4>Android — v2rayNG или Outline</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Установите <strong>v2rayNG</strong> из Google Play или <strong>Outline</strong> из Google Play</li>
+          <li>В v2rayNG: нажмите «+» → «Импорт конфига из буфера» → вставьте <code>ss://…</code>-ссылку</li>
+          <li>В Outline: нажмите «+» → вставьте ключ доступа (<code>ss://…</code>)</li>
+          <li>Нажмите «Подключиться» → разрешите VPN-запрос</li>
+          <li>Отключите оптимизацию батареи для приложения</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">📱</span>
+        <h4>iPhone — Shadowrocket или Outline</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Установите <strong>Shadowrocket</strong> ($2.99) или бесплатный <strong>Outline</strong> из App Store</li>
+          <li>В Shadowrocket: нажмите «+» → тип «Shadowsocks» → заполните сервер, порт, пароль, метод</li>
+          <li>Или: нажмите «+» → «Тип: URL» → вставьте <code>ss://…</code>-ссылку</li>
+          <li>В Outline: нажмите «+» → вставьте ссылку → «Подключиться»</li>
+          <li>Разрешите «Добавить конфигурации VPN» → отключите iCloud Private Relay</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🍎</span>
+        <h4>macOS — Outline или Hiddify</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Скачайте <strong>Outline Client</strong> с getoutline.org или <strong>Hiddify</strong> с hiddify.com</li>
+          <li>Установите → разрешите сетевое расширение в Системных настройках → Конфиденциальность</li>
+          <li>В Outline: вставьте ключ <code>ss://…</code> → «Подключиться»</li>
+          <li>В Hiddify: «Add profile» → вставьте <code>ss://…</code>-ссылку</li>
+          <li>Отключите iCloud Private Relay перед подключением</li>
+        </ol>
+      </div>
+    </div>
+
+    <h3>Установка Shadowsocks-сервера на Linux (VPS)</h3>
+    <p>Рекомендуется современная реализация <strong>shadowsocks-rust</strong> или через универсальный инструмент <strong>sing-box</strong>. Для быстрой установки shadowsocks-libev на Ubuntu:</p>
+    <pre><code>sudo apt update && sudo apt install shadowsocks-libev -y</code></pre>
+
+    <p>Минимальный конфиг сервера (<code>/etc/shadowsocks-libev/config.json</code>):</p>
+    <pre><code>{
+    "server": "0.0.0.0",
+    "server_port": 443,
+    "password": "ваш_надёжный_пароль",
+    "method": "chacha20-ietf-poly1305",
+    "timeout": 300,
+    "fast_open": true
+}</code></pre>
+
+    <p>Запустите: <code>sudo systemctl enable --now shadowsocks-libev</code>. Для клиента сгенерируйте <code>ss://</code>-ссылку: формат base64 от строки <code>метод:пароль</code>, затем <code>ss://base64@IP:порт</code>. Использование порта 443 снижает вероятность простой блокировки по порту.</p>
+
+    <!-- СРАВНЕНИЕ -->
+    <h2 id="sravnenie">Shadowsocks vs другие протоколы</h2>
+
+    <table class="proto-compare">
+      <thead>
+        <tr><th>Протокол</th><th>Тип</th><th>Обфускация</th><th>Скорость</th><th>Детектируется ТСПУ</th><th>Сложность</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td>Shadowsocks AEAD</td>
+          <td>Прокси</td>
+          <td>✓ Частичная</td>
+          <td>Высокая</td>
+          <td>⚠️ Иногда</td>
+          <td>Низкая</td>
+        </tr>
+        <tr>
+          <td>VLESS+Reality</td>
+          <td>Прокси</td>
+          <td>✓ TLS-имитация</td>
+          <td>Высокая</td>
+          <td>❌ Нет</td>
+          <td>Средняя</td>
+        </tr>
+        <tr>
+          <td>AmneziaWG</td>
+          <td>VPN</td>
+          <td>✓ Рандомизация</td>
+          <td>Высокая</td>
+          <td>❌ Нет</td>
+          <td>Средняя</td>
+        </tr>
+        <tr>
+          <td>Outline</td>
+          <td>Прокси</td>
+          <td>✓ AEAD (= SS)</td>
+          <td>Высокая</td>
+          <td>⚠️ Иногда</td>
+          <td>Минимальная</td>
+        </tr>
+        <tr>
+          <td>WireGuard</td>
+          <td>VPN</td>
+          <td>❌ Нет</td>
+          <td>Очень высокая</td>
+          <td>✓ Легко</td>
+          <td>Низкая</td>
+        </tr>
+        <tr>
+          <td>OpenVPN</td>
+          <td>VPN</td>
+          <td>❌ (без obfs)</td>
+          <td>Средняя</td>
+          <td>✓ Да</td>
+          <td>Низкая</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Преимущества Shadowsocks</h3>
+    <ul>
+      <li><strong>Хорошая частичная маскировка.</strong> AEAD-трафик без структуры протокола выглядит как случайный шум — значительно лучше маскируется, чем WireGuard или OpenVPN без обфускации.</li>
+      <li><strong>Низкий оверхед, высокая скорость.</strong> Shadowsocks работает быстрее OpenVPN при той же нагрузке на сервер. Метод chacha20-ietf-poly1305 особенно эффективен на CPU без аппаратного AES-NI.</li>
+      <li><strong>Минимальная нагрузка на роутер.</strong> shadowsocks-libev потребляет ~1–2 МБ RAM — работает на роутерах с 8 МБ Flash, там где OpenVPN уже не помещается.</li>
+      <li><strong>Простота развёртывания.</strong> Меньше параметров конфигурации, чем у WireGuard или OpenVPN. Сервер запускается одной командой.</li>
+      <li><strong>Основа экосистемы.</strong> Shadowsocks — базовый протокол Outline, входит в V2Ray/Xray, sing-box. Освоив его, легче разобраться со всей экосистемой инструментов обхода блокировок.</li>
+    </ul>
+
+    <h3>Недостатки и уязвимости</h3>
+    <ul>
+      <li><strong>Детектируется продвинутым DPI.</strong> Несмотря на AEAD, статистический анализ трафика позволяет идентифицировать Shadowsocks-потоки на МТС и Мегафон. VLESS+Reality и AmneziaWG устойчивее в 2026 году.</li>
+      <li><strong>Активное зондирование.</strong> DPI может отправить специально сконструированный пакет на Shadowsocks-сервер и по характеру ответа (точнее, его отсутствию) выявить сервер. Решение — использовать Shadowsocks только на нестандартных портах с fail2ban или «камуфляжем» (redirect неверного трафика на реальный веб-сайт).</li>
+      <li><strong>Нет встроенного Kill Switch.</strong> Стандартные Shadowsocks-клиенты не имеют Kill Switch — при разрыве соединения трафик идёт напрямую. Hiddify и v2rayNG реализуют его на уровне клиента.</li>
+      <li><strong>Только прокси по умолчанию.</strong> Без TUN-режима Shadowsocks защищает лишь трафик через системный прокси — UDP-трафик игр, VoIP и ряд приложений может идти в обход. Решается TUN-режимом в Hiddify или Sing-box.</li>
+    </ul>
+
+    <!-- СТАТУС РКН -->
+    <h2 id="rkn">Статус Shadowsocks в России — май 2026</h2>
+
+    <p>Shadowsocks — один из немногих протоколов, с которым ситуация в России <strong>неоднозначна и зависит от конфигурации</strong>. Базовый Shadowsocks на стандартных портах (8388, 8080) периодически блокируется на МТС и Мегафон. Хорошо настроенный Shadowsocks-AEAD на порту 443 с редким сервером остаётся работоспособным у большинства пользователей.</p>
+
+    <p><strong>Три фактора, критичных для работы в России:</strong></p>
+    <ul>
+      <li><strong>Порт 443</strong> — ТСПУ реже применяет шейпинг к трафику на HTTPS-порту, даже если не может расшифровать его</li>
+      <li><strong>Свежий IP сервера</strong> — IP-адреса популярных хостингов (Hetzner, DO) периодически добавляются в реестры; VPS в менее известных датацентрах работают дольше без блокировок</li>
+      <li><strong>Метод chacha20-ietf-poly1305</strong> — чуть лучше маскируется, чем AES-варианты, из-за другого статистического распределения байт</li>
+    </ul>
+
+    <p>Коммерческие провайдеры на базе Shadowsocks (BlancVPN и другие) справляются с блокировками за счёт оперативной ротации серверов — это их главное преимущество перед self-hosted решениями для обычного пользователя.</p>
+
+    <p>Для максимальной устойчивости к ТСПУ рассмотрите переход на <a href="/vless/">VLESS+Reality</a> или <a href="/amneziawg/">AmneziaWG</a> — они принципиально лучше скрыты от детектирования. Если важна простота — Outline (= Shadowsocks с удобным интерфейсом) при регулярной ротации IP остаётся практичным выбором в 2026 году.</p>
+
+    <!-- УСТРАНЕНИЕ НЕПОЛАДОК -->
+    <h2 id="troubleshooting">Устранение неполадок Shadowsocks</h2>
+
+    <h3>Подключение есть, но сайты не открываются</h3>
+    <ul>
+      <li>Проверьте, включён ли «System Proxy» в настройках клиента — без него браузер не знает об использовании прокси</li>
+      <li>Убедитесь, что в браузере не настроен отдельный прокси, перекрывающий системный</li>
+      <li>Проверьте ipleak.net — IP должен быть серверным. Если российский — трафик идёт мимо прокси</li>
+      <li>В v2rayNG включите TUN-режим («VPN Mode») вместо прокси для полного охвата трафика</li>
+    </ul>
+
+    <h3>Не подключается — «Connection refused»</h3>
+    <ul>
+      <li>Проверьте, запущен ли сервер: <code>sudo systemctl status shadowsocks-libev</code></li>
+      <li>Убедитесь, что порт открыт на файрволе сервера: <code>sudo ufw allow 443/tcp</code></li>
+      <li>Пароль и метод в конфиге клиента должны точно совпадать с серверным</li>
+      <li>Проверьте доступность IP сервера с телефона на мобильном интернете — возможно, IP заблокирован РКН</li>
+    </ul>
+
+    <h3>Перестало работать после волны блокировок</h3>
+    <ul>
+      <li>Проверьте: <code>ping IP_сервера</code> — если таймаут, IP заблокирован. Смените IP в панели хостинга</li>
+      <li>Смените порт на 443, если ещё не сделано — меньше вероятность блокировки по порту</li>
+      <li>Рассмотрите добавление «камуфляжа»: настройте nginx на том же сервере, который обслуживает нормальный HTTPS на 443 и перенаправляет трафик Shadowsocks на внутренний порт по заголовку</li>
+      <li>Обновите Shadowsocks-сервер — более новые версии shadowsocks-rust лучше сопротивляются активному зондированию</li>
+    </ul>
+
+    <h3>Медленная скорость</h3>
+    <ul>
+      <li>Переключитесь на метод <code>chacha20-ietf-poly1305</code> — он быстрее AES на устройствах без AES-NI (большинство ARM-процессоров телефонов)</li>
+      <li>Проверьте нагрузку CPU VPS: <code>top</code> — при >80% нужен более мощный тариф или оптимизация</li>
+      <li>Включите <code>"fast_open": true</code> в конфиге сервера — снижает задержку за счёт TCP Fast Open</li>
+      <li>Выберите VPS в Финляндии или Нидерландах — меньше пинг из России</li>
+    </ul>
+
+    <div class="tip-box" style="margin: 32px 0;">
+      <span class="tip-icon">💡</span>
+      <p><strong>Камуфляж для Shadowsocks:</strong> если установить nginx на том же сервере и сделать так, чтобы обычный HTTPS-запрос на порт 443 отдавал реальную веб-страницу, а Shadowsocks-запросы — проксировались по другому порту — сервер становится значительно менее заметным для активного зондирования. Nginx выступает «фронтэндом», который невозможно легко отличить от обычного веб-сервера.</p>
+    </div>
+
+    <!-- ЗАКЛЮЧЕНИЕ -->
+    <h2>Итог: Shadowsocks в России в 2026 году</h2>
+
+    <p>Shadowsocks — основа целого семейства решений для обхода блокировок: Outline, V2Ray/Xray, sing-box. Понять его означает понять половину современной экосистемы обфускации. Для практического использования в России в 2026 году Shadowsocks остаётся рабочим вариантом при правильной конфигурации — порт 443, AEAD-шифрование, свежий IP. Коммерческие провайдеры на его базе (BlancVPN) берут на себя ротацию серверов.</p>
+
+    <p>Для максимальной устойчивости — <a href="/vless/">VLESS+Reality</a> или <a href="/amneziawg/">AmneziaWG</a>. Для максимальной простоты — <a href="/outline/">Outline VPN</a> как надстройка над Shadowsocks с удобным интерфейсом. Полный список рабочих VPN для России — в нашем <a href="/vpn-dlya-rossii/">главном рейтинге</a>.</p>
+
+    <!-- FAQ -->
+    <h2 id="faq">FAQ по Shadowsocks</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">Shadowsocks — это VPN или прокси?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Технически — зашифрованный SOCKS5-прокси. Но современные клиенты (Outline, Hiddify, v2rayNG с TUN-режимом) создают системный VPN-интерфейс, который перехватывает весь трафик устройства — поведение идентично VPN. Разница важна при ручной настройке: без TUN-режима UDP-трафик и некоторые приложения могут идти в обход прокси.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Чем Shadowsocks отличается от Outline?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Outline — это удобная надстройка над Shadowsocks от команды Jigsaw (Google). Технически Outline использует Shadowsocks-AEAD под капотом. Outline добавляет: простой веб-менеджер для развёртывания сервера (Outline Manager), официальные клиенты для всех платформ и управление ключами доступа. Если у вас уже есть Shadowsocks-сервер, к нему можно подключиться как через Outline Client (если ключ совместим), так и через v2rayNG или shadowsocks-windows.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Какой метод шифрования выбрать для Shadowsocks?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Используйте только AEAD-методы — старые (rc4-md5, aes-cfb) имеют уязвимости. Рекомендация: <code>chacha20-ietf-poly1305</code> — быстрее на ARM-процессорах (смартфоны, роутеры) и слабых VPS без AES-NI. <code>aes-256-gcm</code> — быстрее на современных x86-CPU с аппаратным AES (десктопы, VPS с Intel/AMD). На практике разница незначительна — выбирайте chacha20 как универсальный вариант.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Shadowsocks работает в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Работает с оговорками. На стандартных портах и с «засвеченным» IP — нестабильно на МТС и Мегафон. На порту 443 со свежим VPS-IP — стабильно у большинства пользователей. Коммерческие провайдеры (BlancVPN) решают проблему стабильности ротацией серверов. Для максимальной устойчивости к ТСПУ рекомендуется VLESS+Reality или AmneziaWG.</div></div>
+      </div>
+
+    </div>
+
+  </div>
 </div>
-</div>
-</section>
-<div class="container">
-<div class="bottom-cta">
-  <h3>🏆 Начните с ZoogVPN — 10 ГБ бесплатно</h3>
-  <p>Гарантия работы в России. Обфускация ZoogShadowing. Оплата МИР. Подключение за 2 минуты.</p>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
-</div>
-</div>
-<footer class="site-footer" style="margin-top:64px;">
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/outline/">Outline VPN</a></li>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/v2ray/">V2Ray / Xray</a></li>
+          <li><a href="/wireguard/">WireGuard</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN для России</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Устройства</h4>
+        <ul>
+          <li><a href="/vpn-dlya-pk/">VPN для ПК</a></li>
+          <li><a href="/vpn-dlya-routera/">VPN для роутера</a></li>
+          <li><a href="/vpn-dlya-macos/">VPN для Mac</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Информация предоставляется в ознакомительных целях.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">🏆 <strong>ZoogVPN</strong> — работает в России, 10 ГБ бесплатно</div>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
+<script>
+  const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
+  if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
+</script>
 </body>
 </html>
