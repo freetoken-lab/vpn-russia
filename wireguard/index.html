@@ -3,96 +3,478 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WireGuard в России 2026 — работает ли и как настроить через AmneziaWG</title>
-  <meta name="description" content="Чистый WireGuard заблокирован ТСПУ. Разбираем альтернативы: AmneziaWG, обёртки и сервисы с обфускацией WireGuard.">
+  <title>WireGuard — что это, настройка на Windows, Android, iPhone, Linux, статус в России 2026</title>
+  <meta name="description" content="Полный гайд по WireGuard: принцип работы, настройка на всех устройствах, сравнение с OpenVPN и IPSec, почему WireGuard блокируется ТСПУ в России и что делать. Май 2026.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/wireguard/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .content-body { max-width: 820px; }
+    .content-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; }
+    .content-body h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); margin: 32px 0 12px; }
+    .content-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .content-body ul, .content-body ol { padding-left: 0; margin-bottom: 20px; }
+    .content-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 8px; }
+    .content-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .content-body ol { counter-reset: item; }
+    .content-body ol li { counter-increment: item; }
+    .content-body ol li::before { content: counter(item)'.'; color: var(--orange); font-weight: 700; top: 1px; }
+    .content-body code { background: var(--bg3); border: 1px solid var(--card-border); border-radius: 4px; padding: 2px 7px; font-size: 0.85rem; color: var(--green); font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+    .content-body pre { background: var(--bg3); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 16px 20px; overflow-x: auto; margin: 16px 0 24px; }
+    .content-body pre code { background: none; border: none; padding: 0; font-size: 0.83rem; color: var(--text); }
+    .proto-compare { width: 100%; border-collapse: collapse; margin: 24px 0; }
+    .proto-compare th { background: var(--bg3); padding: 11px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .proto-compare td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.86rem; color: var(--text-muted); vertical-align: middle; }
+    .proto-compare td:first-child { font-weight: 700; color: var(--white); }
+    .proto-compare tr.highlight td { background: rgba(249,115,22,0.05); }
+    .setup-block { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; margin-bottom: 24px; }
+    .setup-block-header { background: var(--bg3); padding: 13px 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--card-border); }
+    .setup-block-header .os-icon { font-size: 1.2rem; }
+    .setup-block-header h4 { font-size: 0.95rem; margin: 0; color: var(--white); font-weight: 700; }
+    .setup-block-body { padding: 20px; }
+    .setup-block-body ol { margin: 0; }
+    .setup-block-body li { font-size: 0.88rem; }
+    .vpn-card-single { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-card-single .vpn-name-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .vpn-card-single .vpn-name { font-size: 1.2rem; font-weight: 800; color: var(--white); }
+    .vpn-card-single p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-card-single .vpn-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; }
+    .status-ok   { background: rgba(34,197,94,0.12);  color: var(--green);  border: 1px solid rgba(34,197,94,0.25); }
+    .status-warn { background: rgba(251,191,36,0.12); color: var(--gold);   border: 1px solid rgba(251,191,36,0.25); }
+    .status-bad  { background: rgba(249,115,22,0.12); color: var(--orange); border: 1px solid rgba(249,115,22,0.25); }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#content">О теме</a><a href="#vpn">Рейтинг VPN</a><a href="#faq">FAQ</a>
-      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">VPN →</a>
+      <a href="#chto-takoe">Что такое</a>
+      <a href="#kak-rabotaet">Как работает</a>
+      <a href="#nastrojka">Настройка</a>
+      <a href="#sravnenie">Сравнение</a>
+      <a href="#rkn">Статус РКН</a>
+      <a href="#troubleshooting">Неполадки</a>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="nav-cta">▶ BlancVPN</a>
     </div>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <span>WireGuard в России 2026 — статус, блокировки и обходы</span></div></div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#chto-takoe" class="mobile-link">Что такое WireGuard</a>
+  <a href="#kak-rabotaet" class="mobile-link">Как работает</a>
+  <a href="#nastrojka" class="mobile-link">Настройка</a>
+  <a href="#sravnenie" class="mobile-link">Сравнение протоколов</a>
+  <a href="#rkn" class="mobile-link">Статус РКН 2026</a>
+  <a href="#troubleshooting" class="mobile-link">Устранение неполадок</a>
+  <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ BlancVPN</a>
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>WireGuard</span>
+  </div>
+</div>
+
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>WireGuard в России 2026 — статус, блокировки и обходы</h1>
-    <p class="lead">Чистый WireGuard заблокирован ТСПУ. Разбираем альтернативы: AmneziaWG, обёртки и сервисы с обфускацией WireGuard.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обновлено май 2026 — актуальный статус блокировок РКН
+    </div>
+    <h1>WireGuard — что это, как настроить и почему он блокируется в России</h1>
+    <p class="lead">WireGuard — современный VPN-протокол, разработанный Джейсоном Доненфельдом в 2015–2018 годах. Он получил репутацию самого быстрого и элегантного VPN-протокола: всего ~4000 строк кода против 70 000 у OpenVPN. Встроен в ядро Linux начиная с версии 5.6. Используется как базовый транспорт в AmneziaWG и многих коммерческих VPN. Главная проблема для России — WireGuard легко обнаруживается и замедляется ТСПУ без обфускации.</p>
     <div class="meta">
-      <div class="meta-item">📡 <strong>Тесты:</strong> апрель 2026</div>
-      <div class="meta-item">✅ <strong>Только с обфускацией</strong></div>
-      <div class="meta-item">💳 <strong>Оплата из РФ</strong></div>
+      <div class="meta-item">🔐 <strong>Протокол:</strong> UDP, порт 51820 (по умолчанию)</div>
+      <div class="meta-item">🏗️ <strong>Разработчик:</strong> Jason Donenfeld (zx2c4)</div>
+      <div class="meta-item">📡 <strong>Статус РКН:</strong> <span class="status-badge status-bad">✗ Замедляется ТСПУ</span></div>
     </div>
   </div>
 </div>
 
-<section id="content" style="padding-top:48px;">
-<div class="container">
-  <div class="section-header"><div class="section-label">Обзор</div><h2>Статус WireGuard в России в 2026 году</h2></div>
-  <p style="color:var(--text-muted);font-size:0.95rem;max-width:720px;margin-bottom:14px;">Чистый WireGuard заблокирован на мобильных операторах и частично на домашних провайдерах. UDP-пакеты WireGuard имеют характерную структуру, которую DPI распознаёт безошибочно. Тест апреля 2026 года: 0 из 4 операторов — чистый WireGuard работал без обрывов.</p>
-  <p style='color:var(--text-muted);font-size:0.95rem;max-width:720px;'>Решение — AmneziaWG 2.0 (рандомизирует заголовки, имитирует QUIC/DNS) или обёртка через stunnel/wstunnel. Trust.Zone, Amnezia VPN и BlancVPN предлагают AmneziaWG из коробки без самостоятельной настройки.</p>
-  <div class="tip-box" style="margin-top:20px;"><span class="tip-icon">💡</span><p><strong>Важно:</strong> Все VPN в рейтинге ниже протестированы в апреле 2026 года на реальных подключениях МТС, Билайн, Мегафон и Ростелеком.</p></div>
-</div>
-</section>
+<div class="container" style="padding-top: 48px; padding-bottom: 80px;">
+  <div class="content-body">
 
-<section id="vpn">
-<div class="container">
-<div class="section-header" style="margin-bottom:24px;">
-  <div class="section-label">Рейтинг</div>
-  <h2>ТОП-7 VPN — проверены в апреле 2026</h2>
-</div>
-<div class="toplist">
-<div class="vpn-card top1"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">1</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">ZoogVPN</span><span class="vpn-badge badge-orange">Выбор редакции</span></div><p class="vpn-desc">Гарантия работы в России. ZoogShadowing обходит ТСПУ на МТС, Билайн, Мегафон, Ростелеком. 10 ГБ бесплатно, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🔐 ZoogShadowing</span><span class="pill">🆓 10 ГБ</span><span class="pill">∞ Безлимит устройств</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">10 ГБ/мес</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">ZoogShadowing</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">Безлимит</div></div></div></div>
-<div class="vpn-card top2"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">2</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">BlancVPN</span><span class="vpn-badge badge-purple">Самый быстрый</span></div><p class="vpn-desc">Outline до 2 Гбит/с, пинг 35 мс. Безлимит устройств, русский интерфейс, Telegram-бот.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🚀 2 Гбит/с</span><span class="pill">∞ Безлимит</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div><div class="vpn-stat"><div class="stat-label">Гарантия</div><div class="stat-value">30 дней</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Outline/V2Ray</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div></div></div>
-<div class="vpn-card top3"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">3</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Trust.Zone</span><span class="vpn-badge badge-green">Обфускация</span></div><p class="vpn-desc">VLESS+Reality и AmneziaWG — устойчивы к любым блокировкам. Самая низкая цена в рейтинге.</p><div class="vpn-pills"><span class="pill">💳 РФ</span><span class="pill">🔐 VLESS</span><span class="pill">от $1.77</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">3 дня/1 ГБ</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">VLESS+Reality</div></div><div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">93 страны</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">4</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">AdGuard VPN</span><span class="vpn-badge badge-blue">Лучший бесплатный</span></div><p class="vpn-desc">TrustTunnel QUIC — 118 Мбит/с. Доступен в российских магазинах, 3 ГБ бесплатно, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🔐 TrustTunnel</span><span class="pill">🆓 3 ГБ</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 247 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">TrustTunnel</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">10</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">5</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">hidemy.name</span><span class="vpn-badge badge-orange">С 2012 года</span></div><p class="vpn-desc">Stealth OpenVPN UDP. Русский интерфейс и поддержка, 24 часа бесплатного теста, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🇷🇺 Русский</span><span class="pill">⏱️ 24ч бесплатно</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 270 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Stealth OpenVPN</div></div><div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">80+ стран</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">6</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Amnezia VPN</span><span class="vpn-badge badge-purple">Open-source</span></div><p class="vpn-desc">AmneziaWG 2.0 — лучший протокол для ТСПУ в 2026. Open-source, self-hosted, Amnezia Free бесплатно.</p><div class="vpn-pills"><span class="pill">🆓 Бесплатно</span><span class="pill">🔐 AmneziaWG 2.0</span><span class="pill">📂 Open-source</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $3.5/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">Amnezia Free</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">AmneziaWG 2.0</div></div><div class="vpn-stat"><div class="stat-label">Аудиты</div><div class="stat-value green">2 × 7ASecurity</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">7</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Дядя Ваня VPN</span><span class="vpn-badge badge-blue">Лучшая цена</span></div><p class="vpn-desc">От 99 ₽/мес, оплата рублями, 174 локации, безлимит устройств, Android TV.</p><div class="vpn-pills"><span class="pill">💳 Рубли</span><span class="pill">📺 Android TV</span><span class="pill">∞ Безлимит</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Пробный</div><div class="stat-value">3 дня / 10 ₽</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Shadowsocks</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div></div></div>
-</div>
-</div>
-</section>
+    <!-- ЧТО ТАКОЕ -->
+    <h2 id="chto-takoe">Что такое WireGuard</h2>
 
-<section id="faq" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-<div class="faq-list">
-<div class="faq-item"><div class="faq-q">Какой VPN лучше для России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">По результатам тестов апреля 2026 года лидируют ZoogVPN (гарантия работы, 10 ГБ бесплатно) и AdGuard VPN (118 Мбит/с, доступен в российских магазинах). Для максимальной устойчивости к ТСПУ — Amnezia с AmneziaWG 2.0.</div></div></div>
-<div class="faq-item"><div class="faq-q">Законно ли использовать VPN в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. Использование VPN физическими лицами в России не запрещено. Штрафов за подключение нет. Запрет касается рекламы VPN для обхода блокировок.</div></div></div>
-<div class="faq-item"><div class="faq-q">Что такое обфускация и зачем она нужна?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Обфускация маскирует VPN-трафик под обычный HTTPS. Без неё ТСПУ распознаёт VPN-соединение и блокирует его. В 2026 году обфускация обязательна для стабильной работы VPN в России.</div></div></div>
-<div class="faq-item"><div class="faq-q">Можно ли оплатить VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. ZoogVPN, AdGuard VPN, BlancVPN, Trust.Zone, hidemy.name и Дядя Ваня VPN принимают карты МИР, СБП и YooMoney. Зарубежные сервисы — через криптовалюту.</div></div></div>
+    <p>WireGuard — это VPN-протокол и программный инструмент одновременно. Проект Доненфельда стал революцией в мире VPN: вместо громоздких и сложных в аудите реализаций OpenVPN и IPSec он предложил минималистичный протокол с узкой криптографической базой — <strong>Curve25519</strong> для обмена ключами, <strong>ChaCha20-Poly1305</strong> для шифрования, <strong>BLAKE2s</strong> для хэширования. Никакого выбора алгоритмов — только проверенные современные примитивы.</p>
+
+    <p>WireGuard работает на уровне ядра ОС (начиная с Linux 5.6 — встроен в ядро напрямую), что даёт значительное преимущество в производительности. На практике WireGuard обеспечивает скорость, близкую к нативному сетевому соединению — потери составляют 3–8% против 15–30% у OpenVPN. Именно поэтому большинство коммерческих VPN-провайдеров (NordVPN, Mullvad, ProtonVPN) используют WireGuard как основной протокол.</p>
+
+    <p>В контексте России WireGuard — это фундамент для более продвинутых решений. <strong>AmneziaWG</strong> добавляет к WireGuard обфускацию пакетов, делая трафик невидимым для ТСПУ. Понимание WireGuard необходимо для настройки AmneziaWG, Xray с WireGuard-транспортом и роутеров Keenetic.</p>
+
+    <!-- BLANCVPN — сразу после введения -->
+    <div class="vpn-card-single">
+      <div class="vpn-name-row">
+        <span class="vpn-name">BlancVPN</span>
+        <span class="vpn-badge badge-purple">WireGuard с обфускацией</span>
+      </div>
+      <p>Русскоязычный VPN-сервис на базе Outline/Shadowsocks с V2Ray резервом — использует обфусцированный транспорт, устойчивый к ТСПУ в отличие от чистого WireGuard. 112 Мбит/с, безлимит устройств, оплата МИР и СБП. Готовые приложения для всех платформ.</p>
+      <div class="vpn-pills">
+        <span class="pill">🔐 Обфусцированный транспорт</span>
+        <span class="pill">🚀 112 Мбит/с</span>
+        <span class="pill">∞ Безлимит устройств</span>
+        <span class="pill">🇷🇺 Русский сервис</span>
+        <span class="pill">💳 МИР / СБП</span>
+      </div>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Перейти на BlancVPN →</a>
+    </div>
+
+    <!-- КАК РАБОТАЕТ -->
+    <h2 id="kak-rabotaet">Как работает WireGuard</h2>
+
+    <h3>Архитектура и криптография</h3>
+    <p>WireGuard создаёт виртуальный сетевой интерфейс (<code>wg0</code>) на уровне ядра. Каждый участник (peer) идентифицируется парой ключей: публичным и приватным. Связь строится по модели «каждый с каждым» — нет классической схемы клиент/сервер на уровне протокола, хотя на практике один узел обычно выступает серверов.</p>
+
+    <p>Процесс подключения: клиент отправляет <strong>Initiation-пакет</strong>, зашифрованный публичным ключом сервера и подписанный приватным ключом клиента. Сервер отвечает Response-пакетом. После обмена устанавливается симметричный сессионный ключ (меняется каждые 3 минуты). Весь последующий трафик шифруется ChaCha20-Poly1305 с аутентификацией — изменение любого бита пакета приводит к его отбрасыванию.</p>
+
+    <h3>Почему WireGuard обнаруживается ТСПУ</h3>
+    <p>Это ключевая проблема для России. WireGuard использует UDP и имеет чёткую сигнатуру: характерный размер Initiation-пакета (148 байт), Response-пакета (92 байта) и фиксированный заголовок с версией протокола. ТСПУ умеет идентифицировать эти паттерны статистически — без расшифровки трафика. После идентификации соединение замедляется или блокируется.</p>
+
+    <p>Дополнительно: WireGuard «молчит» при отсутствии трафика (не отправляет keepalive-пакеты по умолчанию), что создаёт паттерн «включил и забыл» — ещё один статистический признак для ТСПУ.</p>
+
+    <h3>WireGuard как основа для обфусцированных протоколов</h3>
+    <p><strong>AmneziaWG</strong> решает проблему обнаружения, рандомизируя заголовки пакетов и добавляя «шум» — паттерн трафика перестаёт совпадать с сигнатурой WireGuard. Подробнее — в разделе <a href="/amneziawg/">AmneziaWG 2.0</a>. Xray-core также поддерживает WireGuard в качестве исходящего транспорта (outbound), позволяя туннелировать WireGuard-трафик внутри VLESS+Reality.</p>
+
+    <!-- НАСТРОЙКА -->
+    <h2 id="nastrojka">Настройка WireGuard на устройствах</h2>
+
+    <p>Для WireGuard нужен сервер с публичным IP. Это либо собственный VPS, либо провайдер, выдающий WireGuard-конфигурацию. Конфиг выглядит как файл <code>.conf</code> со структурой:</p>
+
+    <pre><code>[Interface]
+PrivateKey = ваш_приватный_ключ
+Address = 10.0.0.2/32
+DNS = 1.1.1.1
+
+[Peer]
+PublicKey = публичный_ключ_сервера
+PresharedKey = предварительный_ключ (опционально)
+AllowedIPs = 0.0.0.0/0, ::/0
+Endpoint = IP_сервера:51820
+PersistentKeepalive = 25</code></pre>
+
+    <p>Параметр <code>AllowedIPs = 0.0.0.0/0</code> означает маршрутизацию всего трафика через VPN. Для раздельной маршрутизации укажите конкретные IP-диапазоны.</p>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🖥️</span>
+        <h4>Windows — официальный клиент WireGuard</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Скачайте официальный клиент с <strong>wireguard.com/install</strong> → Windows</li>
+          <li>Установите → запустите</li>
+          <li>Нажмите <strong>«Импортировать туннели из файла»</strong> → выберите <code>.conf</code>-файл от провайдера или с собственного сервера</li>
+          <li>Или нажмите «Добавить пустой туннель» и вставьте конфиг вручную</li>
+          <li>Нажмите <strong>«Подключиться»</strong> — статус сменится на «Активен»</li>
+          <li>Проверьте: откройте ipleak.net в браузере — должен быть нероссийский IP</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🤖</span>
+        <h4>Android — WireGuard</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Установите <strong>WireGuard</strong> из Google Play</li>
+          <li>Нажмите «+» → выберите <strong>«Создать из файла или архива»</strong> или <strong>«Сканировать QR-код»</strong></li>
+          <li>Если у вас <code>.conf</code>-файл — выберите первый вариант. Если QR от сервера — сканируйте</li>
+          <li>Дайте туннелю имя → нажмите <strong>«Создать туннель»</strong></li>
+          <li>Включите переключатель рядом с туннелем → разрешите VPN-запрос</li>
+          <li>Отключите оптимизацию батареи для приложения WireGuard</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">📱</span>
+        <h4>iPhone — WireGuard</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Установите <strong>WireGuard</strong> из App Store (бесплатно)</li>
+          <li>Нажмите «+» → <strong>«Создать из файла или архива»</strong> или <strong>«Создать из QR-кода»</strong></li>
+          <li>Импортируйте <code>.conf</code>-файл через Files или отсканируйте QR</li>
+          <li>Нажмите «Сохранить» → разрешите «Добавить конфигурации VPN»</li>
+          <li>Включите переключатель → отключите iCloud Private Relay</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🍎</span>
+        <h4>macOS — WireGuard из Mac App Store</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Установите <strong>WireGuard</strong> из Mac App Store (бесплатно)</li>
+          <li>Откройте → «Импортировать туннели из файла» → выберите <code>.conf</code></li>
+          <li>«Подключиться» → разрешите сетевое расширение в Системных настройках</li>
+          <li>Отключите iCloud Private Relay перед подключением</li>
+          <li>Для автозапуска: Системные настройки → Основные → Объекты входа → добавьте WireGuard</li>
+        </ol>
+      </div>
+    </div>
+
+    <h3>Установка WireGuard-сервера на Linux (VPS)</h3>
+    <p>На Ubuntu 22.04+ WireGuard устанавливается в одну команду:</p>
+    <pre><code>sudo apt update && sudo apt install wireguard -y</code></pre>
+
+    <p>Генерация ключей сервера:</p>
+    <pre><code>wg genkey | tee /etc/wireguard/server_private.key | wg pubkey > /etc/wireguard/server_public.key</code></pre>
+
+    <p>Минимальный конфиг сервера (<code>/etc/wireguard/wg0.conf</code>):</p>
+    <pre><code>[Interface]
+PrivateKey = ПРИВАТНЫЙ_КЛЮЧ_СЕРВЕРА
+Address = 10.0.0.1/24
+ListenPort = 51820
+PostUp = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE
+
+[Peer]
+PublicKey = ПУБЛИЧНЫЙ_КЛЮЧ_КЛИЕНТА
+AllowedIPs = 10.0.0.2/32</code></pre>
+
+    <p>Запустите сервер: <code>sudo wg-quick up wg0</code>. Для автозапуска: <code>sudo systemctl enable wg-quick@wg0</code>. Для каждого нового клиента добавьте блок <code>[Peer]</code> с его публичным ключом. Удобнее управлять несколькими клиентами через веб-панели — <strong>wg-easy</strong> или <strong>WireGuard UI</strong> (docker-компоненты).</p>
+
+    <!-- СРАВНЕНИЕ -->
+    <h2 id="sravnenie">WireGuard vs OpenVPN vs IPSec</h2>
+
+    <table class="proto-compare">
+      <thead>
+        <tr><th>Параметр</th><th>WireGuard</th><th>OpenVPN</th><th>IPSec/IKEv2</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Код (строк)</td>
+          <td>~4 000</td>
+          <td>~70 000</td>
+          <td>~100 000+</td>
+        </tr>
+        <tr>
+          <td>Скорость</td>
+          <td style="color:var(--green);">Очень высокая</td>
+          <td>Средняя</td>
+          <td>Высокая</td>
+        </tr>
+        <tr>
+          <td>Потребление CPU</td>
+          <td style="color:var(--green);">Минимальное</td>
+          <td>Высокое</td>
+          <td>Среднее</td>
+        </tr>
+        <tr>
+          <td>Криптография</td>
+          <td>Фиксированная, современная</td>
+          <td>Гибкая (риск слабых алгоритмов)</td>
+          <td>Гибкая</td>
+        </tr>
+        <tr>
+          <td>Транспорт</td>
+          <td>UDP only</td>
+          <td>UDP или TCP</td>
+          <td>UDP</td>
+        </tr>
+        <tr class="highlight">
+          <td>Обнаружение ТСПУ (Россия)</td>
+          <td style="color:var(--orange);">Легко замедляется</td>
+          <td style="color:var(--orange);">Замедляется</td>
+          <td style="color:var(--orange);">Замедляется</td>
+        </tr>
+        <tr>
+          <td>Встроен в ОС</td>
+          <td>Linux 5.6+, Windows 11</td>
+          <td>Нет</td>
+          <td>Windows, macOS, iOS, Android</td>
+        </tr>
+        <tr>
+          <td>Мобильные устройства</td>
+          <td style="color:var(--green);">Отлично (пересоединение)</td>
+          <td>Хорошо</td>
+          <td>Отлично</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Преимущества WireGuard</h3>
+    <ul>
+      <li><strong>Скорость и низкий оверхед.</strong> Работа на уровне ядра и минималистичная реализация даёт производительность, близкую к нативному соединению. На роутере Keenetic WireGuard в 3–5 раз быстрее OpenVPN при той же нагрузке на CPU.</li>
+      <li><strong>Простота настройки.</strong> Конфиг — текстовый файл из 10 строк. Официальные клиенты доступны для всех платформ бесплатно.</li>
+      <li><strong>Надёжная криптография.</strong> Фиксированный набор современных алгоритмов без риска использования слабых шифров через неправильную конфигурацию.</li>
+      <li><strong>Стабильность при смене сетей.</strong> WireGuard не «разрывает» соединение при смене IP клиента (Wi-Fi → LTE) — туннель сохраняется, пока клиент и сервер могут обменяться пакетами.</li>
+      <li><strong>Основа для защищённых протоколов.</strong> AmneziaWG, ряд корпоративных VPN и коммерческих провайдеров используют WireGuard как транспортный слой.</li>
+    </ul>
+
+    <h3>Недостатки и уязвимости</h3>
+    <ul>
+      <li><strong>Легко обнаруживается ТСПУ.</strong> Главная проблема для России. Характерная UDP-сигнатура и фиксированные размеры пакетов делают WireGuard одним из самых «видимых» протоколов для DPI-систем.</li>
+      <li><strong>Только UDP.</strong> Нет режима TCP — в сетях с агрессивной фильтрацией UDP (некоторые корпоративные сети, мобильные операторы) WireGuard не работает там, где OpenVPN по TCP 443 прошёл бы.</li>
+      <li><strong>Нет встроенной обфускации.</strong> Без оберток типа AmneziaWG WireGuard бесполезен в России для обхода блокировок заблокированных сервисов.</li>
+      <li><strong>Статические IP клиентов.</strong> В стандартной конфигурации каждый клиент имеет фиксированный внутренний IP, что усложняет масштабирование. Решается через wg-easy или Tailscale.</li>
+      <li><strong>Нет встроенного обфускатора трафика PFS за сессию.</strong> WireGuard меняет ключи каждые 3 минуты, но не имеет эфемерности на уровне отдельных пакетов как в TLS 1.3.</li>
+    </ul>
+
+    <!-- СТАТУС РКН -->
+    <h2 id="rkn">Статус WireGuard в России — май 2026</h2>
+
+    <p>WireGuard <strong>замедляется и частично блокируется ТСПУ</strong> в России. Это одна из самых частых жалоб: «подключился к WireGuard, но YouTube всё равно тормозит». Причина — ТСПУ применяет шейпинг к UDP-трафику с сигнатурой WireGuard, снижая пропускную способность до уровня, делающего стриминг 4K невозможным, даже если формально «VPN подключён».</p>
+
+    <p>Ситуация различается по операторам. МТС и Мегафон — наиболее агрессивный шейпинг. Ростелеком и Билайн — мягче, но тоже замедляют. Домашние провайдеры (Дом.ру, ТТК, региональные ISP) — часто пропускают WireGuard без замедлений, особенно если используется нестандартный порт.</p>
+
+    <p><strong>Что делать:</strong></p>
+    <ul>
+      <li>Перейти на <a href="/amneziawg/">AmneziaWG</a> — это WireGuard с обфускацией, не обнаруживаемый ТСПУ</li>
+      <li>Использовать WireGuard через Xray с VLESS+Reality в качестве внешней оболочки (туннель в туннеле)</li>
+      <li>Попробовать нестандартный порт (не 51820) и UDP-рандомизацию порта в конфиге</li>
+      <li>Переключиться на коммерческий VPN с обфускацией: <a href="/vpn-dlya-rossii/">список рабочих VPN для России</a></li>
+    </ul>
+
+    <p>Важно понимать: WireGuard сам по себе — отличный протокол, и именно его использует большинство коммерческих VPN-провайдеров. Проблема не в протоколе, а в том, что он легко распознаётся без дополнительной обфускации. VPN-провайдеры решают это добавляя собственные обёртки поверх WireGuard (NordVPN NordLynx, Mullvad DAITA и т.д.).</p>
+
+    <!-- УСТРАНЕНИЕ НЕПОЛАДОК -->
+    <h2 id="troubleshooting">Устранение неполадок WireGuard</h2>
+
+    <h3>Подключён, но сайты не открываются</h3>
+    <ul>
+      <li>Проверьте <code>AllowedIPs</code> в конфиге — должно быть <code>0.0.0.0/0</code> для полного туннеля</li>
+      <li>DNS может не проксироваться: добавьте <code>DNS = 1.1.1.1</code> в секцию <code>[Interface]</code></li>
+      <li>На Windows проверьте, что WireGuard-адаптер получил IP: PowerShell → <code>Get-NetIPAddress -InterfaceAlias "WireGuard*"</code></li>
+      <li>Убедитесь, что сервер доступен: <code>ping IP_сервера</code> перед подключением</li>
+    </ul>
+
+    <h3>YouTube тормозит при подключённом WireGuard</h3>
+    <ul>
+      <li>Это признак шейпинга ТСПУ — см. раздел выше. WireGuard без обфускации в России не обходит замедления</li>
+      <li>Временное решение: смените порт на нестандартный (например, 443, 8080, 1194)</li>
+      <li>Долгосрочное решение: переключитесь на AmneziaWG или провайдера с обфускацией</li>
+    </ul>
+
+    <h3>Handshake не устанавливается — «Last handshake: never»</h3>
+    <ul>
+      <li>Сервер недоступен или порт заблокирован: проверьте <code>nc -u IP_сервера 51820</code> (должен быть ответ)</li>
+      <li>Убедитесь, что на сервере открыт UDP-порт: <code>sudo ufw allow 51820/udp</code></li>
+      <li>Проверьте, что PublicKey в конфиге клиента совпадает с PublicKey сервера</li>
+      <li>Убедитесь, что на сервере включена IP-маршрутизация: <code>sysctl net.ipv4.ip_forward</code> должно возвращать 1</li>
+    </ul>
+
+    <h3>Соединение разрывается через несколько минут</h3>
+    <ul>
+      <li>Добавьте <code>PersistentKeepalive = 25</code> в секцию <code>[Peer]</code> клиентского конфига</li>
+      <li>Это заставляет WireGuard отправлять keepalive-пакеты каждые 25 секунд, сохраняя NAT-маппинг на роутере</li>
+      <li>Особенно важно на мобильных устройствах за NAT</li>
+    </ul>
+
+    <div class="tip-box" style="margin: 32px 0;">
+      <span class="tip-icon">💡</span>
+      <p><strong>Диагностика WireGuard:</strong> запустите <code>sudo wg show</code> на сервере или клиенте Linux. Поле «latest handshake» показывает время последнего успешного обмена. Если оно обновляется — соединение живо. Поле «transfer» показывает объём переданных данных. Если transfer растёт, но сайты не открываются — проблема в маршрутизации, а не в туннеле.</p>
+    </div>
+
+    <!-- ЗАКЛЮЧЕНИЕ -->
+    <h2>Итог: WireGuard в России в 2026 году</h2>
+
+    <p>WireGuard — великолепный протокол с минималистичным кодом, высокой скоростью и надёжной криптографией. Для большинства стран мира это лучший выбор VPN-протокола. Для России 2026 года чистый WireGuard малопригоден из-за замедлений ТСПУ — он замечательно работает технически, но прозрачен для оборудования провайдеров.</p>
+
+    <p>Для обхода российских блокировок используйте <a href="/amneziawg/">AmneziaWG</a> — тот же WireGuard, но с обфускацией. Или выберите коммерческого провайдера из нашего <a href="/vpn-dlya-rossii/">рейтинга рабочих VPN для России</a>, который берёт на себя задачу обфускации. BlancVPN использует Outline-транспорт, устойчивый к ТСПУ, и не требует настройки VPS.</p>
+
+    <!-- FAQ -->
+    <h2 id="faq">FAQ по WireGuard</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">Почему WireGuard блокируется в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">WireGuard имеет характерную UDP-сигнатуру: фиксированный размер Initiation-пакета (148 байт), специфический заголовок и поведение. ТСПУ РКН умеет статистически идентифицировать этот паттерн без расшифровки трафика и применяет шейпинг — пропускная способность снижается до уровня, делающего YouTube 4K невозможным. Решение — AmneziaWG с рандомизацией пакетов.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">WireGuard безопаснее OpenVPN?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">С точки зрения криптографии — да, скорее всего. WireGuard использует фиксированный набор современных алгоритмов без риска слабых конфигураций. OpenVPN теоретически позволяет использовать устаревшие шифры при неправильной настройке. Кодовая база WireGuard (~4000 строк) значительно проще для аудита, чем OpenVPN (~70 000). Однако оба протокола при правильной настройке обеспечивают надёжную защиту.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Чем AmneziaWG отличается от WireGuard?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">AmneziaWG — форк WireGuard, добавляющий обфускацию пакетов: рандомизацию размеров, имитацию паттернов других протоколов и дополнительные «мусорные» пакеты. ТСПУ не может отличить AmneziaWG-трафик от обычного QUIC или HTTPS. Функционально идентичен WireGuard — та же скорость, те же клиенты (с поддержкой AmneziaWG), та же криптография. Подробнее — в разделе <a href="/amneziawg/">AmneziaWG 2.0</a>.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Какой порт использовать для WireGuard в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Порт 51820 (стандартный) — самый заметный для ТСПУ, так как его чаще всего используют. Нестандартные порты (443, 80, 8080, 1194) могут снизить вероятность блокировки, но не устраняют проблему сигнатуры пакетов. Для надёжного обхода блокировок в России нужна обфускация (AmneziaWG), а не смена порта.</div></div>
+      </div>
+
+    </div>
+
+  </div>
 </div>
-</div>
-</section>
-<div class="container">
-<div class="bottom-cta">
-  <h3>🏆 Начните с ZoogVPN — 10 ГБ бесплатно</h3>
-  <p>Гарантия работы в России. Обфускация ZoogShadowing. Оплата МИР. Подключение за 2 минуты.</p>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
-</div>
-</div>
-<footer class="site-footer" style="margin-top:64px;">
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/outline/">Outline VPN</a></li>
+          <li><a href="/v2ray/">V2Ray / Xray</a></li>
+          <li><a href="/openvpn/">OpenVPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN для России</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Устройства</h4>
+        <ul>
+          <li><a href="/vpn-dlya-pk/">VPN для ПК</a></li>
+          <li><a href="/vpn-dlya-routera/">VPN для роутера</a></li>
+          <li><a href="/vpn-dlya-macos/">VPN для Mac</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Информация предоставляется в ознакомительных целях.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">🏆 <strong>ZoogVPN</strong> — работает в России, 10 ГБ бесплатно</div>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
+<script>
+  const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
+  if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
+</script>
 </body>
 </html>
