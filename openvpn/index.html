@@ -3,96 +3,469 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OpenVPN в России 2026 — Stealth-режим и обфускация obfs4</title>
-  <meta name="description" content="Стандартный OpenVPN заблокирован ТСПУ. Stealth OpenVPN и obfs4 позволяют снова использовать протокол — разбираем как.">
+  <title>OpenVPN — что это, настройка на Windows, Android, iPhone, Linux, статус в России 2026</title>
+  <meta name="description" content="Полный гайд по OpenVPN: принцип работы, настройка .ovpn-файлов на Windows, Android, iPhone и macOS, Stealth OpenVPN для обхода ТСПУ, установка сервера на Linux. Статус РКН май 2026.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/openvpn/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .content-body { max-width: 820px; }
+    .content-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; }
+    .content-body h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); margin: 32px 0 12px; }
+    .content-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .content-body ul, .content-body ol { padding-left: 0; margin-bottom: 20px; }
+    .content-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 8px; }
+    .content-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .content-body ol { counter-reset: item; }
+    .content-body ol li { counter-increment: item; }
+    .content-body ol li::before { content: counter(item)'.'; color: var(--orange); font-weight: 700; top: 1px; }
+    .content-body code { background: var(--bg3); border: 1px solid var(--card-border); border-radius: 4px; padding: 2px 7px; font-size: 0.85rem; color: var(--green); font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+    .content-body pre { background: var(--bg3); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 16px 20px; overflow-x: auto; margin: 16px 0 24px; }
+    .content-body pre code { background: none; border: none; padding: 0; font-size: 0.83rem; color: var(--text); }
+    .proto-compare { width: 100%; border-collapse: collapse; margin: 24px 0; }
+    .proto-compare th { background: var(--bg3); padding: 11px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .proto-compare td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.86rem; color: var(--text-muted); vertical-align: middle; }
+    .proto-compare td:first-child { font-weight: 700; color: var(--white); }
+    .proto-compare tr.highlight td { background: rgba(249,115,22,0.05); }
+    .setup-block { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; margin-bottom: 24px; }
+    .setup-block-header { background: var(--bg3); padding: 13px 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--card-border); }
+    .setup-block-header .os-icon { font-size: 1.2rem; }
+    .setup-block-header h4 { font-size: 0.95rem; margin: 0; color: var(--white); font-weight: 700; }
+    .setup-block-body { padding: 20px; }
+    .setup-block-body ol { margin: 0; }
+    .setup-block-body li { font-size: 0.88rem; }
+    .vpn-card-single { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-card-single .vpn-name-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .vpn-card-single .vpn-name { font-size: 1.2rem; font-weight: 800; color: var(--white); }
+    .vpn-card-single p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-card-single .vpn-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; }
+    .status-ok   { background: rgba(34,197,94,0.12);  color: var(--green);  border: 1px solid rgba(34,197,94,0.25); }
+    .status-warn { background: rgba(251,191,36,0.12); color: var(--gold);   border: 1px solid rgba(251,191,36,0.25); }
+    .status-bad  { background: rgba(249,115,22,0.12); color: var(--orange); border: 1px solid rgba(249,115,22,0.25); }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#content">О теме</a><a href="#vpn">Рейтинг VPN</a><a href="#faq">FAQ</a>
-      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">VPN →</a>
+      <a href="#chto-takoe">Что такое</a>
+      <a href="#kak-rabotaet">Как работает</a>
+      <a href="#nastrojka">Настройка</a>
+      <a href="#sravnenie">Сравнение</a>
+      <a href="#rkn">Статус РКН</a>
+      <a href="#troubleshooting">Неполадки</a>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="nav-cta">▶ BlancVPN</a>
     </div>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <span>OpenVPN в России 2026 — блокировки и Stealth-режим</span></div></div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#chto-takoe" class="mobile-link">Что такое OpenVPN</a>
+  <a href="#kak-rabotaet" class="mobile-link">Как работает</a>
+  <a href="#nastrojka" class="mobile-link">Настройка</a>
+  <a href="#sravnenie" class="mobile-link">Сравнение протоколов</a>
+  <a href="#rkn" class="mobile-link">Статус РКН 2026</a>
+  <a href="#troubleshooting" class="mobile-link">Устранение неполадок</a>
+  <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ BlancVPN</a>
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>OpenVPN</span>
+  </div>
+</div>
+
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>OpenVPN в России 2026 — блокировки и Stealth-режим</h1>
-    <p class="lead">Стандартный OpenVPN заблокирован ТСПУ. Stealth OpenVPN и obfs4 позволяют снова использовать протокол — разбираем как.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обновлено май 2026 — актуальный статус блокировок РКН
+    </div>
+    <h1>OpenVPN — что это, настройка .ovpn-файлов и обход блокировок в России</h1>
+    <p class="lead">OpenVPN — старейший и наиболее распространённый VPN-протокол с открытым исходным кодом, созданный Джеймсом Йонаном в 2001 году. Используется в большинстве корпоративных VPN и многих коммерческих сервисах. Работает поверх TLS и поддерживает как UDP, так и TCP-режим, что даёт гибкость в обходе различных сетевых ограничений. Для России ключевой вопрос — обфускация: чистый OpenVPN ТСПУ обнаруживает, Stealth OpenVPN с obfsproxy — нет.</p>
     <div class="meta">
-      <div class="meta-item">📡 <strong>Тесты:</strong> апрель 2026</div>
-      <div class="meta-item">✅ <strong>Только с обфускацией</strong></div>
-      <div class="meta-item">💳 <strong>Оплата из РФ</strong></div>
+      <div class="meta-item">🔐 <strong>Транспорт:</strong> TLS поверх UDP или TCP</div>
+      <div class="meta-item">🏗️ <strong>Разработчик:</strong> OpenVPN Inc. (open-source)</div>
+      <div class="meta-item">📡 <strong>Статус РКН:</strong> <span class="status-warn status-badge">⚠️ Без обфускации замедляется</span></div>
     </div>
   </div>
 </div>
 
-<section id="content" style="padding-top:48px;">
-<div class="container">
-  <div class="section-header"><div class="section-label">Обзор</div><h2>Статус OpenVPN в России в 2026 году</h2></div>
-  <p style="color:var(--text-muted);font-size:0.95rem;max-width:720px;margin-bottom:14px;">Стандартный OpenVPN (TCP и UDP) заблокирован ТСПУ с начала 2023 года. DPI распознаёт характерное TLS-рукопожатие. Без дополнительной обёртки протокол не работает на большинстве российских операторов.</p>
-  <p style='color:var(--text-muted);font-size:0.95rem;max-width:720px;'>Решения: Stealth OpenVPN (hidemy.name) добавляет дополнительный слой обфускации к UDP. Obfs4 рандомизирует пакеты. Туннелирование через WebSocket или stunnel также скрывает трафик. Hidemy.name показал стабильную работу Stealth OpenVPN в апреле 2026 на МТС и Ростелекоме.</p>
-  <div class="tip-box" style="margin-top:20px;"><span class="tip-icon">💡</span><p><strong>Важно:</strong> Все VPN в рейтинге ниже протестированы в апреле 2026 года на реальных подключениях МТС, Билайн, Мегафон и Ростелеком.</p></div>
-</div>
-</section>
+<div class="container" style="padding-top: 48px; padding-bottom: 80px;">
+  <div class="content-body">
 
-<section id="vpn">
-<div class="container">
-<div class="section-header" style="margin-bottom:24px;">
-  <div class="section-label">Рейтинг</div>
-  <h2>ТОП-7 VPN — проверены в апреле 2026</h2>
-</div>
-<div class="toplist">
-<div class="vpn-card top1"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">1</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">ZoogVPN</span><span class="vpn-badge badge-orange">Выбор редакции</span></div><p class="vpn-desc">Гарантия работы в России. ZoogShadowing обходит ТСПУ на МТС, Билайн, Мегафон, Ростелеком. 10 ГБ бесплатно, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🔐 ZoogShadowing</span><span class="pill">🆓 10 ГБ</span><span class="pill">∞ Безлимит устройств</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">10 ГБ/мес</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">ZoogShadowing</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">Безлимит</div></div></div></div>
-<div class="vpn-card top2"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">2</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">BlancVPN</span><span class="vpn-badge badge-purple">Самый быстрый</span></div><p class="vpn-desc">Outline до 2 Гбит/с, пинг 35 мс. Безлимит устройств, русский интерфейс, Telegram-бот.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🚀 2 Гбит/с</span><span class="pill">∞ Безлимит</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div><div class="vpn-stat"><div class="stat-label">Гарантия</div><div class="stat-value">30 дней</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Outline/V2Ray</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div></div></div>
-<div class="vpn-card top3"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">3</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Trust.Zone</span><span class="vpn-badge badge-green">Обфускация</span></div><p class="vpn-desc">VLESS+Reality и AmneziaWG — устойчивы к любым блокировкам. Самая низкая цена в рейтинге.</p><div class="vpn-pills"><span class="pill">💳 РФ</span><span class="pill">🔐 VLESS</span><span class="pill">от $1.77</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">3 дня/1 ГБ</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">VLESS+Reality</div></div><div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">93 страны</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">4</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">AdGuard VPN</span><span class="vpn-badge badge-blue">Лучший бесплатный</span></div><p class="vpn-desc">TrustTunnel QUIC — 118 Мбит/с. Доступен в российских магазинах, 3 ГБ бесплатно, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🔐 TrustTunnel</span><span class="pill">🆓 3 ГБ</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 247 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">TrustTunnel</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">10</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">5</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">hidemy.name</span><span class="vpn-badge badge-orange">С 2012 года</span></div><p class="vpn-desc">Stealth OpenVPN UDP. Русский интерфейс и поддержка, 24 часа бесплатного теста, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🇷🇺 Русский</span><span class="pill">⏱️ 24ч бесплатно</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 270 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Stealth OpenVPN</div></div><div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">80+ стран</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">6</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Amnezia VPN</span><span class="vpn-badge badge-purple">Open-source</span></div><p class="vpn-desc">AmneziaWG 2.0 — лучший протокол для ТСПУ в 2026. Open-source, self-hosted, Amnezia Free бесплатно.</p><div class="vpn-pills"><span class="pill">🆓 Бесплатно</span><span class="pill">🔐 AmneziaWG 2.0</span><span class="pill">📂 Open-source</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $3.5/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">Amnezia Free</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">AmneziaWG 2.0</div></div><div class="vpn-stat"><div class="stat-label">Аудиты</div><div class="stat-value green">2 × 7ASecurity</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">7</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Дядя Ваня VPN</span><span class="vpn-badge badge-blue">Лучшая цена</span></div><p class="vpn-desc">От 99 ₽/мес, оплата рублями, 174 локации, безлимит устройств, Android TV.</p><div class="vpn-pills"><span class="pill">💳 Рубли</span><span class="pill">📺 Android TV</span><span class="pill">∞ Безлимит</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Пробный</div><div class="stat-value">3 дня / 10 ₽</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Shadowsocks</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div></div></div>
-</div>
-</div>
-</section>
+    <!-- ЧТО ТАКОЕ -->
+    <h2 id="chto-takoe">Что такое OpenVPN</h2>
 
-<section id="faq" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-<div class="faq-list">
-<div class="faq-item"><div class="faq-q">Какой VPN лучше для России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">По результатам тестов апреля 2026 года лидируют ZoogVPN (гарантия работы, 10 ГБ бесплатно) и AdGuard VPN (118 Мбит/с, доступен в российских магазинах). Для максимальной устойчивости к ТСПУ — Amnezia с AmneziaWG 2.0.</div></div></div>
-<div class="faq-item"><div class="faq-q">Законно ли использовать VPN в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. Использование VPN физическими лицами в России не запрещено. Штрафов за подключение нет. Запрет касается рекламы VPN для обхода блокировок.</div></div></div>
-<div class="faq-item"><div class="faq-q">Что такое обфускация и зачем она нужна?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Обфускация маскирует VPN-трафик под обычный HTTPS. Без неё ТСПУ распознаёт VPN-соединение и блокирует его. В 2026 году обфускация обязательна для стабильной работы VPN в России.</div></div></div>
-<div class="faq-item"><div class="faq-q">Можно ли оплатить VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. ZoogVPN, AdGuard VPN, BlancVPN, Trust.Zone, hidemy.name и Дядя Ваня VPN принимают карты МИР, СБП и YooMoney. Зарубежные сервисы — через криптовалюту.</div></div></div>
+    <p>OpenVPN — это одновременно протокол и программное обеспечение с открытым исходным кодом. Ядро протокола реализует VPN-туннель поверх SSL/TLS, используя стандартную библиотеку OpenSSL. Это означает, что OpenVPN поддерживает весь спектр криптографических алгоритмов OpenSSL — от современных AES-256-GCM до устаревших (что одновременно является и гибкостью, и риском при неправильной настройке).</p>
+
+    <p>Конфигурационный файл OpenVPN — это текстовый файл с расширением <strong>.ovpn</strong>, содержащий адрес сервера, порт, протокол, сертификаты и ключи. Именно .ovpn-файлы получают пользователи у VPN-провайдеров и загружают в клиентские приложения. Это делает OpenVPN одним из наиболее совместимых форматов — один .ovpn-файл работает в OpenVPN Community, Tunnelblick, OpenVPN Connect и большинстве роутеров с VPN-клиентом.</p>
+
+    <p>OpenVPN поддерживает два транспортных режима: <strong>UDP</strong> (быстрее, меньше оверхед, стандартный порт 1194) и <strong>TCP</strong> (медленнее, но работает там, где UDP заблокирован; при использовании порта 443 выглядит как HTTPS). Именно TCP 443 — стандартный обходной приём для корпоративных файрволов и ряда сетевых ограничений.</p>
+
+    <!-- BLANCVPN — сразу после введения -->
+    <div class="vpn-card-single">
+      <div class="vpn-name-row">
+        <span class="vpn-name">BlancVPN</span>
+        <span class="vpn-badge badge-purple">Outline — лучше OpenVPN для России</span>
+      </div>
+      <p>Русскоязычный VPN-сервис на базе Outline/Shadowsocks — протокол с обфускацией, который не замедляется ТСПУ в отличие от чистого OpenVPN. 112 Мбит/с, безлимит устройств, готовые приложения. Оплата МИР и СБП, не нужно работать с .ovpn-файлами вручную.</p>
+      <div class="vpn-pills">
+        <span class="pill">🔐 Outline / Shadowsocks</span>
+        <span class="pill">🚀 112 Мбит/с</span>
+        <span class="pill">∞ Безлимит устройств</span>
+        <span class="pill">🇷🇺 Русский сервис</span>
+        <span class="pill">💳 МИР / СБП</span>
+      </div>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Перейти на BlancVPN →</a>
+    </div>
+
+    <!-- КАК РАБОТАЕТ -->
+    <h2 id="kak-rabotaet">Как работает OpenVPN</h2>
+
+    <h3>Архитектура TLS-туннеля</h3>
+    <p>OpenVPN создаёт зашифрованный туннель в два этапа. На первом этапе клиент и сервер устанавливают TLS-соединение и взаимно аутентифицируются с помощью сертификатов (или предварительного ключа — PSK). На втором — внутри этого TLS-канала передаются IP-пакеты через виртуальный сетевой адаптер TUN (для маршрутизации IP) или TAP (для эмуляции Ethernet).</p>
+
+    <p>TLS-рукопожатие OpenVPN использует стандарт <strong>X.509 PKI</strong>: у сервера есть CA-сертификат, серверный сертификат и ключ; клиент проверяет сервер по CA и при необходимости предъявляет собственный клиентский сертификат. Это делает OpenVPN надёжным для корпоративных сценариев, где каждый пользователь имеет индивидуальный сертификат.</p>
+
+    <h3>Почему OpenVPN обнаруживается ТСПУ</h3>
+    <p>Несмотря на использование TLS, OpenVPN имеет характерные отличия от браузерного HTTPS. Первое — специфический паттерн TLS-рукопожатия: OpenVPN использует TLS 1.2 с конкретным набором шифров и не имитирует fingerprint реального браузера. Второе — характерные размеры управляющих пакетов и периодические keepalive-пакеты с предсказуемым интервалом. Продвинутые DPI-системы умеют отличать OpenVPN от обычного HTTPS по этим признакам.</p>
+
+    <h3>Stealth OpenVPN и obfsproxy</h3>
+    <p>Для обхода обнаружения OpenVPN оборачивают в обфускаторы. Наиболее распространённые подходы в России:</p>
+    <ul>
+      <li><strong>obfs4</strong> (obfsproxy): рандомизирует длины пакетов и паттерн трафика, делая OpenVPN похожим на случайный шум</li>
+      <li><strong>Stunnel</strong>: оборачивает OpenVPN в дополнительный TLS-слой с нормальным браузерным fingerprint</li>
+      <li><strong>Shadowsocks-transport</strong>: передаёт OpenVPN через Shadowsocks-туннель</li>
+      <li><strong>XOR-patch</strong>: простая XOR-обфускация пакетов — менее надёжна, но поддерживается рядом провайдеров</li>
+    </ul>
+    <p>Ряд коммерческих провайдеров (hidemy.name называет свой вариант «Stealth OpenVPN») реализуют собственные обфускаторы поверх стандартного OpenVPN-клиента.</p>
+
+    <!-- НАСТРОЙКА -->
+    <h2 id="nastrojka">Настройка OpenVPN — работа с .ovpn-файлами</h2>
+
+    <p>Получите <code>.ovpn</code>-файл у своего VPN-провайдера (обычно в разделе «Скачать конфигурацию» или «Manual Setup» личного кабинета). Большинство провайдеров предлагают отдельные файлы для UDP и TCP режимов и для разных серверных локаций.</p>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🖥️</span>
+        <h4>Windows — OpenVPN GUI или OpenVPN Connect</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Скачайте <strong>OpenVPN GUI</strong> с openvpn.net/community-downloads или <strong>OpenVPN Connect</strong> с openvpn.net/client</li>
+          <li>Установите от имени администратора — создастся виртуальный TAP/WFP-адаптер</li>
+          <li>Добавьте папку OpenVPN в исключения антивируса сразу после установки</li>
+          <li>Скопируйте <code>.ovpn</code>-файл в папку <code>C:\Program Files\OpenVPN\config</code></li>
+          <li>ПКМ на иконке OpenVPN GUI в трее → «Подключиться» → выберите нужный конфиг</li>
+          <li>При запросе — введите логин и пароль от аккаунта провайдера</li>
+          <li>Иконка в трее станет зелёной при успешном подключении</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🤖</span>
+        <h4>Android — OpenVPN for Android</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Установите <strong>OpenVPN for Android</strong> из Google Play (бесплатно, open-source)</li>
+          <li>Нажмите значок папки в правом верхнем углу → выберите <code>.ovpn</code>-файл</li>
+          <li>Нажмите «Импорт» → профиль появится в списке</li>
+          <li>Нажмите на профиль → разрешите VPN-запрос</li>
+          <li>Отключите оптимизацию батареи для приложения: Настройки → Приложения → OpenVPN → Батарея → Без ограничений</li>
+          <li>Проверьте: ipleak.net должен показывать нероссийский IP</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">📱</span>
+        <h4>iPhone — OpenVPN Connect</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Установите <strong>OpenVPN Connect</strong> из App Store (бесплатно)</li>
+          <li>Передайте <code>.ovpn</code>-файл на iPhone: через AirDrop, почту или Files</li>
+          <li>Откройте файл → нажмите «Поделиться» → выберите OpenVPN Connect → «Импортировать»</li>
+          <li>Нажмите «Добавить» → введите логин/пароль если требуется</li>
+          <li>Нажмите переключатель подключения → разрешите «Добавить конфигурации VPN»</li>
+          <li>Отключите iCloud Private Relay: Настройки → Apple ID → iCloud → Private Relay → Выкл</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🍎</span>
+        <h4>macOS — Tunnelblick</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Скачайте <strong>Tunnelblick</strong> с tunnelblick.net (бесплатно, open-source)</li>
+          <li>Установите → разрешите сетевое расширение в Системных настройках → Конфиденциальность</li>
+          <li>Дважды кликните на <code>.ovpn</code>-файле — Tunnelblick предложит его установить</li>
+          <li>Выберите «Только для меня» или «Для всех пользователей» → «OK»</li>
+          <li>Нажмите на иконку Tunnelblick в Menu Bar → «Подключиться» → выберите конфиг</li>
+          <li>Отключите iCloud Private Relay перед подключением</li>
+        </ol>
+      </div>
+    </div>
+
+    <h3>Установка OpenVPN-сервера на Linux (VPS)</h3>
+    <p>Простейший способ — скрипт angristan/openvpn-install, который автоматически устанавливает и настраивает OpenVPN-сервер с генерацией клиентских конфигов:</p>
+    <pre><code>curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
+chmod +x openvpn-install.sh
+sudo ./openvpn-install.sh</code></pre>
+
+    <p>Скрипт задаст несколько вопросов (порт, протокол, DNS) и создаст сервер плюс первый <code>.ovpn</code>-файл для клиента. Для добавления новых клиентов повторно запустите скрипт и выберите «Добавить нового клиента». Каждый клиент получает отдельный <code>.ovpn</code>-файл со встроенными сертификатами.</p>
+
+    <h3>Важные параметры .ovpn-файла</h3>
+    <p>Несколько строк в конфиге влияют на поведение в России:</p>
+    <ul>
+      <li><code>proto udp</code> vs <code>proto tcp</code> — TCP медленнее, но работает на порту 443 там, где UDP блокируется</li>
+      <li><code>port 443</code> — трафик выглядит как HTTPS с точки зрения файрвола (не DPI)</li>
+      <li><code>tls-version-min 1.2</code> — требует TLS 1.2+, запрещая устаревшие версии</li>
+      <li><code>cipher AES-256-GCM</code> — современный AEAD-шифр, быстрее и надёжнее AES-256-CBC</li>
+      <li><code>compress lz4-v2</code> — сжатие данных (убирайте если сжатие уже применяется на уровне протокола)</li>
+    </ul>
+
+    <!-- СРАВНЕНИЕ -->
+    <h2 id="sravnenie">OpenVPN vs WireGuard vs IPSec</h2>
+
+    <table class="proto-compare">
+      <thead>
+        <tr><th>Параметр</th><th>OpenVPN</th><th>WireGuard</th><th>IPSec/IKEv2</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Кодовая база</td>
+          <td>~70 000 строк</td>
+          <td>~4 000 строк</td>
+          <td>~100 000+ строк</td>
+        </tr>
+        <tr>
+          <td>Транспорт</td>
+          <td>UDP или TCP</td>
+          <td>UDP only</td>
+          <td>UDP</td>
+        </tr>
+        <tr>
+          <td>Скорость</td>
+          <td>Средняя</td>
+          <td style="color:var(--green);">Очень высокая</td>
+          <td>Высокая</td>
+        </tr>
+        <tr>
+          <td>CPU-нагрузка</td>
+          <td>Высокая</td>
+          <td style="color:var(--green);">Минимальная</td>
+          <td>Средняя</td>
+        </tr>
+        <tr>
+          <td>Порт 443/TCP</td>
+          <td class="check">✓ Поддерживает</td>
+          <td class="cross">✗ Только UDP</td>
+          <td class="cross">✗ Нет</td>
+        </tr>
+        <tr>
+          <td>Встроен в ОС</td>
+          <td class="cross">✗ Требует клиент</td>
+          <td>Linux 5.6+, Win 11</td>
+          <td class="check">✓ Все основные ОС</td>
+        </tr>
+        <tr class="highlight">
+          <td>ТСПУ (Россия)</td>
+          <td style="color:var(--gold);">⚠️ Замедляется</td>
+          <td style="color:var(--orange);">✗ Замедляется</td>
+          <td style="color:var(--orange);">✗ Замедляется</td>
+        </tr>
+        <tr class="highlight">
+          <td>С обфускацией (Россия)</td>
+          <td style="color:var(--green);">✓ Stealth/obfs4</td>
+          <td style="color:var(--green);">✓ AmneziaWG</td>
+          <td class="cross">✗ Нет решений</td>
+        </tr>
+        <tr>
+          <td>Роутеры</td>
+          <td class="check">✓ Широкая поддержка</td>
+          <td class="check">✓ Новые прошивки</td>
+          <td class="check">✓ Большинство</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Преимущества OpenVPN</h3>
+    <ul>
+      <li><strong>Работа по TCP/443.</strong> Единственный из трёх протоколов, который может туннелировать трафик по TCP с портом 443 — это позволяет пройти через корпоративные файрволы и ряд простых DPI-систем, ориентированных только на блокировку по порту.</li>
+      <li><strong>Широкая совместимость с роутерами.</strong> OpenVPN поддерживается Keenetic, DD-WRT, Asus Merlin, OpenWRT из коробки без дополнительных пакетов — .ovpn-файл от провайдера загружается напрямую.</li>
+      <li><strong>Зрелость и аудированность.</strong> 20+ лет в продакшене, многократные аудиты безопасности. Корпоративная среда доверяет OpenVPN именно из-за этого.</li>
+      <li><strong>Гибкость конфигурации.</strong> Поддерживает сотни параметров конфигурации, сложные схемы аутентификации (сертификаты + пароль + OTP), маршрутизацию и раздельное туннелирование на уровне конфига.</li>
+      <li><strong>Обфускация через obfsproxy.</strong> В отличие от WireGuard и IPSec, для OpenVPN существуют хорошо проработанные обфускаторы — obfs4, Stunnel, XOR-patch.</li>
+    </ul>
+
+    <h3>Недостатки и уязвимости</h3>
+    <ul>
+      <li><strong>Высокая нагрузка на CPU.</strong> Работа в userspace (не в ядре ОС) даёт значительный оверхед. На слабых роутерах OpenVPN ограничивает скорость до 20–40 Мбит/с, тогда как WireGuard на том же железе дает 80–150 Мбит/с.</li>
+      <li><strong>Обнаружение ТСПУ без обфускации.</strong> Стандартный OpenVPN без обфускатора замедляется ТСПУ. Для надёжного обхода блокировок в России нужен Stealth-режим или obfsproxy.</li>
+      <li><strong>Сложная конфигурация PKI.</strong> Для самостоятельного сервера нужно настроить инфраструктуру сертификатов (CA, серверный сертификат, клиентские сертификаты). Скрипты упрощают это, но при ручной настройке легко ошибиться.</li>
+      <li><strong>TCP-режим усиливает проблему двойного TCP.</strong> При туннелировании TCP через TCP (OpenVPN TCP + TCP-трафик внутри) возникает «TCP meltdown» — производительность падает при потере пакетов. Используйте UDP когда возможно.</li>
+    </ul>
+
+    <!-- СТАТУС РКН -->
+    <h2 id="rkn">Статус OpenVPN в России — май 2026</h2>
+
+    <p>OpenVPN без обфускации <strong>замедляется ТСПУ</strong> по всем крупным операторам России. Картина схожа с WireGuard: speedtest показывает полную скорость, но трафик к заблокированным ресурсам через OpenVPN режется до уровня, непригодного для 4K-стриминга. На Ростелекоме и Билайне ситуация мягче, чем на МТС и Мегафон.</p>
+
+    <p><strong>OpenVPN TCP/443 без обфускации</strong> — <span class="status-badge status-warn" style="font-size:0.8rem;">⚠️ Нестабильно</span>. Помогает против простых файрволов по порту, но DPI ТСПУ распознаёт OpenVPN по TLS-fingerprint вне зависимости от порта.</p>
+
+    <p><strong>OpenVPN с obfs4 / Stealth</strong> — <span class="status-badge status-ok" style="font-size:0.8rem;">✓ Работает надёжно</span>. Коммерческие провайдеры, реализующие Stealth OpenVPN (hidemy.name), показывали стабильную работу на всех операторах в течение 2024–2026 годов. Самостоятельная настройка obfs4 требует установки obfsproxy-сервера, но даёт аналогичную устойчивость.</p>
+
+    <p>Для роутеров ситуация особая: на Keenetic с встроенным OpenVPN-клиентом при волнах блокировок часто достаточно сменить порт на нестандартный или перейти на TCP/443 — простые ограничения РКН по IP-диапазонам не затрагивают самоходные серверы. Но при целенаправленном шейпинге по сигнатуре потребуется обфускация. Подробнее о настройке OpenVPN на роутерах — в разделе <a href="/vpn-dlya-routera/">VPN для роутера</a>.</p>
+
+    <!-- УСТРАНЕНИЕ НЕПОЛАДОК -->
+    <h2 id="troubleshooting">Устранение неполадок OpenVPN</h2>
+
+    <h3>TLS handshake failed / TLS Error</h3>
+    <ul>
+      <li>Проверьте системное время на устройстве — разница с сервером более 2 минут ломает TLS-рукопожатие</li>
+      <li>Убедитесь, что <code>.ovpn</code>-файл содержит актуальные сертификаты — провайдеры периодически обновляют CA-сертификаты</li>
+      <li>Проверьте, что порт и протокол (UDP/TCP) в файле совпадают с настройками сервера</li>
+      <li>На Windows: добавьте папку OpenVPN в исключения антивируса — Kaspersky и ESET могут блокировать TAP-адаптер</li>
+    </ul>
+
+    <h3>Подключился, но YouTube/Instagram не работают</h3>
+    <ul>
+      <li>Это признак шейпинга ТСПУ. Проверьте: ipleak.net — если IP нероссийский, но YouTube тормозит — значит, OpenVPN-трафик замедляется, даже если туннель формально установлен</li>
+      <li>Переключитесь на TCP/443 в настройках или попросите провайдера предоставить конфиг с obfs4/Stealth</li>
+      <li>Для самостоятельного сервера: установите obfsproxy и оберните OpenVPN в obfs4-туннель</li>
+    </ul>
+
+    <h3>Медленная скорость через OpenVPN на роутере</h3>
+    <ul>
+      <li>OpenVPN работает в userspace и сильно нагружает CPU роутера. На Keenetic со слабым процессором максимум — 20–40 Мбит/с</li>
+      <li>Переключитесь на WireGuard или AmneziaWG если роутер поддерживает — они в 3–5 раз быстрее при той же нагрузке на CPU</li>
+      <li>Замените шифр на <code>cipher AES-256-GCM</code> — он быстрее AES-256-CBC при наличии AES-NI</li>
+      <li>Используйте UDP вместо TCP — TCP в туннеле через TCP значительно медленнее</li>
+    </ul>
+
+    <h3>.ovpn-файл не импортируется в приложение</h3>
+    <ul>
+      <li>Проверьте расширение — должно быть именно <code>.ovpn</code>, а не <code>.txt</code> или <code>.ovpn.txt</code></li>
+      <li>Убедитесь, что файл не повреждён: откройте в текстовом редакторе — должен начинаться со строки <code>client</code></li>
+      <li>Некоторые конфиги разделены: отдельный <code>.ovpn</code> и отдельные файлы <code>.crt</code>/<code>.key</code> — в этом случае все файлы должны быть в одной папке</li>
+      <li>На Android попробуйте OpenVPN for Android вместо официального OpenVPN Connect — он лучше обрабатывает нестандартные конфиги</li>
+    </ul>
+
+    <div class="tip-box" style="margin: 32px 0;">
+      <span class="tip-icon">💡</span>
+      <p><strong>Лог OpenVPN — ключ к диагностике:</strong> в OpenVPN GUI (Windows) нажмите ПКМ на иконке трея → «Просмотр лога». В Tunnelblick (macOS) — иконка в Menu Bar → «VPN Details» → вкладка Log. Ошибка TLS указывает на проблему с сертификатами или временем. Ошибка «Connection refused» — сервер недоступен. «AUTH_FAILED» — неверный логин/пароль.</p>
+    </div>
+
+    <!-- ЗАКЛЮЧЕНИЕ -->
+    <h2>Итог: OpenVPN в России в 2026 году</h2>
+
+    <p>OpenVPN остаётся актуальным протоколом с двумя чёткими сценариями применения. Первый — корпоративные VPN и роутеры, где широкая совместимость важнее скорости и где блокировки РКН не являются целью. Второй — Stealth OpenVPN с obfsproxy у коммерческих провайдеров: надёжный обход ТСПУ при немного меньшей скорости по сравнению с WireGuard.</p>
+
+    <p>Для новых личных проектов и VPS-серверов в 2026 году предпочтительнее <a href="/wireguard/">WireGuard</a> + <a href="/amneziawg/">AmneziaWG</a> для обфускации или <a href="/vless/">VLESS+Reality</a>. Они быстрее, проще в настройке и устойчивее к обнаружению. Полный список рабочих VPN для России с Stealth-протоколами — в нашем <a href="/vpn-dlya-rossii/">главном рейтинге</a>.</p>
+
+    <!-- FAQ -->
+    <h2 id="faq">FAQ по OpenVPN</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">Что такое .ovpn-файл и как его использовать?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">.ovpn — это текстовый конфигурационный файл OpenVPN, содержащий параметры подключения: адрес сервера, порт, протокол, сертификаты и ключи. Получить его можно в личном кабинете VPN-провайдера (раздел «Ручная настройка» или «OpenVPN»). Импортируйте файл в приложение: OpenVPN GUI (Windows), OpenVPN for Android, OpenVPN Connect (iOS), Tunnelblick (macOS) — все они поддерживают прямой импорт .ovpn.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">OpenVPN работает в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Стандартный OpenVPN без обфускации — замедляется ТСПУ, YouTube тормозит даже при подключённом VPN. OpenVPN с обфускацией (Stealth OpenVPN, obfs4, obfsproxy) — работает надёжно. Коммерческие провайдеры с реализацией Stealth OpenVPN (hidemy.name и другие) показывают стабильную работу. Для самостоятельного сервера потребуется дополнительная настройка obfsproxy.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Чем отличается OpenVPN UDP от TCP?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">UDP — быстрее, меньше задержки, стандартный выбор. Рекомендуется для большинства случаев. TCP — медленнее из-за оверхеда подтверждений, но работает там, где UDP заблокирован. При использовании TCP с портом 443 трафик выглядит как HTTPS на уровне файрвола (не DPI). Для роутеров и стриминга используйте UDP; для корпоративных сетей с блокировкой UDP — TCP.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">OpenVPN или WireGuard — что выбрать для роутера?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Для роутеров WireGuard значительно предпочтительнее по скорости: OpenVPN нагружает CPU роутера, давая 20–40 Мбит/с; WireGuard на том же железе — 80–200 Мбит/с. Широкая совместимость OpenVPN с роутерами остаётся его преимуществом — он работает на большинстве прошивок без Entware. Для обхода блокировок на роутере оптимальны AmneziaWG (если поддерживается) или WireGuard + дополнительная обфускация. Подробнее — в разделе <a href="/vpn-dlya-routera/">VPN для роутера</a>.</div></div>
+      </div>
+
+    </div>
+
+  </div>
 </div>
-</div>
-</section>
-<div class="container">
-<div class="bottom-cta">
-  <h3>🏆 Начните с ZoogVPN — 10 ГБ бесплатно</h3>
-  <p>Гарантия работы в России. Обфускация ZoogShadowing. Оплата МИР. Подключение за 2 минуты.</p>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
-</div>
-</div>
-<footer class="site-footer" style="margin-top:64px;">
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/wireguard/">WireGuard</a></li>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/outline/">Outline VPN</a></li>
+          <li><a href="/v2ray/">V2Ray / Xray</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN для России</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Устройства</h4>
+        <ul>
+          <li><a href="/vpn-dlya-routera/">VPN для роутера</a></li>
+          <li><a href="/vpn-dlya-pk/">VPN для ПК</a></li>
+          <li><a href="/vpn-dlya-macos/">VPN для Mac</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Информация предоставляется в ознакомительных целях.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">🏆 <strong>ZoogVPN</strong> — работает в России, 10 ГБ бесплатно</div>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
+<script>
+  const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
+  if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
+</script>
 </body>
 </html>
