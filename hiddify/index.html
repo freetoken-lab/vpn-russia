@@ -3,96 +3,473 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hiddify — установка и настройка в России 2026, VLESS и Hysteria2</title>
-  <meta name="description" content="Hiddify — бесплатный мультипротокольный клиент с VLESS, Hysteria2, Trojan. Установка за 2 минуты на Android, iOS, Windows, macOS.">
+  <title>Hiddify — что это, настройка на Windows, Android, iPhone, macOS, Hiddify Manager 2026</title>
+  <meta name="description" content="Полный гайд по Hiddify: что это за приложение (не протокол), как работает на sing-box, настройка на Android, iPhone, Windows и macOS, добавление подписки, Hiddify Manager для своего сервера. Май 2026.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/hiddify/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .content-body { max-width: 820px; }
+    .content-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; }
+    .content-body h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); margin: 32px 0 12px; }
+    .content-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .content-body ul, .content-body ol { padding-left: 0; margin-bottom: 20px; }
+    .content-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 8px; }
+    .content-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .content-body ol { counter-reset: item; }
+    .content-body ol li { counter-increment: item; }
+    .content-body ol li::before { content: counter(item)'.'; color: var(--orange); font-weight: 700; top: 1px; }
+    .content-body code { background: var(--bg3); border: 1px solid var(--card-border); border-radius: 4px; padding: 2px 7px; font-size: 0.85rem; color: var(--green); font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+    .content-body pre { background: var(--bg3); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 16px 20px; overflow-x: auto; margin: 16px 0 24px; }
+    .content-body pre code { background: none; border: none; padding: 0; font-size: 0.83rem; color: var(--text); }
+    .proto-compare { width: 100%; border-collapse: collapse; margin: 24px 0; }
+    .proto-compare th { background: var(--bg3); padding: 11px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .proto-compare td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.86rem; color: var(--text-muted); vertical-align: middle; }
+    .proto-compare td:first-child { font-weight: 700; color: var(--white); }
+    .proto-compare tr.highlight td { background: rgba(249,115,22,0.05); }
+    .setup-block { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; margin-bottom: 24px; }
+    .setup-block-header { background: var(--bg3); padding: 13px 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--card-border); }
+    .setup-block-header .os-icon { font-size: 1.2rem; }
+    .setup-block-header h4 { font-size: 0.95rem; margin: 0; color: var(--white); font-weight: 700; }
+    .setup-block-body { padding: 20px; }
+    .setup-block-body ol { margin: 0; }
+    .setup-block-body li { font-size: 0.88rem; }
+    .vpn-card-single { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-card-single .vpn-name-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .vpn-card-single .vpn-name { font-size: 1.2rem; font-weight: 800; color: var(--white); }
+    .vpn-card-single p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-card-single .vpn-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .client-compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+    .client-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 18px; }
+    .client-card h4 { font-size: 0.9rem; font-weight: 700; color: var(--orange); margin-bottom: 6px; }
+    .client-card p { font-size: 0.84rem; color: var(--text-muted); margin: 0; line-height: 1.65; }
+    .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; }
+    .status-ok   { background: rgba(34,197,94,0.12);  color: var(--green);  border: 1px solid rgba(34,197,94,0.25); }
+    .status-warn { background: rgba(251,191,36,0.12); color: var(--gold);   border: 1px solid rgba(251,191,36,0.25); }
+    @media (max-width: 680px) { .client-compare-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#content">О теме</a><a href="#vpn">Рейтинг VPN</a><a href="#faq">FAQ</a>
-      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">VPN →</a>
+      <a href="#chto-takoe">Что такое Hiddify</a>
+      <a href="#kak-rabotaet">Как работает</a>
+      <a href="#nastrojka">Настройка</a>
+      <a href="#manager">Hiddify Manager</a>
+      <a href="#sravnenie">Сравнение клиентов</a>
+      <a href="#troubleshooting">Неполадки</a>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="nav-cta">▶ BlancVPN</a>
     </div>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <span>Hiddify — клиент для VLESS и Hysteria2 в России 2026</span></div></div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#chto-takoe" class="mobile-link">Что такое Hiddify</a>
+  <a href="#kak-rabotaet" class="mobile-link">Как работает</a>
+  <a href="#nastrojka" class="mobile-link">Настройка</a>
+  <a href="#manager" class="mobile-link">Hiddify Manager</a>
+  <a href="#sravnenie" class="mobile-link">Сравнение клиентов</a>
+  <a href="#troubleshooting" class="mobile-link">Устранение неполадок</a>
+  <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ BlancVPN</a>
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>Hiddify</span>
+  </div>
+</div>
+
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>Hiddify — клиент для VLESS и Hysteria2 в России 2026</h1>
-    <p class="lead">Hiddify — бесплатный мультипротокольный клиент с VLESS, Hysteria2, Trojan. Установка за 2 минуты на Android, iOS, Windows, macOS.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обновлено май 2026 — версия 4.x, sing-box ядро
+    </div>
+    <h1>Hiddify — универсальный прокси-клиент для обхода блокировок в России</h1>
+    <p class="lead">Hiddify — это не протокол, а <strong>бесплатное кросс-платформенное клиентское приложение</strong> на базе движка sing-box. Работает на Android, iOS, Windows, macOS и Linux. Поддерживает практически все современные протоколы обхода блокировок: VLESS+Reality, VMess, Trojan, Shadowsocks, Hysteria2, TUIC и другие. Главное отличие от конкурентов (v2rayN, Shadowrocket) — современный интерфейс, автоматический выбор сервера с минимальным пингом и единый клиент для всех платформ.</p>
     <div class="meta">
-      <div class="meta-item">📡 <strong>Тесты:</strong> апрель 2026</div>
-      <div class="meta-item">✅ <strong>Только с обфускацией</strong></div>
-      <div class="meta-item">💳 <strong>Оплата из РФ</strong></div>
+      <div class="meta-item">📱 <strong>Тип:</strong> клиентское приложение (не протокол)</div>
+      <div class="meta-item">⚙️ <strong>Ядро:</strong> sing-box (open-source)</div>
+      <div class="meta-item">🆓 <strong>Цена:</strong> бесплатно, без рекламы</div>
+      <div class="meta-item">📡 <strong>Статус:</strong> <span class="status-badge status-ok">✓ Работает в России</span></div>
     </div>
   </div>
 </div>
 
-<section id="content" style="padding-top:48px;">
-<div class="container">
-  <div class="section-header"><div class="section-label">Обзор</div><h2>Что такое Hiddify и зачем он нужен</h2></div>
-  <p style="color:var(--text-muted);font-size:0.95rem;max-width:720px;margin-bottom:14px;">Hiddify — бесплатный open-source клиент для работы с несколькими протоколами: VLESS, VMess, Shadowsocks, Trojan, Hysteria2. Подключается через QR-код или ссылку. Работает на Android, iOS, Windows, macOS и Linux.</p>
-  <p style='color:var(--text-muted);font-size:0.95rem;max-width:720px;'>Главное преимущество — поддержка Hysteria2, протокола на базе QUIC с высокой скоростью при нестабильном соединении. Hiddify можно подключить к серверам от Trust.Zone, BlancVPN или к личному VPS. Клиент бесплатный — платить нужно только за сервер или готовый VPN-сервис.</p>
-  <div class="tip-box" style="margin-top:20px;"><span class="tip-icon">💡</span><p><strong>Важно:</strong> Все VPN в рейтинге ниже протестированы в апреле 2026 года на реальных подключениях МТС, Билайн, Мегафон и Ростелеком.</p></div>
-</div>
-</section>
+<div class="container" style="padding-top: 48px; padding-bottom: 80px;">
+  <div class="content-body">
 
-<section id="vpn">
-<div class="container">
-<div class="section-header" style="margin-bottom:24px;">
-  <div class="section-label">Рейтинг</div>
-  <h2>ТОП-7 VPN — проверены в апреле 2026</h2>
-</div>
-<div class="toplist">
-<div class="vpn-card top1"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">1</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">ZoogVPN</span><span class="vpn-badge badge-orange">Выбор редакции</span></div><p class="vpn-desc">Гарантия работы в России. ZoogShadowing обходит ТСПУ на МТС, Билайн, Мегафон, Ростелеком. 10 ГБ бесплатно, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🔐 ZoogShadowing</span><span class="pill">🆓 10 ГБ</span><span class="pill">∞ Безлимит устройств</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">10 ГБ/мес</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">ZoogShadowing</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">Безлимит</div></div></div></div>
-<div class="vpn-card top2"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">2</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">BlancVPN</span><span class="vpn-badge badge-purple">Самый быстрый</span></div><p class="vpn-desc">Outline до 2 Гбит/с, пинг 35 мс. Безлимит устройств, русский интерфейс, Telegram-бот.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🚀 2 Гбит/с</span><span class="pill">∞ Безлимит</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div><div class="vpn-stat"><div class="stat-label">Гарантия</div><div class="stat-value">30 дней</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Outline/V2Ray</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div></div></div>
-<div class="vpn-card top3"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">3</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Trust.Zone</span><span class="vpn-badge badge-green">Обфускация</span></div><p class="vpn-desc">VLESS+Reality и AmneziaWG — устойчивы к любым блокировкам. Самая низкая цена в рейтинге.</p><div class="vpn-pills"><span class="pill">💳 РФ</span><span class="pill">🔐 VLESS</span><span class="pill">от $1.77</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">3 дня/1 ГБ</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">VLESS+Reality</div></div><div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">93 страны</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">4</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">AdGuard VPN</span><span class="vpn-badge badge-blue">Лучший бесплатный</span></div><p class="vpn-desc">TrustTunnel QUIC — 118 Мбит/с. Доступен в российских магазинах, 3 ГБ бесплатно, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🔐 TrustTunnel</span><span class="pill">🆓 3 ГБ</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 247 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">TrustTunnel</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">10</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">5</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">hidemy.name</span><span class="vpn-badge badge-orange">С 2012 года</span></div><p class="vpn-desc">Stealth OpenVPN UDP. Русский интерфейс и поддержка, 24 часа бесплатного теста, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🇷🇺 Русский</span><span class="pill">⏱️ 24ч бесплатно</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 270 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Stealth OpenVPN</div></div><div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">80+ стран</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">6</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Amnezia VPN</span><span class="vpn-badge badge-purple">Open-source</span></div><p class="vpn-desc">AmneziaWG 2.0 — лучший протокол для ТСПУ в 2026. Open-source, self-hosted, Amnezia Free бесплатно.</p><div class="vpn-pills"><span class="pill">🆓 Бесплатно</span><span class="pill">🔐 AmneziaWG 2.0</span><span class="pill">📂 Open-source</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $3.5/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">Amnezia Free</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">AmneziaWG 2.0</div></div><div class="vpn-stat"><div class="stat-label">Аудиты</div><div class="stat-value green">2 × 7ASecurity</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">7</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Дядя Ваня VPN</span><span class="vpn-badge badge-blue">Лучшая цена</span></div><p class="vpn-desc">От 99 ₽/мес, оплата рублями, 174 локации, безлимит устройств, Android TV.</p><div class="vpn-pills"><span class="pill">💳 Рубли</span><span class="pill">📺 Android TV</span><span class="pill">∞ Безлимит</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Пробный</div><div class="stat-value">3 дня / 10 ₽</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Shadowsocks</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div></div></div>
-</div>
-</div>
-</section>
+    <!-- ЧТО ТАКОЕ -->
+    <h2 id="chto-takoe">Что такое Hiddify — клиент, а не протокол</h2>
 
-<section id="faq" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-<div class="faq-list">
-<div class="faq-item"><div class="faq-q">Какой VPN лучше для России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">По результатам тестов апреля 2026 года лидируют ZoogVPN (гарантия работы, 10 ГБ бесплатно) и AdGuard VPN (118 Мбит/с, доступен в российских магазинах). Для максимальной устойчивости к ТСПУ — Amnezia с AmneziaWG 2.0.</div></div></div>
-<div class="faq-item"><div class="faq-q">Законно ли использовать VPN в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. Использование VPN физическими лицами в России не запрещено. Штрафов за подключение нет. Запрет касается рекламы VPN для обхода блокировок.</div></div></div>
-<div class="faq-item"><div class="faq-q">Что такое обфускация и зачем она нужна?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Обфускация маскирует VPN-трафик под обычный HTTPS. Без неё ТСПУ распознаёт VPN-соединение и блокирует его. В 2026 году обфускация обязательна для стабильной работы VPN в России.</div></div></div>
-<div class="faq-item"><div class="faq-q">Можно ли оплатить VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. ZoogVPN, AdGuard VPN, BlancVPN, Trust.Zone, hidemy.name и Дядя Ваня VPN принимают карты МИР, СБП и YooMoney. Зарубежные сервисы — через криптовалюту.</div></div></div>
+    <p>Важно понять с самого начала: Hiddify — это <strong>приложение-клиент</strong>, а не самостоятельный протокол. Это как разница между Firefox (браузер) и HTTP (протокол). Hiddify — оболочка, которая умеет говорить на десятках протоколов. Сами протоколы — VLESS, VMess, Shadowsocks, Hysteria2 — описаны в отдельных руководствах этого сайта.</p>
+
+    <p>Hiddify создан иранской командой разработчиков (GitHub: hiddify/hiddify-app) как ответ на жёсткую интернет-цензуру в Иране и постепенно завоевал популярность в России, Китае и других странах с блокировками. Приложение полностью open-source, без рекламы и без встроенных серверов — пользователь сам предоставляет конфигурацию своего сервера или подписку.</p>
+
+    <p>Экосистема Hiddify состоит из двух компонентов:</p>
+    <ul>
+      <li><strong>Hiddify (клиент)</strong> — приложение для конечных пользователей. Принимает ссылки-конфиги или URL-подписки, автоматически выбирает лучший сервер, создаёт VPN-туннель. Доступно для Android, iOS, Windows, macOS и Linux.</li>
+      <li><strong>Hiddify Manager</strong> — серверная веб-панель для администраторов. Устанавливается на VPS, позволяет создавать пользователей, управлять подписками и настраивать поддерживаемые протоколы. Автоматически генерирует URL-подписки для Hiddify-клиентов.</li>
+    </ul>
+
+    <!-- BLANCVPN — сразу после введения -->
+    <div class="vpn-card-single">
+      <div class="vpn-name-row">
+        <span class="vpn-name">BlancVPN</span>
+        <span class="vpn-badge badge-purple">Готовый сервис — не нужен Hiddify Manager</span>
+      </div>
+      <p>Русскоязычный VPN-сервис с готовыми приложениями на базе Outline/Shadowsocks. Не требует настройки VPS и Hiddify Manager — просто скачайте приложение, введите учётные данные и пользуйтесь. 112 Мбит/с, безлимит устройств, оплата МИР и СБП.</p>
+      <div class="vpn-pills">
+        <span class="pill">🔐 Outline / Shadowsocks</span>
+        <span class="pill">🚀 112 Мбит/с</span>
+        <span class="pill">∞ Безлимит устройств</span>
+        <span class="pill">🇷🇺 Русский сервис</span>
+        <span class="pill">💳 МИР / СБП</span>
+      </div>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Перейти на BlancVPN →</a>
+    </div>
+
+    <!-- КАК РАБОТАЕТ -->
+    <h2 id="kak-rabotaet">Как работает Hiddify</h2>
+
+    <h3>Ядро sing-box</h3>
+    <p>Под капотом Hiddify работает на <strong>sing-box</strong> — универсальном прокси-движке нового поколения, написанном на Go. sing-box пришёл на смену разрозненным реализациям (shadowsocks-libev, xray-core, hysteria) и объединил их в одном ядре. Это означает, что Hiddify поддерживает любой протокол, который поддерживает sing-box: VLESS, VMess, Trojan, Shadowsocks, Hysteria2, TUIC, ShadowTLS, SSH, XHTTP, Psiphon, Naive, Mieru.</p>
+
+    <p>sing-box создаёт системный TUN-интерфейс (<code>tun0</code>) — весь трафик устройства проходит через него. Это означает, что в отличие от SOCKS5-прокси, Hiddify защищает не только браузер, но и все приложения: Telegram, WhatsApp, игры, системные сервисы.</p>
+
+    <h3>Подписки и автовыбор сервера</h3>
+    <p>Ключевая особенность Hiddify — работа с <strong>URL-подписками</strong>. Подписка — это ссылка вида <code>https://…/sub</code>, по которой приложение загружает список серверов в формате Xray, Clash или sing-box. При обновлении подписки список автоматически обновляется — новые серверы добавляются, заблокированные исчезают без участия пользователя.</p>
+
+    <p>Функция <strong>автовыбора сервера</strong> измеряет пинг до каждого узла подписки и автоматически переключается на наиболее быстрый. Это особенно ценно в России, где разные серверы в разное время могут замедляться ТСПУ — Hiddify сам находит рабочий.</p>
+
+    <h3>Режимы работы</h3>
+    <ul>
+      <li><strong>Global Mode</strong> — весь трафик устройства через прокси</li>
+      <li><strong>Rule-based Mode</strong> — умная маршрутизация: российские сайты напрямую, заблокированные через прокси. Аналог пресета «Россия» в v2rayN</li>
+      <li><strong>Direct Mode</strong> — отключить прокси (VPN выключен)</li>
+    </ul>
+    <p>Для России рекомендуется <strong>Rule-based Mode</strong> — российские банки, Яндекс и Госуслуги открываются напрямую, Instagram, YouTube и Discord — через прокси.</p>
+
+    <!-- НАСТРОЙКА -->
+    <h2 id="nastrojka">Настройка Hiddify на устройствах</h2>
+
+    <p>Для начала работы с Hiddify нужен источник конфигурации: URL-подписка от своего сервера (Hiddify Manager, 3X-UI, Marzban) или от провайдера, либо отдельные ссылки-конфиги вида <code>vless://…</code>, <code>vmess://…</code>, <code>ss://…</code>. Бесплатные конфиги можно найти в Telegram-каналах — подробнее в разделе <a href="/v2ray/">V2Ray / Xray</a>.</p>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🤖</span>
+        <h4>Android — Hiddify</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Установите <strong>Hiddify</strong> из Google Play или APK с github.com/hiddify/hiddify-app/releases</li>
+          <li>При первом запуске приложение предложит добавить профиль. Нажмите <strong>«Добавить профиль»</strong></li>
+          <li>Выберите способ добавления: <strong>«Из ссылки»</strong> (URL-подписка), <strong>«Из буфера»</strong> (конфиг-ссылка <code>vless://…</code>) или <strong>«Сканировать QR»</strong></li>
+          <li>После добавления профиля Hiddify загрузит список серверов и покажет их с пингом</li>
+          <li>Выберите режим <strong>Rule-based</strong> в нижнем меню (значок воронки)</li>
+          <li>Нажмите большую кнопку подключения в центре экрана → разрешите VPN-запрос</li>
+          <li><strong>Обязательно:</strong> Настройки Android → Приложения → Hiddify → Батарея → Без ограничений. Иначе Android завершит приложение в фоне</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">📱</span>
+        <h4>iPhone — Hiddify Proxy & VPN</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Установите <strong>Hiddify Proxy & VPN</strong> из App Store (бесплатно)</li>
+          <li>Нажмите «+» → <strong>«Add Profile»</strong></li>
+          <li>Вставьте URL-подписку или ссылку-конфиг → нажмите «Import»</li>
+          <li>На главном экране нажмите <strong>«Connect»</strong> → разрешите «Добавить конфигурации VPN»</li>
+          <li>Выберите режим работы: <strong>Rule-based</strong> для России (банки напрямую)</li>
+          <li>Отключите iCloud Private Relay: Настройки → Apple ID → iCloud → Private Relay → Выкл</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🖥️</span>
+        <h4>Windows — Hiddify</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Скачайте <strong>Hiddify</strong> с github.com/hiddify/hiddify-app/releases → файл <code>Hiddify-Windows-Setup-x64.exe</code> или из Microsoft Store</li>
+          <li>Установите → запустите от имени администратора при первом запуске</li>
+          <li>Нажмите «+» → <strong>«Add Profile from URL»</strong> → вставьте URL-подписку или конфиг-ссылку</li>
+          <li>После загрузки профиля в списке появятся серверы с пингом</li>
+          <li>Выберите режим <strong>«Rule-based»</strong> — в этом режиме ru-домены и российские IP идут напрямую</li>
+          <li>Нажмите кнопку подключения. При запросе — разрешите сетевой адаптер (UAC)</li>
+          <li>Добавьте папку Hiddify в исключения антивируса</li>
+          <li>Проверьте: ipleak.net → нероссийский IP</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🍎</span>
+        <h4>macOS — Hiddify</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Скачайте <strong>Hiddify</strong> с github.com/hiddify/hiddify-app/releases → <code>Hiddify-MacOS.dmg</code></li>
+          <li>Перетащите в «Программы» → запустите → разрешите сетевое расширение в Системных настройках → Конфиденциальность</li>
+          <li>Нажмите «+» → «Add Profile» → вставьте URL или конфиг-ссылку</li>
+          <li>Выберите режим <strong>Rule-based</strong></li>
+          <li>Нажмите «Connect» — иконка в Menu Bar сменится на активную</li>
+          <li>Отключите iCloud Private Relay</li>
+          <li>Для автозапуска: добавьте Hiddify в Системные настройки → Основные → Объекты входа</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- HIDDIFY MANAGER -->
+    <h2 id="manager">Hiddify Manager — серверная панель</h2>
+
+    <p>Если хочется иметь собственный VPN-сервер с удобным управлением, Hiddify Manager — один из лучших вариантов в 2026 году. Это веб-панель, которая устанавливается на VPS и автоматически настраивает Xray/sing-box с выбранными протоколами. Главные преимущества перед ручной настройкой конфига: веб-интерфейс, управление пользователями, автоматическая генерация подписок и поддержка нескольких протоколов одновременно.</p>
+
+    <h3>Установка Hiddify Manager на Linux VPS</h3>
+    <p>Нужен VPS с Ubuntu 22.04 или 24.04, минимум 512 МБ RAM. Установка одной командой:</p>
+    <pre><code>bash -c "$(curl -Ls https://raw.githubusercontent.com/hiddify/hiddify-manager/main/common/download_install.sh)"</code></pre>
+
+    <p>Скрипт установит Hiddify Manager с автоматической настройкой HTTPS через Let's Encrypt. После завершения (5–10 минут) в терминале появится URL панели администратора вида <code>https://IP_сервера/ваш_путь/</code>. Войдите, смените пароль и настройте нужные протоколы.</p>
+
+    <h3>Что делать после установки</h3>
+    <ol>
+      <li>Откройте панель администратора → раздел «Protocols» → включите нужные протоколы (рекомендуется: VLESS+Reality + Shadowsocks как резерв)</li>
+      <li>Раздел «Users» → создайте пользователя → скопируйте URL-подписку</li>
+      <li>Вставьте URL-подписку в Hiddify-клиент на телефоне или ПК → все серверы загрузятся автоматически</li>
+      <li>Поделитесь подпиской с семьёй или друзьями — каждый получит актуальный список серверов</li>
+    </ol>
+
+    <p>Hiddify Manager конкурирует с <strong>3X-UI</strong> и <strong>Marzban</strong> как серверная панель. Главное отличие: Hiddify Manager более «вертикальная» — меньше настроек, но быстрее настраивается и лучше интегрирована с клиентским приложением Hiddify. 3X-UI гибче, но сложнее. Подробнее о настройке Xray-сервера — в разделе <a href="/v2ray/">V2Ray / Xray</a>.</p>
+
+    <!-- СРАВНЕНИЕ КЛИЕНТОВ -->
+    <h2 id="sravnenie">Hiddify vs другие клиенты</h2>
+
+    <p>Hiddify — не единственный клиент, поддерживающий современные протоколы. Вот как он соотносится с альтернативами:</p>
+
+    <table class="proto-compare">
+      <thead>
+        <tr><th>Клиент</th><th>Платформы</th><th>Ядро</th><th>Протоколы</th><th>Подписки</th><th>Интерфейс</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td>Hiddify</td>
+          <td>Android, iOS, Win, Mac, Linux</td>
+          <td>sing-box</td>
+          <td>Все современные</td>
+          <td class="check">✓</td>
+          <td>Современный</td>
+        </tr>
+        <tr>
+          <td>v2rayN</td>
+          <td>Windows, Linux, macOS</td>
+          <td>Xray / sing-box</td>
+          <td>VMess, VLESS, SS, Trojan</td>
+          <td class="check">✓</td>
+          <td>Технический</td>
+        </tr>
+        <tr>
+          <td>v2rayNG</td>
+          <td>Android</td>
+          <td>Xray / v2fly</td>
+          <td>VMess, VLESS, SS, Trojan</td>
+          <td class="check">✓</td>
+          <td>Технический</td>
+        </tr>
+        <tr>
+          <td>Shadowrocket</td>
+          <td>iOS, macOS</td>
+          <td>Собственное</td>
+          <td>Все (inc. Hysteria2)</td>
+          <td class="check">✓</td>
+          <td>Хорошо</td>
+        </tr>
+        <tr>
+          <td>Outline</td>
+          <td>Все</td>
+          <td>Shadowsocks</td>
+          <td>Только Shadowsocks</td>
+          <td class="cross">✗</td>
+          <td>Простой</td>
+        </tr>
+        <tr>
+          <td>Clash / Mihomo</td>
+          <td>Win, Mac, Android</td>
+          <td>Mihomo</td>
+          <td>Широкие</td>
+          <td class="check">✓</td>
+          <td>Технический</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Когда выбирать Hiddify</h3>
+    <ul>
+      <li><strong>Нужен единый клиент для всех устройств.</strong> Один и тот же интерфейс и одна подписка работает на Android, iPhone, Windows, macOS и Linux — нет необходимости изучать разные приложения под каждую платформу.</li>
+      <li><strong>Нужна автоматическая маршрутизация для России.</strong> Rule-based режим Hiddify «из коробки» отправляет российские сайты напрямую, заблокированные — через прокси, без ручной настройки правил.</li>
+      <li><strong>Используете Hysteria2 или TUIC.</strong> Эти новые высокоскоростные протоколы (работают по QUIC/UDP) поддерживаются Hiddify, но не v2rayN/v2rayNG без специальных плагинов.</li>
+      <li><strong>Хотите свой сервер с удобной панелью.</strong> Связка Hiddify Manager (сервер) + Hiddify клиент — одно из самых простых self-hosted решений в 2026 году.</li>
+    </ul>
+
+    <h3>Ограничения Hiddify</h3>
+    <ul>
+      <li><strong>Не подходит как замена коммерческому VPN.</strong> Hiddify не предоставляет серверы — нужен либо собственный VPS, либо подписка от провайдера или сообщества. Без источника конфигурации приложение само по себе ничего не делает.</li>
+      <li><strong>sing-box ядро потребляет больше батареи, чем Outline.</strong> Некоторые пользователи замечают повышенный расход на Android — особенно на устройствах Huawei и старых Samsung. Отключение батарейных ограничений обязательно.</li>
+      <li><strong>Нет собственного Kill Switch уровня ОС на Windows.</strong> TUN-режим sing-box обеспечивает защиту, но при внезапном сбое трафик теоретически может пойти напрямую. Для критичных сценариев дополняйте системным файрволом.</li>
+    </ul>
+
+    <!-- УСТРАНЕНИЕ НЕПОЛАДОК -->
+    <h2 id="troubleshooting">Устранение неполадок Hiddify</h2>
+
+    <h3>Приложение подключается, но сайты не открываются</h3>
+    <ul>
+      <li>Убедитесь, что выбран режим <strong>Global</strong> или <strong>Rule-based</strong>, а не Direct</li>
+      <li>Проверьте ipleak.net — если российский IP, TUN-туннель не работает. Перезапустите приложение от имени администратора (Windows)</li>
+      <li>На macOS разрешите сетевое расширение в Системных настройках → Конфиденциальность → убедитесь, что расширение Hiddify не заблокировано</li>
+      <li>Отключите iCloud Private Relay на iOS/macOS — он конфликтует с TUN-режимом</li>
+    </ul>
+
+    <h3>Hiddify работает, но периодически обрывается на Android</h3>
+    <ul>
+      <li>Главная причина: Android завершает процесс для экономии батареи</li>
+      <li>Настройки → Приложения → Hiddify → Батарея → Без ограничений</li>
+      <li>На Samsung: «Уход за устройством» → Батарея → удалите Hiddify из спящего режима</li>
+      <li>На Huawei/Honor: Настройки → Приложения → Hiddify → Автозапуск → разрешить</li>
+      <li>Включите «Автоподключение при запуске» в настройках Hiddify</li>
+    </ul>
+
+    <h3>Не загружается подписка — «Profile update failed»</h3>
+    <ul>
+      <li>URL-подписка может быть временно недоступна — попробуйте обновить позже</li>
+      <li>Некоторые URL-подписки требуют предварительного подключения — попробуйте добавить вручную один конфиг (<code>vless://…</code>), подключиться, затем обновить подписку</li>
+      <li>Проверьте, что URL скопирован целиком без лишних пробелов</li>
+      <li>Если Hiddify Manager свой — проверьте, что сервер работает и SSL-сертификат актуален</li>
+    </ul>
+
+    <h3>Некоторые сайты в Rule-based режиме всё равно открываются через прокси</h3>
+    <ul>
+      <li>Правила маршрутизации в Hiddify обновляются с обновлением приложения — обновитесь до последней версии</li>
+      <li>Конкретные домены можно добавить в исключения: Настройки → Routing → Bypass → добавьте домен</li>
+      <li>Для банков с проблемами добавьте их домены в «Direct» список явно</li>
+    </ul>
+
+    <div class="tip-box" style="margin: 32px 0;">
+      <span class="tip-icon">💡</span>
+      <p><strong>Hiddify и бесплатные подписки:</strong> если у вас нет своего сервера, вы можете использовать URL-подписки из Telegram-каналов (поиск по «hiddify подписка» или «v2ray subscription»). Имейте в виду, что операторы бесплатных серверов теоретически могут видеть ваш трафик — не используйте их для банковских операций и паролей. Для надёжной защиты — собственный Hiddify Manager на VPS или BlancVPN.</p>
+    </div>
+
+    <!-- ЗАКЛЮЧЕНИЕ -->
+    <h2>Итог: зачем нужен Hiddify в России в 2026 году</h2>
+
+    <p>Hiddify занимает особое место в экосистеме инструментов обхода блокировок — это самый современный и удобный универсальный клиент, поддерживающий все актуальные протоколы в одном приложении. Для России главное преимущество — поддержка <a href="/vless/">VLESS+Reality</a> и <a href="/amneziawg/">AmneziaWG</a> (через sing-box), которые не обнаруживаются ТСПУ, плюс интеллектуальная маршрутизация, позволяющая держать VPN постоянно включённым без конфликтов с российскими сервисами.</p>
+
+    <p>Если нет желания разбираться с конфигурациями и VPS — BlancVPN предоставляет готовый сервис. Полный список рабочих VPN для России — в нашем <a href="/vpn-dlya-rossii/">главном рейтинге</a>.</p>
+
+    <!-- FAQ -->
+    <h2 id="faq">FAQ по Hiddify</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">Hiddify — это VPN или прокси?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Hiddify — клиентское приложение, которое может работать как в режиме VPN (TUN-интерфейс, весь трафик), так и в режиме прокси (только выбранные приложения). Это не протокол сам по себе — Hiddify использует протоколы других авторов: VLESS, Shadowsocks, Hysteria2 и другие. Движок — sing-box, поддерживающий практически все современные протоколы обхода блокировок.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Hiddify бесплатный?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Да, полностью бесплатный и без рекламы. Клиентское приложение Hiddify (для Android, iOS, Windows, macOS, Linux) — бесплатно с открытым кодом. Hiddify Manager (серверная панель) — тоже бесплатно для некоммерческого использования. Платить придётся только за VPS-сервер (от $3–5/мес), если хотите свой сервер.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">В чём разница между Hiddify и v2rayN/v2rayNG?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Оба являются клиентами для работы с протоколами V2Ray/Xray. Главные отличия Hiddify: современный удобный интерфейс, поддержка новых протоколов (Hysteria2, TUIC) через sing-box, единое приложение для всех платформ включая iOS. v2rayN — более зрелое приложение для Windows с большим числом настроек, популярен у продвинутых пользователей. v2rayNG — аналог для Android. Для начинающих Hiddify проще; для тонкой настройки — v2rayN гибче.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Нужен ли свой сервер для Hiddify?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Нет, но нужен источник конфигурации. Варианты: (1) Собственный VPS с Hiddify Manager или 3X-UI — наиболее надёжный вариант; (2) конфиги от знакомого, кто уже настроил сервер; (3) бесплатные подписки из Telegram-каналов — работают, но нестабильны и небезопасны для приватной информации; (4) коммерческий провайдер, поддерживающий V2Ray/Xray подписки.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Работает ли Hiddify в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Hiddify как приложение работает без ограничений. Устойчивость к ТСПУ зависит от выбранного протокола в конфиге: VLESS+Reality — не блокируется, надёжный выбор для России. Shadowsocks — работает с оговорками. WireGuard — замедляется. Подбирайте протокол исходя из статусов в наших разделах по каждому протоколу.</div></div>
+      </div>
+
+    </div>
+
+  </div>
 </div>
-</div>
-</section>
-<div class="container">
-<div class="bottom-cta">
-  <h3>🏆 Начните с ZoogVPN — 10 ГБ бесплатно</h3>
-  <p>Гарантия работы в России. Обфускация ZoogShadowing. Оплата МИР. Подключение за 2 минуты.</p>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
-</div>
-</div>
-<footer class="site-footer" style="margin-top:64px;">
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/outline/">Outline VPN</a></li>
+          <li><a href="/v2ray/">V2Ray / Xray</a></li>
+          <li><a href="/shadowsocks/">Shadowsocks</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN для России</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Устройства</h4>
+        <ul>
+          <li><a href="/vpn-dlya-pk/">VPN для ПК</a></li>
+          <li><a href="/vpn-dlya-routera/">VPN для роутера</a></li>
+          <li><a href="/vpn-dlya-macos/">VPN для Mac</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Информация предоставляется в ознакомительных целях.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">🏆 <strong>ZoogVPN</strong> — работает в России, 10 ГБ бесплатно</div>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
+<script>
+  const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
+  if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
+</script>
 </body>
 </html>
