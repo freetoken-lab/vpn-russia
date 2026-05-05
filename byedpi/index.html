@@ -3,96 +3,473 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>byeDPI — обход DPI без VPN-сервера в России 2026, установка</title>
-  <meta name="description" content="byeDPI — локальная утилита для обхода DPI-блокировок без VPN. Разбираем принцип работы, установку и ограничения на 2026 год.">
+  <title>byeDPI — что это, как работает, настройка на Android и Windows, стратегии 2026</title>
+  <meta name="description" content="Полный гайд по byeDPI: принцип работы (не VPN!), настройка ByeByeDPI на Android и ByeDPIManager на Windows, рабочие стратегии для YouTube, сравнение с GoodbyeDPI и Zapret, статус РКН май 2026.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/byedpi/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .content-body { max-width: 820px; }
+    .content-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; }
+    .content-body h3 { font-size: 1.1rem; font-weight: 700; color: var(--white); margin: 32px 0 12px; }
+    .content-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .content-body ul, .content-body ol { padding-left: 0; margin-bottom: 20px; }
+    .content-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 8px; }
+    .content-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .content-body ol { counter-reset: item; }
+    .content-body ol li { counter-increment: item; }
+    .content-body ol li::before { content: counter(item)'.'; color: var(--orange); font-weight: 700; top: 1px; }
+    .content-body code { background: var(--bg3); border: 1px solid var(--card-border); border-radius: 4px; padding: 2px 7px; font-size: 0.85rem; color: var(--green); font-family: 'JetBrains Mono', 'Fira Code', monospace; }
+    .content-body pre { background: var(--bg3); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 16px 20px; overflow-x: auto; margin: 16px 0 24px; }
+    .content-body pre code { background: none; border: none; padding: 0; font-size: 0.83rem; color: var(--text); }
+    .proto-compare { width: 100%; border-collapse: collapse; margin: 24px 0; }
+    .proto-compare th { background: var(--bg3); padding: 11px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .proto-compare td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.86rem; color: var(--text-muted); vertical-align: middle; }
+    .proto-compare td:first-child { font-weight: 700; color: var(--white); }
+    .proto-compare tr.highlight td { background: rgba(249,115,22,0.05); }
+    .setup-block { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; margin-bottom: 24px; }
+    .setup-block-header { background: var(--bg3); padding: 13px 20px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--card-border); }
+    .setup-block-header .os-icon { font-size: 1.2rem; }
+    .setup-block-header h4 { font-size: 0.95rem; margin: 0; color: var(--white); font-weight: 700; }
+    .setup-block-body { padding: 20px; }
+    .setup-block-body ol { margin: 0; }
+    .setup-block-body li { font-size: 0.88rem; }
+    .vpn-card-single { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-card-single .vpn-name-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+    .vpn-card-single .vpn-name { font-size: 1.2rem; font-weight: 800; color: var(--white); }
+    .vpn-card-single p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-card-single .vpn-pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 0.82rem; font-weight: 700; }
+    .status-ok   { background: rgba(34,197,94,0.12);  color: var(--green);  border: 1px solid rgba(34,197,94,0.25); }
+    .status-warn { background: rgba(251,191,36,0.12); color: var(--gold);   border: 1px solid rgba(251,191,36,0.25); }
+    .status-bad  { background: rgba(249,115,22,0.12); color: var(--orange); border: 1px solid rgba(249,115,22,0.25); }
+    .important-box { background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 20px 24px; margin: 24px 0; }
+    .important-box p { margin: 0; font-size: 0.93rem; color: var(--text); }
+    .important-box strong { color: var(--orange); }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#content">О теме</a><a href="#vpn">Рейтинг VPN</a><a href="#faq">FAQ</a>
-      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">VPN →</a>
+      <a href="#chto-takoe">Что такое</a>
+      <a href="#kak-rabotaet">Как работает</a>
+      <a href="#nastrojka">Настройка</a>
+      <a href="#strategii">Стратегии</a>
+      <a href="#sravnenie">Сравнение</a>
+      <a href="#troubleshooting">Неполадки</a>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="nav-cta">▶ BlancVPN</a>
     </div>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <span>byeDPI — обход DPI без VPN-сервера в России 2026</span></div></div>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#chto-takoe" class="mobile-link">Что такое byeDPI</a>
+  <a href="#kak-rabotaet" class="mobile-link">Как работает</a>
+  <a href="#nastrojka" class="mobile-link">Настройка</a>
+  <a href="#strategii" class="mobile-link">Стратегии</a>
+  <a href="#sravnenie" class="mobile-link">Сравнение</a>
+  <a href="#troubleshooting" class="mobile-link">Устранение неполадок</a>
+  <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ BlancVPN</a>
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>byeDPI</span>
+  </div>
+</div>
+
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>byeDPI — обход DPI без VPN-сервера в России 2026</h1>
-    <p class="lead">byeDPI — локальная утилита для обхода DPI-блокировок без VPN. Разбираем принцип работы, установку и ограничения на 2026 год.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обновлено май 2026 — стратегии для МТС, Билайн, Мегафон, Ростелеком
+    </div>
+    <h1>byeDPI — обход DPI без VPN: настройка на Android и Windows в России</h1>
+    <p class="lead">byeDPI — инструмент обхода DPI (Deep Packet Inspection), который работает принципиально иначе, чем VPN. Он не шифрует трафик, не меняет IP-адрес и не подключается к внешнему серверу. Вместо этого byeDPI манипулирует TCP-пакетами локально, так что оборудование ТСПУ не может правильно распознать заблокированный трафик. Результат — YouTube снова работает в 4K, не нужен ни VPN, ни платная подписка.</p>
     <div class="meta">
-      <div class="meta-item">📡 <strong>Тесты:</strong> апрель 2026</div>
-      <div class="meta-item">✅ <strong>Только с обфускацией</strong></div>
-      <div class="meta-item">💳 <strong>Оплата из РФ</strong></div>
+      <div class="meta-item">⚙️ <strong>Тип:</strong> DPI-обходчик, не VPN</div>
+      <div class="meta-item">🏗️ <strong>Разработчик:</strong> hufrea (GitHub: hufrea/byedpi)</div>
+      <div class="meta-item">📡 <strong>Статус РКН:</strong> <span class="status-badge status-ok">✓ Не заблокирован</span></div>
+      <div class="meta-item">🔓 <strong>Цена:</strong> бесплатно, open-source</div>
     </div>
   </div>
 </div>
 
-<section id="content" style="padding-top:48px;">
-<div class="container">
-  <div class="section-header"><div class="section-label">Обзор</div><h2>Что такое byeDPI и как он работает</h2></div>
-  <p style="color:var(--text-muted);font-size:0.95rem;max-width:720px;margin-bottom:14px;">byeDPI изменяет TCP-пакеты так, чтобы DPI-системы не могли корректно проанализировать трафик. Не требует VPN-сервера — работает полностью на устройстве пользователя. Трафик не шифруется: это не замена VPN, а дополнение.</p>
-  <p style='color:var(--text-muted);font-size:0.95rem;max-width:720px;'>byeDPI помогает разблокировать сайты, заблокированные через DPI (а не по IP). Эффективен для YouTube и ряда ресурсов на домашних провайдерах. Не даёт анонимности и не помогает при IP-блокировках. Для полноценного обхода ТСПУ используйте VPN с обфускацией.</p>
-  <div class="tip-box" style="margin-top:20px;"><span class="tip-icon">💡</span><p><strong>Важно:</strong> Все VPN в рейтинге ниже протестированы в апреле 2026 года на реальных подключениях МТС, Билайн, Мегафон и Ростелеком.</p></div>
-</div>
-</section>
+<div class="container" style="padding-top: 48px; padding-bottom: 80px;">
+  <div class="content-body">
 
-<section id="vpn">
-<div class="container">
-<div class="section-header" style="margin-bottom:24px;">
-  <div class="section-label">Рейтинг</div>
-  <h2>ТОП-7 VPN — проверены в апреле 2026</h2>
-</div>
-<div class="toplist">
-<div class="vpn-card top1"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">1</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">ZoogVPN</span><span class="vpn-badge badge-orange">Выбор редакции</span></div><p class="vpn-desc">Гарантия работы в России. ZoogShadowing обходит ТСПУ на МТС, Билайн, Мегафон, Ростелеком. 10 ГБ бесплатно, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🔐 ZoogShadowing</span><span class="pill">🆓 10 ГБ</span><span class="pill">∞ Безлимит устройств</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div><a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.99/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">10 ГБ/мес</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">ZoogShadowing</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">Безлимит</div></div></div></div>
-<div class="vpn-card top2"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">2</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">BlancVPN</span><span class="vpn-badge badge-purple">Самый быстрый</span></div><p class="vpn-desc">Outline до 2 Гбит/с, пинг 35 мс. Безлимит устройств, русский интерфейс, Telegram-бот.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🚀 2 Гбит/с</span><span class="pill">∞ Безлимит</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div><a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от €4/мес</div></div><div class="vpn-stat"><div class="stat-label">Гарантия</div><div class="stat-value">30 дней</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Outline/V2Ray</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div></div></div>
-<div class="vpn-card top3"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">3</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Trust.Zone</span><span class="vpn-badge badge-green">Обфускация</span></div><p class="vpn-desc">VLESS+Reality и AmneziaWG — устойчивы к любым блокировкам. Самая низкая цена в рейтинге.</p><div class="vpn-pills"><span class="pill">💳 РФ</span><span class="pill">🔐 VLESS</span><span class="pill">от $1.77</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div><a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $1.77/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">3 дня/1 ГБ</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">VLESS+Reality</div></div><div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">93 страны</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">4</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">AdGuard VPN</span><span class="vpn-badge badge-blue">Лучший бесплатный</span></div><p class="vpn-desc">TrustTunnel QUIC — 118 Мбит/с. Доступен в российских магазинах, 3 ГБ бесплатно, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🔐 TrustTunnel</span><span class="pill">🆓 3 ГБ</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div><a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 247 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">3 ГБ/мес</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">TrustTunnel</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value">10</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">5</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">hidemy.name</span><span class="vpn-badge badge-orange">С 2012 года</span></div><p class="vpn-desc">Stealth OpenVPN UDP. Русский интерфейс и поддержка, 24 часа бесплатного теста, оплата МИР.</p><div class="vpn-pills"><span class="pill">💳 МИР</span><span class="pill">🇷🇺 Русский</span><span class="pill">⏱️ 24ч бесплатно</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.8</span><span class="score-label">/ 10</span></div><a href="https://hidxmy.info/#tag=55203b813b2b5&bid=11110002" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 270 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value">24 часа</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Stealth OpenVPN</div></div><div class="vpn-stat"><div class="stat-label">Серверы</div><div class="stat-value">80+ стран</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">6</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Amnezia VPN</span><span class="vpn-badge badge-purple">Open-source</span></div><p class="vpn-desc">AmneziaWG 2.0 — лучший протокол для ТСПУ в 2026. Open-source, self-hosted, Amnezia Free бесплатно.</p><div class="vpn-pills"><span class="pill">🆓 Бесплатно</span><span class="pill">🔐 AmneziaWG 2.0</span><span class="pill">📂 Open-source</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.6</span><span class="score-label">/ 10</span></div><a href="https://amnezia.org/ru" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от $3.5/мес</div></div><div class="vpn-stat"><div class="stat-label">Бесплатно</div><div class="stat-value green">Amnezia Free</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">AmneziaWG 2.0</div></div><div class="vpn-stat"><div class="stat-label">Аудиты</div><div class="stat-value green">2 × 7ASecurity</div></div></div></div>
-<div class="vpn-card"><div class="vpn-card-header"><div class="vpn-rank"><span class="vpn-rank-num">7</span></div><div class="vpn-card-title"><div class="vpn-name-row"><span class="vpn-name">Дядя Ваня VPN</span><span class="vpn-badge badge-blue">Лучшая цена</span></div><p class="vpn-desc">От 99 ₽/мес, оплата рублями, 174 локации, безлимит устройств, Android TV.</p><div class="vpn-pills"><span class="pill">💳 Рубли</span><span class="pill">📺 Android TV</span><span class="pill">∞ Безлимит</span></div></div><div class="vpn-card-right"><div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div><a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a></div></div><div class="vpn-stats"><div class="vpn-stat"><div class="stat-label">Цена</div><div class="stat-value orange">от 99 ₽/мес</div></div><div class="vpn-stat"><div class="stat-label">Пробный</div><div class="stat-value">3 дня / 10 ₽</div></div><div class="vpn-stat"><div class="stat-label">Протокол</div><div class="stat-value">Shadowsocks</div></div><div class="vpn-stat"><div class="stat-label">Устройства</div><div class="stat-value green">Безлимит</div></div></div></div>
-</div>
-</div>
-</section>
+    <!-- ЧТО ТАКОЕ -->
+    <h2 id="chto-takoe">Что такое byeDPI — и чем он отличается от VPN</h2>
 
-<section id="faq" style="padding-top:24px;">
-<div class="container">
-<div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-<div class="faq-list">
-<div class="faq-item"><div class="faq-q">Какой VPN лучше для России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">По результатам тестов апреля 2026 года лидируют ZoogVPN (гарантия работы, 10 ГБ бесплатно) и AdGuard VPN (118 Мбит/с, доступен в российских магазинах). Для максимальной устойчивости к ТСПУ — Amnezia с AmneziaWG 2.0.</div></div></div>
-<div class="faq-item"><div class="faq-q">Законно ли использовать VPN в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. Использование VPN физическими лицами в России не запрещено. Штрафов за подключение нет. Запрет касается рекламы VPN для обхода блокировок.</div></div></div>
-<div class="faq-item"><div class="faq-q">Что такое обфускация и зачем она нужна?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Обфускация маскирует VPN-трафик под обычный HTTPS. Без неё ТСПУ распознаёт VPN-соединение и блокирует его. В 2026 году обфускация обязательна для стабильной работы VPN в России.</div></div></div>
-<div class="faq-item"><div class="faq-q">Можно ли оплатить VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Да. ZoogVPN, AdGuard VPN, BlancVPN, Trust.Zone, hidemy.name и Дядя Ваня VPN принимают карты МИР, СБП и YooMoney. Зарубежные сервисы — через криптовалюту.</div></div></div>
+    <p><strong>byeDPI</strong> (github.com/hufrea/byedpi) — утилита командной строки на языке C, реализующая локальный SOCKS5-прокси. Её единственная задача — манипулировать TCP-пакетами на выходе таким образом, чтобы DPI-оборудование ТСПУ не могло корректно проанализировать содержимое соединения. В отличие от VPN, byeDPI не отправляет ваш трафик через сторонний сервер — весь трафик идёт напрямую к целевому серверу (Google, Discord и т.д.), но в «испорченном» виде, который DPI не может прочитать.</p>
+
+    <div class="important-box">
+      <p><strong>Важно понять разницу:</strong> byeDPI <strong>не является VPN</strong>, не шифрует трафик и не скрывает ваш IP-адрес. Провайдер видит, что вы подключаетесь к серверам YouTube или Discord, но не может применить замедление, потому что DPI не распознаёт характерные паттерны. Это означает: <strong>byeDPI снимает замедления YouTube, но не открывает Instagram или Discord</strong> — они заблокированы по IP-адресам, а не только через DPI.</p>
+    </div>
+
+    <p>Вокруг byeDPI сложилась экосистема клиентских приложений и GUI-оберток:</p>
+    <ul>
+      <li><strong>ByeByeDPI</strong> (github.com/romanvht/ByeByeDPI) — Android-приложение, которое запускает byeDPI локально и перенаправляет трафик через него. Наиболее популярный вариант для телефонов.</li>
+      <li><strong>ByeDPIAndroid</strong> (github.com/dovecoteescapee/ByeDPIAndroid) — оригинальный Android-форк, более простой в интерфейсе.</li>
+      <li><strong>ByeDPIManager</strong> (github.com/romanvht/ByeDPIManager) — GUI-обёртка для Windows, объединяет byeDPI и ProxiFyre (направляет трафик конкретных приложений через прокси).</li>
+      <li><strong>GoodbyeDPI UI</strong> (github.com/Storik4pro/goodbyeDPI-UI) — единый графический интерфейс для нескольких DPI-обходчиков: GoodbyeDPI, Zapret, byeDPI и SpoofDPI.</li>
+    </ul>
+
+    <!-- BLANCVPN — сразу после введения -->
+    <div class="vpn-card-single">
+      <div class="vpn-name-row">
+        <span class="vpn-name">BlancVPN</span>
+        <span class="vpn-badge badge-purple">VPN — когда byeDPI недостаточно</span>
+      </div>
+      <p>byeDPI снимает замедления YouTube, но не открывает Instagram и Discord — они заблокированы по IP. Для полноценного обхода всех блокировок нужен VPN. BlancVPN — русскоязычный сервис на базе Outline/Shadowsocks: 112 Мбит/с, безлимит устройств, оплата МИР и СБП.</p>
+      <div class="vpn-pills">
+        <span class="pill">🔐 Outline / Shadowsocks</span>
+        <span class="pill">🚀 112 Мбит/с</span>
+        <span class="pill">∞ Безлимит устройств</span>
+        <span class="pill">🇷🇺 Русский сервис</span>
+        <span class="pill">💳 МИР / СБП</span>
+      </div>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Перейти на BlancVPN →</a>
+    </div>
+
+    <!-- КАК РАБОТАЕТ -->
+    <h2 id="kak-rabotaet">Как работает byeDPI — техника обхода DPI</h2>
+
+    <h3>Пассивное и активное DPI</h3>
+    <p>ТСПУ использует два типа фильтрации. <strong>Пассивный DPI</strong> анализирует копию трафика параллельно соединению и отправляет фальшивые TCP RST-пакеты для разрыва нежелательных соединений. <strong>Активный DPI</strong> стоит в разрыве соединения и может замедлять, переписывать или блокировать пакеты в реальном времени.</p>
+
+    <p>byeDPI применяет несколько техник, каждая из которых эксплуатирует «слепые пятна» в реализации DPI-оборудования:</p>
+
+    <h3>Основные техники byeDPI</h3>
+    <ul>
+      <li><strong>Фрагментация TLS ClientHello (--split)</strong> — разделяет первый TLS-пакет (ClientHello) на несколько фрагментов. DPI ожидает ClientHello целиком, чтобы прочитать SNI-поле (имя домена). Фрагментированный пакет DPI не может собрать корректно.</li>
+      <li><strong>Disorder (--disorder)</strong> — намеренно нарушает порядок доставки пакетов. DPI теряет контекст и не может собрать TLS-запись. Сервер принимает пакеты правильно благодаря TCP-ретрансмиссии.</li>
+      <li><strong>Fake-пакеты (--fake)</strong> — перед реальным запросом отправляется фейковый TLS ClientHello с другим SNI. DPI «видит» поддельный запрос к безвредному домену. Реальный запрос следует позже с TTL выше, чем у фейка, — фейк не доходит до сервера.</li>
+      <li><strong>TLS Record split (--tlsrec)</strong> — разделяет одну TLS-запись на несколько, вставляя дополнительный заголовок. DPI видит нестандартную структуру и не может прочитать SNI.</li>
+      <li><strong>Out-of-Band (--oob)</strong> — отправляет один байт с флагом URG (TCP urgent data) в середину SNI. Большинство DPI-систем игнорируют OOB-данные при анализе потока.</li>
+    </ul>
+
+    <h3>Что byeDPI умеет, а что нет</h3>
+    <p>byeDPI работает <strong>только с TCP-трафиком</strong> по умолчанию. YouTube использует преимущественно HTTPS/TCP — это покрыто. Discord также использует TCP для веб-версии. Однако Discord в России заблокирован по IP, а не только через DPI — byeDPI это не обходит. Instagram заблокирован полностью по IP — byeDPI не поможет. Для этих сервисов нужен VPN.</p>
+
+    <!-- НАСТРОЙКА -->
+    <h2 id="nastrojka">Настройка byeDPI — Android и Windows</h2>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🤖</span>
+        <h4>Android — ByeByeDPI (romanvht)</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Скачайте <strong>ByeByeDPI</strong> с github.com/romanvht/ByeByeDPI/releases → файл <code>.apk</code></li>
+          <li>Разрешите установку из неизвестных источников → установите</li>
+          <li>При первом запуске нажмите кнопку подключения → разрешите VPN-запрос (это не настоящий VPN — приложение использует VPN API Android только для перехвата трафика)</li>
+          <li>Приложение запустится со стратегией по умолчанию. Проверьте: откройте YouTube и попробуйте включить видео в 4K</li>
+          <li>Если не работает — откройте «Настройки» → «Аргументы командной строки» → введите стратегию (см. раздел ниже)</li>
+          <li><strong>Важно:</strong> добавьте банковские приложения и Госуслуги в исключения (белый/чёрный список приложений в настройках) — иначе они могут конфликтовать</li>
+          <li>Отключите оптимизацию батареи для ByeByeDPI: Настройки → Приложения → ByeByeDPI → Батарея → Без ограничений</li>
+          <li>Включите автозапуск в настройках приложения для запуска при перезагрузке</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🖥️</span>
+        <h4>Windows — ByeDPIManager (romanvht)</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Скачайте <strong>ByeDPIManager</strong> с github.com/romanvht/ByeDPIManager/releases — выберите архив «All-in-one» (содержит ByeDPI + ProxiFyre)</li>
+          <li>Распакуйте в любую папку (например, <code>C:\ByeDPIManager</code>)</li>
+          <li>Запустите <code>ByeDPIManager.exe</code> от имени администратора. Установите .NET Framework 4.7.2+ если потребуется</li>
+          <li>На вкладке <strong>«ByeDPI»</strong> в поле «Аргументы» введите стратегию (см. раздел ниже)</li>
+          <li>На вкладке <strong>«ProxiFyre»</strong> укажите приложения, трафик которых нужно направить через byeDPI (Chrome, Firefox, youtube и т.д.). Это аналог Split Tunneling</li>
+          <li>Нажмите <strong>«Запустить»</strong> — byeDPI запустится как локальный SOCKS5-прокси на порту 1080</li>
+          <li>Браузер должен начать использовать прокси автоматически через ProxiFyre. Проверьте: откройте YouTube → попробуйте 4K</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🎨</span>
+        <h4>Windows — GoodbyeDPI UI (с поддержкой byeDPI)</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Скачайте <strong>GoodbyeDPI UI</strong> с github.com/Storik4pro/goodbyeDPI-UI/releases</li>
+          <li>Установите → при первом запуске программа загрузит нужные компоненты (WinDivert, byeDPI, Zapret)</li>
+          <li>В интерфейсе выберите <strong>«byeDPI»</strong> в списке инструментов</li>
+          <li>Выберите готовый пресет из списка или вставьте свою стратегию в поле аргументов</li>
+          <li>Нажмите «Запустить». Программа работает в трее и применяет обход ко всему трафику Windows</li>
+          <li>Если byeDPI не помогает — в том же интерфейсе легко переключиться на GoodbyeDPI или Zapret</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="setup-block">
+      <div class="setup-block-header">
+        <span class="os-icon">🐧</span>
+        <h4>Linux — byeDPI как SOCKS5-прокси</h4>
+      </div>
+      <div class="setup-block-body">
+        <ol>
+          <li>Клонируйте и соберите: <code>git clone https://github.com/hufrea/byedpi && cd byedpi && make</code></li>
+          <li>Запустите прокси: <code>./ciadpi --port 1080 -s1 -q1 -f-1 -r1+s -At</code></li>
+          <li>Настройте браузер или proxychains на использование SOCKS5 127.0.0.1:1080</li>
+          <li>Для системного перехвата трафика используйте redsocks или tun2socks поверх byeDPI</li>
+          <li>Для постоянной работы создайте systemd-сервис</li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- СТРАТЕГИИ -->
+    <h2 id="strategii">Стратегии (аргументы командной строки)</h2>
+
+    <p>Правильная стратегия — ключ к работе byeDPI. Разные провайдеры используют разное DPI-оборудование, поэтому одна стратегия может работать у одного провайдера и не работать у другого. Стратегия задаётся аргументами командной строки.</p>
+
+    <h3>Универсальная стратегия (80% случаев)</h3>
+    <pre><code>-s1 -q1 -f-1 -r1+s -At</code></pre>
+    <p>Работает на большинстве домашних провайдеров. Если видео загружается, но зависает — добавьте <code>-Ku</code> в начало для поддержки UDP.</p>
+
+    <h3>МТС — агрессивный режим</h3>
+    <pre><code>--disorder 1 --auto=torst --fake-gen 5</code></pre>
+
+    <h3>Ростелеком</h3>
+    <pre><code>-s1 -q1 -Y -At -f-1 -r1+s -As</code></pre>
+
+    <h3>Билайн / Теле2</h3>
+    <pre><code>-Ku -a1 -An -d1 -s0+s -d3+s -s6+s -At,r,s -s1 -q1 -At,r,s -s5</code></pre>
+
+    <h3>Мегафон</h3>
+    <pre><code>-s2 -q1 -f-1 -r2+s -At -Ku</code></pre>
+
+    <p>Стратегии меняются по мере обновления оборудования ТСПУ. Актуальные подборки для каждого оператора ищите в Telegram-каналах (@byedpi, @goodbyedpi) и на 4PDA в теме ByeByeDPI. Если ни одна стратегия не работает — попробуйте встроенный автоподбор в ByeByeDPI: кнопка «Тест» → программа сама перебирает стратегии и показывает результат для каждого домена.</p>
+
+    <div class="tip-box" style="margin: 24px 0;">
+      <span class="tip-icon">💡</span>
+      <p><strong>Автоподбор стратегий в ByeByeDPI:</strong> на главном экране нажмите кнопку «Тест прокси» → выберите нужные домены (youtube.com, discord.com) → нажмите «Тест». Приложение пройдёт по заданному списку стратегий и покажет процент успешных соединений для каждой. Выберите стратегию с 100% и сохраните.</p>
+    </div>
+
+    <!-- СРАВНЕНИЕ -->
+    <h2 id="sravnenie">byeDPI vs GoodbyeDPI vs Zapret vs VPN</h2>
+
+    <table class="proto-compare">
+      <thead>
+        <tr><th>Инструмент</th><th>Платформы</th><th>Метод</th><th>Шифрует трафик</th><th>Меняет IP</th><th>Откроет Instagram</th><th>Сложность</th></tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td>byeDPI / ByeByeDPI</td>
+          <td>Android, Linux, Win (GUI)</td>
+          <td>TCP-манипуляция</td>
+          <td class="cross">✗ Нет</td>
+          <td class="cross">✗ Нет</td>
+          <td class="cross">✗ Нет</td>
+          <td>Низкая</td>
+        </tr>
+        <tr>
+          <td>GoodbyeDPI</td>
+          <td>Windows only</td>
+          <td>WinDivert + пакетные трюки</td>
+          <td class="cross">✗ Нет</td>
+          <td class="cross">✗ Нет</td>
+          <td class="cross">✗ Нет</td>
+          <td>Низкая</td>
+        </tr>
+        <tr>
+          <td>Zapret</td>
+          <td>Linux, OpenWRT, Windows</td>
+          <td>nfqueue / WinDivert</td>
+          <td class="cross">✗ Нет</td>
+          <td class="cross">✗ Нет</td>
+          <td class="cross">✗ Нет</td>
+          <td>Высокая</td>
+        </tr>
+        <tr>
+          <td>VPN (AmneziaWG, VLESS)</td>
+          <td>Все</td>
+          <td>Шифрование + внешний сервер</td>
+          <td class="check">✓ Да</td>
+          <td class="check">✓ Да</td>
+          <td class="check">✓ Да</td>
+          <td>Средняя</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Преимущества byeDPI</h3>
+    <ul>
+      <li><strong>Не нужен внешний сервер.</strong> Полностью локальная работа — нет зависимости от VPS или провайдера. Никто не может «выключить» ваш byeDPI, заблокировав сервер.</li>
+      <li><strong>Максимальная скорость.</strong> Трафик идёт напрямую к серверам Google/YouTube без промежуточного узла. Latency и скорость — такие же, как без обхода. YouTube в 4K без ограничений скорости туннеля.</li>
+      <li><strong>Бесплатно и без регистрации.</strong> Не нужен аккаунт, карта, подписка. Открытый код — не нужно доверять стороннему провайдеру.</li>
+      <li><strong>Не замечается провайдером как VPN.</strong> Трафик не имеет характеристик VPN-соединения — нет иностранного IP, нет зашифрованного туннеля к VPS.</li>
+      <li><strong>Не может быть заблокирован как инструмент.</strong> В отличие от VPN-сервисов, byeDPI работает локально. РКН не может заблокировать «саму программу» — она не обращается ни к каким внешним адресам.</li>
+    </ul>
+
+    <h3>Недостатки и ограничения</h3>
+    <ul>
+      <li><strong>Не открывает Instagram, Discord и другие IP-заблокированные сервисы.</strong> Главное ограничение. Для них нужен VPN из нашего <a href="/vpn-dlya-rossii/">главного рейтинга</a>.</li>
+      <li><strong>Нет на iOS и macOS.</strong> ByeByeDPI существует только для Android. На iOS и macOS аналог — SpoofDPI (github.com/xvzc/SpoofDPI), но он менее функционален.</li>
+      <li><strong>Требует подбора стратегии.</strong> Нет единого решения для всех провайдеров. После обновления DPI-оборудования стратегия может перестать работать.</li>
+      <li><strong>Не шифрует трафик.</strong> Провайдер по-прежнему видит, к каким серверам вы подключаетесь (но не содержимое HTTPS).</li>
+      <li><strong>Нестабильность.</strong> «Обход DPI — нестабильная и зависящая от условий методика», как написано в документации ByeByeDPI. При обновлении ТСПУ провайдером стратегии могут перестать работать.</li>
+    </ul>
+
+    <!-- СТАТУС РКН -->
+    <h2 id="rkn">Статус byeDPI в России — май 2026</h2>
+
+    <p>byeDPI <strong>не заблокирован и не может быть заблокирован</strong> как инструмент — он работает полностью локально и не обращается ни к каким внешним серверам. РКН не имеет технической возможности заблокировать «программу, работающую на вашем устройстве».</p>
+
+    <p><strong>Эффективность byeDPI в 2026 году:</strong> снятие замедлений YouTube работает на большинстве провайдеров при правильной стратегии. ТСПУ регулярно обновляется, и подобранная стратегия может перестать работать после очередного обновления оборудования. Сообщество активно поддерживает актуальные стратегии на 4PDA и в Telegram.</p>
+
+    <p>Важный контекст: byeDPI, GoodbyeDPI и Zapret относятся к другой правовой категории, чем VPN-сервисы. Они не используют серверы-посредники и не «переключают» пользователя на зарубежный IP. С юридической точки зрения они манипулируют пакетами вашего собственного соединения — что похоже на ситуацию с анонимайзерами по TCP-уровню. Правовое регулирование этих инструментов остаётся серой зоной в России.</p>
+
+    <!-- УСТРАНЕНИЕ НЕПОЛАДОК -->
+    <h2 id="troubleshooting">Устранение неполадок byeDPI</h2>
+
+    <h3>YouTube по-прежнему тормозит при включённом ByeByeDPI</h3>
+    <ul>
+      <li>Попробуйте другую стратегию — см. раздел выше или используйте автоподбор в приложении</li>
+      <li>Проверьте, что приложение включено: в строке состояния Android должна быть иконка ключа/VPN</li>
+      <li>ТСПУ вашего провайдера мог обновиться — найдите актуальные стратегии в Telegram @byedpi или на 4PDA</li>
+      <li>Попробуйте отключить QUIC в Chrome: chrome://flags → «Experimental QUIC protocol» → Disabled. Иногда YouTube через QUIC/UDP идёт в обход прокси</li>
+    </ul>
+
+    <h3>Приложение включено, но некоторые сайты не работают совсем</h3>
+    <ul>
+      <li>Instagram, Discord, LinkedIn — заблокированы по IP. byeDPI не поможет. Нужен <a href="/amneziawg/">AmneziaWG</a> или другой VPN</li>
+      <li>Для этих сервисов используйте VPN из нашего <a href="/vpn-dlya-rossii/">рейтинга</a></li>
+    </ul>
+
+    <h3>Приложение вылетает или отключается в фоне на Android</h3>
+    <ul>
+      <li>Настройки → Приложения → ByeByeDPI → Батарея → Без ограничений</li>
+      <li>На Samsung: «Уход за устройством» → Батарея → убрать ByeByeDPI из спящего режима</li>
+      <li>Включите «Автозапуск» в настройках приложения</li>
+    </ul>
+
+    <h3>На Windows ByeDPIManager не запускается — ошибка .NET</h3>
+    <ul>
+      <li>Установите .NET Framework 4.7.2 или новее с сайта Microsoft</li>
+      <li>Если ошибка «WinPcap / WinDivert not found» — перезапустите от имени администратора</li>
+      <li>Добавьте папку ByeDPIManager в исключения антивируса — WinDivert-драйвер часто ложно детектируется</li>
+    </ul>
+
+    <h3>Российские приложения (банки, Госуслуги) работают некорректно</h3>
+    <ul>
+      <li>В ByeByeDPI: настройки → фильтр приложений → добавьте банки и Госуслуги в список исключений (чёрный список)</li>
+      <li>В ByeDPIManager: на вкладке ProxiFyre оставьте только конкретные браузеры/приложения, не весь трафик</li>
+    </ul>
+
+    <!-- ЗАКЛЮЧЕНИЕ -->
+    <h2>Итог: byeDPI — когда использовать, когда нет</h2>
+
+    <p>byeDPI и ByeByeDPI — отличный бесплатный инструмент для одной конкретной задачи: <strong>вернуть YouTube в 4K без VPN</strong>. Он работает быстрее любого VPN (нет промежуточного сервера), не требует регистрации и не может быть заблокирован РКН как сервис. Главное ограничение: Instagram, Discord и другие IP-заблокированные сервисы byeDPI не открывает.</p>
+
+    <p>Для комплексного решения — когда нужны и YouTube, и Instagram, и Discord — необходим VPN. Рассмотрите <a href="/amneziawg/">AmneziaWG</a> для максимальной устойчивости или выберите сервис из нашего <a href="/vpn-dlya-rossii/">главного рейтинга</a> с оплатой из России.</p>
+
+    <!-- FAQ -->
+    <h2 id="faq">FAQ по byeDPI</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">byeDPI — это VPN?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Нет. byeDPI — инструмент обхода DPI, работающий локально. Он не шифрует трафик, не меняет IP-адрес и не подключается к внешним серверам. Трафик идёт напрямую от вашего устройства к серверам YouTube или другого сервиса, но в «искажённом» виде, который DPI не может правильно проанализировать. На Android приложение использует VPN API только для перехвата трафика — это технический механизм Android, а не настоящий VPN-туннель.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">byeDPI открывает Instagram?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Нет. Instagram заблокирован в России по IP-адресам на уровне маршрутизации — ТСПУ просто не пропускает пакеты к серверам Meta. byeDPI манипулирует содержимым пакетов (TCP-уровень), но не может изменить маршрут к заблокированным IP. Для открытия Instagram нужен VPN, который перенаправляет трафик через зарубежный сервер.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">В чём разница между byeDPI, GoodbyeDPI и Zapret?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Все три решают одну задачу — обход DPI — разными методами. GoodbyeDPI (ValdikSS) — оригинальный Windows-инструмент через WinDivert-драйвер, самый известный, только для Windows. byeDPI (hufrea) — более гибкий инструмент с SOCKS5-прокси, есть Android-приложения (ByeByeDPI). Zapret (bol-van) — наиболее мощный, лучше всего работает на Linux и роутерах с OpenWRT, сложнее в настройке. Пользователи нередко комбинируют несколько инструментов.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Как найти рабочую стратегию для моего провайдера?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Три источника: (1) встроенный автоподбор в ByeByeDPI — кнопка «Тест», программа сама перебирает стратегии; (2) Telegram-канал @byedpi — актуальные стратегии по операторам; (3) тема ByeByeDPI на 4PDA — сообщество активно делится работающими стратегиями. Стратегии меняются при обновлении оборудования ТСПУ, поэтому проверяйте актуальность — ищите посты не старше 1–2 недель.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">byeDPI работает на iPhone?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">ByeByeDPI (Android-приложение) на iOS не работает. Ближайший аналог для macOS/Linux — SpoofDPI (github.com/xvzc/SpoofDPI), но он менее функционален и не имеет iOS-версии. На iPhone для обхода DPI-замедлений YouTube практического инструмента уровня ByeByeDPI пока нет — используйте VPN с обфускацией.</div></div>
+      </div>
+
+    </div>
+
+  </div>
 </div>
-</div>
-</section>
-<div class="container">
-<div class="bottom-cta">
-  <h3>🏆 Начните с ZoogVPN — 10 ГБ бесплатно</h3>
-  <p>Гарантия работы в России. Обфускация ZoogShadowing. Оплата МИР. Подключение за 2 минуты.</p>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Попробовать ZoogVPN бесплатно →</a>
-</div>
-</div>
-<footer class="site-footer" style="margin-top:64px;">
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Инструменты DPI</h4>
+        <ul>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/wireguard/">WireGuard</a></li>
+          <li><a href="/outline/">Outline VPN</a></li>
+          <li><a href="/hiddify/">Hiddify</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN для России</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Устройства</h4>
+        <ul>
+          <li><a href="/vpn-dlya-pk/">VPN для ПК</a></li>
+          <li><a href="/vpn-dlya-routera/">VPN для роутера</a></li>
+          <li><a href="/vpn-dlya-macos/">VPN для Mac</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Информация предоставляется в ознакомительных целях.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">🏆 <strong>ZoogVPN</strong> — работает в России, 10 ГБ бесплатно</div>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
+<script>
+  const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
+  if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
+</script>
 </body>
 </html>
