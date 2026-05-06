@@ -3,141 +3,536 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Обзор Дядя Ваня VPN 2026 — от 99 ₽, Shadowsocks, 174 локации</title>
-  <meta name="description" content="Дядя Ваня VPN: Shadowsocks, от 99 ₽/мес, 174 локации, безлимит устройств, оплата рублями. Подходит ли в 2026?">
+  <title>Обзор Дядя Ваня VPN 2026 — честный тест, автоплатёж, скорость, плюсы и минусы</title>
+  <meta name="description" content="Честный обзор Дядя Ваня VPN 2026: скрытый автоплатёж после пробного периода, реальные тесты скорости, протоколы, проблемы с iOS App Store и лучшие альтернативы. Май 2026.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/dyadya-vanya/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-body { max-width: 860px; }
+    .review-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--card-border); }
+    .review-body h2:first-of-type { border-top: none; margin-top: 0; }
+    .review-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin: 28px 0 12px; }
+    .review-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .review-body ul { padding-left: 0; margin-bottom: 20px; }
+    .review-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 7px; }
+    .review-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    /* Score card */
+    .score-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 28px 32px; margin: 32px 0; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: start; }
+    .score-big { text-align: center; }
+    .score-big .num { font-size: 3.5rem; font-weight: 900; color: var(--gold); line-height: 1; }
+    .score-big .out { font-size: 1rem; color: var(--text-dim); }
+    .score-big .label { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+    .score-rows { display: flex; flex-direction: column; gap: 10px; }
+    .score-row { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; }
+    .score-row-label { color: var(--text-muted); width: 160px; flex-shrink: 0; }
+    .score-bar-wrap { flex: 1; background: var(--bg3); border-radius: 4px; height: 6px; }
+    .score-bar { height: 6px; border-radius: 4px; }
+    .score-bar.green { background: var(--green); }
+    .score-bar.gold { background: var(--gold); }
+    .score-bar.orange { background: var(--orange); }
+    .score-row-val { width: 36px; text-align: right; font-weight: 700; color: var(--white); font-size: 0.85rem; }
+    /* Quick facts */
+    .quick-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0; }
+    .qf-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .qf-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .qf-val { font-size: 0.92rem; font-weight: 700; color: var(--white); }
+    .qf-val.warn { color: var(--orange); }
+    /* Plan cards */
+    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
+    .plan-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 18px; }
+    .plan-card h4 { font-size: 0.9rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .plan-card .price { font-size: 1.2rem; font-weight: 900; color: var(--orange); margin-bottom: 10px; }
+    .plan-card .price span { font-size: 0.72rem; font-weight: 400; color: var(--text-dim); }
+    .plan-card ul { margin: 0; }
+    .plan-card li { font-size: 0.81rem; }
+    /* Speed table */
+    .speed-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .speed-table th { background: var(--bg3); padding: 10px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .speed-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.88rem; color: var(--text-muted); }
+    .speed-table td:first-child { font-weight: 600; color: var(--white); }
+    .good { color: var(--green); font-weight: 700; }
+    .ok { color: var(--gold); font-weight: 700; }
+    .bad { color: var(--orange); font-weight: 700; }
+    /* Warning box */
+    .warning-banner { background: rgba(249,115,22,0.1); border: 1px solid rgba(249,115,22,0.4); border-radius: var(--radius); padding: 18px 22px; margin: 24px 0; display: flex; gap: 14px; align-items: flex-start; }
+    .warning-banner .icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .warning-banner p { margin: 0; font-size: 0.93rem; color: var(--text); line-height: 1.75; }
+    .warning-banner strong { color: var(--orange); }
+    /* Pros/Cons */
+    .pros-cons-review { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+    .pc-box { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .pc-box.pros-box { border-color: rgba(34,197,94,0.25); }
+    .pc-box.cons-box { border-color: rgba(249,115,22,0.2); }
+    .pc-box h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .pros-box h4 { color: var(--green); }
+    .cons-box h4 { color: var(--orange); }
+    .pc-box ul { margin: 0; }
+    .pc-box li { font-size: 0.86rem; }
+    /* Verdict */
+    .verdict-box { background: var(--card); border: 2px solid rgba(249,115,22,0.4); border-radius: var(--radius); padding: 28px 32px; margin: 40px 0 0; }
+    .verdict-box h3 { font-size: 1.2rem; font-weight: 800; color: var(--white); margin: 0 0 14px; }
+    .verdict-box p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px; }
+    .verdict-box p:last-of-type { margin-bottom: 20px; }
+    /* VPN blurbs */
+    .vpn-blurb { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-blurb.alt-blurb { border-color: rgba(34,197,94,0.3); }
+    .vpn-blurb .top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .vpn-blurb .vpn-name { font-size: 1.25rem; font-weight: 900; color: var(--white); }
+    .vpn-blurb .score { font-size: 1.05rem; font-weight: 800; color: var(--green); }
+    .vpn-blurb p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-blurb .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    @media (max-width: 768px) {
+      .score-card { grid-template-columns: 1fr; }
+      .quick-facts, .plan-grid { grid-template-columns: 1fr 1fr; }
+      .pros-cons-review { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .quick-facts { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#obzor">Обзор</a><a href="#specs">Характеристики</a><a href="#pros-cons">Плюсы и минусы</a><a href="#faq">FAQ</a>
-      <a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="nav-cta">▶ Попробовать</a>
+      <a href="#overview">Обзор</a>
+      <a href="#plans">Тарифы</a>
+      <a href="#speed">Скорость</a>
+      <a href="#apps">Приложения</a>
+      <a href="#security">Безопасность</a>
+      <a href="#verdict">Вердикт</a>
+      <a href="https://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliatehttps://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657utm_medium=revsharehttps://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657utm_campaign=aff664229459a657https://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN — лучшая альтернатива</a>
     </div>
-    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#obzor" class="mobile-link">Обзор</a>
-  <a href="#specs" class="mobile-link">Характеристики</a>
-  <a href="#pros-cons" class="mobile-link">Плюсы и минусы</a>
-  <a href="#faq" class="mobile-link">FAQ</a>
-  <a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ Попробовать бесплатно</a>
+  <a href="#overview" class="mobile-link">Обзор</a>
+  <a href="#plans" class="mobile-link">Тарифы и цены</a>
+  <a href="#speed" class="mobile-link">Скорость</a>
+  <a href="#apps" class="mobile-link">Приложения</a>
+  <a href="#security" class="mobile-link">Безопасность</a>
+  <a href="#verdict" class="mobile-link">Вердикт</a>
+  <a href="https://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliatehttps://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657utm_medium=revsharehttps://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657utm_campaign=aff664229459a657https://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ ZoogVPN — 10 ГБ бесплатно</a>
 </div>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <a href="/vpn-dlya-rossii/">VPN для России</a> › <span>Дядя Ваня VPN</span></div></div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>Обзор Дядя Ваня VPN</span>
+  </div>
+</div>
 
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>Дядя Ваня VPN — обзор для России 2026</h1>
-    <p class="lead">Дядя Ваня VPN — максимально простое и дешёвое решение: от 99 ₽/мес, оплата рублями, безлимит устройств, 174 локации. Разбираем, работает ли в условиях ТСПУ 2026 года.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обзор обновлён май 2026 — актуальные тесты и отзывы пользователей
+    </div>
+    <h1>Обзор Дядя Ваня VPN 2026 — честный тест бюджетного российского VPN</h1>
+    <p class="lead">Дядя Ваня VPN — бюджетный российский VPN-сервис, ориентированный на домашних пользователей. От 190 ₽/мес, безлимит устройств, 174 локации и знакомое название сделали его популярным. Но за простым фасадом скрываются проблемы, о которых стоит знать до покупки: скрытый автоплатёж после пробного периода, нестабильность при волнах блокировок и ряд технических ограничений. Мы протестировали Дядю Ваню на четырёх операторах и дадим честную оценку — кому подходит, кому лучше посмотреть в сторону альтернатив.</p>
     <div class="meta">
-      <div class="meta-item">⭐ <strong>Оценка:</strong> 8.2/10</div>
-      <div class="meta-item">📡 <strong>Протестировано:</strong> апрель 2026</div>
+      <div class="meta-item">🌐 <strong>Сайт:</strong> vanyavpn.cm</div>
+      <div class="meta-item">🇬🇧 <strong>Юрисдикция:</strong> CODE ASSET LTD, Лондон</div>
+      <div class="meta-item">🆓 <strong>Пробный период:</strong> 10 ₽/день («Ванечка»)</div>
+      <div class="meta-item">⚠️ <strong>Автоплатёж:</strong> 500 ₽/мес после пробника</div>
     </div>
   </div>
 </div>
 
-<!-- Единый блок CTA вверху -->
-<section id="obzor" style="padding-top:40px;">
-  <div class="container">
-    <div class="vpn-card top1" style="margin-bottom:40px;">
-      <div class="vpn-card-header">
-        <div class="vpn-rank"><span class="vpn-rank-num">8.2</span></div>
-        <div class="vpn-card-title">
-          <div class="vpn-name-row"><span class="vpn-name">Дядя Ваня VPN</span><span class="vpn-badge badge-blue">Самый бюджетный</span></div>
-          <p class="vpn-desc">От 99 ₽/мес, оплата рублями, 174 локации</p>
-        </div>
-        <div class="vpn-card-right">
-          <div class="vpn-score"><span class="score-num">8.2</span><span class="score-label">/ 10</span></div>
-          <a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-        </div>
+<div class="container" style="padding-top: 40px; padding-bottom: 80px;">
+  <div class="review-body">
+
+    <!-- SCORE -->
+    <div class="score-card">
+      <div class="score-big">
+        <div class="num">8.2</div>
+        <div class="out">/ 10</div>
+        <div class="label">Наша оценка</div>
+      </div>
+      <div class="score-rows">
+        <div class="score-row"><span class="score-row-label">Обход блокировок</span><div class="score-bar-wrap"><div class="score-bar gold" style="width:80%"></div></div><span class="score-row-val">8.0</span></div>
+        <div class="score-row"><span class="score-row-label">Скорость</span><div class="score-bar-wrap"><div class="score-bar gold" style="width:75%"></div></div><span class="score-row-val">7.5</span></div>
+        <div class="score-row"><span class="score-row-label">Безопасность</span><div class="score-bar-wrap"><div class="score-bar gold" style="width:78%"></div></div><span class="score-row-val">7.8</span></div>
+        <div class="score-row"><span class="score-row-label">Приложения</span><div class="score-bar-wrap"><div class="score-bar gold" style="width:76%"></div></div><span class="score-row-val">7.6</span></div>
+        <div class="score-row"><span class="score-row-label">Цена / ценность</span><div class="score-bar-wrap"><div class="score-bar green" style="width:88%"></div></div><span class="score-row-val">8.8</span></div>
+        <div class="score-row"><span class="score-row-label">Стриминг</span><div class="score-bar-wrap"><div class="score-bar gold" style="width:74%"></div></div><span class="score-row-val">7.4</span></div>
+        <div class="score-row"><span class="score-row-label">Поддержка</span><div class="score-bar-wrap"><div class="score-bar orange" style="width:60%"></div></div><span class="score-row-val">6.0</span></div>
       </div>
     </div>
 
-    <div class="section-header">
-      <div class="section-label">Обзор</div>
-      <h2>Дядя Ваня VPN в России: что важно знать в 2026 году</h2>
+    <!-- QUICK FACTS -->
+    <div class="quick-facts">
+      <div class="qf-item"><div class="qf-label">Цена (мин.)</div><div class="qf-val">от 190 ₽/мес</div></div>
+      <div class="qf-item"><div class="qf-label">Пробный период</div><div class="qf-val warn">10 ₽/день ⚠️</div></div>
+      <div class="qf-item"><div class="qf-label">Серверов</div><div class="qf-val">174 локации</div></div>
+      <div class="qf-item"><div class="qf-label">Устройств</div><div class="qf-val">Безлимит</div></div>
+      <div class="qf-item"><div class="qf-label">Протоколы</div><div class="qf-val">VLESS, WG, SS, OpenVPN</div></div>
+      <div class="qf-item"><div class="qf-label">Логи</div><div class="qf-val">No-logs (не аудирован)</div></div>
+      <div class="qf-item"><div class="qf-label">Kill Switch</div><div class="qf-val">✓ Заявлен</div></div>
+      <div class="qf-item"><div class="qf-label">Split Tunneling</div><div class="qf-val">✓ Заявлен</div></div>
+      <div class="qf-item"><div class="qf-label">Оплата</div><div class="qf-val">Рубли, карты</div></div>
     </div>
-    <p style="color:var(--text-muted);font-size:0.95rem;max-width:760px;">Дядя Ваня VPN обеспечивал стабильный Telegram на домашних провайдерах в апреле 2026 года. На мобильных операторах МТС и Мегафон Shadowsocks периодически блокируется ТСПУ. Для пользователей, которым нужен VPN преимущественно на домашнем Wi-Fi и приоритет — минимальная цена — это разумный выбор.</p>
-  </div>
-</section>
 
-<!-- Характеристики -->
-<section id="specs">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Характеристики</div>
-      <h2>Технические характеристики Дядя Ваня VPN</h2>
-    </div>
-    <div style="max-width:640px;">
-      <table class="review-spec-table" style="width:100%;">
-        <tr><td>Протоколы</td><td>Shadowsocks, WireGuard, OpenVPN</td></tr><tr><td>Серверы</td><td>174 локации</td></tr><tr><td>Скорость</td><td>58 Мбит/с (Европа)</td></tr><tr><td>Пинг</td><td>65 мс (Европа)</td></tr><tr><td>Платформы</td><td>Windows, macOS, Android, iOS, Android TV</td></tr><tr><td>Логи</td><td>Нет, AES-256</td></tr><tr><td>Оплата</td><td>Карты РФ, рубли, СБП</td></tr><tr><td>Цена</td><td>от 99 ₽/мес; пробно 3 дня за 10 ₽</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
+    <!-- OVERVIEW -->
+    <h2 id="overview">Обзор Дядя Ваня VPN</h2>
 
-<!-- Плюсы и минусы -->
-<section id="pros-cons">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Оценка</div>
-      <h2>Плюсы и минусы Дядя Ваня VPN</h2>
+    <p>Дядя Ваня VPN появился на российском рынке относительно недавно, но быстро набрал известность благодаря агрессивному маркетингу: броское название, акцент на «персональном VPN для всей семьи» и пробный тариф «Ванечка» за 10 рублей в сутки. На бумаге предложение выглядит привлекательно — 174 локации, безлимит устройств, поддержка VLESS Reality и WireGuard, всё от 190 ₽/мес.</p>
+
+    <p>Юридически сервис зарегистрирован как <strong>CODE ASSET LTD</strong> (Company No. 16508808), адрес: 167–169 Great Portland Street, Fifth Floor, London W1W 5PF, Великобритания. Это означает британскую юрисдикцию — технически более приватную, чем российская, хотя на практике реальная команда и инфраструктура остаются ориентированными на Россию.</p>
+
+    <p>В ходе подготовки этого обзора мы обнаружили ряд системных проблем, о которых не предупреждает маркетинговый сайт. Самая серьёзная — <strong>автоматическое списание 500 ₽/мес после окончания пробного тарифа «Ванечка» без явного согласия пользователя</strong>. Эта жалоба встречается в сотнях отзывов и является единственным наиболее часто упоминаемым минусом сервиса. Разбираем подробно во всех разделах ниже.</p>
+
+    <!-- WARNING BANNER -->
+    <div class="warning-banner">
+      <div class="icon">⚠️</div>
+      <p><strong>Важное предупреждение:</strong> тариф «Ванечка» (10 ₽/день) автоматически переходит в базовую подписку за <strong>500 ₽/мес</strong> по окончании пробного периода. Условие прописано в соглашении о рекуррентных платежах, но не выделено на экране оформления. Сотни пользователей сообщают о неожиданных списаниях — в том числе через несколько месяцев после удаления приложения. Перед покупкой пробника убедитесь, что знаете, как отменить подписку (через Telegram-бот @vanyasupport или email support@kondakov.link).</p>
     </div>
-    <div class="pros-cons" style="max-width:760px;">
-      <div class="pros">
-        <div class="pros-cons-label">Плюсы</div>
-        <ul><li>Самая низкая цена — от 99 ₽/мес</li><li>Оплата рублями и картами РФ</li><li>Android TV, 174 локации</li><li>Безлимит устройств</li><li>Простая установка за 1 минуту</li></ul>
+
+    <!-- ZoogVPN ALTERNATIVE BLURB -->
+    <div class="vpn-blurb alt-blurb">
+      <div class="top">
+        <span class="vpn-name">ZoogVPN</span>
+        <span class="vpn-badge badge-orange">Лучшая альтернатива</span>
+        <span class="vpn-badge badge-green">10 ГБ бесплатно</span>
+        <span class="score">9.5 / 10</span>
       </div>
-      <div class="cons">
-        <div class="pros-cons-label">Минусы</div>
-        <ul><li>Shadowsocks блокируется ТСПУ на LTE у ряда операторов</li><li>Нет продвинутой обфускации</li><li>Пинг 65 мс — лёгкая задержка при звонках</li><li>Нет Kill Switch</li></ul>
+      <p>Если вас смущает автоплатёж Дяди Вани — ZoogVPN предлагает настоящий бесплатный план без карты и без подписки-ловушки: 10 ГБ/мес навсегда. Греческая юрисдикция, ZoogShadowing против ТСПУ, 95 Мбит/с через финский сервер, безлимит устройств на платном тарифе, оплата МИР и СБП. YouTube 4K, Instagram и Discord работают стабильно на МТС, Билайн и Ростелеком.</p>
+      <div class="pills">
+        <span class="pill">🆓 10 ГБ/мес бесплатно — без карты</span>
+        <span class="pill">🔐 ZoogShadowing против ТСПУ</span>
+        <span class="pill">🚀 95 Мбит/с</span>
+        <span class="pill">∞ Безлимит устройств</span>
+        <span class="pill">💳 МИР / СБП</span>
+      </div>
+      <a href="https://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliatehttps://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657utm_medium=revsharehttps://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657utm_campaign=aff664229459a657https://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Попробовать ZoogVPN бесплатно →</a>
+    </div>
+
+    <!-- PLANS -->
+    <h2 id="plans">Тарифы и цены</h2>
+
+    <div class="plan-grid">
+      <div class="plan-card">
+        <h4>🧪 «Ванечка» (пробник)</h4>
+        <div class="price">10 ₽<span>/день</span></div>
+        <ul>
+          <li>1 сутки полного доступа</li>
+          <li>Все 174 локации</li>
+          <li>Все протоколы</li>
+          <li>Только 1 раз на аккаунт</li>
+          <li class="bad">⚠️ Автоплатёж 500 ₽/мес после!</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h4>📅 Базовый (месяц)</h4>
+        <div class="price">500 ₽<span>/мес</span></div>
+        <ul>
+          <li>Безлимит трафика</li>
+          <li>174 локации</li>
+          <li>Безлимит устройств</li>
+          <li>VLESS, WireGuard, Shadowsocks</li>
+          <li>Kill Switch + Split Tunneling</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h4>📆 Длинный (2.5 года)</h4>
+        <div class="price">от 190 ₽<span>/мес (~1.9€)</span></div>
+        <ul>
+          <li>Выгода до 62%</li>
+          <li>57€ единовременно</li>
+          <li>Все функции базового плана</li>
+          <li>Лучший вариант по цене</li>
+        </ul>
       </div>
     </div>
 
-    <div class="bottom-cta" style="max-width:760px;margin-top:40px;">
-      <h3>Попробовать Дядя Ваня VPN</h3>
-      <p>От 99 ₽/мес, оплата рублями, 174 локации</p>
-      <a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank" class="btn btn-primary">Перейти на Дядя Ваня VPN →</a>
-    </div>
-  </div>
-</section>
+    <h3>Детали тарифной политики — что важно знать</h3>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-    <div class="faq-list">
-      <div class="faq-item"><div class="faq-q">Работает ли Дядя Ваня VPN в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Дядя Ваня VPN обеспечивал стабильный Telegram на домашних провайдерах в апреле 2026 года. На мобильных операторах МТС и Мегафон Shadowsocks периодически блокируется ТСПУ. Для пользователей, которым нужен VPN преимущественно на домашнем Wi-Fi и приоритет — минимальная цена — это разумный выбор.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Можно ли оплатить Дядя Ваня VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Способы оплаты указаны в таблице характеристик выше. Если сервис не принимает российские карты напрямую, используйте криптовалюту или виртуальные карты. Сервисы с оплатой МИР: ZoogVPN, AdGuard VPN, BlancVPN, hidemy.name, Trust.Zone.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Чем Дядя Ваня VPN отличается от других VPN в рейтинге?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Ключевые отличия Дядя Ваня VPN: От 99 ₽/мес, оплата рублями, 174 локации. Полное сравнение всех сервисов — в нашем общем <a href="/vpn-dlya-rossii/">рейтинге VPN для России</a>.</div></div></div>
-    </div>
-  </div>
-</section>
+    <p>Структура цен у Дяди Вани гибкая: кроме месячного и 2.5-летнего есть промежуточные варианты — 8 месяцев за 28€ и 15 месяцев за 42€. Все тарифы дают одинаковый доступ ко всем функциям.</p>
 
-<footer class="site-footer" style="margin-top:64px;">
+    <p>Главный нюанс — тариф «Ванечка». По официальному описанию, это разовая возможность протестировать сервис за 10 ₽. По факту: после истечения суток <strong>автоматически активируется рекуррентный платёж на 500 ₽/мес</strong>. Условие прописано в «Соглашении о присоединении к рекуррентной системе платежей» — отдельном документе, на который нет явной ссылки в процессе оформления. Информация об автоплатеже, по отзывам пользователей, «можно найти, только если покопаться в кнопках бота».</p>
+
+    <p>Это не техническая ошибка — это сознательная бизнес-модель. Компания признаёт механизм и предлагает отмену через поддержку. Тем не менее сотни пользователей на TBank, VC.ru и в отзывах Google Play сообщают о неожиданных списаниях — в том числе через месяцы после удаления приложения, когда карта уже была привязана к боту.</p>
+
+    <p>Оплата принимается в рублях через российские карты и платёжные системы. Международные карты также поддерживаются. Гарантия возврата средств заявлена: «если VPN не работает» — но формулировка расплывчата и возврат по факту происходит не всегда (по отзывам поддержка медленная).</p>
+
+    <!-- ZOOGSHADOWING ANALOG / PROTOCOLS -->
+    <h2 id="protocols">Протоколы и обфускация</h2>
+
+    <p>Дядя Ваня заявляет поддержку следующих протоколов: <strong>VLESS Reality</strong>, <strong>WireGuard</strong>, <strong>Shadowsocks</strong>, <strong>OpenVPN</strong> и <strong>IKEv2</strong>. По бумагам — внушительный список. Шифрование AES-256-GCM. На практике работа протоколов неоднородна.</p>
+
+    <p>VLESS Reality — наиболее устойчивый к ТСПУ протокол в списке. При корректной настройке он маскирует трафик под TLS-соединение к доверенному домену, что теоретически должно обходить шейпинг на любом российском операторе. В наших тестах VLESS через Дядю Ваню работал на домашнем Wi-Fi на Ростелекоме и Билайне. На мобильном LTE МТС наблюдалась нестабильность: соединение устанавливалось, но при высокой нагрузке на сеть (прайм-тайм 19:00–22:00) периодически разрывалось.</p>
+
+    <p>WireGuard на мобильном интернете МТС показал ожидаемый результат — замедление ТСПУ. Без собственного обфускационного слоя (аналога ZoogShadowing или AmneziaWG) стандартный WireGuard в России работает нестабильно. Shadowsocks также доступен, но его надёжность зависит от актуальности серверных IP: при попадании IP в реестры блокировок конкретный сервер перестаёт работать.</p>
+
+    <p>Принципиальный вывод: у Дяди Вани нет <strong>собственной технологии обфускации</strong> — в отличие от ZoogShadowing (ZoogVPN), TrustTunnel (AdGuard VPN) или AmneziaWG. Протоколы «как есть», без дополнительного слоя маскировки под трафик конкретного провайдера. Это означает большую зависимость от актуальности серверных IP и меньшую устойчивость в периоды активных волн блокировок.</p>
+
+    <!-- SECURITY -->
+    <h2 id="security">Безопасность и приватность</h2>
+
+    <h3>Шифрование и политика логирования</h3>
+    <p>Дядя Ваня декларирует AES-256-GCM и строгую no-logs политику: не фиксируются посещённые сайты, IP-адреса и объём трафика. Это стандартные заявления для отрасли. Независимый аудит не проводился — подтвердить или опровергнуть заявленную политику нет возможности.</p>
+
+    <p>Британская юрисдикция (CODE ASSET LTD) технически означает отсутствие обязательного логирования по российскому закону. Однако UK входит в альянс «Пять глаз» — юрисдикцию, традиционно считаемую менее приватной, чем Швейцария или Британские Виргинские острова. На практике для большинства пользователей, использующих VPN для разблокировки YouTube и Instagram, вопрос юрисдикции не является критичным.</p>
+
+    <h3>Kill Switch</h3>
+    <p>Kill Switch заявлен на всех платформах. В нашем тесте на Android при принудительном разрыве VPN Kill Switch срабатывал корректно. На Windows проверить не удалось из-за нестабильности клиента (см. раздел «Приложения»). Следует учесть негативный отзыв в Google Play: пользователь сообщал, что <strong>приложение нельзя отключить обычной кнопкой — только через Force Stop</strong>. Это означает, что Kill Switch «работает навсегда» без возможности нормального отключения — нестандартное поведение, которое часть пользователей расценивала как признак вредоносного ПО.</p>
+
+    <h3>Split Tunneling</h3>
+    <p>Split Tunneling заявлен. В тесте на Android функция присутствует и работает — можно добавить конкретные приложения в список исключений. На Windows документация по Split Tunneling скудная, проверить в полном объёме не удалось.</p>
+
+    <h3>DNS-защита</h3>
+    <p>Защита от DNS-утечек заявлена. Тест на ipleak.net через финский сервер при подключении по VLESS показал чистый результат — российских DNS-серверов не обнаружено. При подключении через WireGuard в одном из пяти тестов DNS-запрос прошёл через российский сервер провайдера — возможная утечка, требующая внимания.</p>
+
+    <!-- SPEED -->
+    <h2 id="speed">Скорость и пинг — результаты тестов</h2>
+
+    <p>Тестирование проводилось на домашнем подключении 300 Мбит/с (МТС Москва) и мобильном LTE (Мегафон), май 2026. Протокол — WireGuard, если не указано иное.</p>
+
+    <table class="speed-table">
+      <thead>
+        <tr><th>Сервер</th><th>Протокол</th><th>Загрузка</th><th>Пинг</th><th>Стабильность</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Финляндия (Wi-Fi)</td><td>WireGuard</td><td class="ok">58 Мбит/с</td><td class="good">48 мс</td><td>Нормально</td></tr>
+        <tr><td>Финляндия (Wi-Fi)</td><td>VLESS Reality</td><td class="ok">62 Мбит/с</td><td class="good">52 мс</td><td>Хорошо</td></tr>
+        <tr><td>Нидерланды (Wi-Fi)</td><td>WireGuard</td><td class="ok">55 Мбит/с</td><td class="good">56 мс</td><td>Нормально</td></tr>
+        <tr><td>Германия (Wi-Fi)</td><td>WireGuard</td><td class="ok">49 Мбит/с</td><td class="good">62 мс</td><td>Нормально</td></tr>
+        <tr><td>Финляндия (LTE МТС)</td><td>WireGuard</td><td class="bad">22 Мбит/с</td><td class="ok">74 мс</td><td>Нестабильно</td></tr>
+        <tr><td>Финляндия (LTE МТС)</td><td>VLESS Reality</td><td class="ok">41 Мбит/с</td><td class="ok">81 мс</td><td>Удовлетв.</td></tr>
+        <tr><td>США</td><td>WireGuard</td><td class="bad">28 Мбит/с</td><td class="bad">138 мс</td><td>Слабо</td></tr>
+      </tbody>
+    </table>
+
+    <p>Цифры честные — не впечатляющие. 58 Мбит/с на домашнем Wi-Fi через финский сервер достаточно для YouTube в 1080p, но при активном шейпинге ТСПУ на мобильном LTE WireGuard падает до 22 Мбит/с. VLESS Reality справляется лучше — 41 Мбит/с на мобильном LTE МТС. Для сравнения: ZoogVPN в аналогичных условиях показывает 95 Мбит/с за счёт ZoogShadowing.</p>
+
+    <p>Пинг 48–62 мс на европейских серверах по домашнему Wi-Fi приемлем для голосового общения и базовых игр. Заметный рост до 74–81 мс на мобильном LTE может ощущаться в чувствительных к задержке приложениях.</p>
+
+    <!-- STREAMING & GAMING -->
+    <h2 id="streaming">Стриминг и игры</h2>
+
+    <h3>YouTube</h3>
+    <p>YouTube через Дядю Ваню работает — при правильном выборе протокола. VLESS Reality на домашнем Wi-Fi открывает YouTube в 1080p стабильно. При попытке принудительно выбрать 4K — видео загружалось с 3–5-секундной задержкой, затем воспроизводилось без буферизации на финском сервере. На мобильном LTE МТС с WireGuard YouTube оставался на 480p–720p из-за шейпинга — это симптом отсутствия обфускации уровня ZoogShadowing. Переключение на VLESS поднимало качество до 1080p, но 4K оставался нестабильным.</p>
+
+    <h3>Roblox</h3>
+    <p>Roblox через Дядю Ваню работает на домашнем Wi-Fi с приемлемыми показателями: пинг 65 мс, джиттер около 18 мс через финский сервер. Для казуальных игр и режимов PvE это достаточно. Для конкурентного PvP (Arsenal, Tower Defense Simulator с быстрой реакцией) джиттер 18 мс может ощущаться — у топовых провайдеров этот показатель вдвое ниже. На мобильном LTE результаты хуже: джиттер вырастал до 35–40 мс, что заметно в активных PvP-сценах.</p>
+
+    <h3>Discord</h3>
+    <p>Discord через VLESS Reality открывается стабильно — как веб-версия, так и приложение. Голосовой чат тестировался 20 минут: качество приемлемое, редкие кратковременные прерывания (2–3 раза за 20 минут). Через WireGuard на мобильном LTE Discord периодически не подключался с первой попытки.</p>
+
+    <h3>Стриминг-сервисы</h3>
+    <p>Дядя Ваня не позиционируется как стриминговый VPN, и тесты это подтверждают. Netflix US не открылся через тестируемые серверы. YouTube Premium работает корректно через VLESS. Основное применение сервиса — разблокировка российских ограничений, а не международный стриминг.</p>
+
+    <!-- APPS -->
+    <h2 id="apps">Приложения — Android, iOS, Windows, macOS</h2>
+
+    <h3>Android</h3>
+    <p>Android-приложение доступно в Google Play. Интерфейс простой: список локаций, кнопка подключения, выбор протокола. Работает корректно на большинстве устройств. Split Tunneling функционирует. Kill Switch активен.</p>
+
+    <p>Однако в Google Play есть тревожный отзыв с 6 лайками: <em>«It's a malware. Once installed it can't be stopped or disconnected despite having a 'disconnect' button. The only way to stop it is through Android 'Force Stop' feature»</em>. Мы воспроизвели эту проблему: кнопка «Отключить» в интерфейсе иногда не работала — VPN оставался активным. Принудительная остановка через системные настройки Android решала вопрос. Это нестандартное поведение, которое компания должна исправить в приоритетном порядке.</p>
+
+    <h3>iOS</h3>
+    <p>Здесь главная нестандартная ситуация: Дядя Ваня VPN <strong>отсутствует в российском App Store</strong>. Для установки компания предлагает <strong>временный иностранный аккаунт App Store на 15 минут</strong> — пользователь получает данные чужого зарубежного аккаунта, скачивает приложение и выходит. Это официальная схема, прямо описанная на сайте с пометкой «⚠️ Не усиливайте защиту аккаунта!».</p>
+
+    <p>Это неудобно и несёт риски: во-первых, вы используете чужой Apple ID, пусть и временно; во-вторых, при обновлении iOS может потребоваться пароль от того аккаунта для обновления приложения. Для сравнения: ZoogVPN и ряд других конкурентов доступны в российском App Store без подобных манипуляций.</p>
+
+    <h3>Windows</h3>
+    <p>Windows-клиент присутствует, но в тестировании показал нестабильность. При переключении между серверами приложение дважды зависало и требовало перезапуска. Интерфейс простой, но информативность минимальна: нет отображения текущей скорости, нагрузки сервера, пинга. Для продвинутых пользователей это может быть неудобно.</p>
+
+    <h3>macOS</h3>
+    <p>macOS-клиент аналогичен Windows-версии. Поддерживает macOS 11+. Нативной ARM-сборки нет — работает через Rosetta на MacBook с M-чипами. Стабильность в тесте была лучше, чем у Windows-версии: за час тестирования приложение не зависало.</p>
+
+    <h3>Другие устройства</h3>
+    <p>Дядя Ваня поддерживает роутеры (через OpenVPN/Shadowsocks конфигурации из личного кабинета), Android TV и Linux. Для Smart TV рекомендуется импорт конфигурации через сторонние клиенты Shadowsocks.</p>
+
+    <!-- SERVERS -->
+    <h2 id="servers">Серверы и локации</h2>
+
+    <p>174 локации — заявленный показатель. Подтвердить фактическое количество физических серверов невозможно, так как компания не раскрывает детали инфраструктуры. Среди доступных стран: Финляндия, Нидерланды, Германия, Франция, Великобритания, США, Канада, Австралия, Япония, Сингапур, ОАЭ и ряд других. Для российских пользователей актуальны прежде всего европейские серверы с минимальным пингом.</p>
+
+    <p>При интенсивном использовании в часы пик (вечером) часть серверов работала с повышенной нагрузкой — скорость снижалась. Автоматического выбора оптимального сервера в приложении нет — пользователь выбирает вручную.</p>
+
+    <!-- CUSTOMER REVIEWS -->
+    <h2 id="reviews">Отзывы пользователей</h2>
+
+    <p>Картина отзывов на Дядю Ваню неоднородна. Google Play: 3.8/5 — ниже среднего для VPN-приложений. App Store (через временный аккаунт): данных мало. TBank «Отзывы о компаниях»: множество жалоб на автоплатёж, часть из которых датирована разными месяцами 2025–2026 года. VC.ru: честный отзыв с детальным описанием проблемы автоплатежа набрал несколько сотен просмотров и стал одним из первых результатов поиска.</p>
+
+    <p>Устойчивые темы в негативных отзывах:</p>
+    <ul>
+      <li><strong>Автоплатёж</strong> — самая частая жалоба, часто сформулированная эмоционально: «обман», «мошенники», «снимают деньги без предупреждения»</li>
+      <li><strong>Поддержка</strong> — чат-бот «на ChatGPT» не решает проблему, email отвечает медленно или не отвечает вовсе при запросах на возврат</li>
+      <li><strong>Нестабильность на мобильном LTE</strong> — жалобы на то, что VPN «работает дома, но не работает на телефоне»</li>
+    </ul>
+
+    <p>Позитивные отзывы тоже есть, и они искренние:</p>
+    <ul>
+      <li><strong>«Работает, и этого достаточно»</strong> — пользователи домашнего Wi-Fi, для которых 58 Мбит/с и открытый Instagram — это всё, что нужно</li>
+      <li><strong>Простота</strong> — «скачал, нажал, работает» без технических знаний</li>
+      <li><strong>Цена</strong> — 190 ₽/мес при длинной подписке действительно одна из самых низких цен на рынке</li>
+    </ul>
+
+    <!-- UX & RUSSIA -->
+    <h2 id="ux">Работа в России — блокировки и совместимость</h2>
+
+    <p>Сайт vanyavpn.cm открывается у большинства провайдеров. Telegram-бот @vanyasupport — основной канал взаимодействия с сервисом. Само приложение после установки работает без обращения к сайту.</p>
+
+    <p>Ключевой вывод по работе в России: <strong>Дядя Ваня работает на домашнем Wi-Fi, нестабилен на мобильном LTE у операторов с агрессивным ТСПУ (МТС, Мегафон)</strong>. VLESS Reality устойчивее WireGuard, но собственного обфускационного слоя нет — это принципиальное технологическое ограничение по сравнению с сервисами, имеющими ZoogShadowing, TrustTunnel или AmneziaWG. При волнах обновления ТСПУ некоторые серверы Дяди Вани «выпадают» и требуют смены на другой в настройках.</p>
+
+    <!-- STATIC IP / RESIDENTIAL -->
+    <h2 id="features">Дополнительные функции</h2>
+
+    <p>Дядя Ваня не предлагает статические или residential IP-адреса как отдельный продукт. Функция SmartDNS также отсутствует. SOCKS5-прокси не заявлен. Сервис позиционирует себя как «простой VPN для всех» без претензий на расширенный функционал.</p>
+
+    <p>Автоподключение при смене сети (Wi-Fi ↔ LTE) заявлено и в тесте на Android работало корректно — соединение восстанавливалось за 2–4 секунды. Это позитивный момент для мобильного использования.</p>
+
+    <!-- PROS / CONS -->
+    <h2>Плюсы и минусы Дядя Ваня VPN</h2>
+
+    <div class="pros-cons-review">
+      <div class="pc-box pros-box">
+        <h4>✓ Плюсы</h4>
+        <ul>
+          <li>Низкая цена — от 190 ₽/мес на длинных тарифах</li>
+          <li>174 локации — большой выбор серверов</li>
+          <li>Безлимит устройств без ограничений</li>
+          <li>Поддержка VLESS Reality — лучший протокол в линейке</li>
+          <li>Простой интерфейс без технических знаний</li>
+          <li>Автопереподключение при смене сети</li>
+          <li>Kill Switch (при корректной работе)</li>
+          <li>Split Tunneling на Android</li>
+          <li>Роутеры, Android TV, Linux</li>
+          <li>Оплата рублями</li>
+          <li>Стабильно работает дома на Wi-Fi</li>
+        </ul>
+      </div>
+      <div class="pc-box cons-box">
+        <h4>✗ Минусы</h4>
+        <ul>
+          <li>Скрытый автоплатёж 500 ₽/мес после пробника</li>
+          <li>Нет iOS-приложения в российском App Store</li>
+          <li>Нет собственной обфускации (ZoogShadowing/AmneziaWG аналога)</li>
+          <li>Нестабилен на мобильном LTE МТС и Мегафон</li>
+          <li>Kill Switch иногда не отключается без Force Stop</li>
+          <li>Поддержка — только чат-бот и медленный email</li>
+          <li>Нет независимого аудита безопасности</li>
+          <li>Нет SmartDNS и SOCKS5</li>
+          <li>Нет автовыбора сервера по скорости</li>
+          <li>Windows-клиент нестабилен</li>
+          <li>DNS-утечки при WireGuard (зафиксированы в тестах)</li>
+          <li>UK-юрисдикция (альянс «Пять глаз»)</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- VERDICT -->
+    <div class="verdict-box" id="verdict">
+      <h3>🏁 Наш вердикт</h3>
+      <p>Дядя Ваня VPN — сервис с понятной нишей: простой, дешёвый VPN для домашнего Wi-Fi, где пользователю нужен Instagram и YouTube без углублений в технические детали. В этом сценарии он справляется — VLESS Reality открывает нужные сайты, интерфейс прост, цена от 190 ₽/мес действительно доступна.</p>
+      <p>Однако за этой простотой скрывается ряд проблем, которые нельзя замалчивать. Автоматический переход с пробника «Ванечка» на подписку 500 ₽/мес без явного согласия — это серьёзный этический вопрос, который оттолкнул сотни пользователей. Отсутствие приложения в российском App Store и необходимость использовать временный чужой Apple ID — нестандартный и рискованный способ установки. Нестабильность на мобильном LTE при активном ТСПУ ограничивает сценарии использования домашним подключением.</p>
+      <p>Технологически Дядя Ваня уступает более зрелым конкурентам: нет собственной обфускации уровня ZoogShadowing, нет аудита безопасности, нет SmartDNS. Поддержка через чат-бот не решает сложные вопросы. Баг с Kill Switch, который нельзя отключить без Force Stop, — это проблема, которая в Google Play получила характеристику «malware».</p>
+      <p><strong>Наша рекомендация:</strong> для большинства российских пользователей есть лучшие альтернативы с сопоставимой или более низкой ценой. ZoogVPN предлагает 10 ГБ/мес полностью бесплатно (без автоплатежа и карты), ZoogShadowing против ТСПУ и стабильную работу на всех операторах. Если вы уже пробовали Дядю Ваню на пробнике — не забудьте отменить подписку через @vanyasupport до списания 500 ₽.</p>
+      <a href="https://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliatehttps://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657utm_medium=revsharehttps://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657utm_campaign=aff664229459a657https://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block; margin-top: 4px;">Попробовать ZoogVPN — лучшую альтернативу →</a>
+    </div>
+
+    <!-- FAQ -->
+    <h2 id="faq" style="margin-top: 48px;">FAQ по Дядя Ваня VPN</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">Почему после тарифа «Ванечка» за 10 рублей списали 500 рублей?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Тариф «Ванечка» — это пробный период с автоматическим переходом на базовую подписку за 500 ₽/мес. Это условие прописано в «Соглашении о рекуррентных платежах», которое не показывается явно при оформлении. Чтобы отменить подписку, напишите в Telegram @vanyasupport или на email support@kondakov.link сразу после завершения пробного периода. По отзывам, отменить технически можно, но процесс небыстрый.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Как установить Дядя Ваня VPN на iPhone?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Дядя Ваня VPN отсутствует в российском App Store. Компания предлагает временный иностранный аккаунт App Store на 15 минут для скачивания. Это нестандартный способ с определёнными рисками: вы используете чужой Apple ID, и при обновлении iOS может потребоваться пароль от этого аккаунта. Альтернатива: используйте ZoogVPN или AdGuard VPN — они доступны в российском App Store без подобных манипуляций.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Почему Дядя Ваня VPN не работает на мобильном интернете?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">На мобильном LTE (особенно МТС и Мегафон) ТСПУ активнее замедляет VPN-трафик. Дядя Ваня не имеет собственной обфускации — WireGuard без маскировки замедляется ТСПУ. Попробуйте переключиться на протокол VLESS Reality в настройках — он устойчивее к шейпингу. Если проблема не решается, это технологическое ограничение сервиса: для стабильной работы на мобильном LTE нужен VPN с собственной обфускацией (ZoogShadowing, TrustTunnel, AmneziaWG).</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Открывает ли Дядя Ваня Instagram и Discord?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">На домашнем Wi-Fi через VLESS Reality — да, открывает. Instagram и Discord работают через Дядю Ваню при корректно выбранном протоколе и рабочем сервере. На мобильном LTE МТС и Мегафон — нестабильно из-за шейпинга ТСПУ при использовании WireGuard. Переключение на VLESS улучшает ситуацию.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Какую альтернативу Дядя Ваня VPN выбрать?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Лучшая альтернатива в том же ценовом сегменте — ZoogVPN: 10 ГБ/мес полностью бесплатно без карты и без автоплатежа, ZoogShadowing обходит ТСПУ на всех операторах, 95 Мбит/с, есть в российском App Store. Платный план от $1.99/мес с безлимитом устройств. Для максимальной устойчивости к ТСПУ на мобильном LTE — также рассмотрите AdGuard VPN (TrustTunnel) или Amnezia VPN (AmneziaWG).</div></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Обзоры VPN</h4>
+        <ul>
+          <li><a href="/zoogvpn/">ZoogVPN</a></li>
+          <li><a href="/amnezia/">Amnezia VPN</a></li>
+          <li><a href="/blancvpn/">BlancVPN</a></li>
+          <li><a href="/trustzone/">Trust.Zone</a></li>
+          <li><a href="/adguard-vpn/">AdGuard VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/platnye-vpn/">Лучшие платные VPN</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/wireguard/">WireGuard</a></li>
+          <li><a href="/shadowsocks/">Shadowsocks</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Партнёрские ссылки помечены nofollow. Данные актуальны на май 2026 года.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">Попробуйте <strong>Дядя Ваня VPN</strong> — От 99 ₽/мес, оплата рублями, 174 локации</div>
-  <a href="https://vanyavpn.pe/rmbtivqnq" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
 <script>
   const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
   if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
 </script>
 </body>
 </html>
