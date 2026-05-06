@@ -116,20 +116,6 @@
 <div class="container" style="padding-top: 48px; padding-bottom: 80px;">
   <div class="content-body">
 
-    <!-- ЧТО ТАКОЕ -->
-    <h2 id="chto-takoe">Что такое AmneziaWG и чем отличается от WireGuard</h2>
-
-    <p>AmneziaWG — это протокол и семейство приложений, разработанных командой Amnezia (amnezia.org). Технически AmneziaWG — форк WireGuard, добавляющий параметры обфускации поверх стандартного WireGuard-туннеля. Протокол полностью совместим с WireGuard по криптографии (Curve25519, ChaCha20-Poly1305, BLAKE2s), но не совместим с обычными WireGuard-клиентами — для подключения нужно приложение Amnezia или другой клиент с поддержкой AmneziaWG.</p>
-
-    <p>Ключевые параметры обфускации, добавленные в AmneziaWG:</p>
-    <ul>
-      <li><strong>Junk packets (Jc, Jmin, Jmax)</strong> — перед установкой соединения клиент отправляет случайное количество мусорных пакетов случайного размера. Сигнатура инициации WireGuard (фиксированные 148 байт) «тонет» среди шума — DPI не может надёжно идентифицировать начало WireGuard-рукопожатия.</li>
-      <li><strong>Init packet magic header (S1, S2)</strong> — случайные байты, добавляемые к заголовкам Initiation и Response пакетов. Фиксированные значения заголовков WireGuard (0x01, 0x02, 0x03, 0x04) заменяются на случайные, уникальные для каждого конфига.</li>
-      <li><strong>Transport packet magic header (H1–H4)</strong> — рандомизация заголовков транспортных пакетов и keepalive. Весь трафик в установленной сессии теряет характерный WireGuard-паттерн.</li>
-    </ul>
-
-    <p>Результат: ТСПУ, обнаруживающее WireGuard по сигнатурам 148/92-байтных пакетов с фиксированными заголовками, не способно применить те же правила к AmneziaWG — каждый конфиг имеет уникальные магические числа.</p>
-
     <!-- BLANCVPN — сразу после введения -->
     <div class="vpn-card-single">
       <div class="vpn-name-row">
@@ -146,6 +132,21 @@
       </div>
       <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Перейти на BlancVPN →</a>
     </div>
+
+    <!-- ЧТО ТАКОЕ -->
+    <h2 id="chto-takoe">Что такое AmneziaWG и чем отличается от WireGuard</h2>
+
+    <p>AmneziaWG — это протокол и семейство приложений, разработанных командой Amnezia (amnezia.org). Технически AmneziaWG — форк WireGuard, добавляющий параметры обфускации поверх стандартного WireGuard-туннеля. Протокол полностью совместим с WireGuard по криптографии (Curve25519, ChaCha20-Poly1305, BLAKE2s), но не совместим с обычными WireGuard-клиентами — для подключения нужно приложение Amnezia или другой клиент с поддержкой AmneziaWG.</p>
+
+    <p>Ключевые параметры обфускации, добавленные в AmneziaWG:</p>
+    <ul>
+      <li><strong>Junk packets (Jc, Jmin, Jmax)</strong> — перед установкой соединения клиент отправляет случайное количество мусорных пакетов случайного размера. Сигнатура инициации WireGuard (фиксированные 148 байт) «тонет» среди шума — DPI не может надёжно идентифицировать начало WireGuard-рукопожатия.</li>
+      <li><strong>Init packet magic header (S1, S2)</strong> — случайные байты, добавляемые к заголовкам Initiation и Response пакетов. Фиксированные значения заголовков WireGuard (0x01, 0x02, 0x03, 0x04) заменяются на случайные, уникальные для каждого конфига.</li>
+      <li><strong>Transport packet magic header (H1–H4)</strong> — рандомизация заголовков транспортных пакетов и keepalive. Весь трафик в установленной сессии теряет характерный WireGuard-паттерн.</li>
+    </ul>
+
+    <p>Результат: ТСПУ, обнаруживающее WireGuard по сигнатурам 148/92-байтных пакетов с фиксированными заголовками, не способно применить те же правила к AmneziaWG — каждый конфиг имеет уникальные магические числа.</p>
+
 
     <!-- KAK RABOTAET -->
     <h2 id="kak-rabotaet">Как работает AmneziaWG</h2>
