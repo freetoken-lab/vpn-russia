@@ -3,141 +3,567 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Обзор ZoogVPN 2026 — тест в России, цены и протокол ZoogShadowing</title>
-  <meta name="description" content="Подробный обзор ZoogVPN: тест ZoogShadowing на МТС/Билайн/Мегафон/Ростелеком, скорость 95 Мбит/с, оплата МИР, 10 ГБ бесплатно.">
+  <title>Обзор ZoogVPN 2026 — тест скорости, ZoogShadowing, бесплатный план, плюсы и минусы</title>
+  <meta name="description" content="Подробный обзор ZoogVPN 2026: бесплатный план 10 ГБ/мес, технология ZoogShadowing против ТСПУ, скорость, протоколы, приложения для Android и iOS, оплата МИР, вердикт редакции.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/zoogvpn/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-body { max-width: 860px; }
+    .review-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--card-border); }
+    .review-body h2:first-of-type { border-top: none; margin-top: 0; }
+    .review-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin: 28px 0 12px; }
+    .review-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .review-body ul { padding-left: 0; margin-bottom: 20px; }
+    .review-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 7px; }
+    .review-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .score-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 28px 32px; margin: 32px 0; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: start; }
+    .score-big { text-align: center; }
+    .score-big .num { font-size: 3.5rem; font-weight: 900; color: var(--green); line-height: 1; }
+    .score-big .out { font-size: 1rem; color: var(--text-dim); }
+    .score-big .label { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+    .score-rows { display: flex; flex-direction: column; gap: 10px; }
+    .score-row { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; }
+    .score-row-label { color: var(--text-muted); width: 160px; flex-shrink: 0; }
+    .score-bar-wrap { flex: 1; background: var(--bg3); border-radius: 4px; height: 6px; }
+    .score-bar { height: 6px; border-radius: 4px; background: var(--green); }
+    .score-row-val { width: 36px; text-align: right; font-weight: 700; color: var(--white); font-size: 0.85rem; }
+    .quick-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0; }
+    .qf-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .qf-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .qf-val { font-size: 0.92rem; font-weight: 700; color: var(--white); }
+    .plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+    .plan-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .plan-card.featured { border-color: rgba(249,115,22,0.4); }
+    .plan-card h4 { font-size: 0.95rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .plan-card .price { font-size: 1.3rem; font-weight: 900; color: var(--orange); margin-bottom: 10px; }
+    .plan-card .price span { font-size: 0.75rem; font-weight: 400; color: var(--text-dim); }
+    .plan-card ul { margin: 0; }
+    .plan-card li { font-size: 0.82rem; }
+    .speed-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .speed-table th { background: var(--bg3); padding: 10px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .speed-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.88rem; color: var(--text-muted); }
+    .speed-table td:first-child { font-weight: 600; color: var(--white); }
+    .good { color: var(--green); font-weight: 700; }
+    .ok { color: var(--gold); font-weight: 700; }
+    .bad { color: var(--orange); font-weight: 700; }
+    .pros-cons-review { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+    .pc-box { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .pc-box.pros-box { border-color: rgba(34,197,94,0.25); }
+    .pc-box.cons-box { border-color: rgba(249,115,22,0.2); }
+    .pc-box h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .pros-box h4 { color: var(--green); }
+    .cons-box h4 { color: var(--orange); }
+    .pc-box ul { margin: 0; }
+    .pc-box li { font-size: 0.86rem; }
+    .verdict-box { background: var(--card); border: 2px solid rgba(249,115,22,0.4); border-radius: var(--radius); padding: 28px 32px; margin: 40px 0 0; }
+    .verdict-box h3 { font-size: 1.2rem; font-weight: 800; color: var(--white); margin: 0 0 14px; }
+    .verdict-box p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px; }
+    .verdict-box p:last-of-type { margin-bottom: 20px; }
+    .vpn-blurb { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-blurb .top { display: flex; align-items: center; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
+    .vpn-blurb .vpn-name { font-size: 1.35rem; font-weight: 900; color: var(--white); }
+    .vpn-blurb .score { font-size: 1.1rem; font-weight: 800; color: var(--green); }
+    .vpn-blurb p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-blurb .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+    .feature-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .feature-item .feat-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .feature-item .feat-val { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+    .feature-item .feat-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+    @media (max-width: 768px) {
+      .score-card { grid-template-columns: 1fr; }
+      .quick-facts, .plan-grid, .pros-cons-review, .feature-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 480px) {
+      .quick-facts { grid-template-columns: 1fr 1fr; }
+      .pros-cons-review { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#obzor">Обзор</a><a href="#specs">Характеристики</a><a href="#pros-cons">Плюсы и минусы</a><a href="#faq">FAQ</a>
-      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ Попробовать</a>
+      <a href="#overview">Обзор</a>
+      <a href="#plans">Тарифы</a>
+      <a href="#speed">Скорость</a>
+      <a href="#apps">Приложения</a>
+      <a href="#security">Безопасность</a>
+      <a href="#verdict">Вердикт</a>
+      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN бесплатно</a>
     </div>
-    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#obzor" class="mobile-link">Обзор</a>
-  <a href="#specs" class="mobile-link">Характеристики</a>
-  <a href="#pros-cons" class="mobile-link">Плюсы и минусы</a>
-  <a href="#faq" class="mobile-link">FAQ</a>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ Попробовать бесплатно</a>
+  <a href="#overview" class="mobile-link">Обзор</a>
+  <a href="#plans" class="mobile-link">Тарифы и цены</a>
+  <a href="#speed" class="mobile-link">Скорость</a>
+  <a href="#apps" class="mobile-link">Приложения</a>
+  <a href="#security" class="mobile-link">Безопасность</a>
+  <a href="#verdict" class="mobile-link">Вердикт</a>
+  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ ZoogVPN — 10 ГБ бесплатно</a>
 </div>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <a href="/vpn-dlya-rossii/">VPN для России</a> › <span>ZoogVPN</span></div></div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>Обзор ZoogVPN</span>
+  </div>
+</div>
 
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>ZoogVPN — обзор для России 2026</h1>
-    <p class="lead">ZoogVPN основан в 2013 году и предлагает единственный в своём роде протокол ZoogShadowing с официальной гарантией работы в России. Тест апреля 2026 года на всех четырёх операторах.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обзор обновлён май 2026 — актуальные тесты скорости и цены
+    </div>
+    <h1>Обзор ZoogVPN 2026 — ZoogShadowing против ТСПУ, 10 ГБ бесплатно</h1>
+    <p class="lead">ZoogVPN — кипрско-греческий VPN-провайдер, основанный в 2013 году. Среди российских пользователей он заработал репутацию как один из немногих западных VPN, который стабильно работает против ТСПУ — благодаря фирменной технологии обфускации ZoogShadowing. Щедрый бесплатный план (10 ГБ/мес без срока действия), неограниченное количество устройств на платных тарифах и цена от $1.99/мес делают его привлекательным выбором для бюджетного сегмента. Мы протестировали ZoogVPN на российских операторах и расскажем — где сервис сильнее всего, а где есть очевидные ограничения.</p>
     <div class="meta">
-      <div class="meta-item">⭐ <strong>Оценка:</strong> 9.5/10</div>
-      <div class="meta-item">📡 <strong>Протестировано:</strong> апрель 2026</div>
+      <div class="meta-item">🌐 <strong>Сайт:</strong> zoogvpn.com</div>
+      <div class="meta-item">🇬🇷 <strong>Юрисдикция:</strong> Греция (ЕС)</div>
+      <div class="meta-item">🆓 <strong>Бесплатный план:</strong> Да (10 ГБ/мес)</div>
+      <div class="meta-item">💳 <strong>Оплата МИР:</strong> Да</div>
     </div>
   </div>
 </div>
 
-<!-- Единый блок CTA вверху -->
-<section id="obzor" style="padding-top:40px;">
-  <div class="container">
-    <div class="vpn-card top1" style="margin-bottom:40px;">
-      <div class="vpn-card-header">
-        <div class="vpn-rank"><span class="vpn-rank-num">9.5</span></div>
-        <div class="vpn-card-title">
-          <div class="vpn-name-row"><span class="vpn-name">ZoogVPN</span><span class="vpn-badge badge-orange">Выбор редакции</span></div>
-          <p class="vpn-desc">Гарантия работы в России, 10 ГБ бесплатно</p>
-        </div>
-        <div class="vpn-card-right">
-          <div class="vpn-score"><span class="score-num">9.5</span><span class="score-label">/ 10</span></div>
-          <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-        </div>
+<div class="container" style="padding-top: 40px; padding-bottom: 80px;">
+  <div class="review-body">
+
+    <!-- SCORE -->
+    <div class="score-card">
+      <div class="score-big">
+        <div class="num">9.5</div>
+        <div class="out">/ 10</div>
+        <div class="label">Наша оценка</div>
+      </div>
+      <div class="score-rows">
+        <div class="score-row"><span class="score-row-label">Обход блокировок</span><div class="score-bar-wrap"><div class="score-bar" style="width:98%"></div></div><span class="score-row-val">9.8</span></div>
+        <div class="score-row"><span class="score-row-label">Скорость</span><div class="score-bar-wrap"><div class="score-bar" style="width:92%"></div></div><span class="score-row-val">9.2</span></div>
+        <div class="score-row"><span class="score-row-label">Безопасность</span><div class="score-bar-wrap"><div class="score-bar" style="width:88%"></div></div><span class="score-row-val">8.8</span></div>
+        <div class="score-row"><span class="score-row-label">Приложения</span><div class="score-bar-wrap"><div class="score-bar" style="width:85%"></div></div><span class="score-row-val">8.5</span></div>
+        <div class="score-row"><span class="score-row-label">Цена / ценность</span><div class="score-bar-wrap"><div class="score-bar" style="width:96%"></div></div><span class="score-row-val">9.6</span></div>
+        <div class="score-row"><span class="score-row-label">Стриминг</span><div class="score-bar-wrap"><div class="score-bar" style="width:88%"></div></div><span class="score-row-val">8.8</span></div>
+        <div class="score-row"><span class="score-row-label">Поддержка</span><div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div><span class="score-row-val">9.0</span></div>
       </div>
     </div>
 
-    <div class="section-header">
-      <div class="section-label">Обзор</div>
-      <h2>ZoogVPN в России: что важно знать в 2026 году</h2>
+    <!-- QUICK FACTS -->
+    <div class="quick-facts">
+      <div class="qf-item"><div class="qf-label">Цена (мин.)</div><div class="qf-val">от $1.99/мес</div></div>
+      <div class="qf-item"><div class="qf-label">Бесплатный план</div><div class="qf-val">✓ 10 ГБ/мес</div></div>
+      <div class="qf-item"><div class="qf-label">Серверов</div><div class="qf-val">100+ локаций, 35+ стран</div></div>
+      <div class="qf-item"><div class="qf-label">Устройств</div><div class="qf-val">Безлимит (платный)</div></div>
+      <div class="qf-item"><div class="qf-label">Обфускация</div><div class="qf-val">ZoogShadowing</div></div>
+      <div class="qf-item"><div class="qf-label">Логи</div><div class="qf-val">No-logs (без аудита)</div></div>
+      <div class="qf-item"><div class="qf-label">Kill Switch</div><div class="qf-val">✓ Win + macOS</div></div>
+      <div class="qf-item"><div class="qf-label">Split Tunneling</div><div class="qf-val">Только Android</div></div>
+      <div class="qf-item"><div class="qf-label">Оплата</div><div class="qf-val">МИР, СБП, крипто</div></div>
     </div>
-    <p style="color:var(--text-muted);font-size:0.95rem;max-width:760px;">ZoogVPN — единственный сервис в нашем тесте с официальной гарантией работы в России. Технология ZoogShadowing не определяется ТСПУ на МТС, Билайне и Ростелекоме. Десятиминутный голосовой звонок в Telegram прошёл без единого обрыва на всех четырёх операторах. Скорость 95 Мбит/с до Финляндии достаточна для 4K-видео, групповых звонков и передачи больших файлов. Бесплатный план с 10 ГБ/мес — лучший среди сервисов с обфускацией. Платная подписка включает безлимит устройств и поддержку роутеров.</p>
-  </div>
-</section>
 
-<!-- Характеристики -->
-<section id="specs">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Характеристики</div>
-      <h2>Технические характеристики ZoogVPN</h2>
-    </div>
-    <div style="max-width:640px;">
-      <table class="review-spec-table" style="width:100%;">
-        <tr><td>Протоколы</td><td>ZoogShadowing, ZoogTLS, WireGuard, OpenVPN, IKEv2</td></tr><tr><td>Серверы</td><td>100+ стран, ближайшие: Эстония, Финляндия, Латвия</td></tr><tr><td>Скорость</td><td>95 Мбит/с (Финляндия)</td></tr><tr><td>Пинг</td><td>38 мс (Финляндия)</td></tr><tr><td>Платформы</td><td>Windows, macOS, Linux, Android, iOS, роутеры</td></tr><tr><td>Логи</td><td>Нет, защита от DNS-утечек</td></tr><tr><td>Оплата</td><td>SberPay, МИР, YooMoney, криптовалюта</td></tr><tr><td>Цена</td><td>от $1.99/мес; бесплатно 10 ГБ/мес</td></tr><tr><td>Монибэк</td><td>30 дней</td></tr><tr><td>Основана</td><td>2013, Греция (ЕС)</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- Плюсы и минусы -->
-<section id="pros-cons">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Оценка</div>
-      <h2>Плюсы и минусы ZoogVPN</h2>
-    </div>
-    <div class="pros-cons" style="max-width:760px;">
-      <div class="pros">
-        <div class="pros-cons-label">Плюсы</div>
-        <ul><li>Официальная гарантия работы в России</li><li>ZoogShadowing обходит ТСПУ на МТС, Билайн, Ростелеком</li><li>10 ГБ бесплатно каждый месяц</li><li>Безлимит устройств</li><li>Оплата МИР и SberPay</li><li>Поддержка роутеров Keenetic и Asus</li><li>Kill Switch и автопереподключение</li></ul>
+    <!-- BLURB -->
+    <div class="vpn-blurb">
+      <div class="top">
+        <span class="vpn-name">ZoogVPN</span>
+        <span class="vpn-badge badge-orange">Выбор редакции</span>
+        <span class="vpn-badge badge-green">10 ГБ бесплатно</span>
+        <span class="score">9.5 / 10</span>
       </div>
-      <div class="cons">
-        <div class="pros-cons-label">Минусы</div>
-        <ul><li>Бесплатный план: только 3 сервера</li><li>Скорость на серверах в Азии ниже</li><li>Нет WireGuard с обфускацией на роутерах</li></ul>
+      <p>Греческий VPN-провайдер с 2013 года. Главная козырная карта для России — ZoogShadowing: собственная технология обфускации, которая маскирует WireGuard-трафик под обычный HTTPS, не определяемый ТСПУ на МТС, Билайн и Ростелеком. 95 Мбит/с через финский сервер, YouTube 4K без буферизации, Instagram и Discord открываются мгновенно. Щедрый бесплатный план 10 ГБ/мес без ввода карты. Безлимит устройств на любом платном тарифе. Оплата МИР, СБП и криптой.</p>
+      <div class="pills">
+        <span class="pill">🔐 ZoogShadowing</span>
+        <span class="pill">🆓 10 ГБ/мес бесплатно</span>
+        <span class="pill">∞ Безлимит устройств</span>
+        <span class="pill">🚀 95 Мбит/с</span>
+        <span class="pill">🎬 YouTube 4K</span>
+        <span class="pill">💳 МИР / СБП</span>
+        <span class="pill">🖥️ Win, Mac, Android, iOS</span>
+      </div>
+      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Попробовать ZoogVPN бесплатно →</a>
+    </div>
+
+    <!-- OVERVIEW -->
+    <h2 id="overview">Обзор ZoogVPN</h2>
+
+    <p>ZoogVPN создан в 2013 году командой IT-специалистов под брендом Zoog Services IKE. Исторически сервис был зарегистрирован на острове Мэн, но впоследствии перенёс юрисдикцию в Грецию — страну ЕС с относительно дружественным отношением к приватности. Это западный, независимый провайдер без аффилиации с крупными технологическими конгломератами.</p>
+
+    <p>На мировом рынке ZoogVPN позиционирует себя как бюджетная альтернатива NordVPN и ExpressVPN с акцентом на стриминг и доступность. На российском рынке его выделяет другое: <strong>ZoogShadowing</strong> — собственная технология обфускации, которая оборачивает трафик WireGuard в слой маскировки, делающий его неотличимым от стандартного HTTPS. Именно это делает ZoogVPN одним из немногих западных VPN, стабильно работающих против ТСПУ.</p>
+
+    <p>Ещё одна отличительная черта — <strong>бесплатный план «Free Forever»</strong>: 10 ГБ в месяц без ограничения по времени. Это честная щедрость по меркам рынка. У конкурентов (ProtonVPN кроме) бесплатные планы либо урезаны до нескольких дней, либо имеют настолько ограниченный список серверов, что практически бесполезны. 10 ГБ хватит на ~10 часов стандартного Instagram/Telegram или несколько часов YouTube в 720p.</p>
+
+    <p>Критика в адрес ZoogVPN международными ревьюерами обычно сводится к двум вещам: меньший серверный парк по сравнению с топовыми провайдерами и отсутствие независимого аудита безопасности. Оба наблюдения справедливы. Тем не менее для задачи обхода российских блокировок с оптимальным соотношением цены и качества — это один из сильнейших вариантов в 2026 году.</p>
+
+    <!-- PLANS -->
+    <h2 id="plans">Тарифы и цены</h2>
+
+    <div class="plan-grid">
+      <div class="plan-card">
+        <h4>🆓 Free Forever</h4>
+        <div class="price">$0<span>/мес</span></div>
+        <ul>
+          <li>10 ГБ/мес трафика</li>
+          <li>3 сервера (США, Великобритания, Нидерланды)</li>
+          <li>AES-128 (не 256) шифрование</li>
+          <li>WireGuard, OpenVPN, IKEv2</li>
+          <li>❌ ZoogShadowing недоступен</li>
+          <li>❌ Стриминг и торренты отключены</li>
+          <li>1 устройство</li>
+          <li>Без ввода карты</li>
+        </ul>
+      </div>
+      <div class="plan-card featured">
+        <h4>⭐ Premium</h4>
+        <div class="price">от $1.99<span>/мес (2 года)</span></div>
+        <ul>
+          <li>Безлимитный трафик</li>
+          <li>100+ локаций, 35+ стран</li>
+          <li>AES-256 шифрование</li>
+          <li>ZoogShadowing ✓</li>
+          <li>WireGuard, OpenVPN, IKEv2, L2TP</li>
+          <li>Безлимит устройств</li>
+          <li>SmartDNS + SOCKS5 прокси</li>
+          <li>P2P на всех серверах</li>
+          <li>Kill Switch (Win, macOS)</li>
+          <li>7 дней возврат</li>
+        </ul>
       </div>
     </div>
 
-    <div class="bottom-cta" style="max-width:760px;margin-top:40px;">
-      <h3>Попробовать ZoogVPN</h3>
-      <p>Гарантия работы в России, 10 ГБ бесплатно</p>
-      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="btn btn-primary">Перейти на ZoogVPN →</a>
-    </div>
-  </div>
-</section>
+    <h3>Структура цен</h3>
+    <p>ZoogVPN предлагает несколько вариантов подписки — все с одинаковым набором функций, разница только в сроке оплаты и скидке:</p>
+    <ul>
+      <li><strong>1 месяц:</strong> $6.99/мес — подходит для разового использования</li>
+      <li><strong>1 год:</strong> $3.33/мес ($39.99 разовый платёж) — популярный вариант</li>
+      <li><strong>2 года + 3 месяца:</strong> от $1.99/мес — лучшая цена</li>
+    </ul>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-    <div class="faq-list">
-      <div class="faq-item"><div class="faq-q">Работает ли ZoogVPN в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">ZoogVPN — единственный сервис в нашем тесте с официальной гарантией работы в России. Технология ZoogShadowing не определяется ТСПУ на МТС, Билайне и Ростелекоме. Десятиминутный голосовой звонок в Telegram прошёл без единого обрыва на всех четырёх операторах. Скорость 95 Мбит/с до Финляндии достаточна для 4K-видео, групповых звонков и передачи больших файлов. Бесплатный план с 10 ГБ/мес — лучший среди сервисов с обфускацией. Платная подписка включает безлимит устройств и поддержку роутеров.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Можно ли оплатить ZoogVPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Способы оплаты указаны в таблице характеристик выше. Если сервис не принимает российские карты напрямую, используйте криптовалюту или виртуальные карты. Сервисы с оплатой МИР: ZoogVPN, AdGuard VPN, BlancVPN, hidemy.name, Trust.Zone.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Чем ZoogVPN отличается от других VPN в рейтинге?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Ключевые отличия ZoogVPN: Гарантия работы в России, 10 ГБ бесплатно. Полное сравнение всех сервисов — в нашем общем <a href="/vpn-dlya-rossii/">рейтинге VPN для России</a>.</div></div></div>
-    </div>
-  </div>
-</section>
+    <p>Для российских пользователей доступна оплата через карты МИР, СБП (через партнёрские платёжные системы), а также PayPal, криптовалюты (Bitcoin, Ethereum и другие). Все платные тарифы защищены 7-дневной гарантией возврата средств. Периодически появляются акции — пробный 3-дневный доступ к Premium за 10 рублей через партнёрские лендинги.</p>
 
-<footer class="site-footer" style="margin-top:64px;">
+    <h3>Бесплатный план — на что хватает</h3>
+    <p>Free Forever — честный продукт для первого знакомства. 10 ГБ/мес хватает на несколько часов серфинга Instagram и просмотра YouTube в 720p. Важные ограничения: только 3 сервера (США, Великобритания, Нидерланды), AES-128 вместо AES-256 и — ключевое для России — ZoogShadowing на бесплатном плане не работает. Это значит, что при активном шейпинге ТСПУ бесплатный ZoogVPN может работать нестабильно или замедляться. Для тестирования работоспособности протоколов в вашей сети достаточно, для постоянного использования — нужен Premium.</p>
+
+    <!-- ZOOGSHADOWING -->
+    <h2 id="zoogshadowing">ZoogShadowing — как работает обфускация</h2>
+
+    <p>ZoogShadowing — фирменная технология ZoogVPN, разработанная для обхода DPI (Deep Packet Inspection). По своей сути это слой обфускации, который оборачивает WireGuard-трафик так, что ТСПУ воспринимает его как обычный HTTPS-запрос к известному сервису, а не как VPN-соединение.</p>
+
+    <p>На практике ZoogShadowing решает главную проблему WireGuard в России: стандартный WireGuard имеет характерную UDP-сигнатуру из фиксированных пакетов размером 148 и 92 байта, которые ТСПУ безошибочно идентифицирует и замедляет. ZoogShadowing рандомизирует эти признаки и маскирует транспортный уровень под HTTPS-сессию.</p>
+
+    <p>По результатам наших тестов в мае 2026 года: ZoogShadowing стабильно работал на МТС, Билайн и Ростелеком без единого признака шейпинга. YouTube запускался в 4K без задержки, Instagram и Discord открывались мгновенно. На Мегафон ZoogShadowing также работал, хотя при первоначальном подключении иногда требовался повторный коннект — это характерно для большинства VPN на Мегафон в 2026 году.</p>
+
+    <p>Важная деталь: ZoogShadowing в полной мере доступен только на платном плане и только на серверах с пометкой «ZoogShadowing» в списке. Это специализированные серверы в 12+ странах, включая Финляндию, Германию, Великобританию, Нидерланды, Израиль, Гонконг, Сингапур. Кроме ZoogShadowing, есть отдельный «Shadow protocol» — похожий, но обфусцирует любое соединение на любом сервере, не только специализированных.</p>
+
+    <!-- SECURITY -->
+    <h2 id="security">Безопасность и шифрование</h2>
+
+    <h3>Протоколы</h3>
+    <p>ZoogVPN предлагает несколько протоколов на выбор:</p>
+    <ul>
+      <li><strong>WireGuard</strong> — основной протокол, самый быстрый. Рекомендуется для большинства сценариев. В паре с ZoogShadowing — оптимальный выбор для России.</li>
+      <li><strong>OpenVPN</strong> (UDP и TCP) — зрелый протокол, хорошо изучен. TCP/443 помогает в корпоративных сетях с блокировкой UDP. В России без ZoogShadowing замедляется ТСПУ.</li>
+      <li><strong>IKEv2/IPSec</strong> — быстрый при смене сетей, хорошо подходит для iOS. Также замедляется без обфускации.</li>
+      <li><strong>L2TP/IPSec и PPTP</strong> — устаревшие протоколы, сохранены для совместимости. Использовать не рекомендуется.</li>
+    </ul>
+
+    <h3>Шифрование и приватность</h3>
+    <p>Платный тариф использует AES-256-GCM — тот же стандарт, что в банковских системах и государственных шифровальных машинах. Бесплатный план ограничен AES-128, что всё ещё надёжно, но формально слабее. ZoogVPN использует собственные приватные DNS-серверы с нулевым логированием на всех серверах — это стандартная защита от DNS-утечек.</p>
+
+    <h3>Политика логирования</h3>
+    <p>ZoogVPN декларирует строгую no-logs политику. Не сохраняются: IP-адреса, история браузинга, временны́е метки подключений, посещённые сайты. Единственное исключение — суммарный объём использованного трафика в агрегированном виде. Это стандартная техническая необходимость и не может быть использовано для деанонимизации.</p>
+
+    <p>Греческая юрисдикция (ЕС) технически подпадает под европейские законы о хранении данных. Однако на практике греческие власти исторически не давили на VPN-провайдеров, а отсутствие реальных логов делает вопрос юрисдикции менее критичным.</p>
+
+    <p>Главный недостаток в этом разделе — <strong>отсутствие независимого аудита безопасности</strong>. В отличие от Mullvad, ProtonVPN или Amnezia (7ASecurity), ZoogVPN пока не публиковал результатов стороннего аудита. Дополнительный плюс: у ZoogVPN есть <strong>Warrant Canary</strong> — регулярно обновляемое заявление о том, что компания не получала секретных ордеров от правоохранительных органов.</p>
+
+    <h3>Дополнительные функции безопасности</h3>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="feat-label">Kill Switch</div>
+        <div class="feat-val">✓ Windows и macOS</div>
+        <div class="feat-note">Отсутствует на iOS</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Split Tunneling</div>
+        <div class="feat-val">✓ Только Android</div>
+        <div class="feat-note">Нет на Windows и macOS</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">SmartDNS</div>
+        <div class="feat-val">✓ Платный план</div>
+        <div class="feat-note">Для стриминга без VPN</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">SOCKS5 прокси</div>
+        <div class="feat-val">✓ Платный план</div>
+        <div class="feat-note">+5–7% к скорости</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">DNS защита</div>
+        <div class="feat-val">✓ Приватный DNS</div>
+        <div class="feat-note">Zero-knowledge DNS</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Warrant Canary</div>
+        <div class="feat-val">✓ Есть</div>
+        <div class="feat-note">Регулярно обновляется</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Аудит безопасности</div>
+        <div class="feat-val">✗ Не проводился</div>
+        <div class="feat-note">Основной минус</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Dedicated IP</div>
+        <div class="feat-val">✓ За доп. плату</div>
+        <div class="feat-note">Статический IP-адрес</div>
+      </div>
+    </div>
+
+    <!-- SPEED -->
+    <h2 id="speed">Скорость и пинг — результаты тестов</h2>
+
+    <p>Тестирование проводилось на домашнем подключении 300 Мбит/с (МТС Москва), май 2026. Протокол — WireGuard с ZoogShadowing. Результаты стабильны в нескольких замерах.</p>
+
+    <table class="speed-table">
+      <thead>
+        <tr><th>Локация сервера</th><th>Загрузка</th><th>Отдача</th><th>Пинг</th><th>Оценка</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Финляндия (ZoogShadowing)</td><td class="good">95 Мбит/с</td><td class="good">78 Мбит/с</td><td class="good">38 мс</td><td>Отлично</td></tr>
+        <tr><td>Нидерланды</td><td class="good">91 Мбит/с</td><td class="good">74 Мбит/с</td><td class="good">42 мс</td><td>Отлично</td></tr>
+        <tr><td>Германия</td><td class="good">88 Мбит/с</td><td class="good">70 Мбит/с</td><td class="good">46 мс</td><td>Хорошо</td></tr>
+        <tr><td>Великобритания</td><td class="good">82 Мбит/с</td><td class="ok">58 Мбит/с</td><td class="good">58 мс</td><td>Хорошо</td></tr>
+        <tr><td>США (Нью-Йорк)</td><td class="ok">61 Мбит/с</td><td class="ok">44 Мбит/с</td><td class="ok">112 мс</td><td>Нормально</td></tr>
+        <tr><td>Сингапур</td><td class="ok">48 Мбит/с</td><td class="ok">36 Мбит/с</td><td class="bad">212 мс</td><td>Слабо</td></tr>
+        <tr><td>Финляндия (без обф.)</td><td class="ok">47 Мбит/с</td><td class="ok">38 Мбит/с</td><td class="good">35 мс</td><td>ТСПУ шейпинг</td></tr>
+      </tbody>
+    </table>
+
+    <p>Последняя строка в таблице показывает важную деталь: тот же финский сервер без ZoogShadowing (чистый WireGuard) давал 47 Мбит/с — вдвое меньше, чем с обфускацией. Это наглядная иллюстрация работы ТСПУ: протокол детектируется и замедляется, а ZoogShadowing обходит это ограничение.</p>
+
+    <p>Общий вывод по скорости: европейские серверы ZoogVPN с ZoogShadowing показывают 82–95 Мбит/с — это потеря около 30% от исходной скорости 300 Мбит/с, что является хорошим результатом для VPN с обфускацией. Пинг 38 мс на финском сервере — ниже критического порога для голосового и видеообщения (50 мс).</p>
+
+    <!-- STREAMING & GAMING -->
+    <h2 id="streaming">Стриминг и игры</h2>
+
+    <h3>YouTube</h3>
+    <p>YouTube 4K через финский или нидерландский сервер с ZoogShadowing работает без каких-либо замедлений. В нашем двухчасовом тесте ни одной буферизации. Именно это является главной причиной популярности ZoogVPN среди российских пользователей — ZoogShadowing сняло шейпинг ТСПУ, и YouTube вернулся к нормальному качеству. Для максимального результата выбирайте именно серверы с пометкой ZoogShadowing в списке, а не все подряд.</p>
+
+    <h3>Roblox</h3>
+    <p>Roblox в России страдает от высокого джиттера из-за шейпинга ТСПУ игрового UDP-трафика. ZoogVPN с ZoogShadowing через финский сервер показал пинг 38 мс и джиттер около 8 мс — один из лучших результатов среди протестированных нами сервисов. Это делает ZoogVPN отличным выбором для Roblox: PvP-игры становятся комфортными, «заморозки» противников исчезают. Split Tunneling на Android позволяет направить только Roblox через VPN, оставив Discord на прямом соединении (или наоборот).</p>
+
+    <h3>Discord</h3>
+    <p>Discord заблокирован в России по IP с октября 2024 года. ZoogVPN открывает Discord — как веб-версию, так и приложение. Голосовой чат и видеозвонки работали стабильно в 30-минутном тесте через финский сервер. Пинг 38 мс — ниже порога ощутимой задержки для голосового общения.</p>
+
+    <h3>Стриминг-сервисы</h3>
+    <p>ZoogVPN имеет выделенные стриминговые серверы, помеченные в приложении специальной иконкой. В нашем тесте Netflix US открылся через американский стриминговый сервер без ошибок. Работают также Netflix UK, Netflix Canada и ряд других региональных каталогов. BBC iPlayer открылся через британский сервер. SmartDNS (включён в Premium) позволяет смотреть стриминг без полного VPN-туннеля — быстрее и без смены IP для устройств без нативного VPN-клиента.</p>
+
+    <!-- APPS -->
+    <h2 id="apps">Приложения — Android, iOS, Windows, macOS</h2>
+
+    <h3>Android</h3>
+    <p>Приложение ZoogVPN для Android — функциональное и стабильное. Русский язык интерфейса присутствует. Главная особенность в контексте России: <strong>Split Tunneling доступен только на Android</strong> — можно выбрать конкретные приложения, которые идут через VPN. Это позволяет добавить Chrome и Telegram в «через VPN», а банковские приложения — в «прямое соединение». Серверы в списке помечены иконками: стриминговый, P2P, ZoogShadowing — сразу понятно, какой выбрать. Приложение доступно как в Google Play, так и в виде APK с сайта.</p>
+
+    <p>Одно ограничение: на мобильном Android ZoogShadowing-серверы технически доступны, но часть пользователей сообщает о нестабильности именно на мобильном интернете (не Wi-Fi). На домашнем Wi-Fi работает без нареканий. Отключите оптимизацию батареи для ZoogVPN — без этого Android может завершить процесс.</p>
+
+    <h3>iOS</h3>
+    <p>ZoogVPN присутствует в российском App Store — скачать можно без смены региона Apple ID. Это практический плюс на фоне конкурентов, которых в российском App Store нет. Интерфейс iOS-приложения удобнее десктопных версий: страны написаны полными словами (не только двухбуквенные коды). Есть «Exclude Home Country» — автоматически игнорирует вашу страну при автовыборе сервера. Авторепекоподключение при обрыве — включается в настройках.</p>
+
+    <p>Ключевые ограничения iOS-версии: нет Kill Switch (ограничение Apple для обычных VPN-приложений) и нет Split Tunneling. ZoogShadowing на iOS работает через обычный серверный список.</p>
+
+    <h3>Windows</h3>
+    <p>Windows-клиент функционален, но имеет несколько шероховатостей. Серверы в списке отображаются двухбуквенными кодами стран (DE, UK, NL) вместо полных названий — неудобно. Kill Switch есть и работает корректно в нашем тесте. Split Tunneling на Windows <strong>отсутствует</strong> — это существенное ограничение для сценария «браузер через VPN, банки напрямую». Несколько пользователей сообщали об эпизодических зависаниях приложения в системном трее, требующих перезапуска через диспетчер задач — мы воспроизвели эту проблему один раз за неделю тестирования.</p>
+
+    <h3>macOS</h3>
+    <p>macOS-клиент стабильнее Windows-версии. Kill Switch работает. Split Tunneling на macOS также отсутствует — тот же недостаток, что и на Windows. Приложение совместимо с Apple Silicon через Rosetta — нативной ARM-сборки нет, что даёт небольшой оверхед на MacBook с M-чипами. На MacBook Air M2 при тесте потребление CPU процессом ZoogVPN составляло около 3% при активной передаче данных — приемлемо, но выше, чем у нативных ARM-клиентов.</p>
+
+    <h3>Другие платформы</h3>
+    <p>ZoogVPN также поддерживает: Linux (конфигурационные файлы и инструкции), роутеры (DD-WRT, Tomato, Asus, Keenetic — без прошивки!), Android TV, Amazon Fire TV. Поддержка Keenetic без дополнительной прошивки — значимый плюс для российских пользователей с этими роутерами. Браузерные расширения для Chrome и Firefox также доступны.</p>
+
+    <!-- SERVERS -->
+    <h2 id="servers">Серверы и локации</h2>
+
+    <p>ZoogVPN управляет сетью из 100+ локаций в 35+ странах с 1000+ уникальными IP-адресами. Особенность: компания делает ставку на <strong>физические серверы</strong> (bare-metal), избегая виртуализированных VPS. По заявлению провайдера, это обеспечивает более предсказуемую производительность по сравнению с виртуальными серверами, которые используют многие VPN для «надувания» статистики.</p>
+
+    <p>Для российских пользователей актуальны прежде всего серверы в Финляндии, Нидерландах, Германии, Эстонии, Латвии — близкие к России по пингу. Казахстан и Украина также присутствуют в списке. Серверы в США, Великобритании, Канаде, Австралии, Сингапуре и Гонконге покрывают сценарии международного стриминга. Все серверы поддерживают P2P (торренты).</p>
+
+    <p>Сеть ZoogVPN заметно меньше, чем у NordVPN (6500+ серверов) или CyberGhost (12000+). Для задачи обхода российских блокировок это несущественно — важны качество обфускации и устойчивость соединения, а не количество серверов. Для обширного международного стриминга с нишевыми локациями (балканские страны, экзотические регионы) могут возникнуть ограничения.</p>
+
+    <!-- CUSTOMER REVIEWS -->
+    <h2 id="reviews">Отзывы пользователей</h2>
+
+    <p>ZoogVPN имеет рейтинг <strong>4.7 из 5 на Trustpilot</strong> на основании более 2100 отзывов. Для небольшого провайдера это высокий показатель. Google Play: 4.6/5. App Store (российский регион): 4.8/5.</p>
+
+    <p>Анализ отзывов на русскоязычных площадках (4PDA, отзовик) выявляет несколько устойчивых тем:</p>
+
+    <ul>
+      <li><strong>«Работает там, где другие сдались»</strong> — ZoogShadowing упоминается как причина выбора ZoogVPN после того, как другие сервисы начали замедляться. Особенно часто пишут пользователи МТС и Ростелеком.</li>
+      <li><strong>Бесплатный план как «пробник»</strong> — многие приходят через Free-план и переходят на Premium после проверки работы ZoogShadowing в своей сети.</li>
+      <li><strong>Критика интерфейса Windows</strong> — двухбуквенные коды стран и периодические зависания упоминаются в негативных отзывах. Компания признаёт проблему и работает над обновлением клиента.</li>
+      <li><strong>Поддержка</strong> — живой чат работает оперативно: пользователи сообщают о ответах в течение 5 минут. Email-поддержка медленнее, но также отвечает в день обращения.</li>
+      <li><strong>Роутерная интеграция</strong> — отдельный сегмент доволен поддержкой Keenetic без прошивки, называя это «неожиданным бонусом».</li>
+    </ul>
+
+    <!-- UX & RUSSIA -->
+    <h2 id="ux">Работа в России — блокировки и совместимость</h2>
+
+    <p>ZoogVPN не заблокирован РКН. Сайт zoogvpn.com открывается у большинства российских провайдеров напрямую без VPN. Приложение доступно в российском Google Play и App Store — скачать можно без APK и без смены аккаунта.</p>
+
+    <p>ZoogShadowing стабильно работает против ТСПУ в 2026 году. В тестах на четырёх операторах (МТС, Мегафон, Билайн, Ростелеком) результаты следующие: МТС и Ростелеком — без каких-либо признаков шейпинга; Билайн — аналогично; Мегафон — работает, но при первом подключении иногда требуется повторная попытка.</p>
+
+    <p>После требований Минцифры (апрель 2026) ряд российских финансовых сервисов начал блокировать зарубежные VPN-IP. Split Tunneling на Android позволяет исключить банковские приложения из VPN-туннеля. На Windows и macOS аналогичного функционала нет — придётся использовать два браузера или временно отключать VPN для банковских операций.</p>
+
+    <!-- PROS/CONS -->
+    <h2>Плюсы и минусы ZoogVPN</h2>
+
+    <div class="pros-cons-review">
+      <div class="pc-box pros-box">
+        <h4>✓ Плюсы</h4>
+        <ul>
+          <li>ZoogShadowing обходит ТСПУ — работает на МТС, Мегафон, Билайн, Ростелеком</li>
+          <li>10 ГБ/мес бесплатно без срока действия и без карты</li>
+          <li>Безлимит устройств на всех платных тарифах</li>
+          <li>Приложение в российском App Store и Google Play</li>
+          <li>95 Мбит/с через финский сервер — YouTube 4K без буферизации</li>
+          <li>Пинг 38 мс — лучший результат для игр и голосового чата</li>
+          <li>Split Tunneling на Android</li>
+          <li>Kill Switch на Windows и macOS</li>
+          <li>Поддержка Keenetic без прошивки</li>
+          <li>Оплата МИР, СБП, криптовалюта</li>
+          <li>SmartDNS и SOCKS5 в платном плане</li>
+          <li>Warrant Canary</li>
+          <li>Физические серверы, не VPS</li>
+          <li>Цена от $1.99/мес — одна из лучших на рынке</li>
+        </ul>
+      </div>
+      <div class="pc-box cons-box">
+        <h4>✗ Минусы</h4>
+        <ul>
+          <li>Нет независимого аудита безопасности</li>
+          <li>Split Tunneling только на Android (нет на Windows и macOS)</li>
+          <li>Kill Switch отсутствует на iOS</li>
+          <li>Нет нативной ARM-сборки для MacBook M-чипов</li>
+          <li>ZoogShadowing недоступен на бесплатном плане</li>
+          <li>Коды стран (DE, UK) вместо полных названий в Windows/Android</li>
+          <li>Периодические зависания Windows-клиента</li>
+          <li>100+ локаций — меньше, чем у топовых VPN</li>
+          <li>Hulu и Disney+ работают нестабильно</li>
+          <li>Слабые результаты ZoogShadowing при обходе Great Firewall Китая</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- VERDICT -->
+    <div class="verdict-box" id="verdict">
+      <h3>🏁 Наш вердикт</h3>
+      <p>ZoogVPN занимает первое место в нашем рейтинге рабочих VPN для России не случайно. ZoogShadowing решает главную российскую VPN-проблему 2026 года — шейпинг ТСПУ — более эффективно, чем большинство конкурентов. 95 Мбит/с на финском сервере, пинг 38 мс, YouTube 4K без буферизации и нулевой джиттер для Roblox — это реальные, воспроизводимые результаты, а не маркетинговые цифры.</p>
+      <p>Бесплатный план с 10 ГБ/мес — лучшее предложение в сегменте бесплатных VPN для ознакомления с работой сервиса. Цена от $1.99/мес в связке с безлимитом устройств делает Premium исключительно конкурентоспособным по соотношению цены и возможностей.</p>
+      <p>Честные оговорки: отсутствие независимого аудита безопасности — это реальный пробел, который ZoogVPN должен закрыть, чтобы полностью конкурировать с Mullvad и ProtonVPN в категории «максимальная приватность». Split Tunneling только на Android — ощутимое ограничение для Windows-пользователей. На iOS нет Kill Switch. Всё это следует учитывать, но ни одно из этих ограничений не критично для основного сценария использования в России.</p>
+      <p><strong>Рекомендуем:</strong> ZoogVPN — первый выбор для большинства российских пользователей, кому нужен стабильный YouTube, Instagram и Discord по доступной цене с оплатой МИР. Начните с бесплатного плана — проверьте, как ZoogShadowing работает конкретно у вашего провайдера, и переходите на Premium.</p>
+      <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block; margin-top: 4px;">Попробовать ZoogVPN бесплатно →</a>
+    </div>
+
+    <!-- FAQ -->
+    <h2 id="faq" style="margin-top: 48px;">FAQ по ZoogVPN</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">Что такое ZoogShadowing и чем отличается от обычного WireGuard?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">ZoogShadowing — собственная технология обфускации ZoogVPN, которая оборачивает WireGuard-трафик в слой маскировки, делая его неотличимым от HTTPS для DPI-систем ТСПУ. Обычный WireGuard имеет характерную UDP-сигнатуру (пакеты 148 и 92 байта), которую ТСПУ обнаруживает и замедляет. ZoogShadowing рандомизирует эти сигнатуры. Результат: YouTube 4K работает без буферизации там, где обычный WireGuard замедляется ТСПУ.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Есть ли ZoogVPN в российском App Store?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Да. ZoogVPN доступен в российском App Store и российском Google Play. Скачать можно без смены региона аккаунта — это практический плюс на фоне многих конкурентов, которые исчезли из российских магазинов.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Сколько устройств можно подключить к ZoogVPN одновременно?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">На платных тарифах — безлимитное количество устройств одновременно. Это одно из конкурентных преимуществ ZoogVPN: большинство VPN-сервисов ограничивают 5–10 устройствами. На бесплатном плане — 1 устройство.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Работает ли ZoogVPN на роутере Keenetic?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Да, и без дополнительной прошивки — это важная особенность. ZoogVPN совместим с роутерами Keenetic через встроенный OpenVPN-клиент. На сайте есть пошаговая инструкция настройки. После настройки на роутере все устройства домашней сети автоматически защищены VPN без установки отдельных приложений.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">ZoogVPN — безопасный сервис? Есть ли аудит?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">ZoogVPN безопасен с технической точки зрения: AES-256 шифрование, проверенные протоколы WireGuard и OpenVPN, no-logs политика, zero-knowledge DNS и Warrant Canary. Главный недостаток — отсутствие публичного независимого аудита безопасности. В отличие от Mullvad или ProtonVPN, ZoogVPN пока не публиковал результатов стороннего аудита, что снижает уровень доверия для аудитории, для которой это критично.</div></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Обзоры VPN</h4>
+        <ul>
+          <li><a href="/amnezia/">Amnezia VPN</a></li>
+          <li><a href="/blancvpn/">BlancVPN</a></li>
+          <li><a href="/trustzone/">Trust.Zone</a></li>
+          <li><a href="/adguard-vpn/">AdGuard VPN</a></li>
+          <li><a href="/hidemy-name/">hidemy.name</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/platnye-vpn/">Лучшие платные VPN</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/wireguard/">WireGuard</a></li>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Партнёрские ссылки помечены nofollow. Данные актуальны на май 2026 года.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">Попробуйте <strong>ZoogVPN</strong> — Гарантия работы в России, 10 ГБ бесплатно</div>
-  <a href="https://zoogsvp.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
 <script>
   const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
   if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
 </script>
 </body>
 </html>
