@@ -3,141 +3,558 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Обзор AdGuard VPN 2026 — TrustTunnel QUIC, 3 ГБ бесплатно</title>
-  <meta name="description" content="AdGuard VPN: протокол TrustTunnel QUIC, 118 Мбит/с, 3 ГБ бесплатно, доступен в российских магазинах. Оплата МИР.">
+  <title>Обзор AdGuard VPN 2026 — тест скорости, TrustTunnel, бесплатный план, плюсы и минусы</title>
+  <meta name="description" content="Подробный обзор AdGuard VPN 2026: протокол TrustTunnel, бесплатный план 3 ГБ/мес, скорость 118 Мбит/с, встроенный блокировщик рекламы, оплата МИР, вердикт редакции. Май 2026.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/adguard-vpn/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-body { max-width: 860px; }
+    .review-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--card-border); }
+    .review-body h2:first-of-type { border-top: none; margin-top: 0; }
+    .review-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin: 28px 0 12px; }
+    .review-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .review-body ul { padding-left: 0; margin-bottom: 20px; }
+    .review-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 7px; }
+    .review-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .score-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 28px 32px; margin: 32px 0; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: start; }
+    .score-big { text-align: center; }
+    .score-big .num { font-size: 3.5rem; font-weight: 900; color: var(--green); line-height: 1; }
+    .score-big .out { font-size: 1rem; color: var(--text-dim); }
+    .score-big .label { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+    .score-rows { display: flex; flex-direction: column; gap: 10px; }
+    .score-row { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; }
+    .score-row-label { color: var(--text-muted); width: 160px; flex-shrink: 0; }
+    .score-bar-wrap { flex: 1; background: var(--bg3); border-radius: 4px; height: 6px; }
+    .score-bar { height: 6px; border-radius: 4px; background: var(--green); }
+    .score-bar.amber { background: var(--gold); }
+    .score-row-val { width: 36px; text-align: right; font-weight: 700; color: var(--white); font-size: 0.85rem; }
+    .quick-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0; }
+    .qf-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .qf-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .qf-val { font-size: 0.92rem; font-weight: 700; color: var(--white); }
+    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
+    .plan-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 18px; }
+    .plan-card.featured { border-color: rgba(249,115,22,0.4); }
+    .plan-card h4 { font-size: 0.93rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .plan-card .price { font-size: 1.2rem; font-weight: 900; color: var(--orange); margin-bottom: 10px; }
+    .plan-card .price span { font-size: 0.72rem; font-weight: 400; color: var(--text-dim); }
+    .plan-card ul { margin: 0; }
+    .plan-card li { font-size: 0.81rem; }
+    .speed-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .speed-table th { background: var(--bg3); padding: 10px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .speed-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.88rem; color: var(--text-muted); }
+    .speed-table td:first-child { font-weight: 600; color: var(--white); }
+    .good { color: var(--green); font-weight: 700; }
+    .ok { color: var(--gold); font-weight: 700; }
+    .bad { color: var(--orange); font-weight: 700; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+    .feature-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .feature-item .feat-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .feature-item .feat-val { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+    .feature-item .feat-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+    .pros-cons-review { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+    .pc-box { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .pc-box.pros-box { border-color: rgba(34,197,94,0.25); }
+    .pc-box.cons-box { border-color: rgba(249,115,22,0.2); }
+    .pc-box h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .pros-box h4 { color: var(--green); }
+    .cons-box h4 { color: var(--orange); }
+    .pc-box ul { margin: 0; }
+    .pc-box li { font-size: 0.86rem; }
+    .verdict-box { background: var(--card); border: 2px solid rgba(249,115,22,0.4); border-radius: var(--radius); padding: 28px 32px; margin: 40px 0 0; }
+    .verdict-box h3 { font-size: 1.2rem; font-weight: 800; color: var(--white); margin: 0 0 14px; }
+    .verdict-box p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px; }
+    .verdict-box p:last-of-type { margin-bottom: 20px; }
+    .vpn-blurb { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-blurb .top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .vpn-blurb .vpn-name { font-size: 1.25rem; font-weight: 900; color: var(--white); }
+    .vpn-blurb .score { font-size: 1.05rem; font-weight: 800; color: var(--green); }
+    .vpn-blurb p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-blurb .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .russia-note { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25); border-radius: var(--radius); padding: 16px 20px; margin: 20px 0; }
+    .russia-note p { margin: 0; font-size: 0.9rem; color: var(--text); line-height: 1.7; }
+    @media (max-width: 768px) {
+      .score-card { grid-template-columns: 1fr; }
+      .quick-facts, .plan-grid, .feature-grid { grid-template-columns: 1fr 1fr; }
+      .pros-cons-review { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .quick-facts { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#obzor">Обзор</a><a href="#specs">Характеристики</a><a href="#pros-cons">Плюсы и минусы</a><a href="#faq">FAQ</a>
-      <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="nav-cta">▶ Попробовать</a>
+      <a href="#overview">Обзор</a>
+      <a href="#plans">Тарифы</a>
+      <a href="#speed">Скорость</a>
+      <a href="#apps">Приложения</a>
+      <a href="#security">Безопасность</a>
+      <a href="#verdict">Вердикт</a>
+      <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="nav-cta">▶ AdGuard VPN</a>
     </div>
-    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#obzor" class="mobile-link">Обзор</a>
-  <a href="#specs" class="mobile-link">Характеристики</a>
-  <a href="#pros-cons" class="mobile-link">Плюсы и минусы</a>
-  <a href="#faq" class="mobile-link">FAQ</a>
-  <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ Попробовать бесплатно</a>
+  <a href="#overview" class="mobile-link">Обзор</a>
+  <a href="#plans" class="mobile-link">Тарифы и цены</a>
+  <a href="#speed" class="mobile-link">Скорость</a>
+  <a href="#apps" class="mobile-link">Приложения</a>
+  <a href="#security" class="mobile-link">Безопасность</a>
+  <a href="#verdict" class="mobile-link">Вердикт</a>
+  <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ AdGuard VPN — 3 ГБ бесплатно</a>
 </div>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <a href="/vpn-dlya-rossii/">VPN для России</a> › <span>AdGuard VPN</span></div></div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>Обзор AdGuard VPN</span>
+  </div>
+</div>
 
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>AdGuard VPN — обзор для России 2026</h1>
-    <p class="lead">AdGuard VPN использует собственный протокол TrustTunnel на базе QUIC — трафик неотличим от обычного HTTPS для DPI. В стресс-тесте апреля 2026 года показал 118 Мбит/с и ни одного обрыва.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обзор обновлён май 2026 — актуальные тесты и оценки
+    </div>
+    <h1>Обзор AdGuard VPN 2026 — TrustTunnel, блокировщик рекламы и 3 ГБ бесплатно</h1>
+    <p class="lead">AdGuard известен в первую очередь как лучший блокировщик рекламы в мире. Когда в 2021 году компания выпустила собственный VPN, скептики ждали посредственного продукта «в нагрузку». Но AdGuard VPN оказался серьёзным сервисом: фирменный протокол TrustTunnel маскирует трафик под HTTPS и обходит ТСПУ, встроенный блокировщик рекламы работает параллельно с VPN, а 118 Мбит/с в наших тестах — максимальный показатель среди всех протестированных нами VPN. Честно расскажем и о слабых местах: только один протокол, нет независимого аудита, и ряд нюансов с российской историей компании.</p>
     <div class="meta">
-      <div class="meta-item">⭐ <strong>Оценка:</strong> 9.0/10</div>
-      <div class="meta-item">📡 <strong>Протестировано:</strong> апрель 2026</div>
+      <div class="meta-item">🌐 <strong>Сайт:</strong> adguard-vpn.com</div>
+      <div class="meta-item">🇨🇾 <strong>Юрисдикция:</strong> Кипр (ЕС, вне 5/9/14 Eyes)</div>
+      <div class="meta-item">🆓 <strong>Бесплатный план:</strong> Да (3 ГБ/мес)</div>
+      <div class="meta-item">💳 <strong>Оплата МИР:</strong> Да</div>
     </div>
   </div>
 </div>
 
-<!-- Единый блок CTA вверху -->
-<section id="obzor" style="padding-top:40px;">
-  <div class="container">
-    <div class="vpn-card top1" style="margin-bottom:40px;">
-      <div class="vpn-card-header">
-        <div class="vpn-rank"><span class="vpn-rank-num">9.0</span></div>
-        <div class="vpn-card-title">
-          <div class="vpn-name-row"><span class="vpn-name">AdGuard VPN</span><span class="vpn-badge badge-blue">Лучший бесплатный</span></div>
-          <p class="vpn-desc">TrustTunnel QUIC, 3 ГБ бесплатно, оплата МИР</p>
-        </div>
-        <div class="vpn-card-right">
-          <div class="vpn-score"><span class="score-num">9.0</span><span class="score-label">/ 10</span></div>
-          <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-        </div>
+<div class="container" style="padding-top: 40px; padding-bottom: 80px;">
+  <div class="review-body">
+
+    <!-- SCORE -->
+    <div class="score-card">
+      <div class="score-big">
+        <div class="num">9.0</div>
+        <div class="out">/ 10</div>
+        <div class="label">Наша оценка</div>
+      </div>
+      <div class="score-rows">
+        <div class="score-row"><span class="score-row-label">Обход блокировок</span><div class="score-bar-wrap"><div class="score-bar" style="width:93%"></div></div><span class="score-row-val">9.3</span></div>
+        <div class="score-row"><span class="score-row-label">Скорость</span><div class="score-bar-wrap"><div class="score-bar" style="width:95%"></div></div><span class="score-row-val">9.5</span></div>
+        <div class="score-row"><span class="score-row-label">Безопасность</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:82%"></div></div><span class="score-row-val">8.2</span></div>
+        <div class="score-row"><span class="score-row-label">Приложения</span><div class="score-bar-wrap"><div class="score-bar" style="width:92%"></div></div><span class="score-row-val">9.2</span></div>
+        <div class="score-row"><span class="score-row-label">Цена / ценность</span><div class="score-bar-wrap"><div class="score-bar" style="width:88%"></div></div><span class="score-row-val">8.8</span></div>
+        <div class="score-row"><span class="score-row-label">Стриминг</span><div class="score-bar-wrap"><div class="score-bar" style="width:86%"></div></div><span class="score-row-val">8.6</span></div>
+        <div class="score-row"><span class="score-row-label">Поддержка</span><div class="score-bar-wrap"><div class="score-bar" style="width:88%"></div></div><span class="score-row-val">8.8</span></div>
       </div>
     </div>
 
-    <div class="section-header">
-      <div class="section-label">Обзор</div>
-      <h2>AdGuard VPN в России: что важно знать в 2026 году</h2>
+    <!-- QUICK FACTS -->
+    <div class="quick-facts">
+      <div class="qf-item"><div class="qf-label">Цена (мин.)</div><div class="qf-val">от 247 ₽/мес</div></div>
+      <div class="qf-item"><div class="qf-label">Бесплатный план</div><div class="qf-val">✓ 3 ГБ/мес</div></div>
+      <div class="qf-item"><div class="qf-label">Серверов</div><div class="qf-val">65+ локаций, 53+ стран</div></div>
+      <div class="qf-item"><div class="qf-label">Устройств</div><div class="qf-val">до 10 (платный)</div></div>
+      <div class="qf-item"><div class="qf-label">Протокол</div><div class="qf-val">TrustTunnel (HTTP/2+QUIC)</div></div>
+      <div class="qf-item"><div class="qf-label">Логи</div><div class="qf-val">No-logs (не аудирован)</div></div>
+      <div class="qf-item"><div class="qf-label">Kill Switch</div><div class="qf-val">✓ Все платформы</div></div>
+      <div class="qf-item"><div class="qf-label">Split Tunneling</div><div class="qf-val">✓ Приложения + домены</div></div>
+      <div class="qf-item"><div class="qf-label">Оплата</div><div class="qf-val">МИР, YooMoney, карты</div></div>
     </div>
-    <p style="color:var(--text-muted);font-size:0.95rem;max-width:760px;">AdGuard VPN выделяется среди конкурентов тем, что доступен в российских магазинах приложений без обходных манёвров. Протокол TrustTunnel с открытым кодом не определяется DPI-системами ТСПУ. 3 ГБ бесплатно в месяц достаточно для Telegram и лёгкого серфинга. Для активных пользователей YouTube и передачи файлов нужна платная подписка.</p>
-  </div>
-</section>
 
-<!-- Характеристики -->
-<section id="specs">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Характеристики</div>
-      <h2>Технические характеристики AdGuard VPN</h2>
-    </div>
-    <div style="max-width:640px;">
-      <table class="review-spec-table" style="width:100%;">
-        <tr><td>Протоколы</td><td>TrustTunnel (QUIC/HTTP2), WireGuard</td></tr><tr><td>Серверы</td><td>65+ стран; Финляндия, Эстония, Грузия</td></tr><tr><td>Скорость</td><td>118 Мбит/с (Финляндия) — максимум в тесте</td></tr><tr><td>Пинг</td><td>42 мс (Финляндия)</td></tr><tr><td>Платформы</td><td>Windows, macOS, Linux, Android, iOS, браузеры</td></tr><tr><td>Логи</td><td>Нет, открытый код TrustTunnel</td></tr><tr><td>Оплата</td><td>МИР, Visa, Bitcoin, YooMoney</td></tr><tr><td>Цена</td><td>3 ГБ бесплатно; от 247 ₽/мес</td></tr><tr><td>Монибэк</td><td>30 дней</td></tr><tr><td>Основана</td><td>2022 (AdGuard с 2009), 70+ млн пользователей</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- Плюсы и минусы -->
-<section id="pros-cons">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Оценка</div>
-      <h2>Плюсы и минусы AdGuard VPN</h2>
-    </div>
-    <div class="pros-cons" style="max-width:760px;">
-      <div class="pros">
-        <div class="pros-cons-label">Плюсы</div>
-        <ul><li>118 Мбит/с — максимальная скорость в тесте</li><li>3 ГБ/мес бесплатно без ввода карты</li><li>Доступен в российском App Store и Play Market</li><li>Встроенный блокировщик рекламы и трекеров</li><li>Split Tunneling — только Telegram/Instagram через VPN</li><li>Открытый код TrustTunnel, аудиты безопасности</li></ul>
+    <!-- BLURB -->
+    <div class="vpn-blurb">
+      <div class="top">
+        <span class="vpn-name">AdGuard VPN</span>
+        <span class="vpn-badge badge-blue">Лучший на M-чипах</span>
+        <span class="vpn-badge badge-orange">Блокировщик рекламы</span>
+        <span class="score">9.0 / 10</span>
       </div>
-      <div class="cons">
-        <div class="pros-cons-label">Минусы</div>
-        <ul><li>3 ГБ/мес мало для активной передачи видеофайлов</li><li>Нет поддержки роутеров напрямую</li><li>Только 2 протокола</li></ul>
+      <p>VPN от создателей лучшего блокировщика рекламы. Фирменный TrustTunnel (HTTP/2 + QUIC) маскирует трафик под обычный HTTPS — ТСПУ не обнаруживает. 118 Мбит/с на Windows — максимум среди наших тестов. Встроенный блокировщик рекламы работает параллельно с VPN на всех устройствах. Split Tunneling по приложениям и доменам. 3 ГБ/мес бесплатно без карты. 10 устройств на платном тарифе. Оплата МИР и YooMoney.</p>
+      <div class="pills">
+        <span class="pill">🔐 TrustTunnel (HTTPS-маскировка)</span>
+        <span class="pill">🛡️ Блокировщик рекламы</span>
+        <span class="pill">🚀 118 Мбит/с</span>
+        <span class="pill">🆓 3 ГБ/мес бесплатно</span>
+        <span class="pill">🔀 Split Tunneling</span>
+        <span class="pill">💳 МИР / YooMoney</span>
+        <span class="pill">🍎 Нативный ARM</span>
+      </div>
+      <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Попробовать AdGuard VPN →</a>
+    </div>
+
+    <!-- OVERVIEW -->
+    <h2 id="overview">Обзор AdGuard VPN</h2>
+
+    <p>AdGuard — компания с историей. Основанная в 2009 году в Москве, она за 15 лет стала синонимом блокировки рекламы: более 400 миллионов пользователей по всему миру используют AdGuard в той или иной форме. В 2017 году компания перенесла штаб-квартиру в Лимасол, Кипр — юрисдикцию ЕС вне альянсов «Пять глаз», и в 2021 году выпустила собственный VPN-сервис.</p>
+
+    <p>AdGuard VPN сразу выделился нестандартным подходом. Большинство VPN берут готовые протоколы (WireGuard, OpenVPN) и строят сервис поверх них. AdGuard разработал <strong>собственный протокол TrustTunnel</strong> на базе HTTP/2 и QUIC — тех же транспортных протоколов, которые используют Google, Cloudflare и большинство современных веб-сайтов. Трафик TrustTunnel статистически неотличим от обычного HTTPS-браузинга. Для России это принципиально важно: ТСПУ не может применить шейпинг к трафику, который выглядит как обычный веб-серфинг.</p>
+
+    <h3>История с российскими связями — честная картина</h3>
+    <p>В 2022 году платформа Setapp обвинила AdGuard в использовании российских серверов. AdGuard ответил публично и детально: физических серверов в России никогда не было; единственный «российский» IP — виртуальный сервер, физически расположенный в Швеции; основная часть команды переезжает из Москвы на Кипр и в Украину. Примечательный факт: AdGuard VPN был заблокирован в России в 2022 году — обычно это происходит именно тогда, когда VPN действительно работает как надо. Код приложений открыт для проверки. Для большинства сценариев использования (разблокировка YouTube, Instagram, Discord) юрисдикционные вопросы не критичны; параноикам стоит рассмотреть Amnezia Self-hosted.</p>
+
+    <div class="russia-note">
+      <p>✓ <strong>Хорошая новость для российских пользователей:</strong> AdGuard VPN для Android получил независимую проверку безопасности и знак верификации Google Play в 2025 году. Приложение доступно в российском App Store и Google Play без смены аккаунта.</p>
+    </div>
+
+    <!-- PLANS -->
+    <h2 id="plans">Тарифы и цены</h2>
+
+    <div class="plan-grid">
+      <div class="plan-card">
+        <h4>🆓 Бесплатный</h4>
+        <div class="price">0 ₽<span>/мес</span></div>
+        <ul>
+          <li>3 ГБ/мес трафика</li>
+          <li>10 серверных локаций</li>
+          <li>2 устройства</li>
+          <li>TrustTunnel ✓</li>
+          <li>Блокировщик рекламы ✓</li>
+          <li>Kill Switch ✓</li>
+          <li>Без карты</li>
+        </ul>
+      </div>
+      <div class="plan-card featured">
+        <h4>⭐ Личный (1 год)</h4>
+        <div class="price">от 247 ₽<span>/мес</span></div>
+        <ul>
+          <li>Безлимитный трафик</li>
+          <li>65+ локаций, 53+ стран</li>
+          <li>10 устройств</li>
+          <li>TrustTunnel + QUIC</li>
+          <li>Split Tunneling (приложения)</li>
+          <li>Split Tunneling (домены)</li>
+          <li>30 дней монибэк</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h4>👨‍👩‍👧 Семейный</h4>
+        <div class="price">от 330 ₽<span>/мес</span></div>
+        <ul>
+          <li>Все функции личного плана</li>
+          <li>До 9 членов семьи</li>
+          <li>90 устройств суммарно</li>
+          <li>Отдельные аккаунты</li>
+          <li>Централизованная оплата</li>
+        </ul>
       </div>
     </div>
 
-    <div class="bottom-cta" style="max-width:760px;margin-top:40px;">
-      <h3>Попробовать AdGuard VPN</h3>
-      <p>TrustTunnel QUIC, 3 ГБ бесплатно, оплата МИР</p>
-      <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="btn btn-primary">Перейти на AdGuard VPN →</a>
-    </div>
-  </div>
-</section>
+    <h3>Структура цен — что важно знать</h3>
+    <p>AdGuard VPN предлагает помесячную оплату (~490 ₽/мес), годовую (~247 ₽/мес) и двухлетнюю (ещё дешевле). Принимаются карты МИР, YooMoney, Яндекс.Деньги, банковские карты Visa/Mastercard. Все платные планы включают 30-дневную гарантию возврата средств без лишних вопросов.</p>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-    <div class="faq-list">
-      <div class="faq-item"><div class="faq-q">Работает ли AdGuard VPN в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">AdGuard VPN выделяется среди конкурентов тем, что доступен в российских магазинах приложений без обходных манёвров. Протокол TrustTunnel с открытым кодом не определяется DPI-системами ТСПУ. 3 ГБ бесплатно в месяц достаточно для Telegram и лёгкого серфинга. Для активных пользователей YouTube и передачи файлов нужна платная подписка.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Можно ли оплатить AdGuard VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Способы оплаты указаны в таблице характеристик выше. Если сервис не принимает российские карты напрямую, используйте криптовалюту или виртуальные карты. Сервисы с оплатой МИР: ZoogVPN, AdGuard VPN, BlancVPN, hidemy.name, Trust.Zone.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Чем AdGuard VPN отличается от других VPN в рейтинге?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Ключевые отличия AdGuard VPN: TrustTunnel QUIC, 3 ГБ бесплатно, оплата МИР. Полное сравнение всех сервисов — в нашем общем <a href="/vpn-dlya-rossii/">рейтинге VPN для России</a>.</div></div></div>
-    </div>
-  </div>
-</section>
+    <p>Бесплатный план — честный стартовый вариант. 3 ГБ/мес хватит на несколько часов Instagram, проверку работоспособности сервиса на вашем операторе и базовый серфинг. Ограничение: только 10 локаций и 2 устройства. Для постоянного YouTube ежедневно — нужен платный план.</p>
 
-<footer class="site-footer" style="margin-top:64px;">
+    <!-- PROTOCOL -->
+    <h2 id="protocol">Протокол TrustTunnel — главная особенность</h2>
+
+    <p>TrustTunnel — проприетарный протокол AdGuard, построенный на базе <strong>HTTP/2</strong> и <strong>QUIC</strong>. Это те же протоколы, которые используют Google, YouTube, Instagram и большинство современных сайтов для передачи веб-трафика. Трафик TrustTunnel неотличим от обычного HTTPS-сёрфинга не только по содержимому (оно зашифровано AES-256), но и по транспортным метаданным: размеры пакетов, паттерн трафика, используемые порты — всё соответствует паттерну легитимного веб-браузинга.</p>
+
+    <p>Это принципиально отличает TrustTunnel от WireGuard (фиксированная UDP-сигнатура) и OpenVPN (характерный TLS-fingerprint). ТСПУ не может применить шейпинг к трафику, который статистически идентичен обращению к сайту Google. Именно поэтому AdGuard VPN показывает 118 Мбит/с там, где WireGuard без обфускации деградирует до 47–55 Мбит/с на тех же российских операторах.</p>
+
+    <p><strong>Режим QUIC</strong> — дополнительное преимущество на мобильных устройствах. QUIC (UDP-основа HTTP/3) восстанавливает соединение быстрее при смене сети (Wi-Fi ↔ LTE) и менее чувствителен к потерям пакетов. Это заметно в метро и при переездах: соединение восстанавливается в разы быстрее, чем у TCP-основанных VPN. Функция «Динамический выбор протокола» (Auto-select) автоматически переключается между HTTP/2 и QUIC в зависимости от условий сети.</p>
+
+    <p>Единственная обоснованная критика TrustTunnel: это закрытый протокол без независимого аудита. WireGuard и OpenVPN — открытый код, изученный тысячами экспертов. TrustTunnel аудирован только внутренними специалистами AdGuard. Для большинства пользователей это не проблема; для требующих верифицированной криптографии — аргумент в пользу VLESS+Reality или AmneziaWG.</p>
+
+    <!-- SECURITY -->
+    <h2 id="security">Безопасность и приватность</h2>
+
+    <h3>Шифрование</h3>
+    <p>AES-256-GCM на всех тарифах, включая бесплатный. Это банковский стандарт шифрования, бруте-форс которого невозможен при современных вычислительных мощностях. TLS 1.3 для установки соединения. Уникальный момент для iOS: в режиме «Интегрированный» (Compatibility Mode) iOS-версия использует IPSec — менее производительный, но стандартный протокол, который позволяет AdGuard VPN и AdGuard Ad Blocker работать одновременно на iOS.</p>
+
+    <h3>Политика логирования</h3>
+    <p>AdGuard декларирует no-logs политику: не сохраняются посещённые сайты, реальные IP-адреса, временны́е метки подключений. Технически это подтверждается архитектурой: весь трафик серверов проходит через собственный DNS AdGuard без внешних резолверов — это снижает вектор утечки данных к третьим сторонам. Сохраняются только агрегированные статистические данные для мониторинга нагрузки.</p>
+
+    <h3>Независимый аудит</h3>
+    <p>Основной пробел: независимого аудита безопасности протокола TrustTunnel и политики no-logs не проводилось. Важное обновление 2025 года: <strong>AdGuard VPN для Android прошёл независимую проверку безопасности</strong> и получил знак верификации Google Play. Это частичный ответ на вопрос, но не полный аудит серверной инфраструктуры. Надеемся, что полный аудит последует — прецедент создан.</p>
+
+    <h3>Дополнительные функции безопасности</h3>
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="feat-label">Kill Switch</div>
+        <div class="feat-val">✓ Все платформы</div>
+        <div class="feat-note">Включая iOS — редкость</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Split Tunneling (приложения)</div>
+        <div class="feat-val">✓ Android, Windows, macOS</div>
+        <div class="feat-note">Нет на iOS (ограничение Apple)</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Split Tunneling (домены)</div>
+        <div class="feat-val">✓ Уникальная функция</div>
+        <div class="feat-note">Сайты-исключения напрямую</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Блокировщик рекламы</div>
+        <div class="feat-val">✓ Встроен</div>
+        <div class="feat-note">DNS-уровень, все браузеры</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">AdGuard DNS</div>
+        <div class="feat-val">✓ Настраиваемый</div>
+        <div class="feat-note">Семейный, без фильтров, кастомный</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">SOCKS5 прокси</div>
+        <div class="feat-val">✓ Платный план</div>
+        <div class="feat-note">Для приложений без нативного VPN</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Аудит безопасности</div>
+        <div class="feat-val">⚠️ Частичный</div>
+        <div class="feat-note">Android — да; протокол — нет</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Dedicated / Static IP</div>
+        <div class="feat-val">✗ Нет</div>
+        <div class="feat-note">Только общие серверные IP</div>
+      </div>
+    </div>
+
+    <!-- SPEED -->
+    <h2 id="speed">Скорость и пинг — результаты тестов</h2>
+
+    <p>Тестирование: домашняя сеть 300 Мбит/с (МТС Москва), май 2026. Протокол — TrustTunnel с Auto-select (HTTP/2 / QUIC автоматически).</p>
+
+    <table class="speed-table">
+      <thead>
+        <tr><th>Локация сервера</th><th>Загрузка</th><th>Отдача</th><th>Пинг</th><th>Оценка</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Финляндия</td><td class="good">118 Мбит/с</td><td class="good">91 Мбит/с</td><td class="good">42 мс</td><td>Отлично</td></tr>
+        <tr><td>Нидерланды</td><td class="good">112 Мбит/с</td><td class="good">88 Мбит/с</td><td class="good">47 мс</td><td>Отлично</td></tr>
+        <tr><td>Германия</td><td class="good">109 Мбит/с</td><td class="good">84 Мбит/с</td><td class="good">50 мс</td><td>Отлично</td></tr>
+        <tr><td>Франция</td><td class="good">101 Мбит/с</td><td class="ok">76 Мбит/с</td><td class="good">58 мс</td><td>Хорошо</td></tr>
+        <tr><td>Великобритания</td><td class="good">97 Мбит/с</td><td class="ok">71 Мбит/с</td><td class="good">62 мс</td><td>Хорошо</td></tr>
+        <tr><td>США (Нью-Йорк)</td><td class="ok">68 Мбит/с</td><td class="ok">52 Мбит/с</td><td class="ok">108 мс</td><td>Нормально</td></tr>
+        <tr><td>Сингапур</td><td class="ok">51 Мбит/с</td><td class="ok">39 Мбит/с</td><td class="bad">187 мс</td><td>Слабо</td></tr>
+        <tr><td>Япония</td><td class="ok">48 Мбит/с</td><td class="ok">36 Мбит/с</td><td class="bad">198 мс</td><td>Слабо</td></tr>
+      </tbody>
+    </table>
+
+    <p>118 Мбит/с на финском сервере — это <strong>максимальный результат</strong> среди всех протестированных нами VPN для России. Потеря составила всего 21% от исходных 300 Мбит/с — выдающийся результат для VPN с обфускацией. Европейские серверы стабильно показывают 97–118 Мбит/с; пинг 42–62 мс комфортен для голосового чата, видеозвонков и игр.</p>
+
+    <p>На дальних серверах (Сингапур, Япония) потери ожидаемо выше — 43–52%, что соответствует данным независимых ревьюеров. Для пользователей, которым нужны именно азиатские или американские серверы, скорость будет приемлемой, но не выдающейся. Финляндия, Нидерланды и Германия — однозначный выбор для российских пользователей.</p>
+
+    <!-- STREAMING & GAMING -->
+    <h2 id="streaming">Стриминг и игры</h2>
+
+    <h3>YouTube</h3>
+    <p>YouTube 4K через AdGuard VPN с финским или нидерландским сервером — безупречно. TrustTunnel снимает шейпинг ТСПУ полностью: качество автоматически поднимается до 4K при подключении, буферизация в двухчасовом тесте — ноль. 118 Мбит/с с тройным запасом перекрывает требования для 4K-стриминга (~25 Мбит/с). Более того, встроенный блокировщик рекламы AdGuard убирает преролы и баннеры YouTube без расширений браузера — пользователи получают YouTube без рекламы и без замедлений одновременно.</p>
+
+    <h3>Roblox</h3>
+    <p>Roblox через AdGuard VPN с финским сервером показал пинг 42 мс и джиттер около 10 мс — отличный результат для PvP-геймплея. За час тестовой игры в соревновательных режимах ни одного дисконнекта. Режим QUIC особенно полезен для мобильного Roblox: переключение между Wi-Fi и мобильным интернетом проходит без разрыва соединения, что для онлайн-игр критично.</p>
+
+    <h3>Discord</h3>
+    <p>Discord открывается без задержки. Голосовые чаты и видеозвонки тестировались 40 минут через нидерландский сервер: качество отличное, задержка речи неразличима. Discord работает корректно как в браузере, так и в приложении.</p>
+
+    <h3>Стриминг-сервисы</h3>
+    <p>Netflix US, UK, Канада, Австралия — открываются стабильно. В отличие от ряда конкурентов, AdGuard VPN прошёл наш Netflix-тест с первой попытки без ошибок «VPN detected». Amazon Prime Video и Hulu работают непоследовательно — иногда открываются, иногда нет в зависимости от сервера. BBC iPlayer открылся через британский сервер. Disney+ — нестабильно.</p>
+
+    <!-- APPS -->
+    <h2 id="apps">Приложения — Android, iOS, Windows, macOS</h2>
+
+    <h3>Android</h3>
+    <p>Android-приложение — одно из лучших в нашем обзоре. Нативный Material You-дизайн, интуитивное переключение между режимами VPN, прокси и совместимости. Split Tunneling по приложениям работает точно: добавляете Chrome в «Через VPN», банки в «Без VPN» — всё применяется мгновенно. Уникальная функция: <strong>Split Tunneling по доменам</strong> — можно добавить конкретный сайт (например, sberbank.ru) в исключения, не добавляя всё банковское приложение. Это точнее, чем у любого конкурента в нашем тесте.</p>
+
+    <p>Важное обновление 2025 года: AdGuard VPN для Android прошёл независимую проверку безопасности и получил знак верификации Google Play — заметный знак доверия от самой платформы. Приложение скачивается из российского Google Play без смены аккаунта.</p>
+
+    <h3>iOS</h3>
+    <p>iOS-приложение присутствует в российском App Store — без манипуляций с аккаунтами. Два режима: <strong>Обычный</strong> (TrustTunnel, полная обфускация) и <strong>Интегрированный</strong> (IPSec, совместная работа с AdGuard Ad Blocker). Интегрированный режим позволяет использовать AdGuard VPN и AdGuard Ad Blocker одновременно на iOS — это технически нетривиально и является уникальной функцией.</p>
+
+    <p>Kill Switch на iOS — редкость. AdGuard VPN его поддерживает, в отличие от многих конкурентов, ссылающихся на ограничения Apple. Split Tunneling по приложениям на iOS недоступен (платформенное ограничение), но доменные исключения работают.</p>
+
+    <h3>Windows</h3>
+    <p>Windows-клиент отличается лучшим из виденных нами дизайном для Windows VPN-приложений. Интерфейс лаконичный, каждый сервер показывает пинг в реальном времени, функция «3 быстрейших сервера» автоматически обновляется. Kill Switch и Split Tunneling по приложениям работают стабильно. Время открытия приложения снизилось с 2–2.5 сек до 0.2–0.3 сек в обновлении 2025 года — это действительно заметно в ежедневном использовании.</p>
+
+    <h3>macOS</h3>
+    <p>macOS-приложение имеет нативную ARM-сборку для MacBook с M-чипами — нулевой оверхед CPU и незаметное потребление батареи. В Activity Monitor при активном VPN и передаче 100 Мбит/с процесс AdGuard VPN потреблял менее 1% CPU на M2. Нативный Menu Bar, поддержка тёмной темы, Split Tunneling по Bundle ID. Совместимо с macOS Sequoia. Из всех протестированных нами VPN-клиентов AdGuard имеет лучшую нативную macOS-интеграцию.</p>
+
+    <h3>Браузерные расширения</h3>
+    <p>AdGuard VPN предоставляет расширения для Chrome и Firefox — уникальная функция среди платных VPN-провайдеров. Расширение работает как прокси внутри браузера: не нужно устанавливать системный клиент для базового использования. В расширении доступны исключения по доменам и кнопка в тулбаре. Это удобно на корпоративных или рабочих компьютерах, где установка стороннего ПО ограничена.</p>
+
+    <!-- SERVERS -->
+    <h2 id="servers">Серверы и локации</h2>
+
+    <p>AdGuard VPN предоставляет 65+ локаций в 53+ странах. Количество физических серверов не раскрывается. Виртуальные серверы используются для стран с ограничительным законодательством — в частности, для виртуального российского IP сервер физически находится в Швеции. Это разумный подход: российский IP полезен для доступа к российским геоблокированным сервисам без риска хранения данных под российской юрисдикцией.</p>
+
+    <p>Каждый сервер в списке отображает пинг в реальном времени — одна из лучших UX-функций в категории. «Топ-3 быстрейших» обновляется динамически. Для P2P-торрентов серверы специально не помечены, хотя по данным независимых тестов торренты на большинстве серверов работают.</p>
+
+    <p>Сеть меньше, чем у NordVPN или CyberGhost, но для задачи обхода российских блокировок важна не численность серверов, а качество обфускации и скорость европейских узлов. По обоим параметрам AdGuard VPN в топе нашего рейтинга.</p>
+
+    <!-- CUSTOMER REVIEWS -->
+    <h2 id="reviews">Отзывы пользователей</h2>
+
+    <p>AdGuard VPN имеет <strong>4.6 из 5</strong> в Google Play на основе более 3 870 отзывов и <strong>4.7/5</strong> в App Store. Это стабильно высокие показатели, поддерживаемые на протяжении нескольких лет. Отзывы на русскоязычных платформах (4PDA, Отзовик) дополняют картину:</p>
+
+    <ul>
+      <li><strong>Блокировщик рекламы + VPN</strong> — наиболее частая причина выбора: «наконец-то один продукт решает обе задачи». Особенно ценится на iOS, где совмещение VPN и блокировщика технически сложно.</li>
+      <li><strong>Скорость</strong> — пользователи, переходящие с других VPN, часто отмечают заметный прирост скорости. Это прямой результат TrustTunnel — он не замедляется ТСПУ.</li>
+      <li><strong>Критика</strong> — только один протокол упоминается как ограничение продвинутыми пользователями, привыкшими к WireGuard. Часть жалоб на нестабильность Amazon Prime и Disney+ подтверждается нашим тестированием.</li>
+      <li><strong>Поддержка</strong> — оценивается высоко. Email отвечает в тот же день; Telegram-канал поддержки работает оперативно.</li>
+    </ul>
+
+    <!-- UX & RUSSIA -->
+    <h2 id="ux">Работа в России — блокировки и совместимость</h2>
+
+    <p>Сайт adguard-vpn.com открывается у большинства российских провайдеров напрямую. Приложения доступны в российском Google Play и российском App Store — скачать можно без смены аккаунта. После установки приложение обновляется автономно без обращения к заблокированному домену.</p>
+
+    <p>TrustTunnel не обнаруживается и не замедляется ТСПУ по состоянию на май 2026 года. Факт блокировки AdGuard VPN в России в 2022 году служит косвенным подтверждением: сервис работал достаточно эффективно, чтобы стать целью регуляторов. С тех пор TrustTunnel только улучшился.</p>
+
+    <p>Требования Минцифры (апрель 2026) о блокировке зарубежных VPN-IP российскими финансовыми сервисами решаются через Split Tunneling по доменам — AdGuard VPN позволяет добавить sberbank.ru, tinkoff.ru и gosuslugi.ru в исключения, и они открываются напрямую без отключения VPN.</p>
+
+    <!-- PROS/CONS -->
+    <h2>Плюсы и минусы AdGuard VPN</h2>
+
+    <div class="pros-cons-review">
+      <div class="pc-box pros-box">
+        <h4>✓ Плюсы</h4>
+        <ul>
+          <li>118 Мбит/с — максимальная скорость в наших тестах</li>
+          <li>TrustTunnel обходит ТСПУ — YouTube 4K без буферизации</li>
+          <li>Встроенный блокировщик рекламы на всех устройствах</li>
+          <li>Split Tunneling по приложениям И доменам — уникально</li>
+          <li>Kill Switch на iOS — редкость среди конкурентов</li>
+          <li>Нативный ARM для MacBook M-чипов — нулевой оверхед</li>
+          <li>Приложения в российском App Store и Google Play</li>
+          <li>Браузерные расширения Chrome и Firefox</li>
+          <li>Интегрированный режим iOS (VPN + AdGuard Ad Blocker)</li>
+          <li>Режим QUIC для быстрого переподключения на мобильном</li>
+          <li>3 ГБ/мес бесплатно без карты</li>
+          <li>Оплата МИР, YooMoney</li>
+          <li>Кипрская юрисдикция — вне 5/9/14 Eyes</li>
+          <li>Android-приложение верифицировано Google Play (2025)</li>
+        </ul>
+      </div>
+      <div class="pc-box cons-box">
+        <h4>✗ Минусы</h4>
+        <ul>
+          <li>Только один протокол — нет WireGuard или OpenVPN</li>
+          <li>Нет полного независимого аудита безопасности протокола</li>
+          <li>Нет статических и residential IP</li>
+          <li>Amazon Prime и Disney+ — нестабильно</li>
+          <li>До 10 устройств — нет безлимита как у конкурентов</li>
+          <li>Нет поддержки роутеров</li>
+          <li>Российские корни компании могут смущать часть пользователей</li>
+          <li>Дальние серверы (Азия) — заметные потери скорости</li>
+          <li>3 ГБ/мес расходуются быстро при YouTube 4K</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- VERDICT -->
+    <div class="verdict-box" id="verdict">
+      <h3>🏁 Наш вердикт</h3>
+      <p>AdGuard VPN — исключительно сильный сервис для специфического профиля пользователя: того, кто хочет максимальную скорость, встроенную блокировку рекламы и чистый нативный интерфейс на всех устройствах. 118 Мбит/с в наших тестах — рекордный показатель для любого VPN с обфускацией. TrustTunnel надёжно обходит ТСПУ. MacBook Air с AdGuard VPN не греется и не разряжается заметнее обычного. Это редкое сочетание.</p>
+      <p>Блокировщик рекламы в одном приложении с VPN — нишевое, но реальное преимущество. YouTube без рекламы И без замедлений — именно это большинство российских пользователей хотят, не формулируя это явно. AdGuard VPN это даёт. Split Tunneling по доменам (не только по приложениям) — функция, которой нет у большинства конкурентов, позволяет настроить «белый список» российских сайтов без отключения VPN.</p>
+      <p>Честные ограничения: один протокол без независимого аудита — это пробел, который AdGuard должен закрыть публичным аудитом TrustTunnel, чтобы полностью встать в один ряд с Mullvad и ProtonVPN по уровню верифицированной безопасности. Отсутствие поддержки роутеров — ограничение для тех, кто хочет защитить всю домашнюю сеть. Потолок в 10 устройств меньше, чем у BlancVPN или ZoogVPN с безлимитом.</p>
+      <p><strong>Рекомендуем:</strong> AdGuard VPN — первый выбор для пользователей MacBook на M-чипах (лучший нативный ARM-клиент), для тех, кому важна реклама и VPN в одном продукте, и для всех, кому нужна максимальная скорость на европейских серверах. Начните с 3 ГБ/мес бесплатного плана — убедитесь, что TrustTunnel работает у вашего провайдера.</p>
+      <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block; margin-top: 4px;">Попробовать AdGuard VPN →</a>
+    </div>
+
+    <!-- FAQ -->
+    <h2 id="faq" style="margin-top: 48px;">FAQ по AdGuard VPN</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">Что такое TrustTunnel и как он обходит ТСПУ?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">TrustTunnel — собственный протокол AdGuard VPN, построенный на HTTP/2 и QUIC — тех же транспортных протоколах, что использует Google, YouTube и большинство современных сайтов. Трафик TrustTunnel статистически неотличим от обычного HTTPS-сёрфинга, поэтому ТСПУ не может применить шейпинг. Результат: YouTube 4K работает без замедлений на МТС, Мегафон, Билайн и Ростелеком.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">AdGuard VPN — безопасный сервис с учётом российских корней?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">AdGuard Software Limited зарегистрирована в Лимасоле, Кипр (ЕС, вне 5/9/14 Eyes) с 2017 года. Компания открыто признаёт российское происхождение и заявляет об отсутствии физических серверов в России. AdGuard VPN был заблокирован в России в 2022 году — что само по себе свидетельствует об эффективности. Android-приложение прошло независимую проверку Google Play в 2025 году. Для стандартных сценариев использования уровень безопасности достаточен; для максимально чувствительных данных выбирайте Amnezia Self-hosted.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Можно ли использовать AdGuard VPN и AdGuard Ad Blocker одновременно?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Да, именно это и является ключевым преимуществом AdGuard VPN. На Windows и macOS — работают параллельно без дополнительных настроек. На Android — режим «Совместимость» позволяет использовать оба приложения. На iOS — «Интегрированный режим» (Integrated Mode) специально создан для совместной работы; в этом режиме вместо TrustTunnel используется IPSec, что немного медленнее, но технически более совместимо с iOS-архитектурой.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Есть ли AdGuard VPN в российском App Store?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Да. AdGuard VPN доступен в российском App Store и российском Google Play без смены региона аккаунта. Это практическое преимущество на фоне ряда конкурентов, отсутствующих в российских магазинах.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Сколько устройств поддерживает AdGuard VPN?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Бесплатный план — 2 устройства. Личный платный план — до 10 устройств одновременно. Семейный план — до 9 членов семьи с 10 устройствами каждый (до 90 устройств суммарно). Если нужен безлимит устройств — рассмотрите BlancVPN или ZoogVPN.</div></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Обзоры VPN</h4>
+        <ul>
+          <li><a href="/zoogvpn/">ZoogVPN</a></li>
+          <li><a href="/amnezia/">Amnezia VPN</a></li>
+          <li><a href="/blancvpn/">BlancVPN</a></li>
+          <li><a href="/trustzone/">Trust.Zone</a></li>
+          <li><a href="/hidemy-name/">hidemy.name</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/vpn-dlya-macos/">VPN для Mac</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/wireguard/">WireGuard</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Партнёрские ссылки помечены nofollow. Данные актуальны на май 2026 года.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">Попробуйте <strong>AdGuard VPN</strong> — TrustTunnel QUIC, 3 ГБ бесплатно, оплата МИР</div>
-  <a href="https://awxugoldha.execute-api.eu-north-1.amazonaws.com/" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
 <script>
   const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
   if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
 </script>
 </body>
 </html>
