@@ -105,16 +105,7 @@
 <div class="container" style="padding-top: 48px; padding-bottom: 80px;">
   <div class="content-body">
 
-    <!-- ЧТО ТАКОЕ OUTLINE -->
-    <h2 id="chto-takoe">Что такое Outline VPN</h2>
-
-    <p>Outline — это не протокол сам по себе, а <strong>программный пакет</strong> из двух компонентов: <strong>Outline Manager</strong> (серверная часть для администратора — позволяет установить сервер на VPS и управлять доступами) и <strong>Outline Client</strong> (клиентское приложение для конечных пользователей). Под капотом оба используют протокол <strong>Shadowsocks с шифрованием AEAD</strong> (Authenticated Encryption with Associated Data) — конкретно chacha20-ietf-poly1305 или aes-256-gcm.</p>
-
-    <p>Главная идея Outline: сделать запуск личного прокси-сервера максимально простым. Установка сервера через Outline Manager занимает 5 минут — нужны лишь VPS и доступ к Docker. После этого сервер генерирует «ключи доступа» (access keys) — короткие URL вида <code>ss://…</code> — которые можно раздать пользователям. Клиент просто сканирует QR или вставляет ссылку.
-
-    <p>Outline — проект с открытым исходным кодом (GitHub: Jigsaw-Code/outline-server и outline-client), проходил независимые аудиты безопасности от Radically Open Security и Cure53.</p>
-
-    <!-- BLANCVPN БЛОК — сразу после интро -->
+<!-- BLANCVPN БЛОК — сразу после интро -->
     <div class="vpn-card-single">
       <div class="vpn-name-row">
         <span class="vpn-name">BlancVPN</span>
@@ -130,6 +121,17 @@
       </div>
       <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Перейти на BlancVPN →</a>
     </div>
+
+
+    <!-- ЧТО ТАКОЕ OUTLINE -->
+    <h2 id="chto-takoe">Что такое Outline VPN</h2>
+
+    <p>Outline — это не протокол сам по себе, а <strong>программный пакет</strong> из двух компонентов: <strong>Outline Manager</strong> (серверная часть для администратора — позволяет установить сервер на VPS и управлять доступами) и <strong>Outline Client</strong> (клиентское приложение для конечных пользователей). Под капотом оба используют протокол <strong>Shadowsocks с шифрованием AEAD</strong> (Authenticated Encryption with Associated Data) — конкретно chacha20-ietf-poly1305 или aes-256-gcm.</p>
+
+    <p>Главная идея Outline: сделать запуск личного прокси-сервера максимально простым. Установка сервера через Outline Manager занимает 5 минут — нужны лишь VPS и доступ к Docker. После этого сервер генерирует «ключи доступа» (access keys) — короткие URL вида <code>ss://…</code> — которые можно раздать пользователям. Клиент просто сканирует QR или вставляет ссылку.
+
+    <p>Outline — проект с открытым исходным кодом (GitHub: Jigsaw-Code/outline-server и outline-client), проходил независимые аудиты безопасности от Radically Open Security и Cure53.</p>
+
 
     <!-- КАК РАБОТАЕТ -->
     <h2 id="kak-rabotaet">Как работает Outline VPN</h2>
