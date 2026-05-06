@@ -108,15 +108,6 @@
 <div class="container" style="padding-top: 48px; padding-bottom: 80px;">
   <div class="content-body">
 
-    <!-- ЧТО ТАКОЕ -->
-    <h2 id="chto-takoe">Что такое Shadowsocks</h2>
-
-    <p>Shadowsocks — это не полноценный VPN, а <strong>зашифрованный прокси-протокол</strong>. Разница существенная: VPN создаёт туннель для всего трафика устройства на уровне ОС, тогда как Shadowsocks работает как SOCKS5-прокси — приложения явно указывают, использовать ли его, или это настраивается системным прокси. На практике клиентские приложения Shadowsocks создают TUN-интерфейс, перехватывающий весь трафик, — разница становится незаметна.</p>
-
-    <p>Оригинальный Shadowsocks использовал RC4 и AES-CFB шифрование. Современный стандарт — <strong>Shadowsocks-AEAD</strong> с шифрами <code>chacha20-ietf-poly1305</code> или <code>aes-256-gcm</code>. AEAD (Authenticated Encryption with Associated Data) добавляет аутентификацию к каждому пакету — сервер отбрасывает любые данные, не прошедшие проверку. Это закрывает уязвимость старых версий к атакам активного зондирования (active probing), когда DPI мог «прощупать» сервер специально сконструированными пакетами.</p>
-
-    <p>Ключевые реализации Shadowsocks в 2026 году: <strong>shadowsocks-libev</strong> (C, лёгкий, для роутеров и серверов), <strong>shadowsocks-rust</strong> (Rust, быстрый, активно развивается), <strong>sing-box</strong> (новое универсальное ядро, заменяет shadowsocks-libev во многих сценариях). Клиентская часть — Outline Client, v2rayNG, Hiddify, Shadowrocket.</p>
-
     <!-- BLANCVPN — сразу после введения -->
     <div class="vpn-card-single">
       <div class="vpn-name-row">
@@ -133,6 +124,16 @@
       </div>
       <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Перейти на BlancVPN →</a>
     </div>
+
+    <!-- ЧТО ТАКОЕ -->
+    <h2 id="chto-takoe">Что такое Shadowsocks</h2>
+
+    <p>Shadowsocks — это не полноценный VPN, а <strong>зашифрованный прокси-протокол</strong>. Разница существенная: VPN создаёт туннель для всего трафика устройства на уровне ОС, тогда как Shadowsocks работает как SOCKS5-прокси — приложения явно указывают, использовать ли его, или это настраивается системным прокси. На практике клиентские приложения Shadowsocks создают TUN-интерфейс, перехватывающий весь трафик, — разница становится незаметна.</p>
+
+    <p>Оригинальный Shadowsocks использовал RC4 и AES-CFB шифрование. Современный стандарт — <strong>Shadowsocks-AEAD</strong> с шифрами <code>chacha20-ietf-poly1305</code> или <code>aes-256-gcm</code>. AEAD (Authenticated Encryption with Associated Data) добавляет аутентификацию к каждому пакету — сервер отбрасывает любые данные, не прошедшие проверку. Это закрывает уязвимость старых версий к атакам активного зондирования (active probing), когда DPI мог «прощупать» сервер специально сконструированными пакетами.</p>
+
+    <p>Ключевые реализации Shadowsocks в 2026 году: <strong>shadowsocks-libev</strong> (C, лёгкий, для роутеров и серверов), <strong>shadowsocks-rust</strong> (Rust, быстрый, активно развивается), <strong>sing-box</strong> (новое универсальное ядро, заменяет shadowsocks-libev во многих сценариях). Клиентская часть — Outline Client, v2rayNG, Hiddify, Shadowrocket.</p>
+
 
     <!-- КАК РАБОТАЕТ -->
     <h2 id="kak-rabotaet">Как работает Shadowsocks</h2>
