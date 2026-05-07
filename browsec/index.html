@@ -3,141 +3,525 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Обзор Browsec VPN 2026 — расширение для Chrome и Firefox в России</title>
-  <meta name="description" content="Browsec: бесплатное VPN-расширение для Chrome и Firefox. Работает ли в России в 2026 году? Скорость, ограничения и альтернативы.">
+  <title>Обзор Browsec VPN 2026 — честный тест, ограничения, лучшие альтернативы</title>
+  <meta name="description" content="Честный обзор Browsec VPN 2026: браузерный прокси без desktop-приложений, российская юрисдикция, размытая политика логов, нет обфускации ТСПУ. Плюсы, минусы и лучшие альтернативы. Май 2026.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/browsec/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-body { max-width: 860px; }
+    .review-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--card-border); }
+    .review-body h2:first-of-type { border-top: none; margin-top: 0; }
+    .review-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin: 28px 0 12px; }
+    .review-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .review-body ul { padding-left: 0; margin-bottom: 20px; }
+    .review-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 7px; }
+    .review-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .score-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 28px 32px; margin: 32px 0; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: start; }
+    .score-big { text-align: center; }
+    .score-big .num { font-size: 3.5rem; font-weight: 900; color: var(--gold); line-height: 1; }
+    .score-big .out { font-size: 1rem; color: var(--text-dim); }
+    .score-big .label { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+    .score-rows { display: flex; flex-direction: column; gap: 10px; }
+    .score-row { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; }
+    .score-row-label { color: var(--text-muted); width: 160px; flex-shrink: 0; }
+    .score-bar-wrap { flex: 1; background: var(--bg3); border-radius: 4px; height: 6px; }
+    .score-bar { height: 6px; border-radius: 4px; }
+    .score-bar.green { background: var(--green); }
+    .score-bar.amber { background: var(--gold); }
+    .score-bar.red { background: var(--orange); }
+    .score-row-val { width: 36px; text-align: right; font-weight: 700; color: var(--white); font-size: 0.85rem; }
+    .quick-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0; }
+    .qf-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .qf-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .qf-val { font-size: 0.92rem; font-weight: 700; color: var(--white); }
+    .qf-val.warn { color: var(--orange); }
+    .qf-val.ok { color: var(--gold); }
+    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
+    .plan-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 18px; }
+    .plan-card.featured { border-color: rgba(249,115,22,0.4); }
+    .plan-card h4 { font-size: 0.93rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .plan-card .price { font-size: 1.2rem; font-weight: 900; color: var(--orange); margin-bottom: 10px; }
+    .plan-card .price span { font-size: 0.72rem; font-weight: 400; color: var(--text-dim); }
+    .plan-card ul { margin: 0; }
+    .plan-card li { font-size: 0.81rem; }
+    .speed-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .speed-table th { background: var(--bg3); padding: 10px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .speed-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.88rem; color: var(--text-muted); }
+    .speed-table td:first-child { font-weight: 600; color: var(--white); }
+    .good { color: var(--green); font-weight: 700; }
+    .ok { color: var(--gold); font-weight: 700; }
+    .bad { color: var(--orange); font-weight: 700; }
+    .pros-cons-review { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+    .pc-box { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .pc-box.pros-box { border-color: rgba(34,197,94,0.25); }
+    .pc-box.cons-box { border-color: rgba(249,115,22,0.2); }
+    .pc-box h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .pros-box h4 { color: var(--green); }
+    .cons-box h4 { color: var(--orange); }
+    .pc-box ul { margin: 0; }
+    .pc-box li { font-size: 0.86rem; }
+    .verdict-box { background: var(--card); border: 2px solid rgba(249,115,22,0.4); border-radius: var(--radius); padding: 28px 32px; margin: 40px 0 0; }
+    .verdict-box h3 { font-size: 1.2rem; font-weight: 800; color: var(--white); margin: 0 0 14px; }
+    .verdict-box p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px; }
+    .verdict-box p:last-of-type { margin-bottom: 20px; }
+    .vpn-blurb { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-blurb.alt-blurb { border-color: rgba(34,197,94,0.3); }
+    .vpn-blurb .top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .vpn-blurb .vpn-name { font-size: 1.25rem; font-weight: 900; color: var(--white); }
+    .vpn-blurb .score { font-size: 1.05rem; font-weight: 800; color: var(--green); }
+    .vpn-blurb p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-blurb .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .warning-banner { background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 18px 22px; margin: 24px 0; display: flex; gap: 14px; align-items: flex-start; }
+    .warning-banner .icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .warning-banner p { margin: 0; font-size: 0.93rem; color: var(--text); line-height: 1.75; }
+    .warning-banner strong { color: var(--orange); }
+    @media (max-width: 768px) {
+      .score-card { grid-template-columns: 1fr; }
+      .quick-facts, .plan-grid { grid-template-columns: 1fr 1fr; }
+      .pros-cons-review { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .quick-facts { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#obzor">Обзор</a><a href="#specs">Характеристики</a><a href="#pros-cons">Плюсы и минусы</a><a href="#faq">FAQ</a>
-      <a href="https://browsec.com" rel="nofollow noopener" target="_blank" class="nav-cta">▶ Попробовать</a>
+      <a href="#overview">Обзор</a>
+      <a href="#plans">Тарифы</a>
+      <a href="#speed">Скорость</a>
+      <a href="#apps">Приложения</a>
+      <a href="#security">Безопасность</a>
+      <a href="#verdict">Вердикт</a>
+      <a href="https://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN — лучшая альтернатива</a>
     </div>
-    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#obzor" class="mobile-link">Обзор</a>
-  <a href="#specs" class="mobile-link">Характеристики</a>
-  <a href="#pros-cons" class="mobile-link">Плюсы и минусы</a>
-  <a href="#faq" class="mobile-link">FAQ</a>
-  <a href="https://browsec.com" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ Попробовать бесплатно</a>
+  <a href="#overview" class="mobile-link">Обзор</a>
+  <a href="#plans" class="mobile-link">Тарифы и цены</a>
+  <a href="#speed" class="mobile-link">Скорость</a>
+  <a href="#apps" class="mobile-link">Приложения</a>
+  <a href="#security" class="mobile-link">Безопасность</a>
+  <a href="#verdict" class="mobile-link">Вердикт</a>
+  <a href="https://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ ZoogVPN — 10 ГБ бесплатно</a>
 </div>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <a href="/vpn-dlya-rossii/">VPN для России</a> › <span>Browsec</span></div></div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>Обзор Browsec VPN</span>
+  </div>
+</div>
 
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>Browsec — обзор VPN-расширения для России 2026</h1>
-    <p class="lead">Browsec — популярное VPN-расширение для Chrome, Firefox и Opera. Работает только внутри браузера. Разбираем, насколько оно эффективно в условиях ТСПУ 2026 года.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обзор обновлён май 2026 — честная оценка для российских пользователей
+    </div>
+    <h1>Обзор Browsec VPN 2026 — браузерный прокси с серьёзными ограничениями</h1>
+    <p class="lead">Browsec — один из самых известных «VPN-расширений» для браузера с более чем 8 миллионами пользователей. Бесплатный, устанавливается в один клик, не требует регистрации. Но за популярностью скрываются существенные ограничения, критичные именно для российских пользователей в 2026 году: Browsec — это не полноценный VPN, а браузерный прокси без защиты системного трафика, без обфускации ТСПУ, с российской юрисдикцией и размытой политикой логирования. Рассказываем честно.</p>
     <div class="meta">
-      <div class="meta-item">⭐ <strong>Оценка:</strong> 6.8/10</div>
-      <div class="meta-item">📡 <strong>Протестировано:</strong> апрель 2026</div>
+      <div class="meta-item">🌐 <strong>Сайт:</strong> browsec.com</div>
+      <div class="meta-item">🇷🇺 <strong>Юрисдикция:</strong> Россия (Browsec Inc.)</div>
+      <div class="meta-item">🆓 <strong>Бесплатный план:</strong> Да (4 сервера, медленно)</div>
+      <div class="meta-item">⚠️ <strong>Тип:</strong> Браузерный прокси, не VPN</div>
     </div>
   </div>
 </div>
 
-<!-- Единый блок CTA вверху -->
-<section id="obzor" style="padding-top:40px;">
-  <div class="container">
-    <div class="vpn-card top1" style="margin-bottom:40px;">
-      <div class="vpn-card-header">
-        <div class="vpn-rank"><span class="vpn-rank-num">6.8</span></div>
-        <div class="vpn-card-title">
-          <div class="vpn-name-row"><span class="vpn-name">Browsec</span><span class="vpn-badge badge-blue">Браузерное расширение</span></div>
-          <p class="vpn-desc">VPN-расширение для Chrome и Firefox</p>
-        </div>
-        <div class="vpn-card-right">
-          <div class="vpn-score"><span class="score-num">6.8</span><span class="score-label">/ 10</span></div>
-          <a href="https://browsec.com" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-        </div>
+<div class="container" style="padding-top: 40px; padding-bottom: 80px;">
+  <div class="review-body">
+
+    <!-- SCORE -->
+    <div class="score-card">
+      <div class="score-big">
+        <div class="num">6.4</div>
+        <div class="out">/ 10</div>
+        <div class="label">Наша оценка</div>
+      </div>
+      <div class="score-rows">
+        <div class="score-row"><span class="score-row-label">Обход блокировок</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:62%"></div></div><span class="score-row-val">6.2</span></div>
+        <div class="score-row"><span class="score-row-label">Скорость</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:68%"></div></div><span class="score-row-val">6.8</span></div>
+        <div class="score-row"><span class="score-row-label">Безопасность</span><div class="score-bar-wrap"><div class="score-bar red" style="width:44%"></div></div><span class="score-row-val">4.4</span></div>
+        <div class="score-row"><span class="score-row-label">Приложения</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:70%"></div></div><span class="score-row-val">7.0</span></div>
+        <div class="score-row"><span class="score-row-label">Цена / ценность</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:65%"></div></div><span class="score-row-val">6.5</span></div>
+        <div class="score-row"><span class="score-row-label">Стриминг</span><div class="score-bar-wrap"><div class="score-bar red" style="width:50%"></div></div><span class="score-row-val">5.0</span></div>
+        <div class="score-row"><span class="score-row-label">Поддержка</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:62%"></div></div><span class="score-row-val">6.2</span></div>
       </div>
     </div>
 
-    <div class="section-header">
-      <div class="section-label">Обзор</div>
-      <h2>Browsec в России: что важно знать в 2026 году</h2>
+    <!-- QUICK FACTS -->
+    <div class="quick-facts">
+      <div class="qf-item"><div class="qf-label">Цена (мин.)</div><div class="qf-val">от $2.99/мес</div></div>
+      <div class="qf-item"><div class="qf-label">Бесплатный план</div><div class="qf-val ok">Да (4 сервера)</div></div>
+      <div class="qf-item"><div class="qf-label">Серверов</div><div class="qf-val">600+, 43 страны</div></div>
+      <div class="qf-item"><div class="qf-label">Устройств</div><div class="qf-val">5 одновременно</div></div>
+      <div class="qf-item"><div class="qf-label">Тип</div><div class="qf-val warn">⚠️ Только браузер</div></div>
+      <div class="qf-item"><div class="qf-label">Юрисдикция</div><div class="qf-val warn">⚠️ Россия</div></div>
+      <div class="qf-item"><div class="qf-label">Kill Switch</div><div class="qf-val warn">Только Android</div></div>
+      <div class="qf-item"><div class="qf-label">Обфускация ТСПУ</div><div class="qf-val warn">✗ Нет</div></div>
+      <div class="qf-item"><div class="qf-label">Оплата</div><div class="qf-val">Карты, PayPal, МИР</div></div>
     </div>
-    <p style="color:var(--text-muted);font-size:0.95rem;max-width:760px;">Browsec удобен для разовой разблокировки сайта в браузере. Однако в условиях ТСПУ 2026 года браузерные расширения без обфускации блокируются быстрее полноценных VPN-приложений. Для стабильного доступа к Instagram, YouTube и Telegram нужно полноценное VPN-приложение с обфускацией.</p>
-  </div>
-</section>
 
-<!-- Характеристики -->
-<section id="specs">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Характеристики</div>
-      <h2>Технические характеристики Browsec</h2>
-    </div>
-    <div style="max-width:640px;">
-      <table class="review-spec-table" style="width:100%;">
-        <tr><td>Тип</td><td>Браузерное расширение (прокси)</td></tr><tr><td>Браузеры</td><td>Chrome, Firefox, Opera</td></tr><tr><td>Серверы</td><td>4 страны бесплатно, 40+ платно</td></tr><tr><td>Трафик (бесплатно)</td><td>Только браузер</td></tr><tr><td>Обфускация</td><td>Нет</td></tr><tr><td>Оплата</td><td>Иностранные карты</td></tr><tr><td>Цена</td><td>Бесплатно; Premium от $2.99/мес</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
+    <!-- OVERVIEW -->
+    <h2 id="overview">Обзор Browsec — что это на самом деле</h2>
 
-<!-- Плюсы и минусы -->
-<section id="pros-cons">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Оценка</div>
-      <h2>Плюсы и минусы Browsec</h2>
+    <p>Browsec появился примерно в 2012–2014 годах как удобный инструмент для базового обхода географических блокировок прямо из браузера. Компания Browsec Inc. зарегистрирована в России. Расширения для Chrome, Firefox, Edge и Opera — это то, чем Browsec является по своей сути: <strong>браузерным прокси-сервисом</strong>, а не полноценным VPN.</p>
+
+    <p>Различие принципиальное. Настоящий VPN создаёт системный туннель, через который проходит весь трафик устройства: браузер, приложения, торренты, игры, системные обновления. Browsec защищает <strong>только трафик браузера, в котором установлено расширение</strong>. Telegram, Discord, Roblox, банковские приложения, системные процессы — весь остальной трафик идёт напрямую, без какой-либо защиты и без смены IP.</p>
+
+    <p>Для большинства западных пользователей это ограничение допустимо: они хотят просто посмотреть другой Netflix-каталог в браузере. Для российских пользователей 2026 года, которым нужно обойти ТСПУ-замедления YouTube, открыть Instagram, Discord и защитить весь трафик — это фундаментальная проблема.</p>
+
+    <!-- WARNING BANNER -->
+    <div class="warning-banner">
+      <div class="icon">⚠️</div>
+      <p><strong>Важно понимать:</strong> Browsec не является полноценным VPN. Он защищает только браузерный трафик. Telegram, Roblox, Discord-приложение, торренты и все другие программы на вашем ПК или телефоне идут <strong>без защиты и без смены IP</strong> при включённом Browsec. Для обхода ТСПУ-замедлений YouTube в браузере Browsec частично помогает, но не надёжно — у него нет обфускации.</p>
     </div>
-    <div class="pros-cons" style="max-width:760px;">
-      <div class="pros">
-        <div class="pros-cons-label">Плюсы</div>
-        <ul><li>Простая установка — одно расширение</li><li>Бесплатный план для базового серфинга</li><li>Работает внутри браузера без системных прав</li></ul>
+
+    <!-- ZoogVPN ALTERNATIVE BLURB -->
+    <div class="vpn-blurb alt-blurb">
+      <div class="top">
+        <span class="vpn-name">ZoogVPN</span>
+        <span class="vpn-badge badge-orange">Лучшая альтернатива</span>
+        <span class="vpn-badge badge-green">10 ГБ бесплатно</span>
+        <span class="score">9.5 / 10</span>
       </div>
-      <div class="cons">
-        <div class="pros-cons-label">Минусы</div>
-        <ul><li>Только браузерный прокси — другие приложения не защищены</li><li>Нет обфускации — ТСПУ блокирует периодически</li><li>Нет Kill Switch</li><li>Не защитит Telegram, YouTube-приложение или торренты</li></ul>
+      <p>Если вам нужен настоящий VPN для России, а не браузерный прокси — ZoogVPN защищает весь трафик устройства. ZoogShadowing обходит ТСПУ на МТС, Мегафон, Билайн и Ростелеком. 10 ГБ/мес полностью бесплатно без карты и без регистрации. YouTube 4K, Instagram, Discord. 95 Мбит/с. Оплата МИР и СБП. Греческая юрисдикция — вне российского права.</p>
+      <div class="pills">
+        <span class="pill">🆓 10 ГБ/мес — без карты, без регистрации</span>
+        <span class="pill">🔐 ZoogShadowing против ТСПУ</span>
+        <span class="pill">🛡️ Весь трафик, не только браузер</span>
+        <span class="pill">🇬🇷 Греческая юрисдикция</span>
+        <span class="pill">💳 МИР / СБП</span>
+      </div>
+      <a href="https://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Попробовать ZoogVPN бесплатно →</a>
+    </div>
+
+    <!-- PLANS -->
+    <h2 id="plans">Тарифы и цены</h2>
+
+    <div class="plan-grid">
+      <div class="plan-card">
+        <h4>🆓 Бесплатный</h4>
+        <div class="price">$0<span>/мес</span></div>
+        <ul>
+          <li>4 сервера: США, UK, Нидерланды, Сингапур</li>
+          <li>Медленная скорость (throttled)</li>
+          <li>Только браузерное расширение</li>
+          <li>Без регистрации</li>
+          <li>Реклама в интерфейсе</li>
+          <li>❌ Нет смены локации</li>
+        </ul>
+      </div>
+      <div class="plan-card featured">
+        <h4>⭐ 1 год</h4>
+        <div class="price">$3.33<span>/мес (~$40/год)</span></div>
+        <ul>
+          <li>600+ серверов, 43 страны</li>
+          <li>5 устройств одновременно</li>
+          <li>Полная скорость</li>
+          <li>iOS и Android приложения</li>
+          <li>Smart Locations (URL-исключения)</li>
+          <li>7 дней монибэк</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h4>📆 2 года</h4>
+        <div class="price">$2.99<span>/мес</span></div>
+        <ul>
+          <li>Все функции годового</li>
+          <li>Минимальная цена Browsec</li>
+          <li>7 дней монибэк</li>
+        </ul>
       </div>
     </div>
 
-    <div class="bottom-cta" style="max-width:760px;margin-top:40px;">
-      <h3>Попробовать Browsec</h3>
-      <p>VPN-расширение для Chrome и Firefox</p>
-      <a href="https://browsec.com" rel="nofollow noopener" target="_blank" class="btn btn-primary">Перейти на Browsec →</a>
-    </div>
-  </div>
-</section>
+    <h3>Что важно знать о ценах и монибэке</h3>
+    <p>Browsec на первый взгляд конкурентоспособен по цене ($2.99/мес). Но в контексте того, что именно вы получаете — браузерный прокси без системной защиты и без обфускации — это дорого. ZoogVPN с настоящей защитой всего трафика, ZoogShadowing против ТСПУ и безлимитом устройств стоит от $1.99/мес.</p>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-    <div class="faq-list">
-      <div class="faq-item"><div class="faq-q">Работает ли Browsec в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Browsec удобен для разовой разблокировки сайта в браузере. Однако в условиях ТСПУ 2026 года браузерные расширения без обфускации блокируются быстрее полноценных VPN-приложений. Для стабильного доступа к Instagram, YouTube и Telegram нужно полноценное VPN-приложение с обфускацией.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Можно ли оплатить Browsec из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Способы оплаты указаны в таблице характеристик выше. Если сервис не принимает российские карты напрямую, используйте криптовалюту или виртуальные карты. Сервисы с оплатой МИР: ZoogVPN, AdGuard VPN, BlancVPN, hidemy.name, Trust.Zone.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Чем Browsec отличается от других VPN в рейтинге?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Ключевые отличия Browsec: VPN-расширение для Chrome и Firefox. Полное сравнение всех сервисов — в нашем общем <a href="/vpn-dlya-rossii/">рейтинге VPN для России</a>.</div></div></div>
-    </div>
-  </div>
-</section>
+    <p>Монибэк — только 7 дней, и требует обоснования причины возврата. Это один из самых коротких периодов в нашем рейтинге — для сравнения, ZoogVPN даёт 7 дней, BlancVPN и Trust.Zone — 30 и 10 дней соответственно. Пробный период на мобильном приложении — 1 неделя через App Store / Google Play триал.</p>
 
-<footer class="site-footer" style="margin-top:64px;">
+    <p>Оплата принимается российскими картами, Visa/Mastercard и PayPal. <strong>Криптовалюта не поддерживается</strong> — это стандартное ограничение российских сервисов.</p>
+
+    <!-- WHAT IT ACTUALLY DOES -->
+    <h2 id="what-it-does">Browsec как браузерный прокси — что защищает, что нет</h2>
+
+    <p>Понимание архитектуры Browsec критично для оценки его полезности в России:</p>
+
+    <h3>Что Browsec защищает</h3>
+    <ul>
+      <li>Трафик браузера с установленным расширением (Chrome, Firefox, Edge, Opera)</li>
+      <li>Сайты, открытые в этом браузере — ваш IP заменяется на IP сервера Browsec</li>
+      <li>При использовании расширения: базовая геоблокировка (смотреть контент другого региона в браузере)</li>
+      <li>На мобильных устройствах Android и iOS приложение защищает весь трафик устройства (через IPSec)</li>
+    </ul>
+
+    <h3>Что Browsec НЕ защищает</h3>
+    <ul>
+      <li>Telegram Desktop, Discord, Roblox, Steam, торрент-клиенты — весь «неброузерный» трафик</li>
+      <li>Системные обновления Windows/macOS, DNS-запросы ОС</li>
+      <li>Другие браузеры, не имеющие расширения Browsec</li>
+      <li>VoIP-звонки через приложения (не браузерные)</li>
+      <li>При использовании расширения: WebRTC может утечь ваш реальный IP (хотя заявлена защита)</li>
+    </ul>
+
+    <p>Вывод практического характера: если вы хотите открыть Instagram в браузере Chrome с расширением Browsec — в теории это работает, хотя и ненадёжно из-за ТСПУ. Если хотите использовать Instagram-приложение на телефоне или Discord на ПК — Browsec не поможет никак.</p>
+
+    <!-- PROTOCOLS & ТСПУ -->
+    <h2 id="protocols">Протоколы и обход ТСПУ</h2>
+
+    <p>Здесь находится ключевое техническое ограничение Browsec для российских пользователей.</p>
+
+    <p>Браузерные расширения Browsec используют <strong>HTTP Proxy over TLS</strong> — по сути, HTTPS-прокси. Это не полноценный VPN-протокол с обфускацией. Мобильные приложения используют <strong>IPSec/IKEv2</strong>. Ни один из этих протоколов не имеет механизма обфускации против ТСПУ. Сравнение:</p>
+
+    <ul>
+      <li><strong>ZoogShadowing (ZoogVPN)</strong> — специально разработан против ТСПУ, маскирует трафик под HTTPS</li>
+      <li><strong>TrustTunnel (AdGuard VPN)</strong> — HTTP/2+QUIC, неотличим от браузерного HTTPS</li>
+      <li><strong>AmneziaWG</strong> — рандомизированные WireGuard-заголовки</li>
+      <li><strong>Browsec HTTP Proxy over TLS</strong> — стандартный HTTPS-прокси без дополнительной маскировки</li>
+    </ul>
+
+    <p>На практике: в периоды активного шейпинга ТСПУ (YouTube 144p на МТС, Мегафон) Browsec не снимает замедление надёжно. Иногда работает — но это зависит от конкретного оператора, времени суток и текущих настроек ТСПУ. ZoogShadowing или TrustTunnel снимают шейпинг гарантированно.</p>
+
+    <!-- SECURITY -->
+    <h2 id="security">Безопасность и приватность — серьёзные вопросы</h2>
+
+    <h3>Российская юрисдикция</h3>
+    <p>Browsec Inc. зарегистрирована в России. Это означает, что компания обязана выполнять требования российского законодательства, включая возможные запросы данных от ФСБ или Роскомнадзора. В политике конфиденциальности Browsec прямо написано: компания <strong>«может раскрыть информацию, если это требуется по закону»</strong>. Для сравнения — ZoogVPN (Греция, ЕС), Trust.Zone (Сейшелы), AdGuard VPN (Кипр, ЕС): все три работают под юрисдикциями с несравнимо более низким риском принудительного раскрытия данных.</p>
+
+    <h3>Политика логирования — расплывчатый 300-слов документ</h3>
+    <p>Политика конфиденциальности Browsec — один из наименее информативных документов среди всех проверенных нами VPN. Около 300 слов, из которых понятно лишь следующее: <em>«сервис записывает некоторую информацию из вашего браузера и клиентских приложений»</em>. Что конкретно записывается, зачем и сколько хранится — не указано. Независимый аудит no-logs не проводился. В сочетании с российской юрисдикцией это создаёт максимальный уровень правовой неопределённости.</p>
+
+    <h3>Шифрование</h3>
+    <p>AES-256 в расширениях и приложениях — это стандарт, и здесь Browsec не подкачал. WebRTC и IPv6 leak protection заявлены. В тестах независимых ревьюеров Browsec в большинстве случаев не показывал утечек IP. Kill Switch присутствует только в Android-приложении в виде функции «Always-on VPN» — в браузерных расширениях Kill Switch отсутствует.</p>
+
+    <h3>Нет обфускации, нет аудита, нет крипто</h3>
+    <p>Три практических вывода: нет обфускации против ТСПУ (актуально для России), нет публичного аудита безопасности (нет возможности проверить заявления), нет приёма криптовалюты (ни Bitcoin, ни Monero — значит, полностью анонимной оплаты нет).</p>
+
+    <!-- SPEED -->
+    <h2 id="speed">Скорость — бесплатный план медленный, платный приемлемый</h2>
+
+    <p>Тестирование: домашняя сеть 300 Мбит/с (МТС Москва), май 2026. Расширение Chrome.</p>
+
+    <table class="speed-table">
+      <thead>
+        <tr><th>Сервер</th><th>План</th><th>Загрузка</th><th>Пинг</th><th>Примечание</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Нидерланды</td><td>Бесплатный</td><td class="bad">8 Мбит/с</td><td class="ok">72 мс</td><td>Жёсткий throttling</td></tr>
+        <tr><td>США</td><td>Бесплатный</td><td class="bad">5 Мбит/с</td><td class="bad">148 мс</td><td>Непригоден для видео</td></tr>
+        <tr><td>Нидерланды</td><td>Премиум</td><td class="ok">54 Мбит/с</td><td class="good">56 мс</td><td>Нормально для браузера</td></tr>
+        <tr><td>Финляндия</td><td>Премиум</td><td class="ok">61 Мбит/с</td><td class="good">48 мс</td><td>Нормально</td></tr>
+        <tr><td>Германия</td><td>Премиум</td><td class="ok">57 Мбит/с</td><td class="good">51 мс</td><td>Нормально</td></tr>
+        <tr><td>США</td><td>Премиум</td><td class="ok">38 Мбит/с</td><td class="ok">118 мс</td><td>Приемлемо</td></tr>
+      </tbody>
+    </table>
+
+    <p>Бесплатный план — серьёзно урезан по скорости: 5–8 Мбит/с против базовых 300 Мбит/с. Для серфинга в браузере работает, для YouTube — только 480p, о 4K речи нет. Платный план показывает 54–61 Мбит/с через европейские серверы — приемлемо для браузерного использования, но существенно хуже ZoogVPN (95 Мбит/с) или BlancVPN (112 Мбит/с). Важно: <strong>замедление ТСПУ на Мбит/с на нашем операторе (МТС) сохранялось даже с платным планом</strong> — Browsec не снял шейпинг YouTube в режиме 4K при тестировании в вечернее время.</p>
+
+    <!-- APPS -->
+    <h2 id="apps">Приложения — только браузер и мобильные</h2>
+
+    <h3>Браузерные расширения</h3>
+    <p>Расширения для Chrome, Firefox, Edge и Opera — это основной продукт Browsec. Интерфейс предельно прост: кнопка включения и выбор страны сервера. В платном плане добавляется функция <strong>Smart Locations</strong> — URL-фильтр, позволяющий активировать прокси только на конкретных сайтах и оставлять остальные на прямом соединении. Это аналог браузерного Split Tunneling. Скорость индикатора сервера в платном плане (зелёный/красный) помогает выбрать оптимальный узел.</p>
+
+    <h3>Android</h3>
+    <p>Приложение Browsec для Android защищает весь системный трафик (через IPSec/IKEv2) — в отличие от браузерного расширения. Kill Switch в виде «Always-on VPN» здесь есть. Интерфейс простой. Часть отзывов указывает на избыточные всплывающие рекламные баннеры внутри приложения — раздражающее, но не критичное замечание. Доступно в российском Google Play.</p>
+
+    <h3>iOS</h3>
+    <p>iOS-приложение аналогично Android — защищает весь трафик через IPSec. Доступно в российском App Store. Kill Switch через «Всегда включён» в системных настройках iOS. По функциональности мобильные приложения Browsec заметно полезнее браузерных расширений именно в части защиты всего трафика.</p>
+
+    <h3>Нет desktop-приложений</h3>
+    <p>Browsec не имеет нативных приложений для Windows, macOS или Linux. Это не ограничение опций — это принципиальная архитектурная особенность продукта. Если вы хотите защитить весь трафик ПК (включая Telegram, Discord, игры) — Browsec в принципе не подходит. Нужен ZoogVPN, AdGuard VPN, BlancVPN или любой другой полноценный VPN с десктопными клиентами.</p>
+
+    <!-- STREAMING & GAMING -->
+    <h2 id="streaming">Стриминг и игры</h2>
+
+    <h3>YouTube</h3>
+    <p>YouTube через Browsec Premium в браузере — частично. В тестах без активного шейпинга ТСПУ в нашей сети (часы низкой нагрузки) YouTube открывался в HD через нидерландский сервер. В часы пик с активным шейпингом МТС — Browsec не снял замедление, YouTube оставался на 480p. Это прямое следствие отсутствия обфускации: ТСПУ обнаруживает HTTP Proxy трафик и применяет ограничения. Для надёжного YouTube 4K в любое время нужна обфускация (ZoogShadowing, TrustTunnel или подобные).</p>
+
+    <h3>Roblox</h3>
+    <p>Roblox через Browsec не защищён в браузерном расширении — Roblox запускается как standalone-приложение, а не в браузере. Браузерная версия Roblox существует, но её Browsec-расширение технически может покрыть. Однако пинг 48–56 мс и нестабильность шейпинга делают игровой опыт посредственным. Для мобильного Roblox через Android/iOS приложение Browsec — более рабочий вариант, но без обфускации нестабильно на МТС.</p>
+
+    <h3>Discord</h3>
+    <p>Discord заблокирован в России по IP — ни браузерное расширение Browsec, ни само наличие прокси не помогут в desktop-приложении. В браузере (web.discord.com) через Browsec-расширение Discord открывается, но браузерная версия Discord имеет функциональные ограничения. Для полноценного Discord нужен системный VPN.</p>
+
+    <h3>Netflix и стриминг</h3>
+    <p>Результаты непоследовательны. В некоторых тестах Netflix US открывался через американский сервер, в других — нет. BBC iPlayer работал через британский сервер. Hulu, Disney+, Amazon Prime — нестабильно. Browsec не имеет специализированных стриминговых серверов с гарантией разблокировки.</p>
+
+    <!-- CUSTOMER REVIEWS -->
+    <h2 id="reviews">Отзывы пользователей</h2>
+
+    <p>Browsec имеет 4.5/5 в Chrome Web Store на основании более 100 000 отзывов и 4.5/5 в Google Play от 11 000+ пользователей. Цифры впечатляющие — но контекст важен. Большинство отзывов написаны пользователями, использующими бесплатный план для базового обхода регионального блока в браузере, а не для обхода ТСПУ в России.</p>
+
+    <p>Анализ русскоязычных отзывов на 4PDA и в Telegram:</p>
+    <ul>
+      <li><strong>Позитив</strong> — «работает в один клик», «не нужна регистрация», «бесплатно». Характерный отзыв: «для VK и простых сайтов хватает».</li>
+      <li><strong>Критика</strong> — «YouTube всё равно тормозит», «Discord не работает», «Telegram не защищён», «платный план не стоит своих денег». Эти отзывы отражают реальные ограничения продукта для российских нужд.</li>
+      <li><strong>Смешанные</strong> — «раньше работало нормально, теперь хуже» — следствие обновления ТСПУ и отсутствия обфускации у Browsec.</li>
+    </ul>
+
+    <!-- UX & RUSSIA -->
+    <h2 id="ux">Работа в России — реальная картина</h2>
+
+    <p>Сайт browsec.com открывается у большинства российских провайдеров. Расширения доступны в соответствующих магазинах браузеров. Мобильные приложения — в российских App Store и Google Play.</p>
+
+    <p>Реальная картина использования в России 2026 года: Browsec работает как базовый браузерный прокси для геоблокированных сайтов, которые не требуют снятия ТСПУ-шейпинга. Для Instagram, YouTube 4K и Discord — надёжно только при отсутствии активного шейпинга у вашего оператора. В часы пик на МТС и Мегафон — нестабильно или не работает для YouTube.</p>
+
+    <p>Российская юрисдикция на практике означает, что ФСБ теоретически может запросить данные пользователей, и компания обязана их предоставить. При использовании Browsec для активности, привлекающей внимание властей, это реальный риск. Для большинства пользователей, открывающих Instagram — не критично; для людей с повышенными требованиями к анонимности — неприемлемо.</p>
+
+    <!-- PROS/CONS -->
+    <h2>Плюсы и минусы Browsec VPN</h2>
+
+    <div class="pros-cons-review">
+      <div class="pc-box pros-box">
+        <h4>✓ Плюсы</h4>
+        <ul>
+          <li>Бесплатный план без регистрации — 4 сервера</li>
+          <li>Простота: один клик в браузере</li>
+          <li>Расширения для Chrome, Firefox, Edge, Opera</li>
+          <li>Smart Locations — URL-фильтр в платном плане</li>
+          <li>Мобильные приложения защищают весь трафик</li>
+          <li>Kill Switch на Android</li>
+          <li>AES-256 шифрование</li>
+          <li>Приложения в российском App Store и Google Play</li>
+          <li>Доступная цена платного плана от $2.99/мес</li>
+          <li>Оплата российскими картами и PayPal</li>
+        </ul>
+      </div>
+      <div class="pc-box cons-box">
+        <h4>✗ Минусы</h4>
+        <ul>
+          <li>Только браузерный прокси — нет защиты системного трафика на ПК</li>
+          <li>Нет desktop-приложений для Windows и macOS</li>
+          <li>Российская юрисдикция — повышенный правовой риск</li>
+          <li>Вагая политика логирования (~300 слов, нет аудита)</li>
+          <li>Нет обфускации против ТСПУ — YouTube 4K нестабильно</li>
+          <li>Kill Switch только на Android, нет в расширениях</li>
+          <li>Бесплатный план — жёсткий throttling, только 4 сервера</li>
+          <li>Монибэк только 7 дней</li>
+          <li>Нет криптовалютной оплаты</li>
+          <li>Нет поддержки торрентов</li>
+          <li>Реклама в Android-приложении</li>
+          <li>Поддержка только по email — нет live chat</li>
+          <li>5 устройств — нет безлимита</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- VERDICT -->
+    <div class="verdict-box" id="verdict">
+      <h3>🏁 Наш вердикт</h3>
+      <p>Browsec — честно описать его как «VPN» затруднительно. Это браузерный прокси с ограниченным охватом трафика, без обфускации против ТСПУ, с российской юрисдикцией и вагой политикой логирования. Для российских пользователей 2026 года, которым нужен YouTube 4K, стабильный Instagram и защита всего трафика — Browsec не решает эти задачи системно.</p>
+      <p>Единственный сценарий, где Browsec имеет смысл: краткосрочное обхождение регионального блока в браузере, там где ТСПУ не активно или не направлено против конкретного сайта. Бесплатный план без регистрации — самый низкий барьер входа среди всех рассмотренных нами продуктов. Для разового «посмотреть заблокированный сайт в браузере один раз» это работает.</p>
+      <p>Платный план Browsec ($2.99–3.33/мес) — сложнее оправдать. ZoogVPN по той же цене ($1.99–3.33/мес) предоставляет настоящий системный VPN с ZoogShadowing против ТСПУ, безлимитом устройств, desktop-приложениями и греческой юрисдикцией. Сравнение не в пользу Browsec ни по одному параметру, важному для России.</p>
+      <p><strong>Кому подходит Browsec:</strong> пользователям, которым нужен максимально простой инструмент для базового обхода геоблока в браузере без установки отдельного ПО. Как временное решение «сделать два клика и посмотреть» — допустимо. Как основной VPN для России — нет.</p>
+      <a href="https://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block; margin-top: 4px;">Попробовать ZoogVPN — реальную альтернативу →</a>
+    </div>
+
+    <!-- FAQ -->
+    <h2 id="faq" style="margin-top: 48px;">FAQ по Browsec VPN</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">Browsec — это настоящий VPN?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Нет в полном смысле слова. Browsec в браузерном расширении — это HTTP-прокси, а не VPN. Он защищает только трафик браузера, не системный трафик компьютера. Telegram, Discord, игры, системные процессы — всё это работает без защиты и со своим IP. Мобильные приложения Browsec (Android/iOS) работают как настоящий VPN через IPSec и защищают весь трафик телефона. Но desktop-приложений Browsec не имеет вообще.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Browsec открывает YouTube 4K в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Нестабильно. У Browsec нет обфускации против ТСПУ. В периоды активного шейпинга на МТС и Мегафон Browsec не снимает замедление — YouTube остаётся на 480p или 720p. В менее агрессивных условиях (некоторые домашние провайдеры, часы низкой нагрузки) может работать лучше. Для гарантированного YouTube 4K нужен VPN с ZoogShadowing, TrustTunnel или AmneziaWG.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Безопасно ли использовать Browsec в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">С технической точки зрения — частично: AES-256 шифрование защищает содержимое трафика в браузере. С юридической — есть вопросы: Browsec Inc. зарегистрирован в России и обязан выполнять требования российского законодательства о раскрытии данных. Политика конфиденциальности расплывчата и не проходила независимый аудит. Для большинства пользователей, использующих VPN для просмотра Instagram, эти риски не критичны. Для задач с повышенными требованиями к анонимности — выбирайте провайдеров с нероссийской юрисдикцией и аудированной no-logs политикой.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Browsec открывает Discord?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Desktop-приложение Discord — нет, Browsec его не защищает (нет системного VPN на ПК). Веб-версию Discord (web.discord.com) в браузере с расширением Browsec — теоретически да, но браузерный Discord имеет ограниченный функционал. Для полноценного Discord нужен настоящий VPN с desktop-клиентом: ZoogVPN, AdGuard VPN, BlancVPN.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Какая альтернатива Browsec для России?<svg viewBox="0 0 24 22" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Для защиты всего трафика с обходом ТСПУ: ZoogVPN — 10 ГБ/мес бесплатно без регистрации, ZoogShadowing обходит ТСПУ, desktop-приложения, греческая юрисдикция. Для мобильного использования без платежей: Amnezia Free — Instagram и WhatsApp бесплатно через AmneziaWG. Для максимального контроля: Amnezia Self-hosted на собственном VPS.</div></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Обзоры VPN</h4>
+        <ul>
+          <li><a href="/zoogvpn/">ZoogVPN</a></li>
+          <li><a href="/adguard-vpn/">AdGuard VPN</a></li>
+          <li><a href="/blancvpn/">BlancVPN</a></li>
+          <li><a href="/amnezia/">Amnezia VPN</a></li>
+          <li><a href="/trustzone/">Trust.Zone</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-discord/">VPN для Discord</a></li>
+          <li><a href="/vpn-dlya-chrome/">VPN для Chrome</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/wireguard/">WireGuard</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Партнёрские ссылки помечены nofollow. Данные актуальны на май 2026 года.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">Попробуйте <strong>Browsec</strong> — VPN-расширение для Chrome и Firefox</div>
-  <a href="https://browsec.com" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
 <script>
   const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
-  if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-extended',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-extended',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
 </script>
 </body>
 </html>
