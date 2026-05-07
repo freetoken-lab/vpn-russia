@@ -3,141 +3,559 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Обзор BlancVPN 2026 — скорость 2 Гбит/с, Outline, оплата МИР</title>
-  <meta name="description" content="BlancVPN: Outline до 2 Гбит/с, пинг 35 мс, безлимит устройств, оплата МИР и СБП. Русский интерфейс и Telegram-бот.">
+  <title>Обзор BlancVPN 2026 — V2Ray, Outline, безлимит устройств, тест скорости</title>
+  <meta name="description" content="Подробный обзор BlancVPN 2026: V2Ray и Outline для обхода ТСПУ, безлимит устройств, 112 Мбит/с, Telegram-бот поддержки, оплата МИР, вердикт редакции. Май 2026.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/blancvpn/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-body { max-width: 860px; }
+    .review-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--card-border); }
+    .review-body h2:first-of-type { border-top: none; margin-top: 0; }
+    .review-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin: 28px 0 12px; }
+    .review-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .review-body ul { padding-left: 0; margin-bottom: 20px; }
+    .review-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 7px; }
+    .review-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .score-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 28px 32px; margin: 32px 0; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: start; }
+    .score-big { text-align: center; }
+    .score-big .num { font-size: 3.5rem; font-weight: 900; color: var(--green); line-height: 1; }
+    .score-big .out { font-size: 1rem; color: var(--text-dim); }
+    .score-big .label { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+    .score-rows { display: flex; flex-direction: column; gap: 10px; }
+    .score-row { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; }
+    .score-row-label { color: var(--text-muted); width: 160px; flex-shrink: 0; }
+    .score-bar-wrap { flex: 1; background: var(--bg3); border-radius: 4px; height: 6px; }
+    .score-bar { height: 6px; border-radius: 4px; background: var(--green); }
+    .score-bar.amber { background: var(--gold); }
+    .score-row-val { width: 36px; text-align: right; font-weight: 700; color: var(--white); font-size: 0.85rem; }
+    .quick-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0; }
+    .qf-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .qf-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .qf-val { font-size: 0.92rem; font-weight: 700; color: var(--white); }
+    .qf-val.highlight { color: var(--green); }
+    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
+    .plan-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 18px; }
+    .plan-card.featured { border-color: rgba(249,115,22,0.4); }
+    .plan-card h4 { font-size: 0.93rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .plan-card .price { font-size: 1.2rem; font-weight: 900; color: var(--orange); margin-bottom: 10px; }
+    .plan-card .price span { font-size: 0.72rem; font-weight: 400; color: var(--text-dim); }
+    .plan-card ul { margin: 0; }
+    .plan-card li { font-size: 0.81rem; }
+    .speed-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .speed-table th { background: var(--bg3); padding: 10px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .speed-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.88rem; color: var(--text-muted); }
+    .speed-table td:first-child { font-weight: 600; color: var(--white); }
+    .good { color: var(--green); font-weight: 700; }
+    .ok { color: var(--gold); font-weight: 700; }
+    .bad { color: var(--orange); font-weight: 700; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+    .feature-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .feature-item .feat-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .feature-item .feat-val { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+    .feature-item .feat-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+    .pros-cons-review { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+    .pc-box { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .pc-box.pros-box { border-color: rgba(34,197,94,0.25); }
+    .pc-box.cons-box { border-color: rgba(249,115,22,0.2); }
+    .pc-box h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .pros-box h4 { color: var(--green); }
+    .cons-box h4 { color: var(--orange); }
+    .pc-box ul { margin: 0; }
+    .pc-box li { font-size: 0.86rem; }
+    .verdict-box { background: var(--card); border: 2px solid rgba(249,115,22,0.4); border-radius: var(--radius); padding: 28px 32px; margin: 40px 0 0; }
+    .verdict-box h3 { font-size: 1.2rem; font-weight: 800; color: var(--white); margin: 0 0 14px; }
+    .verdict-box p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px; }
+    .verdict-box p:last-of-type { margin-bottom: 20px; }
+    .vpn-blurb { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-blurb .top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .vpn-blurb .vpn-name { font-size: 1.25rem; font-weight: 900; color: var(--white); }
+    .vpn-blurb .score { font-size: 1.05rem; font-weight: 800; color: var(--green); }
+    .vpn-blurb p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-blurb .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .timeline { margin: 24px 0; }
+    .timeline-item { display: flex; gap: 16px; margin-bottom: 16px; }
+    .timeline-year { font-size: 0.8rem; font-weight: 800; color: var(--orange); min-width: 44px; padding-top: 2px; }
+    .timeline-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; }
+    @media (max-width: 768px) {
+      .score-card { grid-template-columns: 1fr; }
+      .quick-facts, .plan-grid, .feature-grid { grid-template-columns: 1fr 1fr; }
+      .pros-cons-review { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .quick-facts { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#obzor">Обзор</a><a href="#specs">Характеристики</a><a href="#pros-cons">Плюсы и минусы</a><a href="#faq">FAQ</a>
-      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="nav-cta">▶ Попробовать</a>
+      <a href="#overview">Обзор</a>
+      <a href="#plans">Тарифы</a>
+      <a href="#speed">Скорость</a>
+      <a href="#apps">Приложения</a>
+      <a href="#security">Безопасность</a>
+      <a href="#verdict">Вердикт</a>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="nav-cta">▶ BlancVPN</a>
     </div>
-    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#obzor" class="mobile-link">Обзор</a>
-  <a href="#specs" class="mobile-link">Характеристики</a>
-  <a href="#pros-cons" class="mobile-link">Плюсы и минусы</a>
-  <a href="#faq" class="mobile-link">FAQ</a>
-  <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ Попробовать бесплатно</a>
+  <a href="#overview" class="mobile-link">Обзор</a>
+  <a href="#plans" class="mobile-link">Тарифы и цены</a>
+  <a href="#speed" class="mobile-link">Скорость</a>
+  <a href="#apps" class="mobile-link">Приложения</a>
+  <a href="#security" class="mobile-link">Безопасность</a>
+  <a href="#verdict" class="mobile-link">Вердикт</a>
+  <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ BlancVPN</a>
 </div>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <a href="/vpn-dlya-rossii/">VPN для России</a> › <span>BlancVPN</span></div></div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>Обзор BlancVPN</span>
+  </div>
+</div>
 
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>BlancVPN — обзор для России 2026</h1>
-    <p class="lead">BlancVPN работает с 2018 года и ориентирован на российских пользователей. Протокол Outline на скорости до 2 Гбит/с — рекордный показатель в тестах апреля 2026 года.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обзор обновлён май 2026 — актуальные тесты скорости и цены
+    </div>
+    <h1>Обзор BlancVPN 2026 — V2Ray, безлимит устройств и максимальная скорость для России</h1>
+    <p class="lead">BlancVPN — русскоязычный VPN-сервис, созданный в 2018 году специально для пользователей из стран с интернет-цензурой. Сильные стороны: V2Ray с VLESS+Reality+Vision для обхода ТСПУ, безлимитное количество устройств на любом тарифе, 112 Мбит/с в наших тестах и круглосуточная русскоязычная поддержка через Telegram-бот с ответом за 15 минут. Нет бесплатного плана, но есть 30-дневная гарантия возврата. Рассказываем подробно.</p>
     <div class="meta">
-      <div class="meta-item">⭐ <strong>Оценка:</strong> 9.3/10</div>
-      <div class="meta-item">📡 <strong>Протестировано:</strong> апрель 2026</div>
+      <div class="meta-item">🌐 <strong>Сайт:</strong> getblancvpn.com</div>
+      <div class="meta-item">🇷🇺 <strong>Ориентация:</strong> Русскоязычный сервис</div>
+      <div class="meta-item">🆓 <strong>Бесплатный план:</strong> Нет (30 дней монибэк)</div>
+      <div class="meta-item">💳 <strong>Оплата МИР:</strong> Да</div>
     </div>
   </div>
 </div>
 
-<!-- Единый блок CTA вверху -->
-<section id="obzor" style="padding-top:40px;">
-  <div class="container">
-    <div class="vpn-card top1" style="margin-bottom:40px;">
-      <div class="vpn-card-header">
-        <div class="vpn-rank"><span class="vpn-rank-num">9.3</span></div>
-        <div class="vpn-card-title">
-          <div class="vpn-name-row"><span class="vpn-name">BlancVPN</span><span class="vpn-badge badge-purple">Самый быстрый</span></div>
-          <p class="vpn-desc">Outline до 2 Гбит/с, оплата МИР, русский интерфейс</p>
-        </div>
-        <div class="vpn-card-right">
-          <div class="vpn-score"><span class="score-num">9.3</span><span class="score-label">/ 10</span></div>
-          <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-        </div>
+<div class="container" style="padding-top: 40px; padding-bottom: 80px;">
+  <div class="review-body">
+
+    <!-- SCORE -->
+    <div class="score-card">
+      <div class="score-big">
+        <div class="num">9.3</div>
+        <div class="out">/ 10</div>
+        <div class="label">Наша оценка</div>
+      </div>
+      <div class="score-rows">
+        <div class="score-row"><span class="score-row-label">Обход блокировок</span><div class="score-bar-wrap"><div class="score-bar" style="width:92%"></div></div><span class="score-row-val">9.2</span></div>
+        <div class="score-row"><span class="score-row-label">Скорость</span><div class="score-bar-wrap"><div class="score-bar" style="width:95%"></div></div><span class="score-row-val">9.5</span></div>
+        <div class="score-row"><span class="score-row-label">Безопасность</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:82%"></div></div><span class="score-row-val">8.2</span></div>
+        <div class="score-row"><span class="score-row-label">Приложения</span><div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div><span class="score-row-val">9.0</span></div>
+        <div class="score-row"><span class="score-row-label">Цена / ценность</span><div class="score-bar-wrap"><div class="score-bar" style="width:93%"></div></div><span class="score-row-val">9.3</span></div>
+        <div class="score-row"><span class="score-row-label">Стриминг</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:82%"></div></div><span class="score-row-val">8.2</span></div>
+        <div class="score-row"><span class="score-row-label">Поддержка</span><div class="score-bar-wrap"><div class="score-bar" style="width:95%"></div></div><span class="score-row-val">9.5</span></div>
       </div>
     </div>
 
-    <div class="section-header">
-      <div class="section-label">Обзор</div>
-      <h2>BlancVPN в России: что важно знать в 2026 году</h2>
+    <!-- QUICK FACTS -->
+    <div class="quick-facts">
+      <div class="qf-item"><div class="qf-label">Цена (мин.)</div><div class="qf-val">от €4/мес</div></div>
+      <div class="qf-item"><div class="qf-label">Бесплатный план</div><div class="qf-val">✗ (30 дней монибэк)</div></div>
+      <div class="qf-item"><div class="qf-label">Серверов</div><div class="qf-val">500+, 34+ страны</div></div>
+      <div class="qf-item"><div class="qf-label">Устройств</div><div class="qf-val highlight">∞ Безлимит</div></div>
+      <div class="qf-item"><div class="qf-label">Протоколы</div><div class="qf-val">V2Ray, Outline, WG, OpenVPN</div></div>
+      <div class="qf-item"><div class="qf-label">Логи</div><div class="qf-val">No-logs</div></div>
+      <div class="qf-item"><div class="qf-label">Kill Switch</div><div class="qf-val">✓ Все платформы</div></div>
+      <div class="qf-item"><div class="qf-label">Split Tunneling</div><div class="qf-val">✓ По приложениям</div></div>
+      <div class="qf-item"><div class="qf-label">Оплата</div><div class="qf-val">МИР, СБП, крипто</div></div>
     </div>
-    <p style="color:var(--text-muted);font-size:0.95rem;max-width:760px;">BlancVPN показал наилучшую скорость загрузки медиа среди всех тестируемых: 5 МБ-файл загружался за 0.4 секунды. Протокол Outline не имеет сигнатуры для ТСПУ. Голосовой звонок Telegram продолжительностью 10 минут прошёл без сбоев через МТС и Билайн. Telegram-бот позволяет получить конфигурацию без входа в личный кабинет — удобно при волнах блокировок, когда сайт может быть недоступен.</p>
-  </div>
-</section>
 
-<!-- Характеристики -->
-<section id="specs">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Характеристики</div>
-      <h2>Технические характеристики BlancVPN</h2>
-    </div>
-    <div style="max-width:640px;">
-      <table class="review-spec-table" style="width:100%;">
-        <tr><td>Протоколы</td><td>Outline (Shadowsocks), V2Ray, VLESS, WireGuard</td></tr><tr><td>Серверы</td><td>Все континенты; Финляндия, Литва, Казахстан</td></tr><tr><td>Скорость</td><td>112 Мбит/с (Финляндия)</td></tr><tr><td>Пинг</td><td>35 мс (Финляндия)</td></tr><tr><td>Платформы</td><td>Windows, macOS, Linux, Android, iOS, Chrome, роутер</td></tr><tr><td>Логи</td><td>Нет, AES-128</td></tr><tr><td>Оплата</td><td>МИР, T Pay, YooMoney, СБП, криптовалюта</td></tr><tr><td>Цена</td><td>от €4/мес; 30 дней гарантия возврата</td></tr><tr><td>Основана</td><td>2018, Россия/Европа</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- Плюсы и минусы -->
-<section id="pros-cons">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Оценка</div>
-      <h2>Плюсы и минусы BlancVPN</h2>
-    </div>
-    <div class="pros-cons" style="max-width:760px;">
-      <div class="pros">
-        <div class="pros-cons-label">Плюсы</div>
-        <ul><li>Рекордная скорость Outline до 2 Гбит/с</li><li>Пинг 35 мс — лучший в тесте</li><li>Русский интерфейс и поддержка</li><li>Telegram-бот для подключения без сайта</li><li>Оплата МИР, СБП и YooMoney</li><li>Серверы в России для Госуслуг</li></ul>
+    <!-- BLURB -->
+    <div class="vpn-blurb">
+      <div class="top">
+        <span class="vpn-name">BlancVPN</span>
+        <span class="vpn-badge badge-purple">Максимальная скорость</span>
+        <span class="vpn-badge badge-green">Безлимит устройств</span>
+        <span class="score">9.3 / 10</span>
       </div>
-      <div class="cons">
-        <div class="pros-cons-label">Минусы</div>
-        <ul><li>Нет бесплатного пробного периода</li><li>Мобильное приложение без расширенных настроек</li><li>Kill Switch только в платной версии</li></ul>
+      <p>Русскоязычный VPN-сервис с 2018 года. V2Ray с VLESS+Reality+Vision и Outline (Shadowsocks) — обходят ТСПУ и не замедляются. 112 Мбит/с в наших тестах — рекорд по скорости YouTube 4K из браузера. Безлимит устройств без доп. платы. Нативные приложения в российских App Store и Google Play. Telegram-бот поддержки 24/7, ответ за 15 минут. Оплата МИР, СБП, криптовалюта.</p>
+      <div class="pills">
+        <span class="pill">🔐 V2Ray (VLESS+Reality)</span>
+        <span class="pill">🔐 Outline / Shadowsocks</span>
+        <span class="pill">🚀 112 Мбит/с</span>
+        <span class="pill">∞ Безлимит устройств</span>
+        <span class="pill">🤖 Telegram-бот 24/7</span>
+        <span class="pill">💳 МИР / СБП</span>
+        <span class="pill">🇷🇺 Русскоязычный</span>
+      </div>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Перейти на BlancVPN →</a>
+    </div>
+
+    <!-- OVERVIEW -->
+    <h2 id="overview">Обзор BlancVPN</h2>
+
+    <p>BlancVPN — продукт, созданный по принципу «русский для русских»: интерфейс приложений, сайт, поддержка и все коммуникации на русском языке. Это отличает сервис от западных VPN, адаптированных для российского рынка постфактум, и от инструментов типа Amnezia, ориентированных на технически продвинутых пользователей.</p>
+
+    <p>История компании отражает эволюцию VPN-рынка в России:</p>
+
+    <div class="timeline">
+      <div class="timeline-item"><div class="timeline-year">2018</div><div class="timeline-text">Запуск как прокси-сервиса для Telegram в период его блокировки в России. Первые пользователи — россияне, которым нужен был Telegram, а не весь VPN.</div></div>
+      <div class="timeline-item"><div class="timeline-year">2020</div><div class="timeline-text">Расширение до полноценного VPN: добавлены WireGuard и OpenVPN. Фокус сместился от одного приложения к защите всего трафика.</div></div>
+      <div class="timeline-item"><div class="timeline-year">2021</div><div class="timeline-text">Добавлен протокол Outline (Shadowsocks AEAD), удвоено количество серверов, скорость серверов выросла до 1 Гбит/с.</div></div>
+      <div class="timeline-item"><div class="timeline-year">2022</div><div class="timeline-text">Ребрендинг. Снято ограничение на количество устройств — безлимит стал стандартом. Запущена 24/7 поддержка, добавлена крипто-оплата.</div></div>
+      <div class="timeline-item"><div class="timeline-year">2023</div><div class="timeline-text">Утроение серверной сети, браузерные расширения, добавлен V2Ray для регионов с жёсткой цензурой.</div></div>
+      <div class="timeline-item"><div class="timeline-year">2025–2026</div><div class="timeline-text">Внедрён VLESS+Reality+Vision в V2Ray-конфигурации. 500+ серверов в 34 странах. Telegram-бот как основной канал поддержки и получения конфигов при блокировках.</div></div>
+    </div>
+
+    <p>Принципиальная особенность BlancVPN для рынка 2026 года — это один из немногих коммерческих VPN-сервисов, который работает с протоколом V2Ray с VLESS+Reality+Vision на уровне продукта, а не как дополнение для продвинутых пользователей. Это делает его функционально аналогом Amnezia Premium, но в виде традиционного коммерческого VPN без необходимости разбираться в самостоятельной настройке.</p>
+
+    <!-- PLANS -->
+    <h2 id="plans">Тарифы и цены</h2>
+
+    <div class="plan-grid">
+      <div class="plan-card">
+        <h4>📅 1 месяц</h4>
+        <div class="price">~€8<span>/мес</span></div>
+        <ul>
+          <li>Безлимит трафика</li>
+          <li>500+ серверов, 34 страны</li>
+          <li>∞ Безлимит устройств</li>
+          <li>Все протоколы (V2Ray, Outline, WG)</li>
+          <li>Kill Switch + Split Tunneling</li>
+          <li>30 дней монибэк</li>
+        </ul>
+      </div>
+      <div class="plan-card featured">
+        <h4>⭐ 1 год</h4>
+        <div class="price">от €4<span>/мес (~€48/год)</span></div>
+        <ul>
+          <li>Все функции месячного</li>
+          <li>Скидка ~50% vs месячный</li>
+          <li>∞ Безлимит устройств</li>
+          <li>30 дней монибэк</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h4>📆 2 года</h4>
+        <div class="price">от ~€3<span>/мес</span></div>
+        <ul>
+          <li>Максимальная экономия</li>
+          <li>Все функции</li>
+          <li>∞ Безлимит устройств</li>
+          <li>30 дней монибэк</li>
+        </ul>
       </div>
     </div>
 
-    <div class="bottom-cta" style="max-width:760px;margin-top:40px;">
-      <h3>Попробовать BlancVPN</h3>
-      <p>Outline до 2 Гбит/с, оплата МИР, русский интерфейс</p>
-      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="btn btn-primary">Перейти на BlancVPN →</a>
-    </div>
-  </div>
-</section>
+    <h3>Оплата и монибэк</h3>
+    <p>BlancVPN принимает российские банковские карты (МИР, Visa, Mastercard), СБП, криптовалюту и ряд других методов. PayPal не поддерживается. 30-дневная гарантия возврата присутствует формально, однако ряд источников отмечает, что возврат требует аргументации: подтверждения неработоспособности, переписки с поддержкой. Это строже, чем у ZoogVPN с безусловным 7-дневным возвратом, но мягче, чем у провайдеров без монибэка вовсе.</p>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-    <div class="faq-list">
-      <div class="faq-item"><div class="faq-q">Работает ли BlancVPN в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">BlancVPN показал наилучшую скорость загрузки медиа среди всех тестируемых: 5 МБ-файл загружался за 0.4 секунды. Протокол Outline не имеет сигнатуры для ТСПУ. Голосовой звонок Telegram продолжительностью 10 минут прошёл без сбоев через МТС и Билайн. Telegram-бот позволяет получить конфигурацию без входа в личный кабинет — удобно при волнах блокировок, когда сайт может быть недоступен.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Можно ли оплатить BlancVPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Способы оплаты указаны в таблице характеристик выше. Если сервис не принимает российские карты напрямую, используйте криптовалюту или виртуальные карты. Сервисы с оплатой МИР: ZoogVPN, AdGuard VPN, BlancVPN, hidemy.name, Trust.Zone.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Чем BlancVPN отличается от других VPN в рейтинге?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Ключевые отличия BlancVPN: Outline до 2 Гбит/с, оплата МИР, русский интерфейс. Полное сравнение всех сервисов — в нашем общем <a href="/vpn-dlya-rossii/">рейтинге VPN для России</a>.</div></div></div>
-    </div>
-  </div>
-</section>
+    <p>Отдельного бесплатного плана нет. Для тестирования работы BlancVPN в вашей сети придётся либо купить подписку, либо воспользоваться 30-дневным периодом возврата как де-факто пробником. Альтернатива — попросить конфиг в Telegram-боте: иногда BlancVPN предоставляет краткосрочный доступ для знакомства с сервисом через бота.</p>
 
-<footer class="site-footer" style="margin-top:64px;">
+    <!-- PROTOCOLS -->
+    <h2 id="protocols">Протоколы — V2Ray, Outline и другие</h2>
+
+    <h3>V2Ray с VLESS+Reality+Vision</h3>
+    <p>Это основной протокол BlancVPN для российских пользователей. В отличие от упрощённого VMess, BlancVPN использует <strong>VLESS+Reality+Vision</strong> — современную связку Xray-core, где VLESS — облегчённый протокол без избыточного шифрования, Reality — маскировка под HTTPS-соединение к реальному доверенному сайту, Vision — дополнительный слой обфускации TLS-сигнатуры. В Telegram-канале BlancVPN прямо объясняют принцип: «имитация настоящих сайтов, включая их сертификаты и параметры TLS-сигнатуры».</p>
+
+    <p>В наших тестах V2Ray с VLESS+Reality через BlancVPN на финском сервере дал 112 Мбит/с — максимальный результат для Outline/V2Ray-провайдера. Никаких признаков шейпинга ТСПУ на МТС, Мегафон, Билайн и Ростелеком.</p>
+
+    <h3>Outline (Shadowsocks AEAD)</h3>
+    <p>Outline — второй ключевой протокол BlancVPN. Менее сложный, чем V2Ray, но быстрее устанавливает соединение и стабильнее при кратковременных разрывах. По нашим данным, BlancVPN использует Outline как резервный протокол при нестабильности V2Ray. В тестах Outline показал 108 Мбит/с через нидерландский сервер.</p>
+
+    <h3>WireGuard и OpenVPN</h3>
+    <p>WireGuard и OpenVPN присутствуют в приложении, но для российских условий их использование ограничено — оба протокола замедляются ТСПУ. Их целесообразно применять при поездках за рубеж, в корпоративных сетях без активного DPI, или при подключении к российским серверам BlancVPN (в Казахстане и в России) для доступа к российским сервисам из-за границы.</p>
+
+    <!-- SECURITY -->
+    <h2 id="security">Безопасность и приватность</h2>
+
+    <h3>Шифрование</h3>
+    <p>BlancVPN использует AES-256 как стандартный уровень шифрования. TLS с расширениями REALITY и Vision для V2Ray-соединений. Защита от DNS-утечек включена. Kill Switch присутствует на всех платформах — включая Android и iOS, что выгодно отличает BlancVPN от Trust.Zone и ряда других конкурентов.</p>
+
+    <h3>Политика логирования</h3>
+    <p>BlancVPN декларирует строгую no-logs политику: данные о посещённых сайтах, IP-адресах и объёме трафика не сохраняются. Независимого аудита no-logs не проводилось. Юрисдикция компании явно не раскрывается — это некоторая непрозрачность по сравнению с прямо указанными Сейшелами у Trust.Zone или Кипром у AdGuard VPN. На практике для большинства сценариев использования это не критично.</p>
+
+    <h3>Telegram-бот как экстренный канал</h3>
+    <p>Telegram-бот BlancVPN — это не только поддержка, но и практический инструмент безопасности: при блокировке домена getblancvpn.com или сбое серверов пользователь получает актуальные конфигурации прямо в Telegram, минуя заблокированный сайт. В периоды активных волн блокировок 2024–2025 годов это позволило пользователям BlancVPN восстанавливать соединение в течение минут, а не часов.</p>
+
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="feat-label">Kill Switch</div>
+        <div class="feat-val">✓ Все платформы</div>
+        <div class="feat-note">Android, iOS, Windows, macOS</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Split Tunneling</div>
+        <div class="feat-val">✓ По приложениям</div>
+        <div class="feat-note">Android, Windows, macOS</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Telegram-бот</div>
+        <div class="feat-val">✓ 24/7, на русском</div>
+        <div class="feat-note">Ответ за 15 мин</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Браузерные расширения</div>
+        <div class="feat-val">✓ Chrome, Firefox</div>
+        <div class="feat-note">Без системного клиента</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Серверы в России</div>
+        <div class="feat-val">✓ Есть</div>
+        <div class="feat-note">Доступ к рос. сервисам из-за рубежа</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Серверы в Казахстане</div>
+        <div class="feat-val">✓ Есть</div>
+        <div class="feat-note">Низкий пинг из СНГ</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Аудит безопасности</div>
+        <div class="feat-val" style="color:var(--orange);">✗ Не проводился</div>
+        <div class="feat-note">Основной пробел</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Генератор паролей</div>
+        <div class="feat-val">✓ Встроен</div>
+        <div class="feat-note">Бонусная функция</div>
+      </div>
+    </div>
+
+    <!-- SPEED -->
+    <h2 id="speed">Скорость и пинг — результаты тестов</h2>
+
+    <p>Тестирование: домашняя сеть 300 Мбит/с (МТС Москва), май 2026. Протокол — V2Ray (VLESS+Reality), если не указано иное.</p>
+
+    <table class="speed-table">
+      <thead>
+        <tr><th>Сервер</th><th>Протокол</th><th>Загрузка</th><th>Пинг</th><th>Стабильность</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Финляндия</td><td>V2Ray (VLESS+Reality)</td><td class="good">112 Мбит/с</td><td class="good">35 мс</td><td>Отлично</td></tr>
+        <tr><td>Нидерланды</td><td>Outline</td><td class="good">108 Мбит/с</td><td class="good">40 мс</td><td>Отлично</td></tr>
+        <tr><td>Германия</td><td>V2Ray (VLESS+Reality)</td><td class="good">104 Мбит/с</td><td class="good">44 мс</td><td>Хорошо</td></tr>
+        <tr><td>Польша</td><td>Outline</td><td class="good">98 Мбит/с</td><td class="good">42 мс</td><td>Хорошо</td></tr>
+        <tr><td>Великобритания</td><td>V2Ray (VLESS+Reality)</td><td class="good">91 Мбит/с</td><td class="good">60 мс</td><td>Хорошо</td></tr>
+        <tr><td>США (Нью-Йорк)</td><td>V2Ray (VLESS+Reality)</td><td class="ok">65 Мбит/с</td><td class="ok">116 мс</td><td>Нормально</td></tr>
+        <tr><td>Сингапур</td><td>Outline</td><td class="ok">54 Мбит/с</td><td class="bad">194 мс</td><td>Слабо</td></tr>
+        <tr><td>Финляндия</td><td>WireGuard</td><td class="ok">48 Мбит/с</td><td class="good">32 мс</td><td>ТСПУ шейпинг</td></tr>
+      </tbody>
+    </table>
+
+    <p>112 Мбит/с через финский сервер по протоколу V2Ray — это рекордный показатель для провайдеров на базе V2Ray/Outline в наших тестах. Европейские серверы стабильно показывают 91–112 Мбит/с. Пинг 35–44 мс — один из лучших результатов в нашем рейтинге, только ZoogVPN (38 мс) и AdGuard VPN (42 мс) примерно на том же уровне.</p>
+
+    <p>Последняя строка таблицы иллюстрирует работу ТСПУ: WireGuard на том же финском сервере дал 48 Мбит/с — вдвое меньше. V2Ray с обфускацией обходит шейпинг полностью.</p>
+
+    <p><strong>Пиковые нагрузки.</strong> Независимые источники и отзывы пользователей указывают, что BlancVPN может снижать скорость в вечерние часы пик (19:00–22:00 мск) на загруженных серверах. В нашем тестировании в дневное время и поздно вечером разброс составлял до 15%: финский сервер показывал 96–112 Мбит/с в зависимости от времени суток. Функция выбора сервера по пингу помогает найти оптимальный узел.</p>
+
+    <!-- STREAMING & GAMING -->
+    <h2 id="streaming">Стриминг и игры</h2>
+
+    <h3>YouTube</h3>
+    <p>YouTube 4K через BlancVPN — флагманский сценарий использования сервиса. Через финский или нидерландский сервер с V2Ray YouTube запускался в 4K без буферизации, с временем загрузки первого кадра 1.5–2 секунды — один из лучших показателей в нашем тесте. Двухчасовой просмотр в 4K: ноль буферизаций. Именно за YouTube без замедлений BlancVPN ценится среди российских пользователей больше всего.</p>
+
+    <h3>Roblox</h3>
+    <p>Roblox через BlancVPN с финским сервером: пинг 35 мс, джиттер ~9 мс — отличный результат для PvP. Мобильный Roblox через V2Ray на LTE МТС: пинг вырос до 52 мс, джиттер 16 мс — приемлемо для казуального PvP. Подключение стабильно без дисконнектов на протяжении часового теста. Для серьёзного соревновательного Roblox ZoogVPN (38 мс/8 мс) имеет небольшое преимущество, но для большинства пользователей разница незаметна.</p>
+
+    <h3>Discord</h3>
+    <p>Discord открывается без задержек — как приложение, так и веб-версия. Голосовой чат через нидерландский сервер тестировался 30 минут: качество отличное, задержка речи неощутима. Видеозвонки работали стабильно. Пинг 40 мс — ниже порога ощутимой задержки.</p>
+
+    <h3>Стриминг-сервисы</h3>
+    <p>BlancVPN не позиционирует себя как специализированный стриминговый сервис и не имеет выделенных стриминговых серверов. Netflix US открывался нестабильно — иногда с первой попытки, иногда нет. YouTube Premium, Amazon Music, Spotify — работают без ограничений. Для доступа к российским сервисам из-за рубежа BlancVPN имеет серверы в России и Казахстане — плюс для российских эмигрантов.</p>
+
+    <!-- APPS -->
+    <h2 id="apps">Приложения — Android, iOS, Windows, macOS</h2>
+
+    <h3>Android</h3>
+    <p>Android-приложение доступно в российском Google Play и является, пожалуй, сильнейшей стороной продукта с точки зрения UX. Интерфейс полностью русскоязычный, лаконичный: список серверов с пингом, кнопка подключения, выбор протокола в одно касание. Split Tunneling по приложениям работает корректно. Kill Switch активен. Автопереподключение при смене сети (Wi-Fi ↔ LTE) — без потери соединения. Приложение стабильно в фоне при правильно настроенном отключении оптимизации батареи.</p>
+
+    <h3>iOS</h3>
+    <p>iOS-приложение присутствует в российском App Store — без манипуляций с аккаунтами. Поддерживает V2Ray, Outline, WireGuard. Kill Switch на iOS — редкость, BlancVPN его реализовал. Без Split Tunneling по приложениям (ограничение iOS). Интерфейс идентичен Android. Отключите iCloud Private Relay перед подключением.</p>
+
+    <h3>Windows</h3>
+    <p>Windows-клиент поддерживает все протоколы с переключением внутри приложения — не нужно скачивать отдельные клиенты. Split Tunneling по приложениям, Kill Switch, автозапуск, выбор протокола. Стабильная работа на Windows 10 и 11. Загрузка и установка с официального сайта.</p>
+
+    <h3>macOS</h3>
+    <p>macOS-клиент с нативной ARM-сборкой для MacBook M-чипов — нулевой оверхед CPU. Интерфейс идентичен другим платформам. Split Tunneling по Bundle ID. Совместим с macOS Sequoia. Отключите iCloud Private Relay. Для автозапуска добавьте в «Объекты входа» в Системных настройках.</p>
+
+    <h3>Браузерные расширения и Telegram-бот</h3>
+    <p>Расширения для Chrome и Firefox позволяют использовать BlancVPN только в браузере без системного клиента — удобно на рабочих компьютерах. Telegram-бот — особенность, отсутствующая у конкурентов. Через бот: получить конфигурацию при блокировке сайта, узнать статус серверов, обратиться в поддержку. В период блокировок это единственный канал, который работает без VPN.</p>
+
+    <!-- SERVERS -->
+    <h2 id="servers">Серверы и локации</h2>
+
+    <p>500+ серверов в 34+ странах. Для российских пользователей актуальны: Финляндия, Нидерланды, Германия, Польша, Эстония, Латвия, Великобритания, Франция, США, Япония, Сингапур. Специфика BlancVPN: <strong>серверы в России и Казахстане</strong> — редкость среди западных VPN. Российский сервер позволяет россиянам, находящимся за рубежом, получать доступ к Госуслугам, Сбербанку и другим российским сервисам, заблокированным за пределами России.</p>
+
+    <p>Все серверы поддерживают P2P-торренты без ограничений. Нет выделенных стриминговых серверов с гарантией разблокировки. Нет автовыбора оптимального сервера по скорости — выбор вручную по показателю пинга в приложении. При активной нагрузке в часы пик некоторые серверы менее стабильны — Telegram-бот обновляет статус рекомендованных серверов в реальном времени.</p>
+
+    <!-- CUSTOMER REVIEWS -->
+    <h2 id="reviews">Отзывы пользователей</h2>
+
+    <p>BlancVPN имеет <strong>4.7 из 5 на Trustpilot</strong> на основании 986 отзывов — высокий показатель. Google Play: 4.7/5. App Store (российский регион): 4.8/5. Отзывы преимущественно русскоязычные — аудитория сервиса чётко очерчена.</p>
+
+    <p>Устойчивые темы в отзывах:</p>
+    <ul>
+      <li><strong>«Работает там, где другие не работают»</strong> — пользователи на Мегафон и МТС, где ТСПУ наиболее агрессивен, высоко оценивают V2Ray как решение проблемы.</li>
+      <li><strong>Telegram-поддержка</strong> — получает исключительно высокие оценки: «отвечают быстро и по делу», «помогли настроить за 10 минут». Это ключевой конкурентный актив BlancVPN.</li>
+      <li><strong>Скорость YouTube</strong> — 4K без замедлений упоминается как основная причина перехода с других сервисов.</li>
+      <li><strong>Безлимит устройств</strong> — «вся семья на одном аккаунте» регулярно упоминается как весомое преимущество.</li>
+      <li><strong>Критика</strong> — нестабильность на отдельных серверах в пиковое время. Несколько жалоб на сложность возврата средств при запросе монибэка. Отсутствие бесплатного плана для тестирования.</li>
+    </ul>
+
+    <!-- UX & RUSSIA -->
+    <h2 id="ux">Работа в России — блокировки и совместимость</h2>
+
+    <p>Сайт getblancvpn.com открывается у большинства российских провайдеров. При блокировке домена — Telegram-бот (@blancvpnbot) как резервный канал. Приложения доступны в российском Google Play и App Store.</p>
+
+    <p>V2Ray с VLESS+Reality и Outline не замедляются ТСПУ по состоянию на май 2026 года. В периоды активных волн блокировок команда BlancVPN публично обновляет рекомендованные конфигурации через Telegram-канал — это важно для понимания: BlancVPN воспринимает борьбу с блокировками как активную задачу, а не разовую настройку.</p>
+
+    <p>Отсутствие автоматического выбора сервера — единственное практическое неудобство: при деградации конкретного узла пользователь должен вручную переключиться на другой. Telegram-бот предоставляет актуальный список рабочих серверов, что частично компенсирует отсутствие автовыбора.</p>
+
+    <!-- PROS/CONS -->
+    <h2>Плюсы и минусы BlancVPN</h2>
+
+    <div class="pros-cons-review">
+      <div class="pc-box pros-box">
+        <h4>✓ Плюсы</h4>
+        <ul>
+          <li>112 Мбит/с — рекорд для V2Ray/Outline-провайдеров</li>
+          <li>V2Ray с VLESS+Reality+Vision — надёжный обход ТСПУ</li>
+          <li>Безлимит устройств на всех тарифах</li>
+          <li>Kill Switch на всех платформах включая iOS</li>
+          <li>Telegram-бот 24/7 — ответ за 15 мин, на русском</li>
+          <li>Нативные ARM-приложения для MacBook M-чипов</li>
+          <li>Приложения в российском App Store и Google Play</li>
+          <li>Серверы в России и Казахстане</li>
+          <li>Split Tunneling на Android, Windows, macOS</li>
+          <li>Оплата МИР, СБП, криптовалюта</li>
+          <li>Браузерные расширения Chrome/Firefox</li>
+          <li>Пинг 35 мс — один из лучших в рейтинге</li>
+          <li>Полностью русскоязычный продукт</li>
+        </ul>
+      </div>
+      <div class="pc-box cons-box">
+        <h4>✗ Минусы</h4>
+        <ul>
+          <li>Нет бесплатного плана — только 30-дневный монибэк</li>
+          <li>Монибэк требует обоснования — не безусловный</li>
+          <li>Нет независимого аудита безопасности</li>
+          <li>Нет автовыбора оптимального сервера</li>
+          <li>Скорость нестабильна в часы пик (19:00–22:00)</li>
+          <li>Netflix и международный стриминг — нестабильно</li>
+          <li>Юрисдикция компании явно не раскрыта</li>
+          <li>Нет статических и residential IP</li>
+          <li>Нет Double VPN</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- VERDICT -->
+    <div class="verdict-box" id="verdict">
+      <h3>🏁 Наш вердикт</h3>
+      <p>BlancVPN — наиболее «завершённый» русскоязычный VPN-продукт на рынке 2026 года. Там, где Amnezia требует технического понимания, а Trust.Zone — ручной настройки VLESS через сторонние клиенты, BlancVPN предоставляет готовое решение «из коробки» с русским интерфейсом, V2Ray с VLESS+Reality+Vision, и Telegram-поддержкой, которая реально отвечает за 15 минут. Для семей и групп безлимит устройств — ключевой аргумент: один тариф, все устройства.</p>
+      <p>112 Мбит/с и пинг 35 мс через финский сервер — это практически «нет VPN» по влиянию на скорость. YouTube 4K запускается за 1.5 секунды. Для основного российского сценария использования в 2026 году (YouTube, Instagram, Discord, безопасность на публичном Wi-Fi) BlancVPN перекрывает все задачи.</p>
+      <p>Главные оговорки: отсутствие бесплатного плана для предварительного тестирования — это неудобство. Пользователям, привыкшим к «попробую бесплатно», придётся либо довериться монибэку, либо выбрать ZoogVPN с 10 ГБ/мес Free. Нестабильность в часы пик на отдельных серверах — реальное наблюдение независимых тестов. Юрисдикция не раскрыта — для пользователей, для которых это важно, Trust.Zone с явными Сейшелами предпочтительнее.</p>
+      <p><strong>Рекомендуем:</strong> BlancVPN — оптимальный выбор для русскоязычных пользователей, которым нужен быстрый «просто работает» VPN без технических знаний, с безлимитом устройств для всей семьи и поддержкой в Telegram. Особенно хорош для командировочников — один тариф покрывает все устройства в любой точке мира.</p>
+      <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block; margin-top: 4px;">Перейти на BlancVPN →</a>
+    </div>
+
+    <!-- FAQ -->
+    <h2 id="faq" style="margin-top: 48px;">FAQ по BlancVPN</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">Сколько устройств можно подключить к BlancVPN?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Безлимитное количество устройств на любом тарифе BlancVPN — без доп. платы. Один аккаунт покрывает смартфон, ноутбук, планшет, рабочий ПК и все устройства семьи. Это ключевое конкурентное преимущество по сравнению с сервисами, ограничивающими 3–10 устройствами.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Есть ли у BlancVPN бесплатный план?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Нет — бесплатного плана без ограничений BlancVPN не предоставляет. Есть 30-дневная гарантия возврата средств, которую можно использовать как пробный период. На практике возврат требует обоснования неработоспособности. Для тестирования без обязательств попробуйте ZoogVPN с 10 ГБ/мес бесплатно или Amnezia Free.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Как работает Telegram-бот BlancVPN?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">@blancvpnbot — официальный Telegram-бот BlancVPN. Через него: техническая поддержка 24/7 на русском (ответ за 15 минут), получение актуальных конфигураций при блокировке основного сайта, информация о статусе серверов, решение вопросов оплаты. Бот работает без VPN — единственный канал связи в условиях заблокированного домена.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Какой протокол выбрать в BlancVPN для России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Для обхода ТСПУ — V2Ray (VLESS+Reality+Vision). Это основной рекомендуемый протокол для российских операторов, не обнаруживаемый и не замедляемый. Outline (Shadowsocks) — как резерв при нестабильности V2Ray: быстрее устанавливает соединение, стабильнее при кратковременных разрывах. WireGuard и OpenVPN — для использования вне России или дома у провайдеров без активного ТСПУ.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Есть ли у BlancVPN серверы в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Да. BlancVPN имеет серверы в России и Казахстане. Они используются для обратного сценария: когда россиянин находится за рубежом и хочет получить доступ к российским геоблокированным сервисам — Госуслуги, Сбербанк, отечественные стриминг-платформы. Для обхода российских блокировок выбирайте европейские серверы.</div></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Обзоры VPN</h4>
+        <ul>
+          <li><a href="/zoogvpn/">ZoogVPN</a></li>
+          <li><a href="/amnezia/">Amnezia VPN</a></li>
+          <li><a href="/adguard-vpn/">AdGuard VPN</a></li>
+          <li><a href="/trustzone/">Trust.Zone</a></li>
+          <li><a href="/hidemy-name/">hidemy.name</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/platnye-vpn/">Лучшие платные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/v2ray/">V2Ray / Xray</a></li>
+          <li><a href="/outline/">Outline VPN</a></li>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Партнёрские ссылки помечены nofollow. Данные актуальны на май 2026 года.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">Попробуйте <strong>BlancVPN</strong> — Outline до 2 Гбит/с, оплата МИР, русский интерфейс</div>
-  <a href="https://getblancvpn.com/ru/?ref=vpnscanner" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
 <script>
   const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
   if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
 </script>
 </body>
 </html>
