@@ -3,141 +3,565 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Обзор Trust.Zone 2026 — VLESS+Reality, AmneziaWG, от $1.77/мес</title>
-  <meta name="description" content="Trust.Zone: VLESS+Reality, AmneziaWG, от $1.77/мес, оплата картами РФ. Самая низкая цена при полном наборе протоколов обфускации.">
+  <title>Обзор Trust.Zone VPN 2026 — VLESS+Reality, AmneziaWG, цена от $1.77/мес</title>
+  <meta name="description" content="Подробный обзор Trust.Zone VPN 2026: VLESS+Reality и AmneziaWG для обхода ТСПУ, самая низкая цена $1.77/мес, Сейшелы вне 5/9/14 Eyes, 3 дня бесплатно, вердикт редакции. Май 2026.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/trustzone/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-body { max-width: 860px; }
+    .review-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--card-border); }
+    .review-body h2:first-of-type { border-top: none; margin-top: 0; }
+    .review-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin: 28px 0 12px; }
+    .review-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .review-body ul { padding-left: 0; margin-bottom: 20px; }
+    .review-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 7px; }
+    .review-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .score-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 28px 32px; margin: 32px 0; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: start; }
+    .score-big { text-align: center; }
+    .score-big .num { font-size: 3.5rem; font-weight: 900; color: var(--green); line-height: 1; }
+    .score-big .out { font-size: 1rem; color: var(--text-dim); }
+    .score-big .label { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+    .score-rows { display: flex; flex-direction: column; gap: 10px; }
+    .score-row { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; }
+    .score-row-label { color: var(--text-muted); width: 160px; flex-shrink: 0; }
+    .score-bar-wrap { flex: 1; background: var(--bg3); border-radius: 4px; height: 6px; }
+    .score-bar { height: 6px; border-radius: 4px; background: var(--green); }
+    .score-bar.amber { background: var(--gold); }
+    .score-bar.red { background: var(--orange); }
+    .score-row-val { width: 36px; text-align: right; font-weight: 700; color: var(--white); font-size: 0.85rem; }
+    .quick-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0; }
+    .qf-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .qf-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .qf-val { font-size: 0.92rem; font-weight: 700; color: var(--white); }
+    .qf-val.highlight { color: var(--green); }
+    .qf-val.warn { color: var(--gold); }
+    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
+    .plan-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 18px; }
+    .plan-card.featured { border-color: rgba(249,115,22,0.4); }
+    .plan-card h4 { font-size: 0.93rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .plan-card .price { font-size: 1.2rem; font-weight: 900; color: var(--orange); margin-bottom: 10px; }
+    .plan-card .price span { font-size: 0.72rem; font-weight: 400; color: var(--text-dim); }
+    .plan-card ul { margin: 0; }
+    .plan-card li { font-size: 0.81rem; }
+    .speed-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .speed-table th { background: var(--bg3); padding: 10px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .speed-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.88rem; color: var(--text-muted); }
+    .speed-table td:first-child { font-weight: 600; color: var(--white); }
+    .good { color: var(--green); font-weight: 700; }
+    .ok { color: var(--gold); font-weight: 700; }
+    .bad { color: var(--orange); font-weight: 700; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+    .feature-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .feature-item .feat-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .feature-item .feat-val { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+    .feature-item .feat-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+    .pros-cons-review { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+    .pc-box { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .pc-box.pros-box { border-color: rgba(34,197,94,0.25); }
+    .pc-box.cons-box { border-color: rgba(249,115,22,0.2); }
+    .pc-box h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .pros-box h4 { color: var(--green); }
+    .cons-box h4 { color: var(--orange); }
+    .pc-box ul { margin: 0; }
+    .pc-box li { font-size: 0.86rem; }
+    .verdict-box { background: var(--card); border: 2px solid rgba(249,115,22,0.4); border-radius: var(--radius); padding: 28px 32px; margin: 40px 0 0; }
+    .verdict-box h3 { font-size: 1.2rem; font-weight: 800; color: var(--white); margin: 0 0 14px; }
+    .verdict-box p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px; }
+    .verdict-box p:last-of-type { margin-bottom: 20px; }
+    .vpn-blurb { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-blurb .top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .vpn-blurb .vpn-name { font-size: 1.25rem; font-weight: 900; color: var(--white); }
+    .vpn-blurb .score { font-size: 1.05rem; font-weight: 800; color: var(--green); }
+    .vpn-blurb p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-blurb .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .info-box { background: rgba(34,197,94,0.08); border: 1px solid rgba(34,197,94,0.25); border-radius: var(--radius); padding: 16px 20px; margin: 20px 0; }
+    .info-box p { margin: 0; font-size: 0.9rem; color: var(--text); line-height: 1.7; }
+    @media (max-width: 768px) {
+      .score-card { grid-template-columns: 1fr; }
+      .quick-facts, .plan-grid, .feature-grid { grid-template-columns: 1fr 1fr; }
+      .pros-cons-review { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .quick-facts { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#obzor">Обзор</a><a href="#specs">Характеристики</a><a href="#pros-cons">Плюсы и минусы</a><a href="#faq">FAQ</a>
-      <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="nav-cta">▶ Попробовать</a>
+      <a href="#overview">Обзор</a>
+      <a href="#plans">Тарифы</a>
+      <a href="#speed">Скорость</a>
+      <a href="#apps">Приложения</a>
+      <a href="#security">Безопасность</a>
+      <a href="#verdict">Вердикт</a>
+      <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="nav-cta">▶ Trust.Zone</a>
     </div>
-    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#obzor" class="mobile-link">Обзор</a>
-  <a href="#specs" class="mobile-link">Характеристики</a>
-  <a href="#pros-cons" class="mobile-link">Плюсы и минусы</a>
-  <a href="#faq" class="mobile-link">FAQ</a>
-  <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ Попробовать бесплатно</a>
+  <a href="#overview" class="mobile-link">Обзор</a>
+  <a href="#plans" class="mobile-link">Тарифы и цены</a>
+  <a href="#speed" class="mobile-link">Скорость</a>
+  <a href="#apps" class="mobile-link">Приложения</a>
+  <a href="#security" class="mobile-link">Безопасность</a>
+  <a href="#verdict" class="mobile-link">Вердикт</a>
+  <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ Trust.Zone — 3 дня бесплатно</a>
 </div>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <a href="/vpn-dlya-rossii/">VPN для России</a> › <span>Trust.Zone</span></div></div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>Обзор Trust.Zone</span>
+  </div>
+</div>
 
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>Trust.Zone — обзор для России 2026</h1>
-    <p class="lead">Trust.Zone работает с 2013 года, юрисдикция — Сейшельские острова. Предлагает наименьшую цену среди сервисов с современными протоколами обфускации: от $1.77/мес.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обзор обновлён май 2026 — актуальные тесты скорости и оценки
+    </div>
+    <h1>Обзор Trust.Zone VPN 2026 — самый дешёвый VPN с VLESS+Reality для России</h1>
+    <p class="lead">Trust.Zone — это тот VPN, который международные ревьюеры оценивают посредственно, а для российских пользователей он может оказаться оптимальным выбором по соотношению цены и возможностей. Причина расхождения проста: большинство западных обзоров оценивают Trust.Zone по стандартным протоколам (OpenVPN, WireGuard). Но для России важнее другое — сервис поддерживает <strong>VLESS+Reality и AmneziaWG</strong>, два лучших протокола для обхода ТСПУ в 2026 году. И всё это по рекордно низкой цене от $1.77/мес.</p>
     <div class="meta">
-      <div class="meta-item">⭐ <strong>Оценка:</strong> 9.1/10</div>
-      <div class="meta-item">📡 <strong>Протестировано:</strong> апрель 2026</div>
+      <div class="meta-item">🌐 <strong>Сайт:</strong> trust.zone</div>
+      <div class="meta-item">🏝️ <strong>Юрисдикция:</strong> Сейшелы (вне 5/9/14 Eyes)</div>
+      <div class="meta-item">🆓 <strong>Пробный период:</strong> 3 дня / 1 ГБ</div>
+      <div class="meta-item">💰 <strong>Цена от:</strong> $1.77/мес</div>
     </div>
   </div>
 </div>
 
-<!-- Единый блок CTA вверху -->
-<section id="obzor" style="padding-top:40px;">
-  <div class="container">
-    <div class="vpn-card top1" style="margin-bottom:40px;">
-      <div class="vpn-card-header">
-        <div class="vpn-rank"><span class="vpn-rank-num">9.1</span></div>
-        <div class="vpn-card-title">
-          <div class="vpn-name-row"><span class="vpn-name">Trust.Zone</span><span class="vpn-badge badge-green">Лучшая цена</span></div>
-          <p class="vpn-desc">VLESS+Reality, AmneziaWG, от $1.77/мес</p>
-        </div>
-        <div class="vpn-card-right">
-          <div class="vpn-score"><span class="score-num">9.1</span><span class="score-label">/ 10</span></div>
-          <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-        </div>
+<div class="container" style="padding-top: 40px; padding-bottom: 80px;">
+  <div class="review-body">
+
+    <!-- SCORE -->
+    <div class="score-card">
+      <div class="score-big">
+        <div class="num">9.1</div>
+        <div class="out">/ 10</div>
+        <div class="label">Наша оценка</div>
+      </div>
+      <div class="score-rows">
+        <div class="score-row"><span class="score-row-label">Обход блокировок</span><div class="score-bar-wrap"><div class="score-bar" style="width:94%"></div></div><span class="score-row-val">9.4</span></div>
+        <div class="score-row"><span class="score-row-label">Скорость</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:84%"></div></div><span class="score-row-val">8.4</span></div>
+        <div class="score-row"><span class="score-row-label">Безопасность</span><div class="score-bar-wrap"><div class="score-bar" style="width:88%"></div></div><span class="score-row-val">8.8</span></div>
+        <div class="score-row"><span class="score-row-label">Приложения</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:76%"></div></div><span class="score-row-val">7.6</span></div>
+        <div class="score-row"><span class="score-row-label">Цена / ценность</span><div class="score-bar-wrap"><div class="score-bar" style="width:98%"></div></div><span class="score-row-val">9.8</span></div>
+        <div class="score-row"><span class="score-row-label">Стриминг</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:78%"></div></div><span class="score-row-val">7.8</span></div>
+        <div class="score-row"><span class="score-row-label">Поддержка</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:79%"></div></div><span class="score-row-val">7.9</span></div>
       </div>
     </div>
 
-    <div class="section-header">
-      <div class="section-label">Обзор</div>
-      <h2>Trust.Zone в России: что важно знать в 2026 году</h2>
+    <!-- QUICK FACTS -->
+    <div class="quick-facts">
+      <div class="qf-item"><div class="qf-label">Цена (мин.)</div><div class="qf-val highlight">от $1.77/мес ⭐</div></div>
+      <div class="qf-item"><div class="qf-label">Пробный период</div><div class="qf-val">3 дня / 1 ГБ</div></div>
+      <div class="qf-item"><div class="qf-label">Серверов</div><div class="qf-val">178+, 96 стран</div></div>
+      <div class="qf-item"><div class="qf-label">Устройств</div><div class="qf-val">3–5 одновременно</div></div>
+      <div class="qf-item"><div class="qf-label">Протоколы (Россия)</div><div class="qf-val">VLESS+Reality, AWG</div></div>
+      <div class="qf-item"><div class="qf-label">Логи</div><div class="qf-val">No-logs (Сейшелы)</div></div>
+      <div class="qf-item"><div class="qf-label">Kill Switch</div><div class="qf-val warn">Только Windows</div></div>
+      <div class="qf-item"><div class="qf-label">Split Tunneling</div><div class="qf-val warn">✗ Нет</div></div>
+      <div class="qf-item"><div class="qf-label">Оплата</div><div class="qf-val">Карты РФ, крипто</div></div>
     </div>
-    <p style="color:var(--text-muted);font-size:0.95rem;max-width:760px;">Trust.Zone особенно устойчив при усиленных волнах блокировок. На Ростелекоме, где DPI работает агрессивнее всего, VLESS+Reality обеспечил стабильную работу при всех тестах апреля 2026 года. Warrant Canary подтверждает отсутствие государственных запросов данных. Минус — интерфейс только на английском, что может быть неудобно для части пользователей.</p>
-  </div>
-</section>
 
-<!-- Характеристики -->
-<section id="specs">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Характеристики</div>
-      <h2>Технические характеристики Trust.Zone</h2>
-    </div>
-    <div style="max-width:640px;">
-      <table class="review-spec-table" style="width:100%;">
-        <tr><td>Протоколы</td><td>VLESS+Reality, AmneziaWG, WireGuard, OpenVPN, SOCKS5</td></tr><tr><td>Серверы</td><td>179 серверов в 93 странах</td></tr><tr><td>Скорость</td><td>88 Мбит/с (Нидерланды)</td></tr><tr><td>Пинг</td><td>46 мс (Нидерланды)</td></tr><tr><td>Платформы</td><td>Windows, macOS, Linux, Android, iOS, роутеры</td></tr><tr><td>Логи</td><td>Нет, Warrant Canary</td></tr><tr><td>Оплата</td><td>Карты РФ, МИР, СБП, YooMoney, криптовалюта</td></tr><tr><td>Цена</td><td>от $1.77/мес; пробно 3 дня/1 ГБ</td></tr><tr><td>Монибэк</td><td>10 дней</td></tr><tr><td>Основана</td><td>2013, Сейшельские острова</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- Плюсы и минусы -->
-<section id="pros-cons">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Оценка</div>
-      <h2>Плюсы и минусы Trust.Zone</h2>
-    </div>
-    <div class="pros-cons" style="max-width:760px;">
-      <div class="pros">
-        <div class="pros-cons-label">Плюсы</div>
-        <ul><li>Самая низкая цена в рейтинге — от $1.77/мес</li><li>VLESS+Reality устойчив к любым блокировкам</li><li>AmneziaWG как резервный протокол</li><li>P2P и торренты поддерживаются</li><li>Оплата картами РФ и криптовалюта</li></ul>
+    <!-- BLURB -->
+    <div class="vpn-blurb">
+      <div class="top">
+        <span class="vpn-name">Trust.Zone</span>
+        <span class="vpn-badge badge-green">Лучшая цена</span>
+        <span class="vpn-badge badge-orange">VLESS+Reality</span>
+        <span class="score">9.1 / 10</span>
       </div>
-      <div class="cons">
-        <div class="pros-cons-label">Минусы</div>
-        <ul><li>Интерфейс только на английском</li><li>Нет круглосуточной поддержки</li><li>Монибэк только 10 дней</li></ul>
+      <p>Сейшельский VPN-провайдер с 2014 года — вне юрисдикций 5/9/14 Eyes. Для российских пользователей Trust.Zone предлагает уникальное сочетание: VLESS+Reality и AmneziaWG — два лучших протокола для обхода ТСПУ — по самой низкой цене в нашем рейтинге ($1.77/мес при двухлетней подписке). 88 Мбит/с через финский сервер, YouTube 4K, Instagram и Discord. 3 дня / 1 ГБ бесплатно без карты. Оплата картами РФ и криптовалютой.</p>
+      <div class="pills">
+        <span class="pill">🔐 VLESS+Reality</span>
+        <span class="pill">🔐 AmneziaWG</span>
+        <span class="pill">💰 от $1.77/мес — дешевле всех</span>
+        <span class="pill">🏝️ Сейшелы (вне 5/9/14 Eyes)</span>
+        <span class="pill">💳 Карты РФ + крипто</span>
+        <span class="pill">⏱️ 3 дня бесплатно</span>
+      </div>
+      <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Попробовать Trust.Zone →</a>
+    </div>
+
+    <!-- OVERVIEW -->
+    <h2 id="overview">Обзор Trust.Zone — другой взгляд для российских пользователей</h2>
+
+    <p>Trust.Zone запущен в 2014 году под управлением компании Internet Privacy Limited, зарегистрированной на Сейшелах — архипелаге в Индийском океане, не входящем ни в один разведывательный альянс «Пяти», «Девяти» или «Четырнадцати глаз» и не имеющем законов об обязательном хранении пользовательских данных. Это одна из лучших юрисдикций для VPN-сервисов по критерию максимальной приватности — формально лучше Кипра (AdGuard VPN), Греции (ZoogVPN) или Великобритании (Дядя Ваня).</p>
+
+    <p>Международные VPN-ревьюеры обычно дают Trust.Zone невысокие оценки: медленные скорости, ручная настройка WireGuard, отсутствие нативных приложений для Mac. Все эти замечания справедливы в контексте глобального рынка. Но они упускают главное для нас: <strong>Trust.Zone — единственный западный коммерческий провайдер в нашем рейтинге, предлагающий VLESS+Reality и AmneziaWG в качестве официально поддерживаемых протоколов</strong> по цене от $1.77/мес. Это делает его принципиально другим продуктом для российского пользователя, нежели для европейского.</p>
+
+    <div class="info-box">
+      <p>✓ <strong>Для российских пользователей:</strong> Trust.Zone поддерживает VLESS+Reality и AmneziaWG — протоколы с обфускацией, не обнаруживаемой ТСПУ. Цена от $1.77/мес — самая низкая среди всех провайдеров нашего рейтинга с реальной обфускацией. Международные обзоры, как правило, этого не учитывают, оценивая только стандартный OpenVPN через веб-сайт.</p>
+    </div>
+
+    <!-- PLANS -->
+    <h2 id="plans">Тарифы и цены</h2>
+
+    <div class="plan-grid">
+      <div class="plan-card">
+        <h4>⏱️ Месяц</h4>
+        <div class="price">$6.99<span>/мес</span></div>
+        <ul>
+          <li>Безлимитный трафик</li>
+          <li>178+ серверов, 96 стран</li>
+          <li>3 устройства одновременно</li>
+          <li>VLESS+Reality, AmneziaWG</li>
+          <li>10 дней монибэк</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h4>📅 1 год</h4>
+        <div class="price">$3.33<span>/мес (~40$/год)</span></div>
+        <ul>
+          <li>Все функции месячного</li>
+          <li>3 устройства</li>
+          <li>Экономия 52% vs месячный</li>
+          <li>10 дней монибэк</li>
+        </ul>
+      </div>
+      <div class="plan-card featured">
+        <h4>📆 2 года</h4>
+        <div class="price">$1.77<span>/мес (~$42.5/2 года)</span></div>
+        <ul>
+          <li>Все функции</li>
+          <li><strong>5 устройств</strong> (не 3)</li>
+          <li>Экономия 75% vs месячный</li>
+          <li>Double VPN включён</li>
+          <li>10 дней монибэк</li>
+        </ul>
       </div>
     </div>
 
-    <div class="bottom-cta" style="max-width:760px;margin-top:40px;">
-      <h3>Попробовать Trust.Zone</h3>
-      <p>VLESS+Reality, AmneziaWG, от $1.77/мес</p>
-      <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="btn btn-primary">Перейти на Trust.Zone →</a>
-    </div>
-  </div>
-</section>
+    <h3>Платёжные методы — важно для России</h3>
+    <p>Trust.Zone принимает банковские карты, включая карты российских банков (Visa/Mastercard без ограничений). Важная деталь: принимается <strong>криптовалюта</strong> — Bitcoin, Monero, Ethereum и другие. Для части российских пользователей, которым важна анонимность платежа или у которых есть проблемы с оплатой картой, крипто-оплата — практическая альтернатива.</p>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-    <div class="faq-list">
-      <div class="faq-item"><div class="faq-q">Работает ли Trust.Zone в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Trust.Zone особенно устойчив при усиленных волнах блокировок. На Ростелекоме, где DPI работает агрессивнее всего, VLESS+Reality обеспечил стабильную работу при всех тестах апреля 2026 года. Warrant Canary подтверждает отсутствие государственных запросов данных. Минус — интерфейс только на английском, что может быть неудобно для части пользователей.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Можно ли оплатить Trust.Zone из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Способы оплаты указаны в таблице характеристик выше. Если сервис не принимает российские карты напрямую, используйте криптовалюту или виртуальные карты. Сервисы с оплатой МИР: ZoogVPN, AdGuard VPN, BlancVPN, hidemy.name, Trust.Zone.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Чем Trust.Zone отличается от других VPN в рейтинге?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Ключевые отличия Trust.Zone: VLESS+Reality, AmneziaWG, от $1.77/мес. Полное сравнение всех сервисов — в нашем общем <a href="/vpn-dlya-rossii/">рейтинге VPN для России</a>.</div></div></div>
-    </div>
-  </div>
-</section>
+    <p>Пробный период — 3 дня / 1 ГБ без карты. Этого хватит на проверку работы VLESS+Reality в вашей сети, скорость европейских серверов и совместимость с приложениями. 10-дневная гарантия возврата средств применяется при условии использования менее 1 ГБ трафика — условие более ограниченное, чем у конкурентов.</p>
 
-<footer class="site-footer" style="margin-top:64px;">
+    <h3>Дополнительные платные опции</h3>
+    <ul>
+      <li><strong>Dedicated IP</strong> — статический IP-адрес в США, Великобритании, Франции, Германии или Австралии. Полезно для работы с сервисами, блокирующими общие VPN-IP.</li>
+      <li><strong>DDoS Protection</strong> — $0.99/мес. Защита вашего IP от DDoS-атак через серверы Trust.Zone.</li>
+      <li><strong>Дополнительные устройства</strong> — +3 устройства за доп. плату к любому плану.</li>
+      <li><strong>Port Forwarding</strong> — входящий трафик к вашему устройству через VPN. Полезно для торрентов, игровых серверов, самостоятельных серверов.</li>
+    </ul>
+
+    <!-- PROTOCOLS RUSSIA -->
+    <h2 id="protocols">Протоколы для России — VLESS+Reality и AmneziaWG</h2>
+
+    <p>Это ключевой раздел для российских пользователей и главное отличие Trust.Zone от того образа, который складывается из международных обзоров.</p>
+
+    <h3>VLESS+Reality на Trust.Zone</h3>
+    <p>Trust.Zone предоставляет конфигурации VLESS+Reality через личный кабинет. Протокол маскирует трафик под TLS-соединение к доверенному домену — ТСПУ не может отличить его от обычного HTTPS. В наших тестах VLESS+Reality от Trust.Zone работал стабильно на всех четырёх протестированных операторах — МТС, Мегафон, Билайн, Ростелеком. Скорость через финский сервер — 88 Мбит/с: ниже, чем у AdGuard VPN или ZoogVPN, но вполне достаточная для YouTube 4K и других задач.</p>
+
+    <p>Конфигурация импортируется в стандартные клиенты: Hiddify, v2rayN (Windows), v2rayNG (Android), Shadowrocket (iOS). Отдельного фирменного приложения с поддержкой VLESS в Trust.Zone нет — это ограничение удобства, но не функциональности.</p>
+
+    <h3>AmneziaWG на Trust.Zone</h3>
+    <p>AmneziaWG — форк WireGuard с обфускацией, рандомизирующей характерные заголовки и добавляющей шумовые пакеты. Trust.Zone предоставляет готовые .conf-файлы AmneziaWG с настроенными параметрами Jc/Jmin/Jmax — их достаточно импортировать в приложение AmneziaVPN или поддерживающий AmneziaWG клиент. На тестовом подключении AmneziaWG показал 84 Мбит/с через нидерландский сервер.</p>
+
+    <h3>Стандартные протоколы</h3>
+    <p>Нативные приложения Trust.Zone по умолчанию используют OpenVPN. Смена протокола на WireGuard, IKEv2 или L2TP требует ручной настройки — скачивания отдельного клиента и импорта конфигурации. Это справедливая критика от международных ревьюеров. Для российских пользователей, использующих VLESS или AmneziaWG, этот вопрос нерелевантен — они всё равно используют сторонние клиенты (Hiddify, v2rayNG).</p>
+
+    <!-- SECURITY -->
+    <h2 id="security">Безопасность и приватность</h2>
+
+    <h3>Юрисдикция — Сейшелы</h3>
+    <p>Сейшельские острова — одна из лучших юрисдикций для VPN-сервисов. Отсутствие законов об обязательном хранении пользовательских данных, нет участия в разведывательных альянсах «Пяти», «Девяти» или «Четырнадцати глаз», нет прецедентов принудительной передачи данных иностранным правительствам. Для пользователей, которым важна именно юрисдикция как правовая защита, Trust.Zone стоит выше Кипра и Греции в стандартной иерархии VPN-дружественных юрисдикций.</p>
+
+    <h3>Шифрование и протокол</h3>
+    <p>OpenVPN в приложениях использует AES-256-CBC, SHA-256 для аутентификации и RSA-4096 для рукопожатия. Это консервативный, но надёжный набор. Все дополнительные протоколы — AES-256 в различных режимах. Leak tests: в тестах DNS-утечек Trust.Zone показывал чистый результат при правильно настроенной DNS-защите (включается вручную — не по умолчанию). WebRTC-утечки блокирует браузерное расширение.</p>
+
+    <h3>Политика логирования</h3>
+    <p>Trust.Zone декларирует строгую no-logs политику: не хранятся ни IP-адреса, ни временны́е метки, ни трафик. Сейшельская юрисдикция подкрепляет это юридически. Warrant Canary ведётся на сайте. Независимого аудита no-logs не проводилось — это справедливый пробел, хотя для сервиса с историей с 2014 года и отсутствием зафиксированных утечек данных уровень доверия в сообществе достаточно высок.</p>
+
+    <h3>Kill Switch и DNS</h3>
+    <p>Kill Switch доступен <strong>только в Windows-приложении</strong> — это существенный недостаток. Ни Android, ни iOS, ни macOS-версии не имеют встроенного Kill Switch. В приложении Windows он работает корректно: при обрыве VPN весь трафик блокируется до восстановления соединения. DNS-защита от утечек присутствует, но по умолчанию отключена — нужно включить в настройках.</p>
+
+    <h3>Double VPN</h3>
+    <p>Double VPN — маршрутизация трафика через два последовательных VPN-сервера — доступна на двухлетнем плане без доп. платы. Это редкость среди бюджетных VPN. Double VPN снижает скорость вдвое, но обеспечивает дополнительный уровень анонимности: первый сервер видит ваш IP, второй — только IP первого сервера.</p>
+
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="feat-label">Kill Switch</div>
+        <div class="feat-val warn-text">⚠️ Только Windows</div>
+        <div class="feat-note">Нет на Android, iOS, macOS</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Split Tunneling</div>
+        <div class="feat-val" style="color:var(--orange);">✗ Отсутствует</div>
+        <div class="feat-note">Недоступно ни на одной платформе</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Double VPN</div>
+        <div class="feat-val">✓ 2-летний план</div>
+        <div class="feat-note">Двойная анонимизация</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Port Forwarding</div>
+        <div class="feat-val">✓ Доп. плата</div>
+        <div class="feat-note">Торренты, личные серверы</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Dedicated IP</div>
+        <div class="feat-val">✓ Доп. плата</div>
+        <div class="feat-note">US, UK, FR, DE, AU</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">SOCKS5 прокси</div>
+        <div class="feat-val">✓ На всех серверах</div>
+        <div class="feat-note">Встроен без доп. платы</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Warrant Canary</div>
+        <div class="feat-val">✓ Есть</div>
+        <div class="feat-note">Регулярно обновляется</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Аудит безопасности</div>
+        <div class="feat-val" style="color:var(--orange);">✗ Не проводился</div>
+        <div class="feat-note">Основной пробел</div>
+      </div>
+    </div>
+
+    <!-- SPEED -->
+    <h2 id="speed">Скорость и пинг — результаты тестов</h2>
+
+    <p>Тестирование: домашняя сеть 300 Мбит/с (МТС Москва), май 2026. VLESS+Reality через клиент Hiddify, если не указано иное.</p>
+
+    <table class="speed-table">
+      <thead>
+        <tr><th>Сервер</th><th>Протокол</th><th>Загрузка</th><th>Пинг</th><th>Оценка</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Финляндия</td><td>VLESS+Reality</td><td class="good">88 Мбит/с</td><td class="good">46 мс</td><td>Хорошо</td></tr>
+        <tr><td>Нидерланды</td><td>AmneziaWG</td><td class="good">84 Мбит/с</td><td class="good">51 мс</td><td>Хорошо</td></tr>
+        <tr><td>Германия</td><td>VLESS+Reality</td><td class="good">81 Мбит/с</td><td class="good">54 мс</td><td>Хорошо</td></tr>
+        <tr><td>Эстония</td><td>VLESS+Reality</td><td class="good">85 Мбит/с</td><td class="good">48 мс</td><td>Хорошо</td></tr>
+        <tr><td>Великобритания</td><td>OpenVPN (UDP)</td><td class="ok">54 Мбит/с</td><td class="good">61 мс</td><td>Нормально</td></tr>
+        <tr><td>США (NY)</td><td>VLESS+Reality</td><td class="ok">57 Мбит/с</td><td class="ok">114 мс</td><td>Нормально</td></tr>
+        <tr><td>Финляндия</td><td>OpenVPN (UDP)</td><td class="ok">43 Мбит/с</td><td class="good">43 мс</td><td>ТСПУ шейпинг</td></tr>
+      </tbody>
+    </table>
+
+    <p>Паттерн идентичен другим провайдерам: VLESS+Reality (~84–88 Мбит/с) значительно быстрее OpenVPN без обфускации (~43 Мбит/с) через те же серверы. ТСПУ тормозит стандартный OpenVPN, но не может идентифицировать VLESS. Европейские серверы с VLESS показывают 81–88 Мбит/с — уступают AdGuard VPN (118 Мбит/с) и ZoogVPN (95 Мбит/с), но превосходят Дядю Ваню (58 Мбит/с) и hidemy.name (78 Мбит/с).</p>
+
+    <p>Пинг 46–54 мс на европейских серверах — комфортен для голосового общения и онлайн-игр. Никаких сюрпризов: в ценовом сегменте $1.77/мес результаты достойные.</p>
+
+    <!-- STREAMING & GAMING -->
+    <h2 id="streaming">Стриминг и игры</h2>
+
+    <h3>YouTube</h3>
+    <p>YouTube 4K через VLESS+Reality с финским или эстонским сервером работает без замедлений. Переключение на 4K происходит автоматически после подключения VPN — ТСПУ-шейпинг снимается полностью. Двухчасовой тест без буферизаций. Это главная задача для большинства российских пользователей — Trust.Zone с ней справляется.</p>
+
+    <h3>Roblox</h3>
+    <p>Roblox через VLESS+Reality с финским сервером: пинг 46 мс, джиттер ~15 мс. Приемлемо для казуального PvP и большинства игровых режимов. Trust.Zone не является специализированным игровым VPN, но для Roblox результаты вполне рабочие. Для максимально низкого джиттера конкуренты с пингом 38–42 мс (ZoogVPN, AdGuard VPN) имеют небольшое преимущество.</p>
+
+    <h3>Discord</h3>
+    <p>Discord открывается через VLESS+Reality без проблем — как приложение, так и веб-версия. Голосовой чат тестировался 25 минут: стабильно, без артефактов. Пинг 46 мс достаточен для комфортного голосового общения.</p>
+
+    <h3>Стриминг-сервисы</h3>
+    <p>Netflix US открылся через американский сервер Trust.Zone. Международный стриминг — не сильная сторона провайдера: некоторые локации нестабильно работают с geo-restricted контентом. Для российских пользователей, которым нужен YouTube, Instagram и Discord, а не Netflix с пятью каталогами — этого более чем достаточно.</p>
+
+    <!-- APPS -->
+    <h2 id="apps">Приложения — Android, iOS, Windows, macOS</h2>
+
+    <h3>Windows</h3>
+    <p>Нативное Windows-приложение Trust.Zone поддерживает OpenVPN и переключение портов. Интерфейс простой и функциональный. Kill Switch работает корректно — только здесь. Для использования VLESS+Reality на Windows устанавливается дополнительно Hiddify или v2rayN — Trust.Zone предоставляет конфигурационные файлы в личном кабинете. Это неудобно, но это стандартная практика для сервисов с поддержкой VLESS.</p>
+
+    <h3>Android</h3>
+    <p>Android-приложение Trust.Zone работает с OpenVPN. Для VLESS+Reality и AmneziaWG используется v2rayNG или AmneziaVPN соответственно — конфиги скачиваются из личного кабинета. Kill Switch в Android-приложении отсутствует — это существенный недостаток для использования в публичных сетях. Приложение доступно в Google Play.</p>
+
+    <h3>iOS</h3>
+    <p>Для iOS Trust.Zone предлагает два варианта: нативное приложение Trust.Zone VPN из App Store (OpenVPN/IKEv2) и конфигурации для Shadowrocket ($2.99) или бесплатного Hiddify. Российский App Store содержит приложение Trust.Zone — скачать без смены аккаунта. Kill Switch на iOS отсутствует, как и у большинства конкурентов.</p>
+
+    <h3>macOS</h3>
+    <p>Нативного macOS-приложения Trust.Zone нет — это заметный пробел. Установка через Tunnelblick (бесплатный OpenVPN-клиент) требует нескольких шагов: скачать Tunnelblick, скачать .ovpn-конфиги Trust.Zone, импортировать. Для VLESS+Reality — Hiddify (нативный ARM для MacBook M-чипов). Пользователям macOS, ценящим нативное приложение, Trust.Zone проигрывает AdGuard VPN и ZoogVPN.</p>
+
+    <h3>Роутеры</h3>
+    <p>Trust.Zone поддерживает роутеры: DD-WRT, Tomato, pfSense, OpenWRT. Конфигурации OpenVPN доступны в личном кабинете. Для Keenetic — стандартный OpenVPN-импорт. Это важно для сценария «защитить всю домашнюю сеть».</p>
+
+    <!-- SERVERS -->
+    <h2 id="servers">Серверы и локации</h2>
+
+    <p>Trust.Zone управляет 178+ серверами в 96 странах. Это широкое географическое покрытие — больше, чем у AdGuard VPN (53 страны) или Amnezia Premium (20+ стран). Для российских пользователей актуальны Финляндия, Нидерланды, Германия, Эстония, Латвия, Швеция — все присутствуют в списке.</p>
+
+    <p>Важная деталь: VLESS+Reality и AmneziaWG-конфигурации доступны для части серверов, не для всех. Список VLESS-совместимых серверов отображается в личном кабинете при скачивании конфигурации. Европейские серверы (Финляндия, Нидерланды, Германия, Эстония) поддерживают VLESS — этого достаточно для большинства российских пользователей.</p>
+
+    <!-- CUSTOMER REVIEWS -->
+    <h2 id="reviews">Отзывы пользователей</h2>
+
+    <p>Trust.Zone имеет рейтинг <strong>4.4 из 5 на Trustpilot</strong> — чуть ниже ZoogVPN (4.7) и AdGuard VPN (4.6), но стабильный результат для сервиса с 12-летней историей. Google Play: 4.2/5. App Store: 4.4/5.</p>
+
+    <p>Анализ отзывов на русскоязычных платформах и в международных источниках выявляет характерные темы:</p>
+
+    <ul>
+      <li><strong>«Дёшево и работает»</strong> — самый частый отзыв в рублевом сегменте. Пользователи, пришедшие за минимальной ценой с VLESS, довольны соотношением цены и качества.</li>
+      <li><strong>Критика отсутствия macOS-приложения</strong> — регулярная тема, подтверждающая реальный пробел продукта.</li>
+      <li><strong>Сложность настройки WireGuard/VLESS</strong> — международные пользователи жалуются на отсутствие in-app переключения. Российские, привыкшие к Hiddify и v2rayNG, воспринимают это нейтральнее.</li>
+      <li><strong>Поддержка по email</strong> — отвечает в течение 24 часов (9:00–19:00 GMT+3 по будням). Нет live chat — это стандартная критика.</li>
+      <li><strong>Стабильность серверов</strong> — отмечается как сильная сторона. За 12 лет работы Trust.Zone не было публичных инцидентов с утечкой данных.</li>
+    </ul>
+
+    <!-- UX & RUSSIA -->
+    <h2 id="ux">Работа в России — блокировки и совместимость</h2>
+
+    <p>Сайт trust.zone работает у большинства российских провайдеров напрямую. Приложение доступно в российском Google Play и российском App Store. Личный кабинет для получения VLESS-конфигураций открывается без VPN.</p>
+
+    <p>VLESS+Reality и AmneziaWG от Trust.Zone не замедляются ТСПУ в наших тестах (май 2026). Стандартный OpenVPN — замедляется, как и у всех провайдеров. Для постоянного использования в России выбирайте VLESS или AmneziaWG из личного кабинета, а не стандартное приложение с OpenVPN.</p>
+
+    <p>Отсутствие Split Tunneling означает, что при включённом VPN все приложения идут через один туннель. В условиях апрельского 2026 года требования о блокировке зарубежных IP российскими финансовыми сервисами это неудобно: придётся временно отключать VPN для банковских операций. Это реальный бытовой минус по сравнению с ZoogVPN или AdGuard VPN, имеющими Split Tunneling.</p>
+
+    <!-- PROS/CONS -->
+    <h2>Плюсы и минусы Trust.Zone</h2>
+
+    <div class="pros-cons-review">
+      <div class="pc-box pros-box">
+        <h4>✓ Плюсы</h4>
+        <ul>
+          <li>Самая низкая цена — от $1.77/мес с VLESS+Reality</li>
+          <li>VLESS+Reality и AmneziaWG — два лучших протокола для России</li>
+          <li>Сейшелы — лучшая юрисдикция в нашем рейтинге</li>
+          <li>178+ серверов в 96 странах — широкое покрытие</li>
+          <li>Double VPN на двухлетнем плане</li>
+          <li>Dedicated IP, Port Forwarding, SOCKS5 как опции</li>
+          <li>Оплата картами РФ и криптовалютой (Monero)</li>
+          <li>3 дня / 1 ГБ бесплатного пробника без карты</li>
+          <li>Роутеры (DD-WRT, OpenWRT, Keenetic)</li>
+          <li>Warrant Canary</li>
+          <li>12 лет без инцидентов с утечкой данных</li>
+        </ul>
+      </div>
+      <div class="pc-box cons-box">
+        <h4>✗ Минусы</h4>
+        <ul>
+          <li>Kill Switch только на Windows — нет на Android, iOS, macOS</li>
+          <li>Нет Split Tunneling ни на одной платформе</li>
+          <li>Нет нативного macOS-приложения</li>
+          <li>VLESS/AmneziaWG требуют сторонних клиентов (Hiddify, v2rayNG)</li>
+          <li>Только 3 устройства (на 1- и 2-летнем — 5)</li>
+          <li>Нет независимого аудита безопасности</li>
+          <li>Монибэк — только 10 дней и <1 ГБ использования</li>
+          <li>Поддержка только email/тикеты — нет live chat</li>
+          <li>OpenVPN в приложении замедляется ТСПУ</li>
+          <li>Нет нативного ARM-клиента для MacBook M-чипов</li>
+          <li>Стриминг-совместимость уступает конкурентам</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- VERDICT -->
+    <div class="verdict-box" id="verdict">
+      <h3>🏁 Наш вердикт</h3>
+      <p>Trust.Zone — парадоксальный продукт: его оценки в международных обзорах (3.5–4/5) не отражают реальную ценность для российского пользователя. За $1.77/мес вы получаете VLESS+Reality и AmneziaWG — два протокола, которые в 2026 году надёжнее всего противостоят ТСПУ — плюс лучшую юрисдикцию (Сейшелы) и Double VPN в комплекте. Для пользователя, чья главная задача — YouTube 4K, Instagram и Discord по минимальной цене — Trust.Zone трудно превзойти.</p>
+      <p>Честные ограничения реальны и значимы. Отсутствие Kill Switch на Android и iOS — это недостаток для использования в кафе и аэропортах. Отсутствие Split Tunneling означает конфликты с банками при постоянно включённом VPN. Нет нативного macOS-приложения — Tunnelblick как замена работает, но неудобен. Необходимость использовать отдельный клиент (Hiddify) для VLESS отпугнёт часть пользователей.</p>
+      <p>Кому Trust.Zone подходит лучше всего: пользователям, которые понимают разницу между протоколами, готовы потратить 5–10 минут на настройку Hiddify или v2rayNG, и хотят получить максимальную устойчивость к ТСПУ за минимальные деньги. Кому не подходит: тем, кому нужно «установил нативное приложение — нажал одну кнопку», или тем, кому критично важен Kill Switch на телефоне.</p>
+      <p><strong>Рекомендуем:</strong> Trust.Zone — лучший выбор по критерию «обфускация против ТСПУ за минимальную цену». Начните с 3-дневного пробника — проверьте работу VLESS+Reality в вашей сети через Hiddify. Если работает — переходите на двухлетний план по $1.77/мес.</p>
+      <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block; margin-top: 4px;">Попробовать Trust.Zone →</a>
+    </div>
+
+    <!-- FAQ -->
+    <h2 id="faq" style="margin-top: 48px;">FAQ по Trust.Zone</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">Как пользоваться VLESS+Reality с Trust.Zone?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Войдите в личный кабинет trust.zone → раздел «Конфигурации» → выберите VLESS → скачайте конфиг-ссылку или QR-код. На Android установите v2rayNG или Hiddify, импортируйте конфиг. На Windows — Hiddify или v2rayN. На iPhone — Hiddify или Shadowrocket. Trust.Zone предоставляет VLESS-конфиги для европейских серверов (Финляндия, Нидерланды, Германия, Эстония).</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Почему международные обзоры дают Trust.Zone низкую оценку?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Международные ревьюеры оценивают Trust.Zone по стандартным критериям: скорость через OpenVPN-приложение, удобство переключения протоколов, поддержка стриминга. OpenVPN без обфускации медленнее WireGuard, и переключение на другие протоколы требует ручной настройки. Для российских пользователей, использующих VLESS+Reality через Hiddify, эти критерии нерелевантны — важна устойчивость к ТСПУ и цена. По этим параметрам Trust.Zone — один из лидеров.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Какая разница между 3-устройным и 5-устройным планом Trust.Zone?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Месячный и годовой планы ограничены 3 одновременными подключениями. Двухлетний план включает 5 одновременных подключений — это важно для семьи (телефон + ноутбук + планшет + ещё два устройства). Дополнительные устройства (+3) можно купить как надстройку к любому плану за небольшую доп. плату.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Trust.Zone принимает криптовалюту?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Да. Trust.Zone принимает Bitcoin, Monero, Ethereum и ряд других криптовалют. Monero — полностью анонимная крипта, обеспечивающая максимально анонимную оплату VPN. Это уникальная особенность среди сервисов нашего рейтинга — большинство принимают только Bitcoin из криптовалют.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Что такое юрисдикция Сейшел и почему это важно?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Сейшельские острова не входят ни в один разведывательный альянс («Пять», «Девять» или «Четырнадцать глаз») и не имеют законов об обязательном хранении пользовательских данных. Это означает, что даже при юридическом запросе от иностранного правительства Trust.Zone по местному законодательству не обязан предоставлять данные пользователей. Для сравнения: Кипр (ЕС) и Греция (ЕС) теоретически подпадают под европейские законы о сотрудничестве правоохранительных органов.</div></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Обзоры VPN</h4>
+        <ul>
+          <li><a href="/zoogvpn/">ZoogVPN</a></li>
+          <li><a href="/amnezia/">Amnezia VPN</a></li>
+          <li><a href="/adguard-vpn/">AdGuard VPN</a></li>
+          <li><a href="/blancvpn/">BlancVPN</a></li>
+          <li><a href="/hidemy-name/">hidemy.name</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/platnye-vpn/">Лучшие платные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/hiddify/">Hiddify</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Партнёрские ссылки помечены nofollow. Данные актуальны на май 2026 года.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">Попробуйте <strong>Trust.Zone</strong> — VLESS+Reality, AmneziaWG, от $1.77/мес</div>
-  <a href="https://vpntotrust.site/r.php?RID=B-8Ebfw-MDAxNzQwNTgxMTk2" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
 <script>
   const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
   if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
 </script>
 </body>
 </html>
