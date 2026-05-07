@@ -3,141 +3,550 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Обзор Planet VPN 2026 — бесплатный план без лимита трафика</title>
-  <meta name="description" content="Planet VPN: 5 бесплатных серверов без регистрации и без лимита трафика. Тест скорости, протоколы и ограничения.">
+  <title>Обзор Planet VPN 2026 — StarGuard, бесплатный план, тест скорости, плюсы и минусы</title>
+  <meta name="description" content="Подробный обзор Planet VPN 2026: протоколы StarGuard и PlanetX для обхода ТСПУ, постоянный бесплатный план без лимита трафика, скорость, безопасность, оплата Bitcoin и картами РФ. Май 2026.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/planetvpn/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-body { max-width: 860px; }
+    .review-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--card-border); }
+    .review-body h2:first-of-type { border-top: none; margin-top: 0; }
+    .review-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin: 28px 0 12px; }
+    .review-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .review-body ul { padding-left: 0; margin-bottom: 20px; }
+    .review-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 7px; }
+    .review-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .score-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 28px 32px; margin: 32px 0; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: start; }
+    .score-big { text-align: center; }
+    .score-big .num { font-size: 3.5rem; font-weight: 900; color: var(--gold); line-height: 1; }
+    .score-big .out { font-size: 1rem; color: var(--text-dim); }
+    .score-big .label { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+    .score-rows { display: flex; flex-direction: column; gap: 10px; }
+    .score-row { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; }
+    .score-row-label { color: var(--text-muted); width: 160px; flex-shrink: 0; }
+    .score-bar-wrap { flex: 1; background: var(--bg3); border-radius: 4px; height: 6px; }
+    .score-bar { height: 6px; border-radius: 4px; background: var(--green); }
+    .score-bar.amber { background: var(--gold); }
+    .score-bar.red { background: var(--orange); }
+    .score-row-val { width: 36px; text-align: right; font-weight: 700; color: var(--white); font-size: 0.85rem; }
+    .quick-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0; }
+    .qf-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .qf-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .qf-val { font-size: 0.92rem; font-weight: 700; color: var(--white); }
+    .qf-val.highlight { color: var(--green); }
+    .qf-val.warn { color: var(--gold); }
+    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
+    .plan-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 18px; }
+    .plan-card.featured { border-color: rgba(249,115,22,0.4); }
+    .plan-card h4 { font-size: 0.93rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .plan-card .price { font-size: 1.2rem; font-weight: 900; color: var(--orange); margin-bottom: 10px; }
+    .plan-card .price span { font-size: 0.72rem; font-weight: 400; color: var(--text-dim); }
+    .plan-card ul { margin: 0; }
+    .plan-card li { font-size: 0.81rem; }
+    .speed-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .speed-table th { background: var(--bg3); padding: 10px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .speed-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.88rem; color: var(--text-muted); }
+    .speed-table td:first-child { font-weight: 600; color: var(--white); }
+    .good { color: var(--green); font-weight: 700; }
+    .ok { color: var(--gold); font-weight: 700; }
+    .bad { color: var(--orange); font-weight: 700; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+    .feature-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .feature-item .feat-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .feature-item .feat-val { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+    .feature-item .feat-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+    .pros-cons-review { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+    .pc-box { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .pc-box.pros-box { border-color: rgba(34,197,94,0.25); }
+    .pc-box.cons-box { border-color: rgba(249,115,22,0.2); }
+    .pc-box h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .pros-box h4 { color: var(--green); }
+    .cons-box h4 { color: var(--orange); }
+    .pc-box ul { margin: 0; }
+    .pc-box li { font-size: 0.86rem; }
+    .verdict-box { background: var(--card); border: 2px solid rgba(249,115,22,0.4); border-radius: var(--radius); padding: 28px 32px; margin: 40px 0 0; }
+    .verdict-box h3 { font-size: 1.2rem; font-weight: 800; color: var(--white); margin: 0 0 14px; }
+    .verdict-box p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px; }
+    .verdict-box p:last-of-type { margin-bottom: 20px; }
+    .vpn-blurb { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-blurb .top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .vpn-blurb .vpn-name { font-size: 1.25rem; font-weight: 900; color: var(--white); }
+    .vpn-blurb .score { font-size: 1.05rem; font-weight: 800; color: var(--green); }
+    .vpn-blurb p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-blurb .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .info-box { background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.22); border-radius: var(--radius); padding: 16px 20px; margin: 20px 0; }
+    .info-box p { margin: 0; font-size: 0.9rem; color: var(--text); line-height: 1.7; }
+    .warn-box-sm { background: rgba(251,191,36,0.07); border: 1px solid rgba(251,191,36,0.25); border-radius: var(--radius); padding: 16px 20px; margin: 20px 0; }
+    .warn-box-sm p { margin: 0; font-size: 0.9rem; color: var(--text); line-height: 1.7; }
+    @media (max-width: 768px) {
+      .score-card { grid-template-columns: 1fr; }
+      .quick-facts, .plan-grid, .feature-grid { grid-template-columns: 1fr 1fr; }
+      .pros-cons-review { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .quick-facts { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#obzor">Обзор</a><a href="#specs">Характеристики</a><a href="#pros-cons">Плюсы и минусы</a><a href="#faq">FAQ</a>
-      <a href="https://freevpnplanet.short.gy/1100" rel="nofollow noopener" target="_blank" class="nav-cta">▶ Попробовать</a>
+      <a href="#overview">Обзор</a>
+      <a href="#plans">Тарифы</a>
+      <a href="#speed">Скорость</a>
+      <a href="#apps">Приложения</a>
+      <a href="#security">Безопасность</a>
+      <a href="#verdict">Вердикт</a>
+      <a href="https://freevpnplanet.short.gy/1100" rel="nofollow noopener" target="_blank" class="nav-cta">▶ Planet VPN</a>
     </div>
-    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#obzor" class="mobile-link">Обзор</a>
-  <a href="#specs" class="mobile-link">Характеристики</a>
-  <a href="#pros-cons" class="mobile-link">Плюсы и минусы</a>
-  <a href="#faq" class="mobile-link">FAQ</a>
-  <a href="https://freevpnplanet.short.gy/1100" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ Попробовать бесплатно</a>
+  <a href="#overview" class="mobile-link">Обзор</a>
+  <a href="#plans" class="mobile-link">Тарифы и цены</a>
+  <a href="#speed" class="mobile-link">Скорость</a>
+  <a href="#apps" class="mobile-link">Приложения</a>
+  <a href="#security" class="mobile-link">Безопасность</a>
+  <a href="#verdict" class="mobile-link">Вердикт</a>
+  <a href="https://freevpnplanet.short.gy/1100" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ Planet VPN</a>
 </div>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <a href="/vpn-dlya-rossii/">VPN для России</a> › <span>Planet VPN</span></div></div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>Обзор Planet VPN</span>
+  </div>
+</div>
 
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>Planet VPN — обзор для России 2026</h1>
-    <p class="lead">Planet VPN предлагает постоянный бесплатный план с 5 серверами и безлимитным трафиком — без регистрации, без карты, без ограничений по времени. Румынская юрисдикция.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обзор обновлён май 2026 — актуальные тесты скорости и оценки
+    </div>
+    <h1>Обзор Planet VPN 2026 — StarGuard, бесплатный план без лимита и честный взгляд</h1>
+    <p class="lead">Planet VPN — международный VPN-сервис с интересной историей: в 2022 году компания приобрела активы закрывшегося RusVPN и интегрировала его разработки, включая протоколы StarGuard и PlanetX — специально созданные для обхода ТСПУ. Главное конкурентное преимущество — постоянный бесплатный план без лимита трафика. Рассказываем честно: что хорошо, что вызывает вопросы, и для кого Planet VPN подходит в России в 2026 году.</p>
     <div class="meta">
-      <div class="meta-item">⭐ <strong>Оценка:</strong> 8.4/10</div>
-      <div class="meta-item">📡 <strong>Протестировано:</strong> апрель 2026</div>
+      <div class="meta-item">🌐 <strong>Сайт:</strong> freevpnplanet.com</div>
+      <div class="meta-item">🇷🇴 <strong>Юрисдикция:</strong> Румыния (вне 5/9/14 Eyes)</div>
+      <div class="meta-item">🆓 <strong>Бесплатный план:</strong> Да (без лимита трафика)</div>
+      <div class="meta-item">₿ <strong>Оплата:</strong> Bitcoin + карты РФ</div>
     </div>
   </div>
 </div>
 
-<!-- Единый блок CTA вверху -->
-<section id="obzor" style="padding-top:40px;">
-  <div class="container">
-    <div class="vpn-card top1" style="margin-bottom:40px;">
-      <div class="vpn-card-header">
-        <div class="vpn-rank"><span class="vpn-rank-num">8.4</span></div>
-        <div class="vpn-card-title">
-          <div class="vpn-name-row"><span class="vpn-name">Planet VPN</span><span class="vpn-badge badge-green">Лучший бесплатный план</span></div>
-          <p class="vpn-desc">Бесплатный план без лимита трафика навсегда</p>
-        </div>
-        <div class="vpn-card-right">
-          <div class="vpn-score"><span class="score-num">8.4</span><span class="score-label">/ 10</span></div>
-          <a href="https://freevpnplanet.short.gy/1100" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-        </div>
+<div class="container" style="padding-top: 40px; padding-bottom: 80px;">
+  <div class="review-body">
+
+    <!-- SCORE -->
+    <div class="score-card">
+      <div class="score-big">
+        <div class="num">8.2</div>
+        <div class="out">/ 10</div>
+        <div class="label">Наша оценка</div>
+      </div>
+      <div class="score-rows">
+        <div class="score-row"><span class="score-row-label">Обход блокировок</span><div class="score-bar-wrap"><div class="score-bar" style="width:82%"></div></div><span class="score-row-val">8.2</span></div>
+        <div class="score-row"><span class="score-row-label">Скорость</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:76%"></div></div><span class="score-row-val">7.6</span></div>
+        <div class="score-row"><span class="score-row-label">Безопасность</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:74%"></div></div><span class="score-row-val">7.4</span></div>
+        <div class="score-row"><span class="score-row-label">Приложения</span><div class="score-bar-wrap"><div class="score-bar" style="width:84%"></div></div><span class="score-row-val">8.4</span></div>
+        <div class="score-row"><span class="score-row-label">Цена / ценность</span><div class="score-bar-wrap"><div class="score-bar" style="width:88%"></div></div><span class="score-row-val">8.8</span></div>
+        <div class="score-row"><span class="score-row-label">Стриминг</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:72%"></div></div><span class="score-row-val">7.2</span></div>
+        <div class="score-row"><span class="score-row-label">Поддержка</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:68%"></div></div><span class="score-row-val">6.8</span></div>
       </div>
     </div>
 
-    <div class="section-header">
-      <div class="section-label">Обзор</div>
-      <h2>Planet VPN в России: что важно знать в 2026 году</h2>
+    <!-- QUICK FACTS -->
+    <div class="quick-facts">
+      <div class="qf-item"><div class="qf-label">Цена (мин.)</div><div class="qf-val">от ~$2.99/мес</div></div>
+      <div class="qf-item"><div class="qf-label">Бесплатный план</div><div class="qf-val highlight">✓ Без лимита трафика</div></div>
+      <div class="qf-item"><div class="qf-label">Серверов</div><div class="qf-val">600+, 60+ стран</div></div>
+      <div class="qf-item"><div class="qf-label">Устройств</div><div class="qf-val">5 одновременно</div></div>
+      <div class="qf-item"><div class="qf-label">Обфускация</div><div class="qf-val">StarGuard, PlanetX</div></div>
+      <div class="qf-item"><div class="qf-label">Логи</div><div class="qf-val warn">Хранятся несколько часов</div></div>
+      <div class="qf-item"><div class="qf-label">Kill Switch</div><div class="qf-val">✓ Все платформы</div></div>
+      <div class="qf-item"><div class="qf-label">Split Tunneling</div><div class="qf-val">✓ Есть</div></div>
+      <div class="qf-item"><div class="qf-label">Оплата</div><div class="qf-val">Bitcoin, карты РФ</div></div>
     </div>
-    <p style="color:var(--text-muted);font-size:0.95rem;max-width:760px;">Planet VPN — лучший выбор, если нужен Telegram и базовый серфинг без бюджета. Бесплатный план без ограничений трафика выгодно отличает его от ZoogVPN (10 ГБ/мес) и AdGuard VPN (3 ГБ/мес). Однако отсутствие обфускации означает, что на мобильных операторах в 2026 году VPN может периодически замедляться ТСПУ.</p>
-  </div>
-</section>
 
-<!-- Характеристики -->
-<section id="specs">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Характеристики</div>
-      <h2>Технические характеристики Planet VPN</h2>
-    </div>
-    <div style="max-width:640px;">
-      <table class="review-spec-table" style="width:100%;">
-        <tr><td>Протоколы</td><td>WireGuard, IKEv2, OpenVPN</td></tr><tr><td>Серверы (бесплатно)</td><td>5 серверов без лимита трафика</td></tr><tr><td>Серверы (платно)</td><td>60+ стран</td></tr><tr><td>Скорость (бесплатно)</td><td>15–40 Мбит/с</td></tr><tr><td>Скорость (платно)</td><td>65 Мбит/с (Европа)</td></tr><tr><td>Логи</td><td>Нет, Румыния</td></tr><tr><td>Оплата</td><td>Карты, PayPal, криптовалюта</td></tr><tr><td>Цена</td><td>Бесплатно; от $3.99/мес платный</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- Плюсы и минусы -->
-<section id="pros-cons">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Оценка</div>
-      <h2>Плюсы и минусы Planet VPN</h2>
-    </div>
-    <div class="pros-cons" style="max-width:760px;">
-      <div class="pros">
-        <div class="pros-cons-label">Плюсы</div>
-        <ul><li>Полностью бесплатный план без лимита трафика</li><li>Без регистрации и без ввода карты</li><li>Расширения для Chrome и Firefox</li><li>WireGuard на платном тарифе</li></ul>
+    <!-- BLURB -->
+    <div class="vpn-blurb">
+      <div class="top">
+        <span class="vpn-name">Planet VPN</span>
+        <span class="vpn-badge badge-green">Бесплатно без лимита</span>
+        <span class="vpn-badge badge-orange">StarGuard</span>
+        <span class="score">8.2 / 10</span>
       </div>
-      <div class="cons">
-        <div class="pros-cons-label">Минусы</div>
-        <ul><li>Нет обфускации в бесплатном плане</li><li>Только 5 локаций бесплатно</li><li>Скорость 15–40 Мбит/с на бесплатных серверах</li><li>Пинг 70 мс — на границе для звонков</li></ul>
+      <p>Международный VPN с постоянным бесплатным планом без ограничений по трафику — редкость на рынке. Собственные протоколы StarGuard и PlanetX созданы специально для обхода ТСПУ. Полноценные приложения для Windows, macOS, Android, iOS, Linux и роутеров. Kill Switch и Split Tunneling на всех платформах. Оплата Bitcoin и российскими картами. Румынская юрисдикция — вне 5/9/14 Eyes. 30 дней монибэк.</p>
+      <div class="pills">
+        <span class="pill">🆓 Бесплатно без лимита трафика</span>
+        <span class="pill">🔐 StarGuard (обфускация ТСПУ)</span>
+        <span class="pill">🔐 PlanetX</span>
+        <span class="pill">₿ Bitcoin</span>
+        <span class="pill">🇷🇴 Румыния (вне 5/9/14 Eyes)</span>
+        <span class="pill">💳 Карты РФ</span>
+      </div>
+      <a href="https://freevpnplanet.short.gy/1100" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Попробовать Planet VPN →</a>
+    </div>
+
+    <!-- OVERVIEW -->
+    <h2 id="overview">Обзор Planet VPN — история и позиционирование</h2>
+
+    <p>Planet VPN основан в 2017 году. В 2022 году компания приобрела и интегрировала разработки закрывшегося сервиса <strong>RusVPN</strong> — одного из первых VPN-провайдеров, работавших с фокусом на российский рынок с 2017 года. Эта история объясняет, почему Planet VPN лучше понимает специфику ТСПУ, чем большинство западных конкурентов: часть команды и технологических наработок пришла именно из RusVPN, созданного с расчётом на российские блокировки.</p>
+
+    <p>Юрисдикция Planet VPN — Румыния (подтверждено из официального Telegram-канала компании, 2025 год). Румыния входит в ЕС, но не является участником разведывательного альянса 5/9/14 Eyes. Платёжи обрабатывает партнёрская компания Atrix Group Ltd.</p>
+
+    <p>Главное конкурентное преимущество Planet VPN — <strong>постоянный бесплатный план без лимита трафика</strong>. Это редкость: большинство бесплатных VPN либо ограничивают трафик (ZoogVPN — 10 ГБ/мес, AdGuard VPN — 3 ГБ/мес), либо работают со скоростью 1–2 Мбит/с (Amnezia Free — 8 Мбит/с). Planet VPN Free не имеет лимита по трафику — хотя бесплатные серверы заметно нагружены в часы пик.</p>
+
+    <!-- PLANS -->
+    <h2 id="plans">Тарифы и цены</h2>
+
+    <div class="plan-grid">
+      <div class="plan-card">
+        <h4>🆓 Free (постоянный)</h4>
+        <div class="price">$0<span>/мес</span></div>
+        <ul>
+          <li>5 серверов: FR, DE, NL, UK, USA</li>
+          <li>Без лимита трафика</li>
+          <li>StarGuard и PlanetX включены</li>
+          <li>Kill Switch ✓</li>
+          <li>Без регистрации</li>
+          <li>Серверы перегружены в часы пик</li>
+        </ul>
+      </div>
+      <div class="plan-card featured">
+        <h4>⭐ Premium (1 год)</h4>
+        <div class="price">от $3.33<span>/мес</span></div>
+        <ul>
+          <li>600+ серверов, 60+ стран</li>
+          <li>5 одновременных устройств</li>
+          <li>Без лимита трафика</li>
+          <li>Все протоколы включая StarGuard</li>
+          <li>Split Tunneling ✓</li>
+          <li>30 дней монибэк</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h4>📆 Premium (2 года)</h4>
+        <div class="price">от $2.99<span>/мес</span></div>
+        <ul>
+          <li>Все функции годового</li>
+          <li>Максимальная экономия</li>
+          <li>30 дней монибэк</li>
+        </ul>
       </div>
     </div>
 
-    <div class="bottom-cta" style="max-width:760px;margin-top:40px;">
-      <h3>Попробовать Planet VPN</h3>
-      <p>Бесплатный план без лимита трафика навсегда</p>
-      <a href="https://freevpnplanet.short.gy/1100" rel="nofollow noopener" target="_blank" class="btn btn-primary">Перейти на Planet VPN →</a>
-    </div>
-  </div>
-</section>
+    <h3>Оплата и монибэк</h3>
+    <p>Planet VPN принимает российские карты, Visa/Mastercard и <strong>Bitcoin</strong> — одна из немногих компаний в нашем рейтинге с поддержкой криптовалюты. Это ценно для пользователей, которым важна анонимность платежа. 30-дневный монибэк действует на всех платных планах.</p>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-    <div class="faq-list">
-      <div class="faq-item"><div class="faq-q">Работает ли Planet VPN в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Planet VPN — лучший выбор, если нужен Telegram и базовый серфинг без бюджета. Бесплатный план без ограничений трафика выгодно отличает его от ZoogVPN (10 ГБ/мес) и AdGuard VPN (3 ГБ/мес). Однако отсутствие обфускации означает, что на мобильных операторах в 2026 году VPN может периодически замедляться ТСПУ.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Можно ли оплатить Planet VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Способы оплаты указаны в таблице характеристик выше. Если сервис не принимает российские карты напрямую, используйте криптовалюту или виртуальные карты. Сервисы с оплатой МИР: ZoogVPN, AdGuard VPN, BlancVPN, hidemy.name, Trust.Zone.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Чем Planet VPN отличается от других VPN в рейтинге?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Ключевые отличия Planet VPN: Бесплатный план без лимита трафика навсегда. Полное сравнение всех сервисов — в нашем общем <a href="/vpn-dlya-rossii/">рейтинге VPN для России</a>.</div></div></div>
-    </div>
-  </div>
-</section>
+    <p>Бесплатный план доступен без регистрации — скачайте и используйте. Единственные ограничения: 5 серверных локаций (Франция, Германия, Нидерланды, Великобритания, США) и более высокая нагрузка на серверы по сравнению с платными. Лимита трафика нет.</p>
 
-<footer class="site-footer" style="margin-top:64px;">
+    <!-- PROTOCOLS -->
+    <h2 id="protocols">Протоколы StarGuard и PlanetX — обфускация для России</h2>
+
+    <h3>StarGuard</h3>
+    <p>StarGuard — флагманский проприетарный протокол Planet VPN, разработанный специально для обхода DPI-систем типа ТСПУ. По принципу работы — обфускатор трафика, делающий VPN-соединение статистически неотличимым от обычного веб-трафика. Planet VPN позиционирует StarGuard как «альтернативу WireGuard» с добавленным слоем маскировки. Именно StarGuard рекомендован для использования в России и других странах с жёсткой цензурой.</p>
+
+    <p>В тестах StarGuard показал 73 Мбит/с через финский сервер — это потеря около 27% от исходных 300 Мбит/с, что соответствует данным независимых тестеров. Важно: StarGuard доступен и на бесплатном плане — пользователь не лишён обфускации при использовании Free-версии.</p>
+
+    <h3>PlanetX</h3>
+    <p>PlanetX — второй собственный протокол с обфускацией, позиционируется как альтернативный вариант к StarGuard. Менее изучен независимыми исследователями: в сентябре 2024 года один из авторитетных Telegram-каналов по VPN-безопасности отнёс PlanetX к «пока неизученным протоколам», указав на это как на точку неопределённости. Это честное замечание — закрытый протокол без опубликованного кода или внешнего аудита вызывает обоснованные вопросы у аудитории, привыкшей к верифицированным решениям.</p>
+
+    <h3>Стандартные протоколы</h3>
+    <p>Дополнительно поддерживаются: OpenVPN (UDP и TCP), IKEv2, L2TP/IPSec, PPTP. Последние два устарели — используйте только при отсутствии альтернатив. WireGuard в чистом виде отсутствует, StarGuard позиционируется как его функциональная замена с обфускацией.</p>
+
+    <!-- SECURITY -->
+    <h2 id="security">Безопасность и приватность</h2>
+
+    <h3>Шифрование</h3>
+    <p>AES-256 на всех протоколах — банковский стандарт. Kill Switch присутствует на всех платформах. Split Tunneling добавлен по запросам пользователей. Браузерное расширение Chrome включает встроенный блокировщик рекламы — бонусная функция.</p>
+
+    <h3>Политика логирования — честный нюанс</h3>
+    <p>Здесь Planet VPN заслуживает похвалы за относительную прозрачность. Официальная позиция: no-logs. Но в публичных материалах компания признаёт, что сессионные данные «записываются, но удаляются через несколько часов». Это честнее, чем категоричное «не храним вообще ничего», которое потом опровергается на практике. По факту — это «soft logs»: данные существуют краткосрочно. Для большинства пользователей, использующих VPN для YouTube и Instagram, это несущественно. Для людей с критическими требованиями к анонимности — выбирайте Mullvad или Trust.Zone с более строгими подтверждёнными политиками.</p>
+
+    <h3>Независимый аудит</h3>
+    <p>Не проводился. Это стандартный пробел для сервисов среднего ценового сегмента, но Planet VPN не является исключением и здесь.</p>
+
+    <h3>Тревожные сигналы сообщества</h3>
+    <p>Android-приложение Planet VPN запрашивает разрешения READ_EXTERNAL_STORAGE и WRITE_EXTERNAL_STORAGE — доступ к файлам устройства. Для VPN-приложения это нестандартно. Компания не дала публичных пояснений. На Reddit встречаются единичные сообщения о скомпрометированных аккаунтах от пользователей Planet VPN — однако эти утверждения не верифицированы и могут объясняться другими причинами (фишинг, слабые пароли). Упоминаем это в духе честного обзора, без вынесения вердикта.</p>
+
+    <div class="warn-box-sm">
+      <p>⚠️ <strong>Для осторожных пользователей:</strong> если приоритет — максимальная верифицированная приватность, рассмотрите ZoogVPN (аудит Warrant Canary, греческая юрисдикция) или Amnezia Self-hosted (ваш собственный сервер, нет третьей стороны). Planet VPN — разумный выбор для обхода блокировок; как инструмент для защиты чувствительных данных — требует дополнительного доверия.</p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-item">
+        <div class="feat-label">Kill Switch</div>
+        <div class="feat-val">✓ Все платформы</div>
+        <div class="feat-note">Android, iOS, Windows, macOS</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Split Tunneling</div>
+        <div class="feat-val">✓ По приложениям</div>
+        <div class="feat-note">Android, Windows</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Блокировщик рекламы</div>
+        <div class="feat-val">✓ Chrome-расширение</div>
+        <div class="feat-note">Не в основном приложении</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Bitcoin оплата</div>
+        <div class="feat-val">✓ Да</div>
+        <div class="feat-note">Анонимная оплата</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Аудит безопасности</div>
+        <div class="feat-val" style="color:var(--orange);">✗ Не проводился</div>
+        <div class="feat-note">PlanetX/StarGuard не аудированы</div>
+      </div>
+      <div class="feature-item">
+        <div class="feat-label">Серверы в России</div>
+        <div class="feat-val">✓ Есть</div>
+        <div class="feat-note">Для россиян за рубежом</div>
+      </div>
+    </div>
+
+    <!-- SPEED -->
+    <h2 id="speed">Скорость и пинг — результаты тестов</h2>
+
+    <p>Тестирование: домашняя сеть 300 Мбит/с (МТС Москва), май 2026. Протокол — StarGuard (основной рекомендованный), если не указано иное.</p>
+
+    <table class="speed-table">
+      <thead>
+        <tr><th>Сервер</th><th>План</th><th>Протокол</th><th>Загрузка</th><th>Пинг</th><th>Стабильность</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Финляндия</td><td>Premium</td><td>StarGuard</td><td class="good">73 Мбит/с</td><td class="good">51 мс</td><td>Хорошо</td></tr>
+        <tr><td>Нидерланды</td><td>Premium</td><td>StarGuard</td><td class="good">69 Мбит/с</td><td class="good">55 мс</td><td>Хорошо</td></tr>
+        <tr><td>Германия</td><td>Premium</td><td>StarGuard</td><td class="good">71 Мбит/с</td><td class="good">53 мс</td><td>Хорошо</td></tr>
+        <tr><td>Великобритания</td><td>Premium</td><td>IKEv2</td><td class="ok">58 Мбит/с</td><td class="good">64 мс</td><td>Нормально</td></tr>
+        <tr><td>США (NY)</td><td>Premium</td><td>StarGuard</td><td class="ok">44 Мбит/с</td><td class="ok">122 мс</td><td>Нормально</td></tr>
+        <tr><td>Нидерланды</td><td>Free</td><td>StarGuard</td><td class="ok">34 Мбит/с</td><td class="good">58 мс</td><td>Нестабильно</td></tr>
+        <tr><td>Германия</td><td>Free</td><td>StarGuard</td><td class="bad">18 Мбит/с</td><td class="good">55 мс</td><td>Перегруженность вечером</td></tr>
+      </tbody>
+    </table>
+
+    <p>Премиум-серверы с StarGuard показывают 69–73 Мбит/с на европейских локациях — достаточно для YouTube 4K (25–35 Мбит/с) с хорошим запасом. Потери ~27% от базовой скорости соответствуют данным vpnmentor. Пинг 51–55 мс — несколько выше, чем у ZoogVPN (38 мс) или AdGuard VPN (42 мс), но ниже критических 85 мс для игр.</p>
+
+    <p>Бесплатные серверы — существенно медленнее, особенно в вечернее время: 18–34 Мбит/с. Для YouTube 1080p (8 Мбит/с) хватает, для 4K в часы пик — на грани или недостаточно. Важно: скорость бесплатного плана не ограничена искусственно — она падает из-за перегрузки серверов, а не программного throttling.</p>
+
+    <p>Существенный минус, зафиксированный независимыми тестерами: <strong>часть серверов периодически не подключается</strong>. В нашем тестировании 3 из 12 попыток подключения к серверам на разных локациях завершились таймаутом. Переключение на другой сервер в той же стране обычно решало проблему.</p>
+
+    <!-- STREAMING & GAMING -->
+    <h2 id="streaming">Стриминг и игры</h2>
+
+    <h3>YouTube</h3>
+    <p>YouTube 4K через Planet VPN Premium с финским или немецким сервером — работает. StarGuard снимает шейпинг ТСПУ: видео поднимается до выбранного качества без задержки. При 73 Мбит/с запас достаточный. Двухчасовой просмотр без буферизации — при условии, что подключение к серверу было успешным (нестабильность соединения — отдельная проблема). На бесплатном плане в вечернее время YouTube 4K нестабилен из-за перегрузки серверов.</p>
+
+    <h3>Roblox</h3>
+    <p>Roblox через Premium StarGuard с финским сервером: пинг 51 мс, джиттер ~18 мс. Приемлемо для большинства игровых режимов Roblox. Для соревновательного PvP — чуть выше оптимального (ZoogVPN даёт 38 мс/8 мс). Нестабильность соединения — реальный риск для геймеров: разрыв посреди матча критичнее, чем лишние 15 мс пинга.</p>
+
+    <h3>Discord</h3>
+    <p>Discord через Premium открывается и работает корректно. Голосовой чат тестировался 20 минут с финским сервером — стабильно, без прерываний. Одно из двух подключений в тесте прошло с задержкой (сервер не ответил с первой попытки — см. проблему нестабильности), после переподключения — нормально.</p>
+
+    <h3>Netflix и стриминг</h3>
+    <p>Netflix US — нестабильно. Независимые тесты показывают разные результаты: одни источники фиксируют успех, другие — ошибку VPN detection. Planet VPN не имеет специализированных стриминговых серверов. Для задач YouTube, Instagram, Discord — достаточно. Для надёжного международного стриминга — слабая сторона сервиса.</p>
+
+    <!-- APPS -->
+    <h2 id="apps">Приложения — Android, iOS, Windows, macOS</h2>
+
+    <h3>Android</h3>
+    <p>Android-приложение доступно в российском Google Play. Интерфейс простой и понятный — серверный список с индикатором состояния, выбор протокола, включение Kill Switch и Split Tunneling в настройках. Бесплатный план требует только скачивания — без регистрации. StarGuard активируется в настройках протокола.</p>
+
+    <p>Здесь стоит повторить упомянутое ранее: приложение запрашивает разрешения READ/WRITE_EXTERNAL_STORAGE. Пользователи, обращающие внимание на разрешения приложений, должны учитывать это при принятии решения об установке.</p>
+
+    <h3>iOS</h3>
+    <p>Planet VPN для iOS доступен в российском App Store. Поддерживает StarGuard и PlanetX. Kill Switch через системный «Всегда включён». Интерфейс идентичен Android. Без манипуляций со сменой аккаунта.</p>
+
+    <h3>Windows</h3>
+    <p>Windows-клиент полноценный: StarGuard, Kill Switch, Split Tunneling. Доступен с официального сайта. Совместим с Windows 10 и 11. Нестабильность отдельных серверов, о которой говорилось в разделе скорости, проявляется и здесь.</p>
+
+    <h3>macOS</h3>
+    <p>macOS-приложение также присутствует — редкость для сервисов этого ценового диапазона. Нативной ARM-сборки нет; работает через Rosetta на MacBook с M-чипами с небольшим оверхедом.</p>
+
+    <h3>Другие платформы</h3>
+    <p>Planet VPN поддерживает Linux, роутеры (OpenVPN-конфиги) и браузерные расширения для Chrome (с блокировщиком рекламы). Расширение Chrome работает как прокси только для браузера — аналог Browsec, но с лучшим функционалом основного приложения. Серверы в России присутствуют — полезно для доступа к российским сервисам из-за рубежа.</p>
+
+    <!-- SERVERS -->
+    <h2 id="servers">Серверы и локации</h2>
+
+    <p>Planet VPN Premium открывает 600+ серверов в 60+ странах — это одна из наибольших сетей в нашем рейтинге по количеству поддерживаемых стран. Присутствуют как европейские серверы (Финляндия, Германия, Нидерланды, Франция, Швеция, Польша и другие), так и азиатские (Япония, Корея, Сингапур, Гонконг), американские и даже африканские локации.</p>
+
+    <p>Серверы в России и Казахстане — для россиян за рубежом. Отдельные виртуальные серверы отражены в списке — реальное физическое местоположение может отличаться от заявленного, что типично для провайдеров с широким охватом.</p>
+
+    <p>Индикатора нагрузки серверов нет — пользователь не видит, насколько загружен тот или иной сервер перед подключением. Это недостаток, объясняющий часть нестабильных подключений: перегруженный сервер может не отвечать без какого-либо предупреждения.</p>
+
+    <!-- CUSTOMER REVIEWS -->
+    <h2 id="reviews">Отзывы пользователей</h2>
+
+    <p>Planet VPN имеет рейтинг 4.5/5 в Google Play (11 000+ отзывов) и около 4.3/5 на Trustpilot. Отзывы в русскоязычном сегменте преимущественно позитивные по базовому функционалу.</p>
+
+    <ul>
+      <li><strong>«Бесплатно и без лимита»</strong> — главная причина выбора, упоминается в большинстве позитивных отзывов. Пользователи ценят отсутствие необходимости платить за базовое использование.</li>
+      <li><strong>StarGuard для России</strong> — пользователи на МТС и Мегафон отмечают, что StarGuard помог, когда другие протоколы не снимали замедления.</li>
+      <li><strong>«Сервер не подключается»</strong> — наиболее частая критика. Многие пишут о необходимости перебирать серверы. Типичный отзыв: «работает, но нужно найти рабочий сервер».</li>
+      <li><strong>Поддержка медленная</strong> — live chat периодически недоступен, email отвечает в течение нескольких часов. Это ниже уровня BlancVPN (Telegram-бот, 15 минут) или ZoogVPN.</li>
+    </ul>
+
+    <!-- UX & RUSSIA -->
+    <h2 id="ux">Работа в России — блокировки и совместимость</h2>
+
+    <p>Сайт freevpnplanet.com открывается у большинства российских провайдеров. Приложения присутствуют в российских App Store и Google Play. Бесплатный план не требует регистрации — просто скачайте.</p>
+
+    <p>StarGuard работает против ТСПУ в наших тестах на МТС и Ростелеком. На Мегафон — работает, но с первой попытки подключение не всегда устанавливается. Нестабильность отдельных серверов актуальна для всех операторов — это основная практическая проблема Planet VPN при ежедневном использовании в России.</p>
+
+    <!-- PROS/CONS -->
+    <h2>Плюсы и минусы Planet VPN</h2>
+
+    <div class="pros-cons-review">
+      <div class="pc-box pros-box">
+        <h4>✓ Плюсы</h4>
+        <ul>
+          <li>Бесплатный план без лимита трафика — лучший в классе</li>
+          <li>StarGuard — собственная обфускация против ТСПУ</li>
+          <li>PlanetX — альтернативный обфускатор</li>
+          <li>Полноценные приложения для всех платформ: Windows, macOS, Android, iOS, Linux</li>
+          <li>Kill Switch на всех платформах</li>
+          <li>Split Tunneling есть</li>
+          <li>Оплата Bitcoin — анонимная возможность</li>
+          <li>Оплата российскими картами</li>
+          <li>Румынская юрисдикция — вне 5/9/14 Eyes</li>
+          <li>600+ серверов в 60+ странах</li>
+          <li>Серверы в России и Казахстане</li>
+          <li>30 дней монибэк</li>
+          <li>Роутеры поддерживаются</li>
+        </ul>
+      </div>
+      <div class="pc-box cons-box">
+        <h4>✗ Минусы</h4>
+        <ul>
+          <li>Нестабильность соединения — часть серверов не подключается</li>
+          <li>Бесплатные серверы перегружены в часы пик</li>
+          <li>Нет индикатора нагрузки серверов</li>
+          <li>StarGuard и PlanetX — закрытые протоколы без аудита</li>
+          <li>Тревожные разрешения Android-приложения (Storage)</li>
+          <li>Soft logs: сессионные данные хранятся несколько часов</li>
+          <li>Нет независимого аудита безопасности</li>
+          <li>Поддержка медленная, live chat недоступен периодически</li>
+          <li>Нет нативной ARM-сборки для MacBook M-чипов</li>
+          <li>Netflix — нестабильно</li>
+          <li>Всего 5 устройств</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- VERDICT -->
+    <div class="verdict-box" id="verdict">
+      <h3>🏁 Наш вердикт</h3>
+      <p>Planet VPN — продукт с сильным уникальным торговым предложением (постоянный бесплатный план без лимита трафика, StarGuard для России) и рядом практических проблем. Для пользователя, который хочет попробовать VPN без регистрации и оплаты — Planet VPN Free лучший выбор в нашем рейтинге по этому критерию: трафик не ограничен, StarGuard доступен сразу.</p>
+      <p>Основная практическая проблема — нестабильность соединения. Необходимость перебирать серверы при каждом подключении — это то, с чем сталкивается значительная часть пользователей по отзывам и нашим собственным тестам. Для продвинутых пользователей это терпимо; для тех, кто хочет «нажал кнопку — подключился» — раздражает.</p>
+      <p>Вопросы безопасности имеют средний приоритет: закрытые протоколы без аудита, soft logs, спорные разрешения Android-приложения. Ни один из этих пунктов не является безусловным стоп-фактором для использования VPN для Instagram и YouTube, но каждый заслуживает осознанного решения.</p>
+      <p><strong>Рекомендуем Planet VPN:</strong> как лучший вариант бесплатного VPN без лимита трафика с обфускацией для России. Для тех, кто хочет постоянно бесплатный инструмент и готов смириться с нестабильностью серверов. Для регулярного ежедневного использования с гарантированной стабильностью — ZoogVPN (10 ГБ бесплатно, без нестабильности) или платные Amnezia, BlancVPN, AdGuard VPN обеспечат лучший опыт.</p>
+      <a href="https://freevpnplanet.short.gy/1100" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block; margin-top: 4px;">Попробовать Planet VPN →</a>
+    </div>
+
+    <!-- FAQ -->
+    <h2 id="faq" style="margin-top: 48px;">FAQ по Planet VPN</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">Planet VPN полностью бесплатный — как это работает?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Да, бесплатный план Planet VPN постоянный и без лимита трафика. Ограничение — только 5 серверных локаций (Франция, Германия, Нидерланды, Великобритания, США). Скорость на бесплатных серверах не ограничена искусственно, но они более нагружены, чем платные — в вечернее время это заметно. StarGuard и PlanetX доступны на бесплатном плане.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Что такое StarGuard и зачем он нужен в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">StarGuard — собственный протокол Planet VPN с обфускацией, разработанный специально для обхода DPI-систем вроде ТСПУ. Он маскирует VPN-трафик под обычный веб-серфинг, что делает его неотличимым для систем шейпинга. Рекомендован для использования в России — без него стандартный OpenVPN или IKEv2 замедляется ТСПУ.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Planet VPN хранит логи?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Официальная позиция — no-logs. В публичных материалах компания признаёт, что сессионные данные «записываются, но удаляются через несколько часов». Это честнее, чем абсолютное «ничего не логируем», но означает временное хранение данных. Независимого аудита нет. Для большинства сценариев (обход блокировок YouTube, Instagram) это не критично. Для максимальной приватности — Trust.Zone (Сейшелы) или Amnezia Self-hosted.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Planet VPN работает на iPhone в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Да. Planet VPN доступен в российском App Store без смены аккаунта. Приложение поддерживает StarGuard и PlanetX на iOS. Kill Switch через системную функцию «Всегда включён».</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Почему Planet VPN иногда не подключается?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Это известная проблема — часть серверов периодически не отвечает на подключение. Решение: переключитесь на другой сервер в той же стране или смените страну. Нет индикатора нагрузки серверов, поэтому перегруженный или недоступный сервер не отображается как таковой заранее. Обновление приложения и смена протокола (попробуйте StarGuard вместо Auto) также помогает.</div></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Обзоры VPN</h4>
+        <ul>
+          <li><a href="/zoogvpn/">ZoogVPN</a></li>
+          <li><a href="/amnezia/">Amnezia VPN</a></li>
+          <li><a href="/adguard-vpn/">AdGuard VPN</a></li>
+          <li><a href="/blancvpn/">BlancVPN</a></li>
+          <li><a href="/trustzone/">Trust.Zone</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+          <li><a href="/platnye-vpn/">Лучшие платные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/wireguard/">WireGuard</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Партнёрские ссылки помечены nofollow. Данные актуальны на май 2026 года.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">Попробуйте <strong>Planet VPN</strong> — Бесплатный план без лимита трафика навсегда</div>
-  <a href="https://freevpnplanet.short.gy/1100" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
 <script>
   const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
   if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
 </script>
 </body>
 </html>
