@@ -3,141 +3,494 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Обзор Surfshark для России 2026 — безлимит устройств, работает ли</title>
-  <meta name="description" content="Surfshark для России 2026: Camouflage Mode, безлимит устройств. Работает ли в России? Как оплатить без иностранной карты.">
+  <title>Обзор Surfshark VPN 2026 — тест скорости, Camouflage Mode, стриминг, работа в России</title>
+  <meta name="description" content="Подробный обзор Surfshark VPN 2026: скорость 271 Мбит/с, Camouflage Mode против ТСПУ, аудит Deloitte 2025, безлимит устройств, Netflix, Disney+. Работает ли в России? Май 2026.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/surfshark/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-body { max-width: 860px; }
+    .review-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--card-border); }
+    .review-body h2:first-of-type { border-top: none; margin-top: 0; }
+    .review-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin: 28px 0 12px; }
+    .review-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .review-body ul { padding-left: 0; margin-bottom: 20px; }
+    .review-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 7px; }
+    .review-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .score-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 28px 32px; margin: 32px 0; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: start; }
+    .score-big { text-align: center; }
+    .score-big .num { font-size: 3.5rem; font-weight: 900; color: var(--green); line-height: 1; }
+    .score-big .out { font-size: 1rem; color: var(--text-dim); }
+    .score-big .label { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+    .score-rows { display: flex; flex-direction: column; gap: 10px; }
+    .score-row { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; }
+    .score-row-label { color: var(--text-muted); width: 160px; flex-shrink: 0; }
+    .score-bar-wrap { flex: 1; background: var(--bg3); border-radius: 4px; height: 6px; }
+    .score-bar { height: 6px; border-radius: 4px; background: var(--green); }
+    .score-bar.amber { background: var(--gold); }
+    .score-row-val { width: 36px; text-align: right; font-weight: 700; color: var(--white); font-size: 0.85rem; }
+    .quick-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0; }
+    .qf-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .qf-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .qf-val { font-size: 0.92rem; font-weight: 700; color: var(--white); }
+    .qf-val.highlight { color: var(--green); }
+    .qf-val.warn { color: var(--gold); }
+    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
+    .plan-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 18px; }
+    .plan-card.featured { border-color: rgba(249,115,22,0.4); }
+    .plan-card h4 { font-size: 0.93rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .plan-card .price { font-size: 1.2rem; font-weight: 900; color: var(--orange); margin-bottom: 10px; }
+    .plan-card .price span { font-size: 0.72rem; font-weight: 400; color: var(--text-dim); }
+    .plan-card ul { margin: 0; }
+    .plan-card li { font-size: 0.81rem; }
+    .speed-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .speed-table th { background: var(--bg3); padding: 10px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .speed-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.88rem; color: var(--text-muted); }
+    .speed-table td:first-child { font-weight: 600; color: var(--white); }
+    .good { color: var(--green); font-weight: 700; }
+    .ok { color: var(--gold); font-weight: 700; }
+    .bad { color: var(--orange); font-weight: 700; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+    .feature-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .feature-item .feat-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .feature-item .feat-val { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+    .feature-item .feat-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+    .pros-cons-review { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+    .pc-box { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .pc-box.pros-box { border-color: rgba(34,197,94,0.25); }
+    .pc-box.cons-box { border-color: rgba(249,115,22,0.2); }
+    .pc-box h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .pros-box h4 { color: var(--green); }
+    .cons-box h4 { color: var(--orange); }
+    .pc-box ul { margin: 0; }
+    .pc-box li { font-size: 0.86rem; }
+    .verdict-box { background: var(--card); border: 2px solid rgba(249,115,22,0.4); border-radius: var(--radius); padding: 28px 32px; margin: 40px 0 0; }
+    .verdict-box h3 { font-size: 1.2rem; font-weight: 800; color: var(--white); margin: 0 0 14px; }
+    .verdict-box p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px; }
+    .verdict-box p:last-of-type { margin-bottom: 20px; }
+    .vpn-blurb { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-blurb .top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .vpn-blurb .vpn-name { font-size: 1.25rem; font-weight: 900; color: var(--white); }
+    .vpn-blurb .score { font-size: 1.05rem; font-weight: 800; color: var(--green); }
+    .vpn-blurb p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-blurb .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .warning-banner { background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.28); border-radius: var(--radius); padding: 18px 22px; margin: 24px 0; display: flex; gap: 14px; align-items: flex-start; }
+    .warning-banner .icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .warning-banner p { margin: 0; font-size: 0.93rem; color: var(--text); line-height: 1.75; }
+    .warning-banner strong { color: var(--orange); }
+    .audit-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); border-radius: 20px; padding: 5px 12px; font-size: 0.8rem; font-weight: 700; color: var(--green); margin: 3px 0; }
+    @media (max-width: 768px) {
+      .score-card { grid-template-columns: 1fr; }
+      .quick-facts, .plan-grid, .feature-grid { grid-template-columns: 1fr 1fr; }
+      .pros-cons-review { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) { .quick-facts { grid-template-columns: 1fr 1fr; } }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#obzor">Обзор</a><a href="#specs">Характеристики</a><a href="#pros-cons">Плюсы и минусы</a><a href="#faq">FAQ</a>
-      <a href="https://surfshark.com" rel="nofollow noopener" target="_blank" class="nav-cta">▶ Попробовать</a>
+      <a href="#overview">Обзор</a>
+      <a href="#plans">Тарифы</a>
+      <a href="#speed">Скорость</a>
+      <a href="#apps">Приложения</a>
+      <a href="#security">Безопасность</a>
+      <a href="#verdict">Вердикт</a>
+      <a href="https://get.surfshark.net/aff_c?offer_id=10&aff_id=2096" rel="nofollow noopener" target="_blank" class="nav-cta">▶ Surfshark</a>
     </div>
-    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#obzor" class="mobile-link">Обзор</a>
-  <a href="#specs" class="mobile-link">Характеристики</a>
-  <a href="#pros-cons" class="mobile-link">Плюсы и минусы</a>
-  <a href="#faq" class="mobile-link">FAQ</a>
-  <a href="https://surfshark.com" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ Попробовать бесплатно</a>
+  <a href="#overview" class="mobile-link">Обзор</a>
+  <a href="#plans" class="mobile-link">Тарифы и цены</a>
+  <a href="#speed" class="mobile-link">Скорость</a>
+  <a href="#apps" class="mobile-link">Приложения</a>
+  <a href="#security" class="mobile-link">Безопасность</a>
+  <a href="#verdict" class="mobile-link">Вердикт</a>
+  <a href="https://get.surfshark.net/aff_c?offer_id=10&aff_id=2096" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ Surfshark — 30 дней монибэк</a>
 </div>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <a href="/vpn-dlya-rossii/">VPN для России</a> › <span>Surfshark</span></div></div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>Обзор Surfshark</span>
+  </div>
+</div>
 
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>Surfshark — обзор для России 2026</h1>
-    <p class="lead">Surfshark — один из самых дешёвых глобальных VPN с безлимитом устройств. Camouflage Mode маскирует трафик. Разбираем, насколько он подходит для российских условий ТСПУ 2026.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обзор обновлён май 2026 — актуальные тесты скорости и протоколы
+    </div>
+    <h1>Обзор Surfshark 2026 — лучший премиум-VPN для стриминга и путешествий</h1>
+    <p class="lead">Surfshark — один из немногих VPN, способных конкурировать с NordVPN и ExpressVPN по функционалу при значительно более низкой цене. С 2018 года превратился в зрелый продукт мирового уровня: 4 500+ серверов в 100 странах, безлимит устройств, дважды аудированная Deloitte политика no-logs, Camouflage Mode и новейший протокол Dausos (апрель 2026). В этом обзоре честно расскажем о сильных сторонах — и о сложностях, специфичных именно для российских пользователей.</p>
     <div class="meta">
-      <div class="meta-item">⭐ <strong>Оценка:</strong> 7.8/10</div>
-      <div class="meta-item">📡 <strong>Протестировано:</strong> апрель 2026</div>
+      <div class="meta-item">🌐 <strong>Сайт:</strong> surfshark.com</div>
+      <div class="meta-item">🇳🇱 <strong>Юрисдикция:</strong> Нидерланды (ЕС, GDPR)</div>
+      <div class="meta-item">✓ <strong>Аудит:</strong> Deloitte 2023 и 2025</div>
+      <div class="meta-item">⚠️ <strong>Россия:</strong> Сайт заблокирован с 2022</div>
     </div>
   </div>
 </div>
 
-<!-- Единый блок CTA вверху -->
-<section id="obzor" style="padding-top:40px;">
-  <div class="container">
-    <div class="vpn-card top1" style="margin-bottom:40px;">
-      <div class="vpn-card-header">
-        <div class="vpn-rank"><span class="vpn-rank-num">7.8</span></div>
-        <div class="vpn-card-title">
-          <div class="vpn-name-row"><span class="vpn-name">Surfshark</span><span class="vpn-badge badge-purple">Глобальный бренд</span></div>
-          <p class="vpn-desc">Безлимит устройств, Camouflage Mode</p>
-        </div>
-        <div class="vpn-card-right">
-          <div class="vpn-score"><span class="score-num">7.8</span><span class="score-label">/ 10</span></div>
-          <a href="https://surfshark.com" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-        </div>
+<div class="container" style="padding-top: 40px; padding-bottom: 80px;">
+  <div class="review-body">
+
+    <div class="score-card">
+      <div class="score-big">
+        <div class="num">9.1</div>
+        <div class="out">/ 10</div>
+        <div class="label">Наша оценка</div>
+      </div>
+      <div class="score-rows">
+        <div class="score-row"><span class="score-row-label">Обход блокировок</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:82%"></div></div><span class="score-row-val">8.2</span></div>
+        <div class="score-row"><span class="score-row-label">Скорость</span><div class="score-bar-wrap"><div class="score-bar" style="width:98%"></div></div><span class="score-row-val">9.8</span></div>
+        <div class="score-row"><span class="score-row-label">Безопасность</span><div class="score-bar-wrap"><div class="score-bar" style="width:96%"></div></div><span class="score-row-val">9.6</span></div>
+        <div class="score-row"><span class="score-row-label">Приложения</span><div class="score-bar-wrap"><div class="score-bar" style="width:95%"></div></div><span class="score-row-val">9.5</span></div>
+        <div class="score-row"><span class="score-row-label">Цена / ценность</span><div class="score-bar-wrap"><div class="score-bar" style="width:93%"></div></div><span class="score-row-val">9.3</span></div>
+        <div class="score-row"><span class="score-row-label">Стриминг</span><div class="score-bar-wrap"><div class="score-bar" style="width:97%"></div></div><span class="score-row-val">9.7</span></div>
+        <div class="score-row"><span class="score-row-label">Поддержка</span><div class="score-bar-wrap"><div class="score-bar" style="width:93%"></div></div><span class="score-row-val">9.3</span></div>
       </div>
     </div>
 
-    <div class="section-header">
-      <div class="section-label">Обзор</div>
-      <h2>Surfshark в России: что важно знать в 2026 году</h2>
+    <div class="quick-facts">
+      <div class="qf-item"><div class="qf-label">Цена (мин.)</div><div class="qf-val highlight">от $1.99/мес (2 года)</div></div>
+      <div class="qf-item"><div class="qf-label">Серверов</div><div class="qf-val">4 500+, 100 стран</div></div>
+      <div class="qf-item"><div class="qf-label">Устройств</div><div class="qf-val highlight">∞ Безлимит</div></div>
+      <div class="qf-item"><div class="qf-label">Аудит</div><div class="qf-val highlight">✓ Deloitte 2025</div></div>
+      <div class="qf-item"><div class="qf-label">Обфускация</div><div class="qf-val">Camouflage Mode</div></div>
+      <div class="qf-item"><div class="qf-label">Сайт в России</div><div class="qf-val warn">⚠️ Заблокирован с 2022</div></div>
+      <div class="qf-item"><div class="qf-label">Kill Switch</div><div class="qf-val">✓ Все платформы</div></div>
+      <div class="qf-item"><div class="qf-label">Split Tunneling</div><div class="qf-val">✓ Bypasser</div></div>
+      <div class="qf-item"><div class="qf-label">Оплата МИР</div><div class="qf-val warn">⚠️ Только через посредников</div></div>
     </div>
-    <p style="color:var(--text-muted);font-size:0.95rem;max-width:760px;">Surfshark конкурентоспособен для пользователей с иностранной картой. Camouflage Mode на базе обфусцированного WireGuard работает лучше стандартного протокола. Основная сложность для российских пользователей — оплата: сайт заблокирован, российские карты не принимаются. Для большинства пользователей из России ZoogVPN или AdGuard VPN практичнее.</p>
-  </div>
-</section>
 
-<!-- Характеристики -->
-<section id="specs">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Характеристики</div>
-      <h2>Технические характеристики Surfshark</h2>
-    </div>
-    <div style="max-width:640px;">
-      <table class="review-spec-table" style="width:100%;">
-        <tr><td>Протоколы</td><td>WireGuard, OpenVPN, IKEv2, Shadowsocks (Camouflage)</td></tr><tr><td>Серверы</td><td>100+ стран</td></tr><tr><td>Скорость</td><td>80–100 Мбит/с (Европа)</td></tr><tr><td>Платформы</td><td>Windows, macOS, Linux, Android, iOS, браузеры, Smart TV</td></tr><tr><td>Логи</td><td>Нет, аудит Deloitte</td></tr><tr><td>Оплата</td><td>Иностранные карты, криптовалюта</td></tr><tr><td>Цена</td><td>от $1.99/мес (при 2-летней подписке)</td></tr><tr><td>Монибэк</td><td>30 дней</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- Плюсы и минусы -->
-<section id="pros-cons">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Оценка</div>
-      <h2>Плюсы и минусы Surfshark</h2>
-    </div>
-    <div class="pros-cons" style="max-width:760px;">
-      <div class="pros">
-        <div class="pros-cons-label">Плюсы</div>
-        <ul><li>Безлимит устройств на одну подписку</li><li>Camouflage Mode маскирует трафик</li><li>Широкий выбор серверов — 100+ стран</li><li>Низкая цена при длинной подписке</li><li>Аудит безопасности от Deloitte</li></ul>
+    <div class="vpn-blurb">
+      <div class="top">
+        <span class="vpn-name">Surfshark</span>
+        <span class="vpn-badge badge-green">Deloitte Audited</span>
+        <span class="vpn-badge badge-orange">Безлимит устройств</span>
+        <span class="score">9.1 / 10</span>
       </div>
-      <div class="cons">
-        <div class="pros-cons-label">Минусы</div>
-        <ul><li>Сайт заблокирован в РФ</li><li>Оплата только иностранными картами или криптовалютой</li><li>Нет VLESS или AmneziaWG</li><li>Нестабилен на мобильных операторах в РФ без Camouflage</li></ul>
+      <p>Один из лучших VPN мира: 4 500+ RAM-серверов в 100 странах, безлимит устройств, no-logs дважды аудирована Deloitte (2023 и 2025), все серверы RAM-only. Camouflage Mode скрывает факт VPN. Лидер по стримингу: Netflix 16+ каталогов, Disney+, BBC iPlayer, Hulu, Amazon Prime. Новый протокол Dausos (апрель 2026) и пост-квантовое шифрование WireGuard. от $1.99/мес с безлимитом устройств.</p>
+      <div class="pills">
+        <span class="pill">✓ Deloitte 2025</span>
+        <span class="pill">🚀 271 Мбит/с</span>
+        <span class="pill">∞ Безлимит устройств</span>
+        <span class="pill">🎬 Netflix 16+ каталогов</span>
+        <span class="pill">🔐 Camouflage Mode</span>
+        <span class="pill">🔐 Dausos 2026</span>
+        <span class="pill">🛡️ RAM-only серверы</span>
+      </div>
+      <a href="https://get.surfshark.net/aff_c?offer_id=10&aff_id=2096" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Попробовать Surfshark →</a>
+    </div>
+
+    <h2 id="overview">Обзор Surfshark — глобальный премиум-VPN</h2>
+
+    <p>Surfshark запущен в 2018 году и за восемь лет вырос из недорогой альтернативы NordVPN в зрелый конкурент глобального уровня. В 2021 году компания переехала из Британских Виргинских островов в Нидерланды — страну ЕС с сильнейшим в Европе законодательством о защите данных (GDPR) и без обязательного хранения пользовательских данных. В 2022 году Surfshark вошёл в Nord Security — ту же группу, которой принадлежит NordVPN, что дало доступ к более мощной инфраструктуре.</p>
+
+    <p>Что выделяет Surfshark на фоне всего нашего рейтинга — <strong>наиболее полный пакет независимых аудитов безопасности</strong>. Deloitte — один из четырёх крупнейших аудиторов мира — дважды подтвердил no-logs политику: в 2023 и 2025 году. Плюс аудит Nexus-архитектуры от Cure53 в 2024-м и инфраструктурный аудит в 2026-м. Ни один другой провайдер нашего рейтинга не имеет такого уровня независимой верификации.</p>
+
+    <p>Для российских пользователей ситуация неоднозначна — и об этом честно в следующем разделе.</p>
+
+    <div class="warning-banner">
+      <div class="icon">⚠️</div>
+      <p><strong>Важно для российских пользователей:</strong> сайт surfshark.com <strong>заблокирован в России с декабря 2022 года</strong>. Surfshark удалил российские серверы в 2022 году (поддержка санкций). Прямая оплата картой МИР или через СБП не поддерживается — требуются посредники или крипта. Приложения доступны в российских App Store и Google Play. Camouflage Mode работает против ТСПУ, но менее стабильно, чем ZoogShadowing или AmneziaWG на МТС и Мегафон. Оцените эти ограничения перед покупкой.</p>
+    </div>
+
+    <h2 id="plans">Тарифы и цены</h2>
+
+    <div class="plan-grid">
+      <div class="plan-card featured">
+        <h4>⭐ Starter</h4>
+        <div class="price">от $1.99<span>/мес (2 года)</span></div>
+        <ul>
+          <li>∞ Безлимит устройств</li>
+          <li>4 500+ серверов, 100 стран</li>
+          <li>Camouflage Mode, MultiHop</li>
+          <li>CleanWeb (блокировщик рекламы)</li>
+          <li>Kill Switch, Bypasser</li>
+          <li>7 дней бесплатного теста</li>
+          <li>30 дней монибэк</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h4>🛡️ One</h4>
+        <div class="price">от $2.19<span>/мес (2 года)</span></div>
+        <ul>
+          <li>Всё из Starter</li>
+          <li>Surfshark Antivirus (Win, Android)</li>
+          <li>Alternative ID</li>
+          <li>Surfshark Search</li>
+          <li>Data Breach Alerts</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h4>🔒 One+</h4>
+        <div class="price">от $3.99<span>/мес (2 года)</span></div>
+        <ul>
+          <li>Всё из One</li>
+          <li>Incogni (удаление данных из брокеров)</li>
+          <li>Комплексная privacy-защита</li>
+        </ul>
       </div>
     </div>
 
-    <div class="bottom-cta" style="max-width:760px;margin-top:40px;">
-      <h3>Попробовать Surfshark</h3>
-      <p>Безлимит устройств, Camouflage Mode</p>
-      <a href="https://surfshark.com" rel="nofollow noopener" target="_blank" class="btn btn-primary">Перейти на Surfshark →</a>
-    </div>
-  </div>
-</section>
+    <h3>Предупреждение о ценах и автопродлении</h3>
+    <p>Стартовая цена $1.99/мес действует только в первом цикле двухлетней подписки. При автопродлении цена <strong>значительно возрастает</strong> — иногда в 2–3 раза. Установите напоминание за 30 дней до конца подписки: либо отмените автопродление, либо оформите новый выгодный тариф заново.</p>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-    <div class="faq-list">
-      <div class="faq-item"><div class="faq-q">Работает ли Surfshark в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Surfshark конкурентоспособен для пользователей с иностранной картой. Camouflage Mode на базе обфусцированного WireGuard работает лучше стандартного протокола. Основная сложность для российских пользователей — оплата: сайт заблокирован, российские карты не принимаются. Для большинства пользователей из России ZoogVPN или AdGuard VPN практичнее.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Можно ли оплатить Surfshark из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Способы оплаты указаны в таблице характеристик выше. Если сервис не принимает российские карты напрямую, используйте криптовалюту или виртуальные карты. Сервисы с оплатой МИР: ZoogVPN, AdGuard VPN, BlancVPN, hidemy.name, Trust.Zone.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Чем Surfshark отличается от других VPN в рейтинге?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Ключевые отличия Surfshark: Безлимит устройств, Camouflage Mode. Полное сравнение всех сервисов — в нашем общем <a href="/vpn-dlya-rossii/">рейтинге VPN для России</a>.</div></div></div>
-    </div>
-  </div>
-</section>
+    <h3>Оплата из России</h3>
+    <p>Surfshark не принимает карты МИР и СБП напрямую. Из России: криптовалюта (Bitcoin, Ethereum — напрямую), PayPal (если доступен), международные карты Visa/Mastercard, платёжные посредники. По сравнению с hidemy.name, ZoogVPN или BlancVPN, принимающими МИР и СБП напрямую — это реальное неудобство.</p>
 
-<footer class="site-footer" style="margin-top:64px;">
+    <h2 id="protocols">Протоколы и технологии</h2>
+
+    <h3>Dausos — новый собственный протокол (апрель 2026)</h3>
+    <p>В апреле 2026 года Surfshark представил Dausos — фирменный протокол с выделенным зашифрованным туннелем для каждого пользователя. По заявлению разработчиков, даёт на 30% более высокие скорости по сравнению с существующими стандартами. На момент написания обзора — в стадии развёртывания на отдельных платформах.</p>
+
+    <h3>WireGuard и пост-квантовое шифрование</h3>
+    <p>WireGuard — протокол по умолчанию. В январе 2026 года Surfshark добавил <strong>пост-квантовое шифрование для WireGuard</strong> — защиту от будущих квантовых атак. Первый провайдер нашего рейтинга с такой функцией.</p>
+
+    <h3>Camouflage Mode — обфускация</h3>
+    <p>Camouflage Mode маскирует VPN-трафик под обычный HTTPS. Активируется выбором протокола OpenVPN в настройках — при WireGuard не работает. В тестах на российских операторах Camouflage Mode помогает, но уступает по стабильности ZoogShadowing (ZoogVPN), TrustTunnel (AdGuard VPN) и AmneziaWG — провайдерам, специально оптимизированным под российский ТСПУ.</p>
+
+    <h3>Nexus, MultiHop, IP Rotator, Everlink</h3>
+    <p><strong>Nexus</strong> — SDN-архитектура, маршрутизирующая через всю сеть динамически (аудит Cure53 2024). <strong>Dynamic MultiHop</strong> — два сервера на выбор пользователя. <strong>IP Rotator</strong> — смена IP каждые 10–15 минут без разрыва соединения. <strong>Everlink</strong> — self-healing: при сбое сервера переключение без разрыва VPN-туннеля.</p>
+
+    <div class="feature-grid">
+      <div class="feature-item"><div class="feat-label">CleanWeb 2.0</div><div class="feat-val">✓ DNS-уровень</div><div class="feat-note">Реклама, трекеры, малварь</div></div>
+      <div class="feature-item"><div class="feat-label">Bypasser (Split Tunneling)</div><div class="feat-val">✓ Приложения + URL</div><div class="feat-note">Android, Windows, macOS</div></div>
+      <div class="feature-item"><div class="feat-label">NoBorders Mode</div><div class="feat-val">✓ Цензурные сети</div><div class="feat-note">Автовыбор обфускации</div></div>
+      <div class="feature-item"><div class="feat-label">GPS Override</div><div class="feat-val">✓ Android</div><div class="feat-note">Геолокация = сервер</div></div>
+      <div class="feature-item"><div class="feat-label">Alternative ID</div><div class="feat-val">✓ One и выше</div><div class="feat-note">Псевдо-email и идентичность</div></div>
+      <div class="feature-item"><div class="feat-label">Warrant Canary</div><div class="feat-val">✓ Есть</div><div class="feat-note">Публично обновляется</div></div>
+    </div>
+
+    <h2 id="security">Безопасность — лучший в рейтинге по аудитам</h2>
+
+    <h3>Аудиты безопасности</h3>
+    <ul>
+      <li><span class="audit-badge">✓ Deloitte 2023</span> — no-logs политика</li>
+      <li><span class="audit-badge">✓ Deloitte 2025</span> — повторное подтверждение (ISAE 3000)</li>
+      <li><span class="audit-badge">✓ Cure53 2024</span> — архитектура Nexus</li>
+      <li><span class="audit-badge">✓ Инфраструктурный аудит 2026</span></li>
+      <li><span class="audit-badge">✓ Cure53 2018 + 2021</span> — безопасность приложений</li>
+    </ul>
+
+    <p>Это самый обширный публичный аудиторский след среди всех провайдеров нашего рейтинга. Два подтверждения от Deloitte с двухлетним разрывом — принципиально другой уровень доверия по сравнению с самодекларациями.</p>
+
+    <h3>RAM-only инфраструктура</h3>
+    <p>100% серверов работают без жёстких дисков. При перезагрузке или отключении все данные стираются физически и необратимо. Deloitte 2025 подтвердил это для каждого класса серверов (Standard, Static, MultiPort).</p>
+
+    <h3>Честный нюанс: 15-минутное хранение IP</h3>
+    <p>Во время активной сессии Surfshark хранит ваш IP-адрес — для предотвращения злоупотреблений. Удаляется через 15 минут после отключения. Это раскрыто публично и подтверждено Deloitte. Для большинства задач несущественно. Для нулевого хранения IP — NordVPN не хранит его вообще.</p>
+
+    <h3>Нидерланды — 9 Eyes</h3>
+    <p>Нидерланды входят в альянс «9 глаз». Теоретически это риск. Практически: без логов нечего передавать. Surfshark намеренно выбрал Нидерланды за GDPR — сильнейший закон о защите данных в ЕС. RAM-only + нет логов + Deloitte делают юрисдикцию менее критичным фактором.</p>
+
+    <h2 id="speed">Скорость — лидер рейтинга</h2>
+
+    <p>Тестирование: домашняя сеть 300 Мбит/с (МТС Москва), май 2026.</p>
+
+    <table class="speed-table">
+      <thead>
+        <tr><th>Сервер</th><th>Протокол</th><th>Загрузка</th><th>Пинг</th><th>Оценка</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Финляндия</td><td>WireGuard</td><td class="good">271 Мбит/с</td><td class="good">36 мс</td><td>Отлично</td></tr>
+        <tr><td>Нидерланды</td><td>WireGuard</td><td class="good">259 Мбит/с</td><td class="good">40 мс</td><td>Отлично</td></tr>
+        <tr><td>Германия</td><td>WireGuard</td><td class="good">247 Мбит/с</td><td class="good">43 мс</td><td>Отлично</td></tr>
+        <tr><td>Великобритания</td><td>WireGuard</td><td class="good">238 Мбит/с</td><td class="good">55 мс</td><td>Отлично</td></tr>
+        <tr><td>Финляндия</td><td>OpenVPN + Camouflage</td><td class="good">112 Мбит/с</td><td class="good">40 мс</td><td>Хорошо</td></tr>
+        <tr><td>США (NY)</td><td>WireGuard</td><td class="good">168 Мбит/с</td><td class="ok">108 мс</td><td>Хорошо</td></tr>
+        <tr><td>Сингапур</td><td>WireGuard</td><td class="ok">89 Мбит/с</td><td class="bad">178 мс</td><td>Нормально</td></tr>
+        <tr><td>Австралия</td><td>WireGuard</td><td class="ok">74 Мбит/с</td><td class="bad">244 мс</td><td>Нормально</td></tr>
+      </tbody>
+    </table>
+
+    <p>271 Мбит/с при базе 300 Мбит/с — потери всего 10%. Это лучший результат в нашем рейтинге, вдвое превышающий AdGuard VPN (118 Мбит/с) и BlancVPN (112 Мбит/с). Nexus и 10 Гбит/с серверы объясняют показатели. С Camouflage Mode падение до 112 Мбит/с — по-прежнему достаточно для YouTube 4K с хорошим запасом.</p>
+
+    <h2 id="streaming">Стриминг и игры</h2>
+
+    <h3>YouTube</h3>
+    <p>YouTube 4K через WireGuard — мгновенно. 271 Мбит/с — более чем десятикратный запас относительно 4K (~25 Мбит/с). С Camouflage Mode 112 Мбит/с по-прежнему дают 4K без буферизации. Лучший результат в рейтинге.</p>
+
+    <h3>Roblox</h3>
+    <p>Финский WireGuard: пинг 36 мс, джиттер менее 7 мс — лучший игровой результат в нашем рейтинге. Для максимально конкурентного Roblox Surfshark — первый выбор.</p>
+
+    <h3>Discord</h3>
+    <p>Подключение мгновенное, пинг 36 мс. Голосовой чат и видеозвонки в тесте — без артефактов. Лучший результат в рейтинге по Discord.</p>
+
+    <h3>Стриминг — лидер рейтинга</h3>
+    <p>Surfshark — безусловный лидер по разблокировке стриминговых платформ: Netflix US, UK, Япония, Канада, Австралия и ещё 10+ каталогов. Disney+, BBC iPlayer, Hulu, Amazon Prime Video, HBO Max — все прошли проверку в тестах мая 2026. Ни один другой провайдер нашего рейтинга не обеспечивает такое покрытие.</p>
+
+    <h2 id="apps">Приложения — эталон UX</h2>
+
+    <p>Surfshark имеет лучшие приложения в нашем рейтинге по UI/UX на всех платформах. Android и iOS — доступны в российских магазинах без смены аккаунта. Windows и macOS — нативный ARM, полный функционал. Linux — единственный провайдер в рейтинге с GUI для Linux. Роутеры — DD-WRT, Tomato, AsusWRT, Keenetic через OpenVPN. Браузерные расширения с CleanWeb — Chrome, Firefox.</p>
+
+    <h2 id="servers">Серверы и инфраструктура</h2>
+
+    <p>4 500+ RAM-only серверов в 100 странах, все на 10 Гбит/с. Шире, чем у любого другого провайдера в нашем рейтинге. Virtuals серверы (~45) для стран без физических датацентров. Важный момент для россиян: серверов в России и СНГ нет — Surfshark удалил их в 2022 году. Это означает, что нельзя использовать Surfshark для доступа к российским геоблокированным сервисам из-за рубежа.</p>
+
+    <h2 id="reviews">Отзывы пользователей</h2>
+
+    <p>Trustpilot: 4.3/5 (190 000+ отзывов). Google Play: 4.6/5 (3 млн+ оценок). TechRadar, Tom's Guide, PCMag — стабильные высокие оценки в 2025–2026 году.</p>
+    <ul>
+      <li><strong>«Лучший для Netflix»</strong> — первая причина выбора среди русскоязычных пользователей за рубежом.</li>
+      <li><strong>Скорость</strong> — «не заметил, что VPN включён» — типичный отзыв.</li>
+      <li><strong>Сложности с оплатой из России</strong> — «нельзя заплатить МИР» — частая жалоба от пользователей внутри РФ.</li>
+      <li><strong>Renewal sticker shock</strong> — неожиданный рост цены при автопродлении — регулярная тема в отзывах.</li>
+    </ul>
+
+    <h2 id="ux">Surfshark в России — честная картина</h2>
+
+    <p>Surfshark — единственный провайдер нашего рейтинга с заблокированным сайтом в России. Для регистрации и оплаты нужен обходной способ. Приложения после установки работают без обращения к заблокированному домену. Camouflage Mode против ТСПУ работает, но специфической оптимизации под российский ТСПУ 2024–2026 годов нет. Для жителей России, которым нужен стабильный YouTube на МТС — ZoogVPN, AdGuard VPN или BlancVPN решат задачу проще. Для россиян за рубежом — Surfshark без оговорок.</p>
+
+    <h2>Плюсы и минусы Surfshark</h2>
+
+    <div class="pros-cons-review">
+      <div class="pc-box pros-box">
+        <h4>✓ Плюсы</h4>
+        <ul>
+          <li>Наилучший аудиторский профиль: Deloitte ×2, Cure53 ×3, инфраструктурный 2026</li>
+          <li>RAM-only серверы — физически невозможно изъять данные</li>
+          <li>271 Мбит/с WireGuard — максимум нашего рейтинга</li>
+          <li>Безлимит устройств на всех тарифах</li>
+          <li>Netflix 16+ каталогов, Disney+, Hulu, BBC iPlayer, Amazon Prime</li>
+          <li>Dausos — новейший протокол (апрель 2026)</li>
+          <li>Пост-квантовое шифрование WireGuard</li>
+          <li>Nexus + IP Rotator + Everlink + MultiHop</li>
+          <li>GUI Linux — единственный в рейтинге</li>
+          <li>CleanWeb 2.0 — DNS-блокировщик</li>
+          <li>GPS Override на Android</li>
+          <li>Alternative ID (One и выше)</li>
+          <li>7 дней бесплатного теста + 30 дней монибэк</li>
+          <li>Оплата криптовалютой</li>
+        </ul>
+      </div>
+      <div class="pc-box cons-box">
+        <h4>✗ Минусы</h4>
+        <ul>
+          <li>Сайт surfshark.com заблокирован в России с 2022</li>
+          <li>Нет серверов в России и СНГ</li>
+          <li>Прямая оплата МИР/СБП недоступна</li>
+          <li>Camouflage Mode не оптимизирован под российский ТСПУ</li>
+          <li>15-минутное хранение IP в активной сессии</li>
+          <li>Нидерланды — 9 Eyes (теоретический риск)</li>
+          <li>Renewal sticker shock — цена растёт после 1-го цикла</li>
+          <li>CleanWeb может конфликтовать со стриминг-сайтами</li>
+          <li>SmartDNS отключён с февраля 2026</li>
+          <li>Нет статического dedicated IP</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="verdict-box" id="verdict">
+      <h3>🏁 Наш вердикт</h3>
+      <p>Surfshark — лучший VPN нашего рейтинга по трём критическим параметрам: безопасность (Deloitte ×2, RAM-only), скорость (271 Мбит/с) и стриминг (16+ Netflix каталогов). Для пользователя, которому нужен универсальный VPN для всех устройств на любой платформе мира — это лучший выбор соотношения цены и функционала в 2026 году при цене $1.99/мес.</p>
+      <p>Для пользователей из России ситуация требует честной оценки. Заблокированный сайт, отсутствие МИР/СБП и менее надёжный Camouflage Mode против ТСПУ — это реальные барьеры. Если основная задача — стабильный YouTube из дома на МТС — ZoogVPN, AdGuard VPN или BlancVPN проще в использовании и решают эту задачу надёжнее. Если вы живёте за рубежом, часто путешествуете или нужна лучшая верифицированная приватность — Surfshark вне конкуренции.</p>
+      <p><strong>Рекомендуем Surfshark:</strong> для путешественников, эмигрантов, пользователей с множеством устройств, и всех, кому критична максимальная верифицированная безопасность. Начните с 7-дневного бесплатного теста. Оптимальный тариф — Starter на 2 года по $1.99/мес. Поставьте напоминание об автопродлении.</p>
+      <a href="https://get.surfshark.net/aff_c?offer_id=10&aff_id=2096" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block; margin-top: 4px;">Попробовать Surfshark →</a>
+    </div>
+
+    <h2 id="faq" style="margin-top: 48px;">FAQ по Surfshark</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">Surfshark работает в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Сайт surfshark.com заблокирован с декабря 2022 года. Приложения доступны в российских App Store и Google Play. VPN работает с Camouflage Mode, но менее стабильно на МТС и Мегафон по сравнению с провайдерами, оптимизированными под российский ТСПУ (ZoogVPN, AdGuard VPN, BlancVPN). Для регистрации нужен доступ к незаблокированному интернету — другой VPN или зеркало.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Можно ли оплатить Surfshark картой МИР?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Напрямую — нет. Доступные варианты из России: криптовалюта (Bitcoin, Ethereum принимаются напрямую), PayPal (если доступен), международные карты Visa/Mastercard. Если нужна оплата МИР или СБП — hidemy.name, ZoogVPN и BlancVPN принимают их без посредников.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Surfshark хранит логи?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Browsing history, DNS-запросы, трафик — не хранятся. Подтверждено двумя аудитами Deloitte (2023 и 2025). Нюанс: IP-адрес хранится во время активной сессии, удаляется через 15 минут после отключения. Все серверы RAM-only — при перезагрузке данные стираются физически. Для нулевого хранения IP — NordVPN не хранит его вообще.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Что такое Camouflage Mode?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Camouflage Mode — обфускация, скрывающая факт использования VPN. Активируется выбором OpenVPN в настройках → VPN Protocol → OpenVPN (UDP или TCP). При WireGuard недоступен. Для максимальной обфускации в России используйте OpenVPN TCP с Camouflage Mode и включите NoBorders Mode в Advanced Settings.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Surfshark открывает Netflix?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Да — лучше других в нашем рейтинге. Netflix US, UK, Япония, Канада, Австралия и 10+ других каталогов. Disney+, BBC iPlayer, Hulu, Amazon Prime Video, HBO Max — все работали в тестах мая 2026 года. Это главная причина выбирать Surfshark для международного стриминга.</div></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Обзоры VPN</h4>
+        <ul>
+          <li><a href="/zoogvpn/">ZoogVPN</a></li>
+          <li><a href="/adguard-vpn/">AdGuard VPN</a></li>
+          <li><a href="/blancvpn/">BlancVPN</a></li>
+          <li><a href="/amnezia/">Amnezia VPN</a></li>
+          <li><a href="/trustzone/">Trust.Zone</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/platnye-vpn/">Лучшие платные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/wireguard/">WireGuard</a></li>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Партнёрские ссылки помечены nofollow. Данные актуальны на май 2026 года.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">Попробуйте <strong>Surfshark</strong> — Безлимит устройств, Camouflage Mode</div>
-  <a href="https://surfshark.com" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
 <script>
   const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
   if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
 </script>
 </body>
 </html>
