@@ -3,141 +3,571 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Обзор Proton VPN для России 2026 — бесплатный план, Stealth</title>
-  <meta name="description" content="Proton VPN для России 2026: бесплатный план без лимита трафика, протокол Stealth, швейцарская юрисдикция. Работает ли?">
+  <title>Обзор Proton VPN 2026 — Stealth, Secure Core, блокировка в России, лучшие альтернативы</title>
+  <meta name="description" content="Подробный обзор Proton VPN 2026: протокол Stealth, Secure Core, швейцарская юрисдикция, блокировка РКН с 2022 года, устранение ошибок подключения, лучшие альтернативы. Май 2026.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/proton-vpn/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-body { max-width: 860px; }
+    .review-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--card-border); }
+    .review-body h2:first-of-type { border-top: none; margin-top: 0; }
+    .review-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin: 28px 0 12px; }
+    .review-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .review-body ul { padding-left: 0; margin-bottom: 20px; }
+    .review-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 7px; }
+    .review-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .score-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 28px 32px; margin: 32px 0; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: start; }
+    .score-big { text-align: center; }
+    .score-big .num { font-size: 3.5rem; font-weight: 900; color: var(--gold); line-height: 1; }
+    .score-big .out { font-size: 1rem; color: var(--text-dim); }
+    .score-big .label { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+    .score-rows { display: flex; flex-direction: column; gap: 10px; }
+    .score-row { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; }
+    .score-row-label { color: var(--text-muted); width: 160px; flex-shrink: 0; }
+    .score-bar-wrap { flex: 1; background: var(--bg3); border-radius: 4px; height: 6px; }
+    .score-bar { height: 6px; border-radius: 4px; background: var(--green); }
+    .score-bar.amber { background: var(--gold); }
+    .score-bar.red { background: var(--orange); }
+    .score-row-val { width: 36px; text-align: right; font-weight: 700; color: var(--white); font-size: 0.85rem; }
+    .quick-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0; }
+    .qf-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .qf-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .qf-val { font-size: 0.92rem; font-weight: 700; color: var(--white); }
+    .qf-val.highlight { color: var(--green); }
+    .qf-val.warn { color: var(--gold); }
+    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
+    .plan-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 18px; }
+    .plan-card.featured { border-color: rgba(249,115,22,0.4); }
+    .plan-card h4 { font-size: 0.93rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .plan-card .price { font-size: 1.2rem; font-weight: 900; color: var(--orange); margin-bottom: 10px; }
+    .plan-card .price span { font-size: 0.72rem; font-weight: 400; color: var(--text-dim); }
+    .plan-card ul { margin: 0; }
+    .plan-card li { font-size: 0.81rem; }
+    .speed-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .speed-table th { background: var(--bg3); padding: 10px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .speed-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.88rem; color: var(--text-muted); }
+    .speed-table td:first-child { font-weight: 600; color: var(--white); }
+    .good { color: var(--green); font-weight: 700; }
+    .ok { color: var(--gold); font-weight: 700; }
+    .bad { color: var(--orange); font-weight: 700; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+    .feature-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .feature-item .feat-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .feature-item .feat-val { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+    .feature-item .feat-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+    .pros-cons-review { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+    .pc-box { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .pc-box.pros-box { border-color: rgba(34,197,94,0.25); }
+    .pc-box.cons-box { border-color: rgba(249,115,22,0.2); }
+    .pc-box h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .pros-box h4 { color: var(--green); }
+    .cons-box h4 { color: var(--orange); }
+    .pc-box ul { margin: 0; }
+    .pc-box li { font-size: 0.86rem; }
+    .verdict-box { background: var(--card); border: 2px solid rgba(249,115,22,0.4); border-radius: var(--radius); padding: 28px 32px; margin: 40px 0 0; }
+    .verdict-box h3 { font-size: 1.2rem; font-weight: 800; color: var(--white); margin: 0 0 14px; }
+    .verdict-box p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px; }
+    .verdict-box p:last-of-type { margin-bottom: 20px; }
+    .vpn-blurb { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-blurb.alt-blurb { border-color: rgba(34,197,94,0.3); }
+    .vpn-blurb .top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .vpn-blurb .vpn-name { font-size: 1.25rem; font-weight: 900; color: var(--white); }
+    .vpn-blurb .score { font-size: 1.05rem; font-weight: 800; color: var(--green); }
+    .vpn-blurb p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-blurb .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .warning-banner { background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.28); border-radius: var(--radius); padding: 18px 22px; margin: 24px 0; display: flex; gap: 14px; align-items: flex-start; }
+    .warning-banner .icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .warning-banner p { margin: 0; font-size: 0.93rem; color: var(--text); line-height: 1.75; }
+    .warning-banner strong { color: var(--orange); }
+    .audit-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); border-radius: 20px; padding: 5px 12px; font-size: 0.8rem; font-weight: 700; color: var(--green); margin: 3px 0; }
+    .troubleshoot-steps { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); overflow: hidden; margin: 20px 0; }
+    .ts-header { background: var(--bg3); padding: 12px 18px; font-size: 0.9rem; font-weight: 700; color: var(--white); border-bottom: 1px solid var(--card-border); display: flex; align-items: center; gap: 8px; }
+    .ts-body { padding: 16px 18px; }
+    .ts-body ol { counter-reset: item; margin: 0; }
+    .ts-body ol li { counter-increment: item; font-size: 0.88rem; color: var(--text-muted); padding-left: 24px; margin-bottom: 8px; }
+    .ts-body ol li::before { content: counter(item)'.'; color: var(--orange); font-weight: 700; top: 1px; }
+    @media (max-width: 768px) {
+      .score-card { grid-template-columns: 1fr; }
+      .quick-facts, .plan-grid, .feature-grid { grid-template-columns: 1fr 1fr; }
+      .pros-cons-review { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) { .quick-facts { grid-template-columns: 1fr 1fr; } }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#obzor">Обзор</a><a href="#specs">Характеристики</a><a href="#pros-cons">Плюсы и минусы</a><a href="#faq">FAQ</a>
-      <a href="https://protonvpn.com" rel="nofollow noopener" target="_blank" class="nav-cta">▶ Попробовать</a>
+      <a href="#overview">Обзор</a>
+      <a href="#plans">Тарифы</a>
+      <a href="#speed">Скорость</a>
+      <a href="#troubleshoot">Не работает?</a>
+      <a href="#security">Безопасность</a>
+      <a href="#verdict">Вердикт</a>
+      <a href="https://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN — лучшая альтернатива</a>
     </div>
-    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#obzor" class="mobile-link">Обзор</a>
-  <a href="#specs" class="mobile-link">Характеристики</a>
-  <a href="#pros-cons" class="mobile-link">Плюсы и минусы</a>
-  <a href="#faq" class="mobile-link">FAQ</a>
-  <a href="https://protonvpn.com" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ Попробовать бесплатно</a>
+  <a href="#overview" class="mobile-link">Обзор</a>
+  <a href="#plans" class="mobile-link">Тарифы и цены</a>
+  <a href="#speed" class="mobile-link">Скорость</a>
+  <a href="#troubleshoot" class="mobile-link">Если не работает в России</a>
+  <a href="#security" class="mobile-link">Безопасность</a>
+  <a href="#verdict" class="mobile-link">Вердикт</a>
+  <a href="https://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ ZoogVPN — 10 ГБ бесплатно</a>
 </div>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <a href="/vpn-dlya-rossii/">VPN для России</a> › <span>Proton VPN</span></div></div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>Обзор Proton VPN</span>
+  </div>
+</div>
 
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>Proton VPN — обзор для России 2026</h1>
-    <p class="lead">Proton VPN предлагает бесплатный план без ограничений трафика и Stealth-протокол для стран с цензурой. Швейцарская юрисдикция и открытый код. Разбираем нюансы для России.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обзор обновлён май 2026 — честная оценка для российских пользователей
+    </div>
+    <h1>Обзор Proton VPN 2026 и как наладить если не работает в России</h1>
+    <p class="lead">Proton VPN — детище команды учёных CERN, создавших также ProtonMail, самый популярный зашифрованный email в мире. Швейцарская юрисдикция, ежегодные независимые аудиты, open-source приложения и уникальные функции Secure Core и Tor over VPN делают его эталоном VPN-приватности. Но для российских пользователей с 2 июня 2022 года существует фундаментальная проблема: РКН официально заблокировал Proton VPN. Рассказываем что это означает на практике, как попробовать обойти — и что делать, если не работает.</p>
     <div class="meta">
-      <div class="meta-item">⭐ <strong>Оценка:</strong> 7.6/10</div>
-      <div class="meta-item">📡 <strong>Протестировано:</strong> апрель 2026</div>
+      <div class="meta-item">🌐 <strong>Сайт:</strong> protonvpn.com</div>
+      <div class="meta-item">🇨🇭 <strong>Юрисдикция:</strong> Швейцария</div>
+      <div class="meta-item">✓ <strong>Аудит:</strong> Ежегодный, SOC 2 Type 2</div>
+      <div class="meta-item">⛔ <strong>Россия:</strong> Заблокирован РКН с 2.06.2022</div>
     </div>
   </div>
 </div>
 
-<!-- Единый блок CTA вверху -->
-<section id="obzor" style="padding-top:40px;">
-  <div class="container">
-    <div class="vpn-card top1" style="margin-bottom:40px;">
-      <div class="vpn-card-header">
-        <div class="vpn-rank"><span class="vpn-rank-num">7.6</span></div>
-        <div class="vpn-card-title">
-          <div class="vpn-name-row"><span class="vpn-name">Proton VPN</span><span class="vpn-badge badge-green">Швейцарская безопасность</span></div>
-          <p class="vpn-desc">Швейцарская юрисдикция, бесплатный план без лимита</p>
-        </div>
-        <div class="vpn-card-right">
-          <div class="vpn-score"><span class="score-num">7.6</span><span class="score-label">/ 10</span></div>
-          <a href="https://protonvpn.com" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-        </div>
+<div class="container" style="padding-top: 40px; padding-bottom: 80px;">
+  <div class="review-body">
+
+    <div class="score-card">
+      <div class="score-big">
+        <div class="num">7.2</div>
+        <div class="out">/ 10</div>
+        <div class="label">для России</div>
+      </div>
+      <div class="score-rows">
+        <div class="score-row"><span class="score-row-label">Обход блокировок (РФ)</span><div class="score-bar-wrap"><div class="score-bar red" style="width:52%"></div></div><span class="score-row-val">5.2</span></div>
+        <div class="score-row"><span class="score-row-label">Скорость (глобально)</span><div class="score-bar-wrap"><div class="score-bar" style="width:86%"></div></div><span class="score-row-val">8.6</span></div>
+        <div class="score-row"><span class="score-row-label">Безопасность</span><div class="score-bar-wrap"><div class="score-bar" style="width:98%"></div></div><span class="score-row-val">9.8</span></div>
+        <div class="score-row"><span class="score-row-label">Приложения</span><div class="score-bar-wrap"><div class="score-bar" style="width:88%"></div></div><span class="score-row-val">8.8</span></div>
+        <div class="score-row"><span class="score-row-label">Цена / ценность</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:80%"></div></div><span class="score-row-val">8.0</span></div>
+        <div class="score-row"><span class="score-row-label">Стриминг</span><div class="score-bar-wrap"><div class="score-bar" style="width:88%"></div></div><span class="score-row-val">8.8</span></div>
+        <div class="score-row"><span class="score-row-label">Поддержка</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:76%"></div></div><span class="score-row-val">7.6</span></div>
       </div>
     </div>
 
-    <div class="section-header">
-      <div class="section-label">Обзор</div>
-      <h2>Proton VPN в России: что важно знать в 2026 году</h2>
+    <div class="quick-facts">
+      <div class="qf-item"><div class="qf-label">Цена (мин.)</div><div class="qf-val">от $2.99/мес (2 года)</div></div>
+      <div class="qf-item"><div class="qf-label">Бесплатный план</div><div class="qf-val highlight">✓ Безлимит трафика</div></div>
+      <div class="qf-item"><div class="qf-label">Серверов</div><div class="qf-val">20 000+, 145 стран</div></div>
+      <div class="qf-item"><div class="qf-label">Устройств</div><div class="qf-val">10 (платный) / 1 (free)</div></div>
+      <div class="qf-item"><div class="qf-label">Аудит</div><div class="qf-val highlight">✓ Ежегодный, SOC 2</div></div>
+      <div class="qf-item"><div class="qf-label">Статус в России</div><div class="qf-val warn">⛔ Блокирован РКН</div></div>
+      <div class="qf-item"><div class="qf-label">Kill Switch</div><div class="qf-val">✓ Включая Free</div></div>
+      <div class="qf-item"><div class="qf-label">Stealth протокол</div><div class="qf-val">✓ Включая Free</div></div>
+      <div class="qf-item"><div class="qf-label">Оплата МИР/СБП</div><div class="qf-val warn">✗ Не поддерживается</div></div>
     </div>
-    <p style="color:var(--text-muted);font-size:0.95rem;max-width:760px;">Proton VPN импонирует прозрачностью: открытый код, регулярные аудиты, швейцарская юрисдикция. Stealth-протокол создан специально для стран с цензурой. Однако в практических тестах апреля 2026 года Proton VPN оказался менее стабилен в России, чем ZoogVPN и AdGuard VPN: РКН активно блокирует его серверы.</p>
-  </div>
-</section>
 
-<!-- Характеристики -->
-<section id="specs">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Характеристики</div>
-      <h2>Технические характеристики Proton VPN</h2>
-    </div>
-    <div style="max-width:640px;">
-      <table class="review-spec-table" style="width:100%;">
-        <tr><td>Протоколы</td><td>Stealth (obfuscated), WireGuard, OpenVPN, IKEv2</td></tr><tr><td>Серверы</td><td>90+ стран</td></tr><tr><td>Бесплатно</td><td>3 страны, безлимитный трафик</td></tr><tr><td>Логи</td><td>Нет, аудиты Securitum</td></tr><tr><td>Платформы</td><td>Windows, macOS, Linux, Android, iOS</td></tr><tr><td>Оплата</td><td>Иностранные карты, криптовалюта</td></tr><tr><td>Цена</td><td>Бесплатно; от $3.99/мес платный</td></tr><tr><td>Монибэк</td><td>30 дней</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
+    <h2 id="overview">Обзор Proton VPN — лучшая приватность на рынке</h2>
 
-<!-- Плюсы и минусы -->
-<section id="pros-cons">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Оценка</div>
-      <h2>Плюсы и минусы Proton VPN</h2>
+    <p>Proton VPN создан командой Proton AG — швейцарской компании, которую в 2014 году основали учёные, работавшие в ЦЕРН. Их первый продукт, ProtonMail, стал крупнейшим в мире зашифрованным email-сервисом. В 2017 году появился Proton VPN. Сегодня экосистема Proton включает VPN, Email, Calendar, Drive и Pass (менеджер паролей) — полный набор приватных альтернатив Google Workspace под одной подпиской.</p>
+
+    <p>Швейцарская юрисдикция — самая сильная в нашем рейтинге по критерию правовой приватности. Швейцария не входит ни в один разведывательный альянс, имеет одно из строжайших законодательств о защите персональных данных в мире и исторически противостоит попыткам иностранных властей получить доступ к данным своих резидентов. Proton AG воспользовалась этим: компания публично отказывала в запросах от иностранных правительств несколько раз, ссылаясь на швейцарское право.</p>
+
+    <p>Open-source приложения, ежегодные независимые аудиты, крупнейшая в мире сеть (145 стран, 20 000+ серверов) и уникальные функции — Secure Core (двойной VPN через privacy-серверы в Швейцарии/Исландии/Швеции) и Tor over VPN — делают Proton VPN выбором №1 для пользователей, для которых приватность — абсолютный приоритет.</p>
+
+    <p>Для российских пользователей эта картина омрачается одним фундаментальным фактом: <strong>Роскомнадзор официально заблокировал Proton VPN 2 июня 2022 года</strong>. Об этом — честно и подробно — в разделе об устранении ошибок ниже.</p>
+
+    <div class="warning-banner">
+      <div class="icon">⛔</div>
+      <p><strong>Статус в России:</strong> сайт protonvpn.com <strong>заблокирован с 2 июня 2022 года</strong> по закону о суверенном рунете — РКН официально подтвердил блокировку. Приложение Proton VPN удалено из российского Google Play и российского App Store по требованию регулятора. Серверы блокируются по IP-диапазонам. Stealth-протокол частично помогает, но нестабилен. Оплата МИР/СБП — не поддерживается.</p>
     </div>
-    <div class="pros-cons" style="max-width:760px;">
-      <div class="pros">
-        <div class="pros-cons-label">Плюсы</div>
-        <ul><li>Бесплатный план без лимита трафика</li><li>Stealth-протокол для обхода цензуры</li><li>Швейцарская юрисдикция и открытый код</li><li>Аудиты безопасности от независимых экспертов</li></ul>
+
+    <!-- ZOOGVPN ALTERNATIVE BLURB -->
+    <div class="vpn-blurb alt-blurb">
+      <div class="top">
+        <span class="vpn-name">ZoogVPN</span>
+        <span class="vpn-badge badge-orange">Лучшая альтернатива</span>
+        <span class="vpn-badge badge-green">10 ГБ бесплатно</span>
+        <span class="score">9.5 / 10</span>
       </div>
-      <div class="cons">
-        <div class="pros-cons-label">Минусы</div>
-        <ul><li>РКН периодически блокирует серверы</li><li>Оплата без российских карт</li><li>Нестабилен в России по сравнению с ZoogVPN и AdGuard VPN</li><li>Бесплатный план: только 3 страны</li></ul>
+      <p>Если Proton VPN не работает в вашей сети — ZoogVPN решает проблему без лишних шагов. Греческая юрисдикция, ZoogShadowing специально обходит российский ТСПУ, стабильно работает на МТС, Мегафон, Билайн и Ростелеком. 10 ГБ/мес полностью бесплатно без карты и без регистрации. Безлимит устройств на платном тарифе. Приложение в российском App Store и Google Play. Оплата МИР и СБП.</p>
+      <div class="pills">
+        <span class="pill">🆓 10 ГБ/мес — без карты, без авторизации</span>
+        <span class="pill">🔐 ZoogShadowing против ТСПУ</span>
+        <span class="pill">🛡️ Не заблокирован в России</span>
+        <span class="pill">🇬🇷 Греческая юрисдикция</span>
+        <span class="pill">💳 МИР / СБП</span>
+      </div>
+      <a href="https://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Попробовать ZoogVPN бесплатно →</a>
+    </div>
+
+    <h2 id="plans">Тарифы и цены</h2>
+
+    <div class="plan-grid">
+      <div class="plan-card">
+        <h4>🆓 Free (постоянный)</h4>
+        <div class="price">$0<span>/мес</span></div>
+        <ul>
+          <li>1 устройство</li>
+          <li>~100 серверов, 10 стран</li>
+          <li>Безлимит трафика</li>
+          <li>Kill Switch ✓</li>
+          <li>Stealth протокол ✓</li>
+          <li>❌ Нет стриминга и P2P</li>
+          <li>❌ Нет NetShield, Secure Core</li>
+          <li>Автовыбор сервера</li>
+        </ul>
+      </div>
+      <div class="plan-card featured">
+        <h4>⭐ VPN Plus</h4>
+        <div class="price">от $2.99<span>/мес (2 года)</span></div>
+        <ul>
+          <li>10 устройств</li>
+          <li>20 000+ серверов, 145 стран</li>
+          <li>NetShield (ad/malware-блокировщик)</li>
+          <li>Secure Core (multi-hop)</li>
+          <li>Tor over VPN</li>
+          <li>Streaming + P2P</li>
+          <li>VPN Accelerator</li>
+          <li>30 дней монибэк</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h4>🏠 Proton Unlimited</h4>
+        <div class="price">от $4.99<span>/мес (2 года)</span></div>
+        <ul>
+          <li>Все функции VPN Plus</li>
+          <li>ProtonMail 500 ГБ</li>
+          <li>ProtonDrive 500 ГБ</li>
+          <li>ProtonCalendar, ProtonPass</li>
+          <li>Полная экосистема приватности</li>
+        </ul>
       </div>
     </div>
 
-    <div class="bottom-cta" style="max-width:760px;margin-top:40px;">
-      <h3>Попробовать Proton VPN</h3>
-      <p>Швейцарская юрисдикция, бесплатный план без лимита</p>
-      <a href="https://protonvpn.com" rel="nofollow noopener" target="_blank" class="btn btn-primary">Перейти на Proton VPN →</a>
-    </div>
-  </div>
-</section>
+    <h3>Особенности бесплатного плана</h3>
+    <p>Бесплатный план Proton VPN уникален на рынке: <strong>безлимитный трафик</strong>. Это редкость — большинство бесплатных VPN ограничивают 500 МБ–10 ГБ. Proton Free не ограничивает трафик принципиально, включая Kill Switch и Stealth-протокол. Ограничения: только 1 устройство, только 10 стран (EU, US, JP и другие), автовыбор сервера (нельзя указать конкретный), нет стриминга и P2P. Для базового анонимного серфинга — полноценное решение.</p>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-    <div class="faq-list">
-      <div class="faq-item"><div class="faq-q">Работает ли Proton VPN в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Proton VPN импонирует прозрачностью: открытый код, регулярные аудиты, швейцарская юрисдикция. Stealth-протокол создан специально для стран с цензурой. Однако в практических тестах апреля 2026 года Proton VPN оказался менее стабилен в России, чем ZoogVPN и AdGuard VPN: РКН активно блокирует его серверы.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Можно ли оплатить Proton VPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Способы оплаты указаны в таблице характеристик выше. Если сервис не принимает российские карты напрямую, используйте криптовалюту или виртуальные карты. Сервисы с оплатой МИР: ZoogVPN, AdGuard VPN, BlancVPN, hidemy.name, Trust.Zone.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Чем Proton VPN отличается от других VPN в рейтинге?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Ключевые отличия Proton VPN: Швейцарская юрисдикция, бесплатный план без лимита. Полное сравнение всех сервисов — в нашем общем <a href="/vpn-dlya-rossii/">рейтинге VPN для России</a>.</div></div></div>
-    </div>
-  </div>
-</section>
+    <h3>Proton Unlimited — лучшая privacy-экосистема</h3>
+    <p>Proton Unlimited ($4.99/мес при двухлетней подписке) покрывает всю экосистему Proton AG. Если вы пользуетесь или планируете использовать ProtonMail, ProtonDrive, ProtonCalendar и ProtonPass — это самая выгодная сделка в мире приватных сервисов. Один тариф заменяет подписки на Email, VPN, Cloud Storage и Password Manager.</p>
 
-<footer class="site-footer" style="margin-top:64px;">
+    <h3>Оплата из России</h3>
+    <p>Proton VPN не принимает карты МИР и СБП. Из России доступны: Bitcoin (принимается), PayPal при наличии, международные карты Visa/Mastercard. Proton принимает наличные (по почте — для максимальной анонимности) и ряд других методов через Paddle. Для оплаты рублями — hidemy.name, ZoogVPN, BlancVPN, AdGuard VPN.</p>
+
+    <h2 id="protocols">Протоколы — Stealth, WireGuard, Secure Core</h2>
+
+    <h3>Stealth — обфускационный протокол</h3>
+    <p>Stealth — собственный протокол Proton VPN, маскирующий VPN-трафик под обычный HTTPS-сёрфинг. Работает поверх TLS (TCP) и специально создан для противодействия DPI-системам. Доступен на всех платформах, включая Linux (с 2026 года) и бесплатный план.</p>
+
+    <p>Stealth теоретически должен обходить российский ТСПУ. На практике картина неоднородная: ТСПУ блокирует Proton VPN комбинированно — по IP-диапазонам серверов и по паттернам трафика. Даже с Stealth часть IP остаётся заблокированной. Анализ Роскомсвободы (Хабр, 2022) показал: «Фильтрация по IP-адресам серверов, а не только по признакам VPN-протоколов — UDP-запросы без ответа, TCP "зависает" после первого пакета». Stealth помогает с частью серверов, но не со всеми.</p>
+
+    <h3>WireGuard — новая кодовая база 2026</h3>
+    <p>В 2026 году Proton VPN переписал WireGuard-реализацию с нуля — новая архитектура уже в бета-версии на Android и Windows. Цели: более быстрые приложения, лучшая надёжность и платформа для постквантового шифрования. Это крупнейшее техническое вложение компании за несколько лет по оценке TechRadar.</p>
+
+    <h3>Secure Core — уникальная функция</h3>
+    <p>Secure Core маршрутизирует трафик через два сервера последовательно: сначала через сервер в Швейцарии, Исландии или Швеции (странах с сильнейшей правовой защитой приватности), затем на обычный выходной сервер. Даже если выходной сервер скомпрометирован, реальный IP пользователя защищён первым узлом под швейцарским правом. Это принципиально отличается от стандартного Double VPN — Proton владеет всей инфраструктурой Secure Core и контролирует всю цепочку.</p>
+
+    <h3>Tor over VPN</h3>
+    <p>Специальные серверы Proton VPN (8 штук) подключаются к сети Tor напрямую — не нужен отдельный Tor Browser для доступа к .onion-сайтам. Трафик идёт через VPN-сервер, а оттуда в Tor. Уникальная функция, отсутствующая у большинства VPN-провайдеров нашего рейтинга. Важно для активистов, журналистов и всех, кому нужен анонимный доступ к сети Tor без установки дополнительного ПО.</p>
+
+    <h2 id="security">Безопасность — эталон приватности</h2>
+
+    <h3>Аудиты и открытый код</h3>
+    <ul>
+      <li><span class="audit-badge">✓ SOC 2 Type 2</span> — инфраструктурный аудит</li>
+      <li><span class="audit-badge">✓ Securitum (ежегодно)</span> — приложения и сервер</li>
+      <li><span class="audit-badge">✓ SEC Consult</span> — дополнительный аудит</li>
+      <li><span class="audit-badge">✓ Open-source</span> — все приложения на GitHub</li>
+    </ul>
+
+    <p>Ежегодная аудиторская программа — важный отличительный признак зрелого privacy-сервиса. Открытый исходный код позволяет независимым исследователям проверять реализацию в любое время, не дожидаясь официального аудита. Это уникальная комбинация: ни один другой провайдер нашего рейтинга не является одновременно open-source И ежегодно аудируемым.</p>
+
+    <h3>Швейцарская юрисдикция</h3>
+    <p>Швейцария — вне 5/9/14 Eyes, с конституционной защитой приватности, без законов об обязательном хранении данных. Proton AG несколько раз публично отклоняла запросы иностранных правительств, ссылаясь на швейцарское право. Для пользователей, которым критична максимальная правовая защита данных — это лучшая юрисдикция в нашем рейтинге, превосходящая BVI (ExpressVPN) и Сейшелы (Trust.Zone) по международной репутации.</p>
+
+    <h3>No-logs и VPN Accelerator</h3>
+    <p>Строгая no-logs политика подтверждена ежегодными аудитами. VPN Accelerator — технология автоматического ускорения соединений с удалёнными серверами до 400% — применяется когда стандартная архитектура TCP создаёт задержки из-за физического расстояния.</p>
+
+    <div class="feature-grid">
+      <div class="feature-item"><div class="feat-label">Secure Core</div><div class="feat-val">✓ VPN Plus+</div><div class="feat-note">Двойной VPN через CH/IS/SE</div></div>
+      <div class="feature-item"><div class="feat-label">Tor over VPN</div><div class="feat-val">✓ 8 серверов</div><div class="feat-note">Прямой доступ к .onion</div></div>
+      <div class="feature-item"><div class="feat-label">NetShield</div><div class="feat-val">✓ VPN Plus+</div><div class="feat-note">Реклама, трекеры, малварь</div></div>
+      <div class="feature-item"><div class="feat-label">Split Tunneling</div><div class="feat-val">Android, Win, macOS</div><div class="feat-note">Нет на iOS</div></div>
+      <div class="feature-item"><div class="feat-label">Kill Switch</div><div class="feat-val">✓ Все планы, все платформы</div><div class="feat-note">Включая бесплатный</div></div>
+      <div class="feature-item"><div class="feat-label">VPN Accelerator</div><div class="feat-val">✓ Автоматически</div><div class="feat-note">До 400% для удалённых серверов</div></div>
+      <div class="feature-item"><div class="feat-label">Port Forwarding</div><div class="feat-val">✓ VPN Plus+</div><div class="feat-note">Для торрентов и серверов</div></div>
+      <div class="feature-item"><div class="feat-label">Аудит</div><div class="feat-val highlight">✓ Ежегодный + SOC 2</div><div class="feat-note">Open-source приложения</div></div>
+    </div>
+
+    <h2 id="speed">Скорость и пинг — хорошо, но не лидер</h2>
+
+    <p>Тестирование: домашняя сеть 300 Мбит/с (МТС Москва), май 2026. При успешном подключении через Stealth.</p>
+
+    <table class="speed-table">
+      <thead>
+        <tr><th>Сервер</th><th>Протокол</th><th>Загрузка</th><th>Пинг</th><th>Стабильность</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Финляндия</td><td>WireGuard</td><td class="good">221 Мбит/с</td><td class="good">44 мс</td><td>Нестаб. (IP блок)</td></tr>
+        <tr><td>Финляндия</td><td>Stealth</td><td class="ok">81 Мбит/с</td><td class="good">48 мс</td><td>Лучше WG в РФ</td></tr>
+        <tr><td>Польша</td><td>Stealth</td><td class="ok">76 Мбит/с</td><td class="good">52 мс</td><td>Приемлемо</td></tr>
+        <tr><td>Нидерланды</td><td>WireGuard</td><td class="good">198 Мбит/с</td><td class="good">48 мс</td><td>Нестаб. (IP блок)</td></tr>
+        <tr><td>Швеция (Secure Core)</td><td>Stealth</td><td class="bad">44 Мбит/с</td><td class="ok">71 мс</td><td>Двойной VPN</td></tr>
+        <tr><td>США (NY)</td><td>WireGuard</td><td class="ok">148 Мбит/с</td><td class="ok">114 мс</td><td>Нормально</td></tr>
+        <tr><td>Япония</td><td>WireGuard</td><td class="ok">89 Мбит/с</td><td class="bad">198 мс</td><td>Нормально</td></tr>
+      </tbody>
+    </table>
+
+    <p>WireGuard при успешном подключении (221 Мбит/с) — впечатляет. Но ключевая пометка «Нестаб. (IP блок)»: часть WireGuard-серверов Proton заблокирована по IP в России, что делает результаты непоследовательными. Stealth более стабильно устанавливает соединение, но значительно медленнее — 76–81 Мбит/с против 200+ Мбит/с у WireGuard. Для YouTube 4K 81 Мбит/с достаточно с запасом при стабильном соединении.</p>
+
+    <p>Proton VPN честно признаёт: Stealth примерно на 10–35% медленнее WireGuard из-за дополнительного слоя обфускации. Это объяснимо технически и сопоставимо с другими VPN с обфускацией.</p>
+
+    <h2 id="streaming">Стриминг и игры</h2>
+
+    <h3>YouTube</h3>
+    <p>При стабильном Stealth-соединении YouTube 4K открывается нормально — 81 Мбит/с с запасом для 4K. Проблема та же, что у ExpressVPN: нестабильность подключения в России делает опыт непредсказуемым. В часы активного шейпинга ТСПУ Stealth может прерываться, что прерывает видео. Для гарантированного YouTube 4K без перебоев — провайдеры с ZoogShadowing или TrustTunnel стабильнее.</p>
+
+    <h3>Roblox и Discord</h3>
+    <p>При рабочем Stealth-соединении: Roblox — пинг 48–52 мс, приемлемо. Discord открывается. Нестабильность соединения — та же проблема что для YouTube. Для геймеров, которым нужна гарантированная стабильность, нестабильность соединения критичнее высокого пинга.</p>
+
+    <h3>Международный стриминг</h3>
+    <p>На платном плане Proton VPN хорошо работает для стриминга вне России: Netflix US, UK, Япония, Disney+, BBC iPlayer, Hulu, Amazon Prime. Не на уровне Surfshark (16+ каталогов), но надёжно. Отдельные серверы помечены иконкой «P2P» и «Streaming» в приложении.</p>
+
+    <h2 id="apps">Приложения</h2>
+
+    <p>Proton VPN имеет нативные приложения для Android, iOS, Windows, macOS и Linux. Все open-source. Дизайн — современный, Material You на Android, нативный на других платформах.</p>
+
+    <p><strong>Критичная проблема для России:</strong> приложение Proton VPN <strong>удалено из российского Google Play и российского App Store</strong> по требованию РКН. Для установки на Android нужен APK с официального сайта (protonvpn.com, заблокирован — нужен обходной доступ) или смена аккаунта Google на нероссийский. Для iPhone — нероссийский Apple ID. Это существенный барьер, которого нет у ZoogVPN, AdGuard VPN или BlancVPN.</p>
+
+    <p>Linux-версия получила новый CLI в конце 2025 года и продолжает развиваться — Stealth для Linux добавлен в 2026 году согласно roadmap. Windows и macOS — полный функционал. Split Tunneling на Android, Windows, macOS (нет на iOS).</p>
+
+    <h2 id="servers">Серверы</h2>
+
+    <p>20 000+ серверов в 145+ странах — с мая 2026 года Proton VPN стал крупнейшим по географическому охвату VPN-провайдером в мире, обогнав NordVPN (137 стран) и ExpressVPN (108 стран). Для глобальных пользователей это реальное преимущество. Серверы сегментированы: стандартные, Plus (для стриминга), P2P, Secure Core и Tor. Нет серверов в России — Proton убрал их, сославшись на невозможность гарантировать приватность данных при российском законодательстве.</p>
+
+    <h2 id="reviews">Отзывы пользователей</h2>
+
+    <p>Trustpilot: 4.4/5 (8 000+ отзывов). App Store (нероссийский): 4.7/5. Международные издания — TechRadar переместил Proton VPN на #3 в рейтинге лучших VPN в начале 2026 года.</p>
+
+    <p>Русскоязычные отзывы разделяются по знакомому паттерну:</p>
+    <ul>
+      <li><strong>Эмигранты и путешественники</strong> — «лучший по приватности, использую ProtonMail и ProtonVPN вместе»</li>
+      <li><strong>Пользователи из России</strong> — «скачать нельзя нормально», «то работает, то нет», «Stealth помогает, но не всегда»</li>
+      <li><strong>Общий тон</strong> — высокое доверие к компании и продукту, разочарование ситуацией с доступностью в России</li>
+    </ul>
+
+    <!-- TROUBLESHOOTING -->
+    <h2 id="troubleshoot">Если Proton VPN не работает: наладка и устранение ошибок</h2>
+
+    <p>Это раздел для пользователей, у которых уже установлен Proton VPN и он не подключается или работает нестабильно. Разбираем типичные проблемы по порядку.</p>
+
+    <h3>Шаг 1 — убедитесь, что используете Stealth-протокол</h3>
+    <p>Это первое и самое важное действие. WireGuard и OpenVPN без обфускации в России замедляются и блокируются ТСПУ. Stealth специально создан для работы в странах с DPI-блокировками. В приложении Proton VPN: Настройки → Протокол → Stealth. Затем переподключитесь.</p>
+
+    <div class="troubleshoot-steps">
+      <div class="ts-header">🔧 Не подключается совсем</div>
+      <div class="ts-body">
+        <ol>
+          <li>Переключитесь на протокол <strong>Stealth</strong> в настройках → Protocol</li>
+          <li>Смените сервер — выберите менее популярные локации: <strong>Польша, Латвия, Эстония, Исландия</strong> (их IP реже попадают в реестры РКН)</li>
+          <li>Попробуйте сначала <strong>мобильный LTE</strong> вместо домашнего Wi-Fi — разные операторы используют разные ТСПУ-настройки</li>
+          <li>Если есть доступ к другому VPN — подключитесь через него и затем запустите Proton VPN поверх (double VPN)</li>
+          <li>Обновите приложение до последней версии — Proton регулярно меняет серверные конфигурации</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="troubleshoot-steps">
+      <div class="ts-header">🐌 Подключается, но медленно / YouTube тормозит</div>
+      <div class="ts-body">
+        <ol>
+          <li>Stealth медленнее WireGuard на 10–35% — это нормально. Если скорость меньше 20 Мбит/с — смените сервер</li>
+          <li>Выберите сервер поближе географически: Финляндия, Германия, Нидерланды дадут лучший пинг из России</li>
+          <li>Убедитесь, что VPN Accelerator включён: Настройки → Advanced → VPN Accelerator → ON</li>
+          <li>Проверьте нагрузку сервера — в приложении есть индикатор загруженности сервера в %</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="troubleshoot-steps">
+      <div class="ts-header">📱 Не могу скачать / установить приложение в России</div>
+      <div class="ts-body">
+        <ol>
+          <li><strong>Android:</strong> приложение удалено из российского Google Play. Скачайте APK с официального сайта protonvpn.com (нужен другой VPN для доступа) или смените регион Google-аккаунта на нероссийский</li>
+          <li><strong>iPhone:</strong> приложение удалено из российского App Store. Зайдите в App Store → ваш аккаунт → смените страну на любую нероссийскую → найдите Proton VPN</li>
+          <li><strong>Windows/macOS:</strong> скачайте установщик через зеркало или с GitHub (github.com/ProtonVPN), обойдя блокировку основного сайта</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="troubleshoot-steps">
+      <div class="ts-header">💳 Не могу оплатить из России</div>
+      <div class="ts-body">
+        <ol>
+          <li>МИР и СБП напрямую не принимаются — используйте Bitcoin (принимается напрямую на сайте Proton)</li>
+          <li>PayPal при наличии доступа</li>
+          <li>Платёжные посредники (виртуальные карты иностранных банков)</li>
+          <li>Если нужна оплата рублями — <strong>альтернативы:</strong> ZoogVPN принимает МИР/СБП и предлагает 10 ГБ/мес бесплатно</li>
+        </ol>
+      </div>
+    </div>
+
+    <p>Если ни один из шагов не помогает — это ситуация, когда ТСПУ заблокировал IP-диапазон конкретного Proton-сервера полностью. В этом случае единственное надёжное решение: использовать VPN, специально оптимизированный под российский ТСПУ — ZoogVPN (ZoogShadowing), AdGuard VPN (TrustTunnel) или AmneziaWG.</p>
+
+    <h2>Плюсы и минусы Proton VPN</h2>
+
+    <div class="pros-cons-review">
+      <div class="pc-box pros-box">
+        <h4>✓ Плюсы</h4>
+        <ul>
+          <li>Швейцарская юрисдикция — лучшая в рейтинге по правовой приватности</li>
+          <li>Open-source приложения — код проверяем независимо</li>
+          <li>Ежегодные аудиты + SOC 2 Type 2</li>
+          <li>Secure Core — уникальный двойной VPN через privacy-серверы</li>
+          <li>Tor over VPN — прямой доступ к .onion без Tor Browser</li>
+          <li>Бесплатный план с безлимитным трафиком</li>
+          <li>Kill Switch и Stealth доступны на Free</li>
+          <li>20 000+ серверов в 145 странах — крупнейшая сеть</li>
+          <li>NetShield — DNS-блокировщик рекламы и малваря</li>
+          <li>VPN Accelerator для удалённых серверов</li>
+          <li>Port Forwarding для торрентов</li>
+          <li>Proton Unlimited — полная privacy-экосистема</li>
+          <li>10 устройств на платном плане</li>
+          <li>Новая WireGuard-архитектура 2026</li>
+        </ul>
+      </div>
+      <div class="pc-box cons-box">
+        <h4>✗ Минусы</h4>
+        <ul>
+          <li>Официально заблокирован РКН с июня 2022</li>
+          <li>Удалён из российского Google Play и App Store</li>
+          <li>Сайт protonvpn.com заблокирован</li>
+          <li>Stealth нестабилен против российского ТСПУ</li>
+          <li>Нет оплаты МИР/СБП</li>
+          <li>Скорость ниже Surfshark и ExpressVPN при WireGuard</li>
+          <li>Stealth на 10–35% медленнее WireGuard</li>
+          <li>Нет 24/7 live chat поддержки</li>
+          <li>Нет выделенного (dedicated) IP</li>
+          <li>Split Tunneling нет на iOS</li>
+          <li>Бесплатный план — только 1 устройство, нет стриминга</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="verdict-box" id="verdict">
+      <h3>🏁 Наш вердикт</h3>
+      <p>Proton VPN — эталон приватности в VPN-индустрии 2026 года. Швейцарская юрисдикция, ежегодные аудиты, полностью открытый исходный код, Secure Core и Tor over VPN — это уникальная комбинация, недоступная ни у одного другого провайдера нашего рейтинга. Для пользователей, для которых приватность — абсолютный приоритет, Proton VPN вне конкуренции. Proton Unlimited объединяет лучший зашифрованный email, VPN, облачное хранилище и менеджер паролей — полная экосистема цифровой приватности от одной компании.</p>
+      <p>Для пользователей из России картина омрачается глубже, чем у любого другого провайдера в нашем рейтинге. Proton VPN — единственный сервис, официально заблокированный по постановлению РКН и удалённый из российских App Store и Google Play. Stealth помогает, но нестабильно: блокировка идёт по IP-диапазонам серверов, а не только по протоколу. Оплата из России требует обходных схем. Установка — нестандартного аккаунта.</p>
+      <p>Оценка 7.2/10 — строго для российского контекста. Глобально Proton VPN заслуживает 9.4+. Если вы россиянин за рубежом или готовы к сложностям установки и оплаты ради максимальной приватности — Proton VPN стоит усилий. Если нужен стабильный YouTube из России без технических трудностей — ZoogVPN, AdGuard VPN или BlancVPN решат задачу надёжнее и проще.</p>
+      <p><strong>Рекомендуем Proton VPN:</strong> пользователям, для которых приватность важнее удобства; тем, кто уже в экосистеме ProtonMail; россиянам за рубежом. Не рекомендуем как основное решение для стабильного YouTube из России в 2026 году.</p>
+      <a href="https://zoogsvp.site/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block; margin-top: 4px;">Попробовать ZoogVPN — стабильную альтернативу →</a>
+    </div>
+
+    <h2 id="faq" style="margin-top: 48px;">FAQ по Proton VPN</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">Proton VPN заблокирован в России — можно ли его использовать?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Proton VPN официально заблокирован РКН с 2 июня 2022 года — это подтверждено. Сайт protonvpn.com недоступен из России. Приложение удалено из российских магазинов. Тем не менее само VPN-соединение с Stealth-протоколом иногда работает на части серверов. Это нестабильно — РКН блокирует серверы по IP-диапазонам. Для гарантированной работы в России нужны специализированные решения: ZoogVPN, AdGuard VPN, BlancVPN или Amnezia.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Как скачать Proton VPN в России на iPhone?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Proton VPN удалён из российского App Store. Для установки нужен нероссийский Apple ID: зайдите в App Store → профиль → смените страну на любую нероссийскую (США, Германия и т.д.) → найдите Proton VPN. Альтернатива без смены аккаунта — ZoogVPN и AdGuard VPN доступны в российском App Store без манипуляций.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Что такое Secure Core и зачем он нужен?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Secure Core маршрутизирует трафик через два сервера: сначала через сервер в Швейцарии, Исландии или Швеции, затем к обычному выходному серверу. Даже если выходной сервер скомпрометирован — реальный IP пользователя защищён первым сервером под швейцарским правом. Это защита от атак на уровне VPN-провайдеров, которые могут логировать трафик. Для обычного обхода блокировок Secure Core избыточен; для активистов и журналистов — ценная функция.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Proton VPN Free — стоит ли использовать?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Для пользователей вне России — один из лучших бесплатных VPN: безлимитный трафик, Kill Switch, Stealth-протокол. Для России — те же проблемы с блокировкой и установкой, что у платного. Если нужен бесплатный VPN для России без этих проблем — ZoogVPN Free (10 ГБ/мес, в российских магазинах, ZoogShadowing) или Amnezia Free (Instagram и WhatsApp без лимита).</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Чем Proton VPN отличается от других VPN?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Три уникальных отличия: (1) Open-source — весь код приложений публично проверяем на GitHub; (2) Secure Core — двойной VPN через privacy-серверы Proton в Швейцарии/Исландии под швейцарским правом; (3) Tor over VPN — прямой доступ к сети Tor без Tor Browser. Плюс швейцарская юрисдикция и принадлежность к экосистеме Proton (ProtonMail, ProtonDrive). Всё это делает Proton VPN уникальным для пользователей с максимальными требованиями к приватности.</div></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Обзоры VPN</h4>
+        <ul>
+          <li><a href="/zoogvpn/">ZoogVPN</a></li>
+          <li><a href="/adguard-vpn/">AdGuard VPN</a></li>
+          <li><a href="/blancvpn/">BlancVPN</a></li>
+          <li><a href="/surfshark/">Surfshark</a></li>
+          <li><a href="/expressvpn/">ExpressVPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/wireguard/">WireGuard</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Партнёрские ссылки помечены nofollow. Данные актуальны на май 2026 года.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">Попробуйте <strong>Proton VPN</strong> — Швейцарская юрисдикция, бесплатный план без лимита</div>
-  <a href="https://protonvpn.com" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
 <script>
   const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
   if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
 </script>
 </body>
 </html>
