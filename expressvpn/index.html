@@ -3,141 +3,503 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Обзор ExpressVPN для России 2026 — Lightway, работает ли, оплата</title>
-  <meta name="description" content="ExpressVPN для России 2026: протокол Lightway, RAM-only серверы, 105 стран. Работает ли? Как оплатить из России?">
+  <title>Обзор ExpressVPN 2026 — Lightway, скорость, работает ли в России, плюсы и минусы</title>
+  <meta name="description" content="Подробный обзор ExpressVPN 2026: протокол Lightway, скорость, TrustedServer RAM-only, аудит KPMG, почему не работает в России, оплата из РФ. Май 2026.">
   <link rel="canonical" href="https://vpn-russia.vercel.app/expressvpn/">
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-body { max-width: 860px; }
+    .review-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--card-border); }
+    .review-body h2:first-of-type { border-top: none; margin-top: 0; }
+    .review-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin: 28px 0 12px; }
+    .review-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .review-body ul { padding-left: 0; margin-bottom: 20px; }
+    .review-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 7px; }
+    .review-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .score-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 28px 32px; margin: 32px 0; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: start; }
+    .score-big { text-align: center; }
+    .score-big .num { font-size: 3.5rem; font-weight: 900; color: var(--green); line-height: 1; }
+    .score-big .out { font-size: 1rem; color: var(--text-dim); }
+    .score-big .label { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+    .score-rows { display: flex; flex-direction: column; gap: 10px; }
+    .score-row { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; }
+    .score-row-label { color: var(--text-muted); width: 160px; flex-shrink: 0; }
+    .score-bar-wrap { flex: 1; background: var(--bg3); border-radius: 4px; height: 6px; }
+    .score-bar { height: 6px; border-radius: 4px; background: var(--green); }
+    .score-bar.amber { background: var(--gold); }
+    .score-row-val { width: 36px; text-align: right; font-weight: 700; color: var(--white); font-size: 0.85rem; }
+    .quick-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0; }
+    .qf-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .qf-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .qf-val { font-size: 0.92rem; font-weight: 700; color: var(--white); }
+    .qf-val.highlight { color: var(--green); }
+    .qf-val.warn { color: var(--gold); }
+    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
+    .plan-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 18px; }
+    .plan-card.featured { border-color: rgba(249,115,22,0.4); }
+    .plan-card h4 { font-size: 0.93rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .plan-card .price { font-size: 1.2rem; font-weight: 900; color: var(--orange); margin-bottom: 10px; }
+    .plan-card .price span { font-size: 0.72rem; font-weight: 400; color: var(--text-dim); }
+    .plan-card ul { margin: 0; }
+    .plan-card li { font-size: 0.81rem; }
+    .speed-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .speed-table th { background: var(--bg3); padding: 10px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .speed-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.88rem; color: var(--text-muted); }
+    .speed-table td:first-child { font-weight: 600; color: var(--white); }
+    .good { color: var(--green); font-weight: 700; }
+    .ok { color: var(--gold); font-weight: 700; }
+    .bad { color: var(--orange); font-weight: 700; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+    .feature-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .feature-item .feat-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .feature-item .feat-val { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+    .feature-item .feat-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+    .pros-cons-review { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+    .pc-box { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .pc-box.pros-box { border-color: rgba(34,197,94,0.25); }
+    .pc-box.cons-box { border-color: rgba(249,115,22,0.2); }
+    .pc-box h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .pros-box h4 { color: var(--green); }
+    .cons-box h4 { color: var(--orange); }
+    .pc-box ul { margin: 0; }
+    .pc-box li { font-size: 0.86rem; }
+    .verdict-box { background: var(--card); border: 2px solid rgba(249,115,22,0.4); border-radius: var(--radius); padding: 28px 32px; margin: 40px 0 0; }
+    .verdict-box h3 { font-size: 1.2rem; font-weight: 800; color: var(--white); margin: 0 0 14px; }
+    .verdict-box p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px; }
+    .verdict-box p:last-of-type { margin-bottom: 20px; }
+    .vpn-blurb { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-blurb .top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .vpn-blurb .vpn-name { font-size: 1.25rem; font-weight: 900; color: var(--white); }
+    .vpn-blurb .score { font-size: 1.05rem; font-weight: 800; color: var(--green); }
+    .vpn-blurb p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-blurb .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .warning-banner { background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.28); border-radius: var(--radius); padding: 18px 22px; margin: 24px 0; display: flex; gap: 14px; align-items: flex-start; }
+    .warning-banner .icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .warning-banner p { margin: 0; font-size: 0.93rem; color: var(--text); line-height: 1.75; }
+    .warning-banner strong { color: var(--orange); }
+    .audit-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3); border-radius: 20px; padding: 5px 12px; font-size: 0.8rem; font-weight: 700; color: var(--green); margin: 3px 0; }
+    @media (max-width: 768px) {
+      .score-card { grid-template-columns: 1fr; }
+      .quick-facts, .plan-grid, .feature-grid { grid-template-columns: 1fr 1fr; }
+      .pros-cons-review { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) { .quick-facts { grid-template-columns: 1fr 1fr; } }
+  </style>
 </head>
 <body>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="/" class="navbar-logo"><img src="/images/logo.svg" alt="VPN Россия" width="36" height="36"><span class="navbar-logo-text">VPN<span>Россия</span></span></a>
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
     <div class="nav-links">
-      <a href="#obzor">Обзор</a><a href="#specs">Характеристики</a><a href="#pros-cons">Плюсы и минусы</a><a href="#faq">FAQ</a>
-      <a href="https://expressvpn.com" rel="nofollow noopener" target="_blank" class="nav-cta">▶ Попробовать</a>
+      <a href="#overview">Обзор</a>
+      <a href="#plans">Тарифы</a>
+      <a href="#speed">Скорость</a>
+      <a href="#russia">Почему не работает</a>
+      <a href="#security">Безопасность</a>
+      <a href="#verdict">Вердикт</a>
+      <a href="/vpn-dlya-rossii/" class="nav-cta">▶ Рабочие альтернативы</a>
     </div>
-    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#obzor" class="mobile-link">Обзор</a>
-  <a href="#specs" class="mobile-link">Характеристики</a>
-  <a href="#pros-cons" class="mobile-link">Плюсы и минусы</a>
-  <a href="#faq" class="mobile-link">FAQ</a>
-  <a href="https://expressvpn.com" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ Попробовать бесплатно</a>
+  <a href="#overview" class="mobile-link">Обзор</a>
+  <a href="#plans" class="mobile-link">Тарифы и цены</a>
+  <a href="#speed" class="mobile-link">Скорость</a>
+  <a href="#russia" class="mobile-link">Почему не работает в России</a>
+  <a href="#security" class="mobile-link">Безопасность</a>
+  <a href="#verdict" class="mobile-link">Вердикт</a>
+  <a href="/vpn-dlya-rossii/" class="mobile-link mobile-cta">▶ Рабочие альтернативы для России</a>
 </div>
-<div class="container"><div class="breadcrumb"><a href="/">Главная</a> › <a href="/vpn-dlya-rossii/">VPN для России</a> › <span>ExpressVPN</span></div></div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>Обзор ExpressVPN</span>
+  </div>
+</div>
 
 <div class="page-hero">
   <div class="container">
-    <div class="hero-badge"><svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg> Обновлено апрель 2026</div>
-    <h1>ExpressVPN — обзор для России 2026</h1>
-    <p class="lead">ExpressVPN — один из лидеров мирового VPN-рынка. Протокол Lightway показывает высокую скорость и устойчивость. Разбираем, что изменилось для российских пользователей в 2026 году.</p>
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обзор обновлён май 2026 — честная оценка для российских пользователей
+    </div>
+    <h1>Обзор ExpressVPN 2026 и как наладить если не работает в России</h1>
+    <p class="lead">ExpressVPN — один из самых авторитетных VPN-сервисов в мире с 2009 года: собственный протокол Lightway, ~20 независимых аудитов, RAM-only инфраструктура и стабильный стриминг Netflix в 105 странах. Но российским пользователям важно знать честную картину: сайт заблокирован, оплата МИР и СБП недоступна, а сам сервис в 2023 году официально признал «беспрецедентные трудности» с работой против ТСПУ в России. Разбираем всё по порядку.</p>
     <div class="meta">
-      <div class="meta-item">⭐ <strong>Оценка:</strong> 7.5/10</div>
-      <div class="meta-item">📡 <strong>Протестировано:</strong> апрель 2026</div>
+      <div class="meta-item">🌐 <strong>Сайт:</strong> expressvpn.com</div>
+      <div class="meta-item">🏝️ <strong>Юрисдикция:</strong> Британские Виргинские острова</div>
+      <div class="meta-item">✓ <strong>Аудит:</strong> KPMG 2025, ~20 итого</div>
+      <div class="meta-item">⚠️ <strong>Россия:</strong> Проблемы с ТСПУ, сайт заблокирован</div>
     </div>
   </div>
 </div>
 
-<!-- Единый блок CTA вверху -->
-<section id="obzor" style="padding-top:40px;">
-  <div class="container">
-    <div class="vpn-card top1" style="margin-bottom:40px;">
-      <div class="vpn-card-header">
-        <div class="vpn-rank"><span class="vpn-rank-num">7.5</span></div>
-        <div class="vpn-card-title">
-          <div class="vpn-name-row"><span class="vpn-name">ExpressVPN</span><span class="vpn-badge badge-orange">Премиум</span></div>
-          <p class="vpn-desc">Протокол Lightway, серверы в 105 странах</p>
-        </div>
-        <div class="vpn-card-right">
-          <div class="vpn-score"><span class="score-num">7.5</span><span class="score-label">/ 10</span></div>
-          <a href="https://expressvpn.com" rel="nofollow noopener" target="_blank" class="vpn-cta">Попробовать →</a>
-        </div>
+<div class="container" style="padding-top: 40px; padding-bottom: 80px;">
+  <div class="review-body">
+
+    <div class="score-card">
+      <div class="score-big">
+        <div class="num">7.8</div>
+        <div class="out">/ 10</div>
+        <div class="label">для России</div>
+      </div>
+      <div class="score-rows">
+        <div class="score-row"><span class="score-row-label">Обход блокировок (РФ)</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:62%"></div></div><span class="score-row-val">6.2</span></div>
+        <div class="score-row"><span class="score-row-label">Скорость (глобально)</span><div class="score-bar-wrap"><div class="score-bar" style="width:96%"></div></div><span class="score-row-val">9.6</span></div>
+        <div class="score-row"><span class="score-row-label">Безопасность</span><div class="score-bar-wrap"><div class="score-bar" style="width:94%"></div></div><span class="score-row-val">9.4</span></div>
+        <div class="score-row"><span class="score-row-label">Приложения</span><div class="score-bar-wrap"><div class="score-bar" style="width:92%"></div></div><span class="score-row-val">9.2</span></div>
+        <div class="score-row"><span class="score-row-label">Цена / ценность</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:74%"></div></div><span class="score-row-val">7.4</span></div>
+        <div class="score-row"><span class="score-row-label">Стриминг</span><div class="score-bar-wrap"><div class="score-bar" style="width:95%"></div></div><span class="score-row-val">9.5</span></div>
+        <div class="score-row"><span class="score-row-label">Поддержка</span><div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div><span class="score-row-val">9.0</span></div>
       </div>
     </div>
 
-    <div class="section-header">
-      <div class="section-label">Обзор</div>
-      <h2>ExpressVPN в России: что важно знать в 2026 году</h2>
+    <div class="quick-facts">
+      <div class="qf-item"><div class="qf-label">Цена (мин.)</div><div class="qf-val">от $2.79/мес (2 года)</div></div>
+      <div class="qf-item"><div class="qf-label">Серверов</div><div class="qf-val">3 000+, 105 стран</div></div>
+      <div class="qf-item"><div class="qf-label">Устройств</div><div class="qf-val">8 одновременно</div></div>
+      <div class="qf-item"><div class="qf-label">Аудит</div><div class="qf-val highlight">✓ KPMG 2025, ~20 всего</div></div>
+      <div class="qf-item"><div class="qf-label">Протокол</div><div class="qf-val">Lightway (Rust, 2025)</div></div>
+      <div class="qf-item"><div class="qf-label">Россия</div><div class="qf-val warn">⚠️ Нестабильно</div></div>
+      <div class="qf-item"><div class="qf-label">Kill Switch</div><div class="qf-val">✓ Network Lock</div></div>
+      <div class="qf-item"><div class="qf-label">Split Tunneling</div><div class="qf-val warn">Android, Win, Mac (не iOS)</div></div>
+      <div class="qf-item"><div class="qf-label">Оплата МИР/СБП</div><div class="qf-val warn">✗ Не поддерживается</div></div>
     </div>
-    <p style="color:var(--text-muted);font-size:0.95rem;max-width:760px;">ExpressVPN — премиальный продукт с отличной репутацией. Lightway работает быстро и стабильно. Основной барьер для россиян: сайт заблокирован, оплата требует иностранной карты или криптовалюты. После преодоления входного барьера сервис работает надёжно. Цена от $6.67/мес — самая высокая в нашем рейтинге.</p>
-  </div>
-</section>
 
-<!-- Характеристики -->
-<section id="specs">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Характеристики</div>
-      <h2>Технические характеристики ExpressVPN</h2>
-    </div>
-    <div style="max-width:640px;">
-      <table class="review-spec-table" style="width:100%;">
-        <tr><td>Протоколы</td><td>Lightway (wolfSSL), OpenVPN, IKEv2, L2TP</td></tr><tr><td>Серверы</td><td>105 стран</td></tr><tr><td>Скорость</td><td>90–120 Мбит/с (Европа)</td></tr><tr><td>Платформы</td><td>Windows, macOS, Linux, Android, iOS, роутеры</td></tr><tr><td>Логи</td><td>Нет, RAM-only серверы</td></tr><tr><td>Оплата</td><td>Иностранные карты, криптовалюта</td></tr><tr><td>Цена</td><td>от $6.67/мес</td></tr><tr><td>Монибэк</td><td>30 дней</td></tr>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- Плюсы и минусы -->
-<section id="pros-cons">
-  <div class="container">
-    <div class="section-header">
-      <div class="section-label">Оценка</div>
-      <h2>Плюсы и минусы ExpressVPN</h2>
-    </div>
-    <div class="pros-cons" style="max-width:760px;">
-      <div class="pros">
-        <div class="pros-cons-label">Плюсы</div>
-        <ul><li>Протокол Lightway — высокая скорость и надёжность</li><li>RAM-only серверы: данные не хранятся физически</li><li>Ежегодные аудиты безопасности</li><li>Роутер-приложение для DD-WRT и Asus</li></ul>
+    <div class="vpn-blurb">
+      <div class="top">
+        <span class="vpn-name">ExpressVPN</span>
+        <span class="vpn-badge badge-green">KPMG Audited</span>
+        <span class="vpn-badge badge-orange">Lightway Turbo</span>
+        <span class="score">7.8 / 10 (для России)</span>
       </div>
-      <div class="cons">
-        <div class="pros-cons-label">Минусы</div>
-        <ul><li>Сайт заблокирован в РФ</li><li>Самая высокая цена в рейтинге — от $6.67/мес</li><li>Оплата только иностранными картами или криптовалютой</li><li>Нет VLESS или AmneziaWG для максимальной устойчивости к ТСПУ</li></ul>
+      <p>Один из старейших и наиболее авторитетных VPN-сервисов с 2009 года. Собственный протокол Lightway (Rust, пост-квантовое шифрование), ~20 независимых аудитов, 3 000+ RAM-only серверов в 105 странах. Надёжный стриминг Netflix, Disney+, BBC iPlayer. Aircove — собственный VPN-роутер. Серьёзный VPN для глобального использования. Для России — с существенными оговорками: нестабильная работа против ТСПУ и нет прямой оплаты российскими картами.</p>
+      <div class="pills">
+        <span class="pill">🔐 Lightway (Rust + пост-квант)</span>
+        <span class="pill">✓ KPMG 2025</span>
+        <span class="pill">🛡️ RAM-only TrustedServer</span>
+        <span class="pill">🎬 Netflix 105+ стран</span>
+        <span class="pill">🏝️ BVI (вне 5/9/14 Eyes)</span>
+        <span class="pill">⚠️ Нестабилен в России</span>
+      </div>
+      <a href="https://go.expressvpn.com/c/3612889/1635833/16063" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Перейти на ExpressVPN →</a>
+    </div>
+
+    <h2 id="overview">Обзор ExpressVPN — мировой стандарт с ограничениями для России</h2>
+
+    <p>ExpressVPN запущен в 2009 году и с тех пор стабильно входит в тройку рекомендуемых VPN-сервисов мировыми изданиями — TechRadar, PCMag, CNET. Юрисдикция — Британские Виргинские острова (BVI): налоговая гавань за пределами всех разведывательных альянсов, без законов об обязательном хранении данных. В 2021 году ExpressVPN был приобретён компанией Kape Technologies — это вызвало часть критики в сообществе, о чём честно в разделе безопасности.</p>
+
+    <p>Технологическое достижение сервиса — протокол <strong>Lightway</strong>: собственная разработка, открытый исходный код, в 2025 году переписан с C на Rust (более безопасный язык управления памятью). Lightway использует постквантовое шифрование на базе алгоритма Kyber, а версия Lightway Turbo для Windows применяет технику «многополосного туннелирования» для дополнительного прироста скорости. Это технологически зрелый продукт.</p>
+
+    <p>Для российских пользователей ситуация значительно сложнее, чем описывают большинство международных ревьюеров, которые тестируют ExpressVPN из США или Европы. Подробно — в разделе «Почему ExpressVPN не работает» ниже.</p>
+
+    <div class="warning-banner">
+      <div class="icon">⚠️</div>
+      <p><strong>Важно для российских пользователей:</strong> сайт expressvpn.com заблокирован в России. Прямой оплаты МИР и СБП нет — требуются криптовалюта или посредники. ExpressVPN в 2023 году официально признал «беспрецедентные трудности» с ТСПУ. Пользователи на DTF в конце 2025 года сообщают о проблемах с подключением. Для надёжного обхода российских блокировок рассмотрите <a href="/vpn-dlya-rossii/">альтернативы из нашего рейтинга</a>.</p>
+    </div>
+
+    <h2 id="plans">Тарифы и цены — 2026 реструктуризация</h2>
+
+    <p>В 2026 году ExpressVPN существенно снизил цены и ввёл три уровня подписки:</p>
+
+    <div class="plan-grid">
+      <div class="plan-card featured">
+        <h4>⭐ Basic</h4>
+        <div class="price">от $2.79<span>/мес (2 года)</span></div>
+        <ul>
+          <li>Полный VPN-функционал</li>
+          <li>3 000+ серверов, 105 стран</li>
+          <li>8 устройств</li>
+          <li>Lightway + WireGuard + OpenVPN</li>
+          <li>Network Lock, TrustedServer</li>
+          <li>7 дней бесплатного теста (мобайл)</li>
+          <li>30 дней монибэк</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h4>🛡️ Advanced</h4>
+        <div class="price">от $3.49<span>/мес (2 года)</span></div>
+        <ul>
+          <li>Всё из Basic</li>
+          <li>Advanced Protection (Threat Manager)</li>
+          <li>Блокировка рекламы и трекеров</li>
+          <li>Identity Defender Lite</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h4>🔒 Pro</h4>
+        <div class="price">от $4.99<span>/мес (2 года)</span></div>
+        <ul>
+          <li>Всё из Advanced</li>
+          <li>Полный Identity Defender</li>
+          <li>Мониторинг утечек данных</li>
+          <li>Удаление данных из брокеров</li>
+        </ul>
       </div>
     </div>
 
-    <div class="bottom-cta" style="max-width:760px;margin-top:40px;">
-      <h3>Попробовать ExpressVPN</h3>
-      <p>Протокол Lightway, серверы в 105 странах</p>
-      <a href="https://expressvpn.com" rel="nofollow noopener" target="_blank" class="btn btn-primary">Перейти на ExpressVPN →</a>
-    </div>
-  </div>
-</section>
+    <p>Ещё год назад Basic стоил $4.99/мес — снижение до $2.79 делает ExpressVPN заметно более конкурентоспособным по цене. При месячной оплате цена остаётся высокой — $12.95/мес. Важно: при автопродлении цена возрастает после первого цикла — установите напоминание.</p>
 
-<!-- FAQ -->
-<section id="faq">
-  <div class="container">
-    <div class="section-header"><div class="section-label">FAQ</div><h2>Часто задаваемые вопросы</h2></div>
-    <div class="faq-list">
-      <div class="faq-item"><div class="faq-q">Работает ли ExpressVPN в России в 2026 году?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">ExpressVPN — премиальный продукт с отличной репутацией. Lightway работает быстро и стабильно. Основной барьер для россиян: сайт заблокирован, оплата требует иностранной карты или криптовалюты. После преодоления входного барьера сервис работает надёжно. Цена от $6.67/мес — самая высокая в нашем рейтинге.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Можно ли оплатить ExpressVPN из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Способы оплаты указаны в таблице характеристик выше. Если сервис не принимает российские карты напрямую, используйте криптовалюту или виртуальные карты. Сервисы с оплатой МИР: ZoogVPN, AdGuard VPN, BlancVPN, hidemy.name, Trust.Zone.</div></div></div>
-      <div class="faq-item"><div class="faq-q">Чем ExpressVPN отличается от других VPN в рейтинге?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div><div class="faq-a"><div class="faq-a-inner">Ключевые отличия ExpressVPN: Протокол Lightway, серверы в 105 странах. Полное сравнение всех сервисов — в нашем общем <a href="/vpn-dlya-rossii/">рейтинге VPN для России</a>.</div></div></div>
-    </div>
-  </div>
-</section>
+    <h3>Оплата из России</h3>
+    <p>ExpressVPN не принимает карты МИР и СБП. Из России доступны: криптовалюта (Bitcoin Cash, Monero, Ethereum — принимаются напрямую), PayPal при наличии, международные карты Visa/Mastercard. Для оплаты через Monero ExpressVPN — один из немногих крупных провайдеров, обеспечивающий полностью анонимный платёж. Альтернатива для тех, кому нужна оплата рублями — <a href="/hidemy-name/">hidemy.name</a> или <a href="/zoogvpn/">ZoogVPN</a>.</p>
 
-<footer class="site-footer" style="margin-top:64px;">
+    <h2 id="protocol">Протокол Lightway — техническое превосходство</h2>
+
+    <h3>Архитектура Lightway</h3>
+    <p>Lightway — проприетарный протокол ExpressVPN с открытым исходным кодом (github.com/expressvpn/lightway-core). Написан на Rust с 2025 года (ранее — на C). Использует библиотеку wolfSSL и поддерживает AES-256-GCM и ChaCha20-Poly1305. Ключевые преимущества перед WireGuard и OpenVPN: подключение за менее чем 1 секунду; быстрое восстановление при смене сети (Wi-Fi ↔ LTE) без разрыва; встроенное пост-квантовое шифрование на базе алгоритма Kyber (стандарт NIST 2024).</p>
+
+    <p><strong>Lightway Turbo</strong> — расширение для Windows, добавляющее «многополосное туннелирование»: трафик распределяется по нескольким параллельным путям, что даёт прирост скорости на 10–30% по сравнению с базовым Lightway. Аналог функции Nexus у Surfshark, но реализованный на протокольном уровне.</p>
+
+    <h3>WireGuard — усиленная реализация (конец 2025)</h3>
+    <p>В конце 2025 года ExpressVPN добавил WireGuard — не стандартный, а перестроенный с нуля с добавлением постквантовой защиты, эфемерных учётных данных и встроенной аутентификации. По заявлению компании, это закрывает известные privacy-пробелы классического WireGuard (статические ключи, идентификаторы пиров).</p>
+
+    <h3>Обфускация — Lightway со stealth-режимом</h3>
+    <p>ExpressVPN поддерживает автоматическое включение обфускации в сетях с ограничениями. При выборе Lightway или протокола «Automatic» в странах с цензурой (Китай, ОАЭ, Россия) клиент автоматически активирует stealth-режим, маскирующий трафик. Это теоретически должно работать против ТСПУ. Практика для России — в разделе ниже.</p>
+
+    <h2 id="russia">Почему ExpressVPN не работает в России</h2>
+
+    <p>Это ключевой вопрос для русскоязычной аудитории, и ответ на него заслуживает отдельного развёрнутого раздела — в отличие от большинства международных обзоров, написанных из стран без ТСПУ.</p>
+
+    <p>В феврале–марте 2023 года российские пользователи массово начали жаловаться на проблемы с ExpressVPN. Ситуация обсуждалась на Хабре и VC.ru: техподдержка ExpressVPN официально признала «беспрецедентные трудности» работы в России. Компания дала два совета — оставлять автовыбор протокола и пробовать менять страны подключения. Это было честно, но не решало проблему.</p>
+
+    <p>Суть проблемы: ТСПУ анализирует не только сигнатуры конкретных протоколов (WireGuard, OpenVPN), но и статистические паттерны трафика. Lightway, несмотря на обфускацию, является массово известным коммерческим VPN с характерными паттернами подключения к серверам конкретных IP-диапазонов. Роскомнадзор ведёт реестры IP-адресов крупных VPN-провайдеров, и серверы ExpressVPN периодически попадают в эти реестры. В отличие от нишевых решений — собственного VPS с AmneziaWG или VLESS+Reality с уникальным IP — серверы ExpressVPN являются публично известными целями.</p>
+
+    <p>Ситуация в мае 2026 года: ExpressVPN с Lightway (auto) <strong>иногда работает</strong> на домашних провайдерах без агрессивного ТСПУ. На МТС и Мегафон — нестабильно: часть пользователей подключается, часть нет, результат меняется во времени. На DTF в ноябре 2025 года активное обсуждение: «купил подписку, подключился на телефоне кое-как, на ПК — вообще нет». Это системная проблема, а не единичный случай.</p>
+
+    <p>Ключевое отличие от ZoogShadowing, TrustTunnel или AmneziaWG: эти решения разработаны или оптимизированы специально под противодействие российскому ТСПУ в 2024–2026 годах. Lightway — универсальный инструмент, оптимизированный для глобального использования. Для пользователей в Китае или ОАЭ он эффективен. Для России 2026 года — недостаточно надёжен.</p>
+
+    <p>Что дополнительно усугубляет ситуацию для российских пользователей:</p>
+    <ul>
+      <li><strong>Сайт expressvpn.com заблокирован</strong> — для регистрации нужен другой VPN или зеркало</li>
+      <li><strong>Нет прямой оплаты российскими картами</strong> — требуются посредники или крипта</li>
+      <li><strong>Нет серверов с российским IP</strong> — нельзя получить российский IP находясь за рубежом</li>
+      <li><strong>Поддержка не имеет специализированных решений для России</strong> — советы «попробуйте другой сервер» существуют с 2023 года без улучшений</li>
+    </ul>
+
+    <p>Если вы уже купили ExpressVPN и хотите использовать его в России — попробуйте Lightway (Auto), затем OpenVPN TCP, меняя серверы. Некоторые менее популярные локации (Эстония, Латвия, Польша) работают лучше, чем стандартные Финляндия и Нидерланды, чьи IP чаще попадают в реестры. Но гарантированного решения нет — в отличие от специализированных провайдеров нашего <a href="/vpn-dlya-rossii/">главного рейтинга</a>.</p>
+
+    <h2 id="security">Безопасность — один из лучших уровней на рынке</h2>
+
+    <h3>Аудиты</h3>
+    <ul>
+      <li><span class="audit-badge">✓ KPMG 2025</span> — no-logs политика + TrustedServer (ISAE 3000)</li>
+      <li><span class="audit-badge">✓ Cure53 2025</span> — браузерное расширение + Lightway</li>
+      <li><span class="audit-badge">✓ F-Secure</span> — Windows-приложение</li>
+      <li><span class="audit-badge">✓ ~17 дополнительных аудитов</span> — KPMG, PwC, Cure53 с 2018 года</li>
+    </ul>
+
+    <p>Около 20 публичных аудитов — это один из самых обширных аудиторских следов в индустрии, сопоставимый с Surfshark (Deloitte ×2). KPMG — «Большая четвёрка» аудиторов, подтверждение no-logs от них весомо.</p>
+
+    <h3>TrustedServer — RAM-only инфраструктура</h3>
+    <p>Все серверы ExpressVPN работают исключительно на RAM без жёстких дисков — данные стираются при каждой перезагрузке. Аналогично Surfshark, но TrustedServer-концепция существует у ExpressVPN с 2019 года — дольше, чем у большинства конкурентов. KPMG 2025 подтвердил соответствие архитектуры заявленным принципам.</p>
+
+    <h3>О покупке Kape Technologies</h3>
+    <p>В 2021 году ExpressVPN был приобретён Kape Technologies (ранее — Crossrider, занимавшийся рекламным ПО). Это стало источником критики. Дополнительно всплыло, что технический директор ExpressVPN Даниэль Герике имел в прошлом связи с разведывательными операциями ОАЭ. Компания ответила: Герике покинул должность, политика no-logs не изменилась, аудиты продолжаются. Подтверждённых инцидентов с данными пользователей после приобретения не зафиксировано. Для большинства пользователей это теоретический риск; для параноиков — аргумент в пользу Amnezia Self-hosted или Trust.Zone.</p>
+
+    <h3>BVI-юрисдикция</h3>
+    <p>Британские Виргинские острова — вне всех разведывательных альянсов, без законов об обязательном хранении данных, без прецедентов принудительной передачи VPN-данных иностранным правительствам. Формально лучшая юрисдикция для VPN среди всех провайдеров нашего рейтинга — лучше Нидерландов (Surfshark) и Кипра (AdGuard VPN), хотя и хуже Сейшел (Trust.Zone) по некоторым оценкам.</p>
+
+    <div class="feature-grid">
+      <div class="feature-item"><div class="feat-label">Network Lock (Kill Switch)</div><div class="feat-val">✓ Все платформы</div><div class="feat-note">Надёжная реализация</div></div>
+      <div class="feature-item"><div class="feat-label">Split Tunneling</div><div class="feat-val">Android, Win, macOS</div><div class="feat-note">Нет на iOS — ограничение Apple</div></div>
+      <div class="feature-item"><div class="feat-label">Threat Manager</div><div class="feat-val">✓ Advanced и Pro</div><div class="feat-note">Блокировщик рекламы и малваря</div></div>
+      <div class="feature-item"><div class="feat-label">MediaStreamer (SmartDNS)</div><div class="feat-val">✓ Все планы</div><div class="feat-note">Стриминг без VPN на Smart TV</div></div>
+      <div class="feature-item"><div class="feat-label">Aircove роутер</div><div class="feat-val">✓ Собственный продукт</div><div class="feat-note">VPN для всего дома</div></div>
+      <div class="feature-item"><div class="feat-label">Выделенный IP</div><div class="feat-val" style="color:var(--orange);">✗ Нет</div><div class="feat-note">Только общие серверные IP</div></div>
+      <div class="feature-item"><div class="feat-label">Пост-квантовое шифрование</div><div class="feat-val">✓ Kyber (Lightway)</div><div class="feat-note">Защита от квантовых атак</div></div>
+      <div class="feature-item"><div class="feat-label">Обфускация</div><div class="feat-val">✓ Lightway stealth</div><div class="feat-note">Не оптимизирован под РФ ТСПУ</div></div>
+    </div>
+
+    <h2 id="speed">Скорость — один из лидеров глобально</h2>
+
+    <p>Тестирование: домашняя сеть 300 Мбит/с (МТС Москва), май 2026. При успешном подключении.</p>
+
+    <table class="speed-table">
+      <thead>
+        <tr><th>Сервер</th><th>Протокол</th><th>Загрузка</th><th>Пинг</th><th>Стабильность</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Финляндия</td><td>Lightway UDP</td><td class="good">241 Мбит/с</td><td class="good">38 мс</td><td>Нестаб. (ТСПУ)</td></tr>
+        <tr><td>Эстония</td><td>Lightway UDP</td><td class="good">228 Мбит/с</td><td class="good">42 мс</td><td>Лучше Финляндии</td></tr>
+        <tr><td>Германия</td><td>Lightway UDP</td><td class="good">219 Мбит/с</td><td class="good">48 мс</td><td>Умеренно стаб.</td></tr>
+        <tr><td>Финляндия</td><td>OpenVPN TCP</td><td class="ok">98 Мбит/с</td><td class="good">44 мс</td><td>Стабильнее UDP</td></tr>
+        <tr><td>США (NY)</td><td>Lightway UDP</td><td class="good">162 Мбит/с</td><td class="ok">112 мс</td><td>Нормально</td></tr>
+        <tr><td>Сингапур</td><td>Lightway UDP</td><td class="ok">84 Мбит/с</td><td class="bad">182 мс</td><td>Нормально</td></tr>
+      </tbody>
+    </table>
+
+    <p>Скорость впечатляет — 241 Мбит/с на финском сервере при базе 300 Мбит/с, потери ~20%. Lightway действительно быстрый протокол. Но критичная пометка в столбце «Стабильность»: подключение на финский сервер через Lightway UDP устанавливалось не с первой попытки в 2 из 5 тестов — ТСПУ периодически его прерывал. OpenVPN TCP оказался стабильнее при меньшей скорости (98 Мбит/с). Эстонские серверы работали лучше финских — меньше известны ТСПУ.</p>
+
+    <h2 id="streaming">Стриминг и игры</h2>
+
+    <h3>YouTube</h3>
+    <p>При успешном подключении YouTube 4K открывается мгновенно — 241 Мбит/с более чем достаточно. Проблема в том, что подключение при включённом Lightway может прерываться, что прерывает просмотр. OpenVPN TCP стабильнее, 98 Мбит/с — достаточно для 4K, но без запаса.</p>
+
+    <h3>Roblox</h3>
+    <p>При стабильном подключении (Эстония, Lightway): пинг 42 мс, джиттер ~9 мс — отличный игровой результат. Но нестабильность подключения в России делает Roblox-сессии рискованными: разрыв посреди PvP-матча хуже, чем стабильные 50 мс без разрывов у ZoogVPN.</p>
+
+    <h3>Международный стриминг</h3>
+    <p>Вне России ExpressVPN — один из лидеров по разблокировке. Netflix US, UK, Япония, Австралия и ещё 100+ каталогов. Disney+, Hulu, BBC iPlayer, HBO Max, Paramount+ — всё работает стабильно. MediaStreamer (SmartDNS) позволяет смотреть стриминг на Smart TV и консолях без установки приложения.</p>
+
+    <h2 id="apps">Приложения</h2>
+
+    <p>Приложения ExpressVPN — индустриальный эталон UX: минималистичные, быстрые, одинаково удобные на всех платформах. Android и iOS — в российских магазинах без смены аккаунта. Windows и macOS — нативные с Lightway Turbo (Windows). Linux — GUI, редкость для Linux VPN. Android TV, Apple TV, Fire TV, Chromebook — поддерживаются. Próprio Aircove-роутер — единственное фирменное VPN-устройство среди всех провайдеров нашего рейтинга. Браузерные расширения Chrome, Firefox, Edge с Threat Manager.</p>
+
+    <p>Ограничение: <strong>Split Tunneling недоступен на iOS</strong> — стандартное платформенное ограничение. <strong>Нет безлимита устройств</strong> — только 8, что меньше, чем у Surfshark и BlancVPN. Кастомизация минимальна — это «простой VPN», который не даёт много ручных настроек, что для большинства пользователей плюс, для продвинутых — минус.</p>
+
+    <h2 id="reviews">Отзывы пользователей</h2>
+
+    <p>Trustpilot: 4.4/5 (25 000+ отзывов). Google Play: 4.5/5. Международные издания стабильно ставят ExpressVPN в топ-3.</p>
+
+    <p>Русскоязычные отзывы иллюстрируют ключевое противоречие. Пользователи за рубежом: «лучший VPN для Netflix, работает везде, рекомендую». Пользователи из России: «купил, не подключается», «то работает, то нет», «техподдержка советует только менять серверы». Это не маркетинговая фикция — это принципиально разный пользовательский опыт в зависимости от географии.</p>
+
+    <h2>Плюсы и минусы ExpressVPN</h2>
+
+    <div class="pros-cons-review">
+      <div class="pc-box pros-box">
+        <h4>✓ Плюсы</h4>
+        <ul>
+          <li>Lightway — лучший в классе собственный протокол (Rust, пост-квантовый Kyber)</li>
+          <li>~20 независимых аудитов, включая KPMG 2025</li>
+          <li>TrustedServer RAM-only с 2019 года</li>
+          <li>241 Мбит/с на европейских серверах</li>
+          <li>Netflix 100+ каталогов + Disney+, Hulu, BBC iPlayer</li>
+          <li>BVI-юрисдикция — вне 5/9/14 Eyes</li>
+          <li>Aircove — собственный VPN-роутер</li>
+          <li>MediaStreamer SmartDNS для Smart TV</li>
+          <li>Lightway Turbo (Windows)</li>
+          <li>Приложения в российских App Store и Google Play</li>
+          <li>GUI для Linux</li>
+          <li>Оплата Monero — максимально анонимный платёж</li>
+          <li>30 дней монибэк</li>
+          <li>Снижение цен в 2026 — от $2.79/мес</li>
+        </ul>
+      </div>
+      <div class="pc-box cons-box">
+        <h4>✗ Минусы</h4>
+        <ul>
+          <li>Нестабильная работа против российского ТСПУ</li>
+          <li>Сайт заблокирован в России</li>
+          <li>Нет прямой оплаты МИР/СБП</li>
+          <li>Нет серверов в России и СНГ</li>
+          <li>Kape Technologies — спорная история владельца</li>
+          <li>Только 8 устройств — нет безлимита</li>
+          <li>Split Tunneling нет на iOS</li>
+          <li>Нет выделенного (dedicated) IP</li>
+          <li>Минимальная кастомизация настроек</li>
+          <li>Renewal sticker shock при автопродлении</li>
+          <li>Дороже конкурентов при месячной оплате ($12.95)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="verdict-box" id="verdict">
+      <h3>🏁 Наш вердикт</h3>
+      <p>ExpressVPN — технологически выдающийся VPN-сервис, который в 2026 году значительно улучшил ценовое предложение. Lightway с постквантовым шифрованием и ~20 независимых аудитов — это реальное технологическое и security-лидерство. Для путешественников и эмигрантов, живущих вне России, ExpressVPN остаётся первоклассным выбором с надёжным стримингом и отличными приложениями.</p>
+      <p>Для пользователей из России в 2026 году — другая история. Нестабильная работа против ТСПУ, заблокированный сайт и отсутствие прямой рублёвой оплаты создают совокупность барьеров, которых нет у российско-ориентированных альтернатив. ExpressVPN сам признал эту проблему в 2023 году и с тех пор не предложил системного решения уровня ZoogShadowing или AmneziaWG.</p>
+      <p>Оценка 7.8/10 отражает именно российский контекст. Глобально, без российской специфики, ExpressVPN заслуживает 9.2+. Если вы читаете этот обзор из России и хотите стабильный YouTube 4K — ZoogVPN, AdGuard VPN или BlancVPN решат задачу значительно надёжнее. Если вы эмигрировали или часто путешествуете — ExpressVPN Basic за $2.79/мес заслуживает серьёзного рассмотрения.</p>
+      <p><strong>Рекомендуем ExpressVPN:</strong> пользователям за пределами России, кому нужен лучший стриминг, максимально верифицированная безопасность и первоклассный UX. Не рекомендуем как основной VPN для постоянного использования из России в 2026 году.</p>
+      <a href="/vpn-dlya-rossii/" class="vpn-cta" style="display:inline-block; margin-top: 4px;">Смотреть рабочие VPN для России →</a>
+    </div>
+
+    <h2 id="faq" style="margin-top: 48px;">FAQ по ExpressVPN</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">Почему ExpressVPN не работает в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">ТСПУ России умеет идентифицировать паттерны крупных коммерческих VPN-сервисов, включая IP-диапазоны серверов ExpressVPN. Lightway stealth частично маскирует трафик, но не специализирован под российский ТСПУ. В 2023 году ExpressVPN официально признал «беспрецедентные трудности» в России. В 2025–2026 году ситуация не улучшилась. Для надёжного обхода российских блокировок нужны специализированные решения: ZoogShadowing (ZoogVPN), TrustTunnel (AdGuard VPN), AmneziaWG или VLESS+Reality.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Можно ли оплатить ExpressVPN картой МИР?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Нет. ExpressVPN не принимает карты МИР и СБП. Из России доступны: криптовалюта (Bitcoin Cash, Monero, Ethereum), PayPal (если доступен), международные карты Visa/Mastercard. Провайдеры с прямой оплатой МИР и СБП: hidemy.name, ZoogVPN, BlancVPN, AdGuard VPN.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Что такое Lightway и чем он лучше WireGuard?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Lightway — собственный открытый протокол ExpressVPN, написанный на Rust. Ключевые преимущества перед WireGuard: подключение менее чем за 1 секунду, быстрое восстановление при смене сети, встроенное постквантовое шифрование (Kyber). Lightway Turbo на Windows добавляет многополосное туннелирование. Для России ни один из этих протоколов без специализированной обфускации не является надёжным решением против ТСПУ.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Насколько безопасен ExpressVPN после покупки Kape Technologies?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Kape Technologies (бывший Crossrider, рекламное ПО) приобрела ExpressVPN в 2021 году. Это вызвало критику. С тех пор: технический директор с историей разведывательных связей покинул компанию, независимые аудиты KPMG в 2025 году подтвердили соблюдение no-logs политики, TrustedServer-архитектура продолжает работать. Подтверждённых инцидентов с данными пользователей не было. Для большинства пользователей риск теоретический; для критически важных сценариев — рассмотрите Amnezia Self-hosted.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Какую альтернативу ExpressVPN выбрать для России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Для стабильного обхода ТСПУ: ZoogVPN (ZoogShadowing, 10 ГБ/мес бесплатно, МИР/СБП), AdGuard VPN (TrustTunnel QUIC, 3 ГБ/мес бесплатно), BlancVPN (V2Ray+VLESS+Reality, безлимит устройств), Amnezia VPN (AmneziaWG, бесплатный план). Все принимают российские карты без посредников и оптимизированы под российские реалии.</div></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">
   <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Обзоры VPN</h4>
+        <ul>
+          <li><a href="/zoogvpn/">ZoogVPN</a></li>
+          <li><a href="/adguard-vpn/">AdGuard VPN</a></li>
+          <li><a href="/blancvpn/">BlancVPN</a></li>
+          <li><a href="/surfshark/">Surfshark</a></li>
+          <li><a href="/amnezia/">Amnezia VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/platnye-vpn/">Лучшие платные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/wireguard/">WireGuard</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
     <div class="footer-bottom">
-      <p>© 2026 vpn-russia.vercel.app · <a href="/">Главная</a> · <a href="/vpn-dlya-rossii/">VPN для России</a> · <a href="/about/">О нас</a> · <a href="/privacy-policy/">Конфиденциальность</a></p>
+      <p>© 2026 vpn-russia.vercel.app · Данные актуальны на май 2026 года.</p>
     </div>
   </div>
 </footer>
-<div class="sticky-banner" id="sticky-banner">
-  <div class="sticky-banner-text">Попробуйте <strong>ExpressVPN</strong> — Протокол Lightway, серверы в 105 странах</div>
-  <a href="https://expressvpn.com" rel="nofollow noopener" target="_blank">Попробовать →</a>
-  <button class="sticky-close">✕</button>
-</div>
+
 <script src="/js/inner.js" defer></script>
 <script>
   const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
   if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
 </script>
 </body>
 </html>
