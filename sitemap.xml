@@ -45,4 +45,5 @@
   <url><loc>https://vpn-russia.vercel.app/expressvpn/</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
   <url><loc>https://vpn-russia.vercel.app/proton-vpn/</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
   <url><loc>https://vpn-russia.vercel.app/browsec/</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
+  <url><loc>https://vpn-russia.vercel.app/windscribe/</loc><changefreq>monthly</changefreq><priority>0.75</priority></url>
 </urlset>
