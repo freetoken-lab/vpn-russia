@@ -1,1 +1,532 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Windscribe VPN — скачать на ПК и Android, Windscribe Pro, промокоды, работает ли в России 2026</title>
+  <meta name="description" content="Обзор Windscribe VPN 2026: скачать Windscribe на ПК и Android, Windscribe Pro от $2.42/мес, промокоды, как оплатить из России, почему не работает и лучшие альтернативы. Май 2026.">
+  <link rel="canonical" href="https://vpn-russia.vercel.app/windscribe/">
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/inner.css">
+  <style>
+    .review-body { max-width: 860px; }
+    .review-body h2 { font-size: 1.45rem; font-weight: 800; color: var(--white); margin: 48px 0 16px; padding-top: 8px; border-top: 1px solid var(--card-border); }
+    .review-body h2:first-of-type { border-top: none; margin-top: 0; }
+    .review-body h3 { font-size: 1.05rem; font-weight: 700; color: var(--white); margin: 28px 0 12px; }
+    .review-body p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+    .review-body ul { padding-left: 0; margin-bottom: 20px; }
+    .review-body li { font-size: 0.93rem; color: var(--text-muted); line-height: 1.75; padding-left: 20px; position: relative; margin-bottom: 7px; }
+    .review-body li::before { content: '→'; position: absolute; left: 0; color: var(--orange); font-size: 0.8rem; top: 3px; }
+    .score-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 28px 32px; margin: 32px 0; display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: start; }
+    .score-big { text-align: center; }
+    .score-big .num { font-size: 3.5rem; font-weight: 900; color: var(--gold); line-height: 1; }
+    .score-big .out { font-size: 1rem; color: var(--text-dim); }
+    .score-big .label { font-size: 0.75rem; color: var(--text-dim); margin-top: 4px; }
+    .score-rows { display: flex; flex-direction: column; gap: 10px; }
+    .score-row { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; }
+    .score-row-label { color: var(--text-muted); width: 160px; flex-shrink: 0; }
+    .score-bar-wrap { flex: 1; background: var(--bg3); border-radius: 4px; height: 6px; }
+    .score-bar { height: 6px; border-radius: 4px; background: var(--green); }
+    .score-bar.amber { background: var(--gold); }
+    .score-bar.red { background: var(--orange); }
+    .score-row-val { width: 36px; text-align: right; font-weight: 700; color: var(--white); font-size: 0.85rem; }
+    .quick-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 28px 0; }
+    .qf-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .qf-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .qf-val { font-size: 0.92rem; font-weight: 700; color: var(--white); }
+    .qf-val.highlight { color: var(--green); }
+    .qf-val.warn { color: var(--gold); }
+    .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 24px 0; }
+    .plan-card { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 18px; }
+    .plan-card.featured { border-color: rgba(249,115,22,0.4); }
+    .plan-card h4 { font-size: 0.93rem; font-weight: 800; color: var(--white); margin-bottom: 4px; }
+    .plan-card .price { font-size: 1.2rem; font-weight: 900; color: var(--orange); margin-bottom: 10px; }
+    .plan-card .price span { font-size: 0.72rem; font-weight: 400; color: var(--text-dim); }
+    .plan-card ul { margin: 0; }
+    .plan-card li { font-size: 0.81rem; }
+    .speed-table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    .speed-table th { background: var(--bg3); padding: 10px 14px; text-align: left; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); border-bottom: 1px solid var(--card-border); }
+    .speed-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.88rem; color: var(--text-muted); }
+    .speed-table td:first-child { font-weight: 600; color: var(--white); }
+    .good { color: var(--green); font-weight: 700; }
+    .ok { color: var(--gold); font-weight: 700; }
+    .bad { color: var(--orange); font-weight: 700; }
+    .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 20px 0; }
+    .feature-item { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius-sm); padding: 14px 16px; }
+    .feature-item .feat-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px; }
+    .feature-item .feat-val { font-size: 0.9rem; font-weight: 600; color: var(--white); }
+    .feature-item .feat-note { font-size: 0.8rem; color: var(--text-muted); margin-top: 2px; }
+    .pros-cons-review { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 24px 0; }
+    .pc-box { background: var(--card); border: 1px solid var(--card-border); border-radius: var(--radius); padding: 20px; }
+    .pc-box.pros-box { border-color: rgba(34,197,94,0.25); }
+    .pc-box.cons-box { border-color: rgba(249,115,22,0.2); }
+    .pc-box h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 12px; }
+    .pros-box h4 { color: var(--green); }
+    .cons-box h4 { color: var(--orange); }
+    .pc-box ul { margin: 0; }
+    .pc-box li { font-size: 0.86rem; }
+    .verdict-box { background: var(--card); border: 2px solid rgba(249,115,22,0.4); border-radius: var(--radius); padding: 28px 32px; margin: 40px 0 0; }
+    .verdict-box h3 { font-size: 1.2rem; font-weight: 800; color: var(--white); margin: 0 0 14px; }
+    .verdict-box p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 12px; }
+    .verdict-box p:last-of-type { margin-bottom: 20px; }
+    .vpn-blurb { background: var(--card); border: 1px solid rgba(249,115,22,0.3); border-radius: var(--radius); padding: 24px; margin: 32px 0; }
+    .vpn-blurb.alt-blurb { border-color: rgba(34,197,94,0.3); }
+    .vpn-blurb .top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap; }
+    .vpn-blurb .vpn-name { font-size: 1.25rem; font-weight: 900; color: var(--white); }
+    .vpn-blurb .score { font-size: 1.05rem; font-weight: 800; color: var(--green); }
+    .vpn-blurb p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 14px; }
+    .vpn-blurb .pills { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+    .warning-banner { background: rgba(249,115,22,0.08); border: 1px solid rgba(249,115,22,0.28); border-radius: var(--radius); padding: 18px 22px; margin: 24px 0; display: flex; gap: 14px; align-items: flex-start; }
+    .warning-banner .icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+    .warning-banner p { margin: 0; font-size: 0.93rem; color: var(--text); line-height: 1.75; }
+    .warning-banner strong { color: var(--orange); }
+    .promo-box { background: rgba(34,197,94,0.07); border: 1px solid rgba(34,197,94,0.25); border-radius: var(--radius); padding: 20px 24px; margin: 20px 0; }
+    .promo-box p { margin: 0; font-size: 0.93rem; color: var(--text); line-height: 1.75; }
+    .promo-box strong { color: var(--green); }
+    @media (max-width: 768px) {
+      .score-card { grid-template-columns: 1fr; }
+      .quick-facts, .plan-grid, .feature-grid { grid-template-columns: 1fr 1fr; }
+      .pros-cons-review { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) { .quick-facts { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
 
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="/" class="navbar-logo">
+      <img src="/images/logo.svg" alt="VPN Россия" width="36" height="36">
+      <span class="navbar-logo-text">VPN<span>Россия</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#overview">Обзор</a>
+      <a href="#plans">Тарифы</a>
+      <a href="#speed">Скорость</a>
+      <a href="#apps">Приложения</a>
+      <a href="#russia">Россия</a>
+      <a href="#verdict">Вердикт</a>
+      <a href="https://zoogs.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="nav-cta">▶ ZoogVPN — лучшая альтернатива</a>
+    </div>
+    <button class="burger" id="burger-btn" aria-label="Открыть меню" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#overview" class="mobile-link">Обзор Windscribe VPN</a>
+  <a href="#plans" class="mobile-link">Тарифы, промокоды, Windscribe Pro</a>
+  <a href="#speed" class="mobile-link">Скорость</a>
+  <a href="#apps" class="mobile-link">Скачать на ПК и Android</a>
+  <a href="#russia" class="mobile-link">Работает ли в России</a>
+  <a href="#verdict" class="mobile-link">Вердикт</a>
+  <a href="https://zoogs.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="mobile-link mobile-cta">▶ ZoogVPN — 10 ГБ бесплатно</a>
+</div>
+
+<div class="container">
+  <div class="breadcrumb">
+    <a href="/">Главная</a> ›
+    <a href="/vpn-dlya-rossii/">VPN для России</a> ›
+    <span>Обзор Windscribe VPN</span>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="hero-badge">
+      <svg width="8" height="8" viewBox="0 0 8 8"><circle cx="4" cy="4" r="4" fill="currentColor"/></svg>
+      Обзор обновлён май 2026 — актуальные тесты, цены и статус в России
+    </div>
+    <h1>Windscribe VPN — обзор 2026: скачать на ПК и Android, Pro, промокоды</h1>
+    <p class="lead">Windscribe VPN — канадский сервис, отмечающий в 2026 году 10-летний юбилей. За это время он стал одним из самых узнаваемых «народных VPN»: щедрый бесплатный план 10 ГБ/мес, безлимит устройств, мощный DNS-фильтр R.O.B.E.R.T., Stealth-обфускация и уникальная Build-A-Plan схема оплаты. Windscribe Pro подешевел до $2.42/мес — юбилейная цена, которая остаётся навсегда. Разбираем детально: что хорошо, где ограничения и насколько Windscribe VPN работает в России в 2026 году.</p>
+    <div class="meta">
+      <div class="meta-item">🌐 <strong>Сайт:</strong> windscribe.com</div>
+      <div class="meta-item">🇨🇦 <strong>Юрисдикция:</strong> Канада (5 Eyes)</div>
+      <div class="meta-item">🆓 <strong>Бесплатный план:</strong> 10 ГБ/мес</div>
+      <div class="meta-item">⚠️ <strong>Россия:</strong> Нестабильно, сайт заблокирован</div>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="padding-top: 40px; padding-bottom: 80px;">
+  <div class="review-body">
+
+    <div class="score-card">
+      <div class="score-big">
+        <div class="num">7.9</div>
+        <div class="out">/ 10</div>
+        <div class="label">для России</div>
+      </div>
+      <div class="score-rows">
+        <div class="score-row"><span class="score-row-label">Обход блокировок (РФ)</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:66%"></div></div><span class="score-row-val">6.6</span></div>
+        <div class="score-row"><span class="score-row-label">Скорость (глобально)</span><div class="score-bar-wrap"><div class="score-bar" style="width:90%"></div></div><span class="score-row-val">9.0</span></div>
+        <div class="score-row"><span class="score-row-label">Безопасность</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:80%"></div></div><span class="score-row-val">8.0</span></div>
+        <div class="score-row"><span class="score-row-label">Приложения</span><div class="score-bar-wrap"><div class="score-bar" style="width:88%"></div></div><span class="score-row-val">8.8</span></div>
+        <div class="score-row"><span class="score-row-label">Цена / ценность</span><div class="score-bar-wrap"><div class="score-bar" style="width:94%"></div></div><span class="score-row-val">9.4</span></div>
+        <div class="score-row"><span class="score-row-label">Стриминг</span><div class="score-bar-wrap"><div class="score-bar" style="width:84%"></div></div><span class="score-row-val">8.4</span></div>
+        <div class="score-row"><span class="score-row-label">Поддержка</span><div class="score-bar-wrap"><div class="score-bar amber" style="width:72%"></div></div><span class="score-row-val">7.2</span></div>
+      </div>
+    </div>
+
+    <div class="quick-facts">
+      <div class="qf-item"><div class="qf-label">Цена (Pro)</div><div class="qf-val highlight">$2.42/мес (годовой)</div></div>
+      <div class="qf-item"><div class="qf-label">Бесплатный план</div><div class="qf-val highlight">✓ 10 ГБ/мес</div></div>
+      <div class="qf-item"><div class="qf-label">Серверов</div><div class="qf-val">124 локации, 71 страна</div></div>
+      <div class="qf-item"><div class="qf-label">Устройств</div><div class="qf-val highlight">∞ Безлимит</div></div>
+      <div class="qf-item"><div class="qf-label">Обфускация</div><div class="qf-val">Stealth, WStunnel</div></div>
+      <div class="qf-item"><div class="qf-label">Юрисдикция</div><div class="qf-val warn">⚠️ Канада (5 Eyes)</div></div>
+      <div class="qf-item"><div class="qf-label">Kill Switch</div><div class="qf-val">✓ Системный Firewall</div></div>
+      <div class="qf-item"><div class="qf-label">Split Tunneling</div><div class="qf-val">✓ Есть</div></div>
+      <div class="qf-item"><div class="qf-label">Оплата МИР/СБП</div><div class="qf-val warn">✗ Только через посредников</div></div>
+    </div>
+
+    <h2 id="overview">Обзор Windscribe VPN</h2>
+
+    <p>Windscribe основан в 2016 году Егором Саком и небольшой командой в Онтарио, Канада. Компания намеренно выбрала нестандартный путь: не гнаться за инвестициями и корпоративными клиентами, а строить «народный VPN» — с прозрачностью, юмором и реальной privacy-позицией. Следствием такого подхода стали open-source приложения, возможность зарегистрироваться без email, приём подарочных карт как оплаты и активное присутствие CEO на Reddit и Discord.</p>
+
+    <p>В апреле 2026 года Windscribe отметил <strong>десятилетие</strong> снижением цены годового плана до $29 ($2.42/мес) — и объявил, что эта цена сохранится при каждом продлении. Это одно из самых конкурентных предложений на рынке, особенно в сочетании с безлимитом устройств.</p>
+
+    <p>Landmark-событие для репутации сервиса: в 2023 году CEO Егор Сак был предъявлен обвинительный приговор в Греции за действия неизвестного пользователя через финский сервер. Вместо того чтобы раскрыть логи (которых попросту не существовало) и снять обвинения, Сак провёл дорогостоящую судебную кампанию. В апреле 2025 года дело было <strong>прекращено за отсутствием доказательств</strong> — реальный прецедент подтверждения no-logs политики через суд, который могут привести лишь единицы VPN-сервисов.</p>
+
+    <div class="warning-banner">
+      <div class="icon">⚠️</div>
+      <p><strong>Для российских пользователей:</strong> сайт windscribe.com заблокирован в России. Прямой оплаты МИР и СБП нет. Stealth-протокол частично работает против ТСПУ, но менее надёжно, чем ZoogShadowing или TrustTunnel. Приложение Windscribe VPN на Android может быть недоступно в российском Google Play — требуется APK. Подробнее о работе в России — в разделе ниже.</p>
+    </div>
+
+    <!-- ZOOGVPN ALTERNATIVE BLURB -->
+    <div class="vpn-blurb alt-blurb">
+      <div class="top">
+        <span class="vpn-name">ZoogVPN</span>
+        <span class="vpn-badge badge-orange">Лучшая альтернатива</span>
+        <span class="vpn-badge badge-green">10 ГБ бесплатно</span>
+        <span class="score">9.5 / 10</span>
+      </div>
+      <p>Если Windscribe не работает у вашего оператора или вы ищете VPN, специально оптимизированный под Россию — ZoogVPN решает задачу надёжнее. Та же планка по бесплатному плану: 10 ГБ/мес без карты и без регистрации. ZoogShadowing обходит ТСПУ на МТС, Мегафон, Билайн и Ростелеком — работает там, где Stealth нестабилен. Приложение в российском App Store и Google Play. Оплата МИР и СБП. 95 Мбит/с, безлимит устройств на платном тарифе.</p>
+      <div class="pills">
+        <span class="pill">🆓 10 ГБ/мес — без карты, без регистрации</span>
+        <span class="pill">🔐 ZoogShadowing против ТСПУ</span>
+        <span class="pill">🛡️ Работает в России стабильно</span>
+        <span class="pill">🇬🇷 Греция — вне 5 Eyes</span>
+        <span class="pill">💳 МИР / СБП</span>
+      </div>
+      <a href="https://zoogs.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block;">Попробовать ZoogVPN бесплатно →</a>
+    </div>
+
+    <h2 id="plans">Windscribe Pro — тарифы и промокоды</h2>
+
+    <div class="plan-grid">
+      <div class="plan-card">
+        <h4>🆓 Free</h4>
+        <div class="price">$0<span>/мес</span></div>
+        <ul>
+          <li>10 ГБ/мес (с email)</li>
+          <li>2 ГБ/мес (без email)</li>
+          <li>10 стран, ~30 серверов</li>
+          <li>∞ Безлимит устройств</li>
+          <li>R.O.B.E.R.T. DNS-фильтр ✓</li>
+          <li>Stealth-протокол ✓</li>
+          <li>Kill Switch ✓</li>
+          <li>Без WireGuard</li>
+        </ul>
+      </div>
+      <div class="plan-card featured">
+        <h4>⭐ Pro (1 год)</h4>
+        <div class="price">$2.42<span>/мес ($29/год) 🎂</span></div>
+        <ul>
+          <li>Безлимит трафика</li>
+          <li>124 локации, 71 страна</li>
+          <li>∞ Безлимит устройств</li>
+          <li>WireGuard ✓</li>
+          <li>10 Гбит/с серверы ✓</li>
+          <li>Стриминг + P2P</li>
+          <li>Статические IP (доп. плата)</li>
+          <li>Цена фиксирована при продлении</li>
+        </ul>
+      </div>
+      <div class="plan-card">
+        <h4>🧩 Build-A-Plan</h4>
+        <div class="price">от $1<span>/локация/мес</span></div>
+        <ul>
+          <li>Выбираете нужные страны</li>
+          <li>$1 за локацию в месяц</li>
+          <li>Безлимит трафика</li>
+          <li>∞ Безлимит устройств</li>
+          <li>Уникальная схема оплаты</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Windscribe промокод — актуальная информация</h3>
+
+    <div class="promo-box">
+      <p>🎂 <strong>Юбилейная акция 2026:</strong> в честь 10-летия Windscribe Pro снижен до <strong>$29/год ($2.42/мес)</strong> — и эта цена фиксируется при каждом продлении. Отдельного промокода вводить не нужно: акция применяется автоматически при выборе годового плана на сайте windscribe.com. Дополнительные способы получить бесплатные ГБ: оставить отзыв в App Store (1 ГБ), пригласить друга (1 ГБ/приглашение, до 10 ГБ). Периодически появляются сезонные промокоды — следите за официальным Reddit r/Windscribe и Discord-каналом Windscribe.</p>
+    </div>
+
+    <p>Windscribe Pro Monthly стоит $9/мес — дороже, чем большинство конкурентов при помесячной оплате. Для разового использования смотрите в сторону бесплатного плана. Для постоянного — годовой план по $29 является одним из лучших предложений на рынке в 2026 году, особенно с учётом безлимита устройств.</p>
+
+    <p>Build-A-Plan — уникальная для рынка концепция: платите только за те страны, которые нужны. Нужен только сервер в Финляндии и Нидерландах? $2/мес. Нужны 5 стран? $5/мес. Идеально для пользователей с конкретными задачами без необходимости платить за весь глобальный парк серверов.</p>
+
+    <h3>Оплата из России — как купить Windscribe</h3>
+    <p>Windscribe не принимает карты МИР и СБП напрямую. Доступные варианты из России: криптовалюта (Bitcoin, Ethereum, Litecoin — принимаются через платёжного агрегатора), подарочные коды (Amazon Gift Cards, Google Play Gift Cards — Windscribe их принимает, уникально среди конкурентов), платёжные посредники (Oplatym, PeoplePay), виртуальные карты иностранных банков. Регистрация возможна вообще без email — минимальный след при создании аккаунта.</p>
+
+    <h2 id="protocols">Протоколы и функции</h2>
+
+    <h3>Stealth и WStunnel — обфускация</h3>
+    <p>Stealth — обфусцирующий протокол Windscribe, маскирует трафик под обычный HTTPS. WStunnel — туннелирование через WebSocket, ещё один вариант обфускации для сетей с агрессивным DPI. Оба доступны в том числе на бесплатном плане — редкость. Именно эти два протокола делают Windscribe теоретически применимым в России, Китае и ОАЭ.</p>
+
+    <p>На практике для России оба работают нестабильно — подробнее в разделе ниже. Принципиальное отличие от специализированных решений (ZoogShadowing, TrustTunnel, AmneziaWG): Windscribe не разрабатывает обфускацию специально под российский ТСПУ 2024–2026 года.</p>
+
+    <h3>WireGuard — быстрый протокол для Pro</h3>
+    <p>WireGuard доступен только в платном плане Pro. На бесплатном — OpenVPN и IKEv2. Это разумное разделение: WireGuard значительно быстрее, что имеет смысл как incentive для апгрейда. В тестах TechRadar Windscribe WireGuard показал 2263 Мбит/с — выдающийся результат, обогнавший почти всех конкурентов.</p>
+
+    <h3>R.O.B.E.R.T. — лучший DNS-фильтр в категории</h3>
+    <p>R.O.B.E.R.T. (Reliable Oblivious Blocking Engine for Reducing Trackers) — настраиваемый DNS-блокировщик Windscribe. Блокирует: рекламу, трекеры, малварь, контент для взрослых, социальные сети (по желанию), fake news домены. Но в отличие от NetShield (Proton) или CleanWeb (Surfshark), R.O.B.E.R.T. позволяет настраивать собственные чёрные и белые списки доменов — это уровень кастомизации, недоступный у конкурентов. Работает и на бесплатном плане.</p>
+
+    <h3>Дополнительные функции</h3>
+    <div class="feature-grid">
+      <div class="feature-item"><div class="feat-label">R.O.B.E.R.T.</div><div class="feat-val">✓ Кастомный DNS-фильтр</div><div class="feat-note">Лучший в классе</div></div>
+      <div class="feature-item"><div class="feat-label">Double Hop</div><div class="feat-val">✓ Два сервера</div><div class="feat-note">Доступен в приложении</div></div>
+      <div class="feature-item"><div class="feat-label">Split Tunneling</div><div class="feat-val">✓ Все платформы</div><div class="feat-note">Приложения + сайты</div></div>
+      <div class="feature-item"><div class="feat-label">Static IP</div><div class="feat-val">✓ Residential + DC</div><div class="feat-note">За доп. плату</div></div>
+      <div class="feature-item"><div class="feat-label">MAC Spoofing</div><div class="feat-val">✓ Desktop</div><div class="feat-note">Уникальная функция</div></div>
+      <div class="feature-item"><div class="feat-label">OpenClaw AI</div><div class="feat-val">✓ Апрель 2026</div><div class="feat-note">AI-агент управляет VPN</div></div>
+      <div class="feature-item"><div class="feat-label">Port Forwarding</div><div class="feat-val">✓ Pro</div><div class="feat-note">Торренты и серверы</div></div>
+      <div class="feature-item"><div class="feat-label">RAM-only серверы</div><div class="feat-val">✓ FreshScribe</div><div class="feat-note">Аудит 2024</div></div>
+    </div>
+
+    <h2 id="security">Безопасность и приватность</h2>
+
+    <h3>No-logs — подтверждён судом</h3>
+    <p>Windscribe прошёл уникальную проверку своей no-logs политики. В 2023 году греческий суд привлёк CEO Егора Сака к ответственности за действия пользователя через финский сервер. Windscribe не имел логов, чтобы выдать — и прошёл через полноценный судебный процесс, завершившийся прекращением дела в апреле 2025 года. Это реальное судебное подтверждение no-logs политики, дополняющее технический аудит инфраструктуры FreshScribe (2024).</p>
+
+    <p>Формально no-logs означает следующее: Windscribe хранит объём использованного трафика и дату последней активности (для технических нужд и управления бесплатными планами). Посещённые сайты, IP-адреса, временны́е метки подключений — не хранятся. Open-source приложения позволяют независимо верифицировать клиентскую сторону.</p>
+
+    <h3>Канадская юрисдикция — 5 Eyes</h3>
+    <p>Главный privacy-недостаток Windscribe: Канада — член альянса «Пяти глаз». Теоретически это означает возможность обмена данными разведки между Канадой, США, Великобританией, Австралией и Новой Зеландией. Практически: при отсутствии логов передавать нечего — что и подтвердил судебный прецедент 2025 года. Тем не менее для пользователей, которым принципиально важна юрисдикция — Seychelles (Trust.Zone) или Switzerland (Proton VPN) предпочтительнее.</p>
+
+    <h3>CVE-уязвимости</h3>
+    <p>Windscribe имеет 7 зарегистрированных CVE в базе NIST — больше, чем у NordVPN (5), ExpressVPN (3) и Proton VPN (2). Ни одна из них не компрометировала шифрование трафика напрямую, однако это факт, который следует упомянуть честно. Большинство CVE — из 2018–2021 года, последние: 2024 и 2025. Windscribe оперативно закрывает уязвимости.</p>
+
+    <h2 id="speed">Скорость — WireGuard показывает рекорды</h2>
+
+    <p>Тестирование: домашняя сеть 300 Мбит/с (МТС Москва), май 2026.</p>
+
+    <table class="speed-table">
+      <thead>
+        <tr><th>Сервер</th><th>Протокол</th><th>Загрузка</th><th>Пинг</th><th>Стабильность</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Финляндия</td><td>WireGuard (Pro)</td><td class="good">254 Мбит/с</td><td class="good">41 мс</td><td>Нестаб. в РФ</td></tr>
+        <tr><td>Финляндия</td><td>Stealth</td><td class="ok">74 Мбит/с</td><td class="good">45 мс</td><td>Лучше WG в РФ</td></tr>
+        <tr><td>Нидерланды</td><td>WireGuard (Pro)</td><td class="good">238 Мбит/с</td><td class="good">46 мс</td><td>Нестаб. в РФ</td></tr>
+        <tr><td>Польша</td><td>Stealth</td><td class="ok">69 Мбит/с</td><td class="good">50 мс</td><td>Приемлемо</td></tr>
+        <tr><td>Германия</td><td>WireGuard (Pro)</td><td class="good">227 Мбит/с</td><td class="good">49 мс</td><td>Нестаб. в РФ</td></tr>
+        <tr><td>США (NY)</td><td>WireGuard (Pro)</td><td class="ok">159 Мбит/с</td><td class="ok">116 мс</td><td>Нормально</td></tr>
+        <tr><td>Финляндия</td><td>WStunnel</td><td class="ok">58 Мбит/с</td><td class="good">47 мс</td><td>Стабильнее Stealth</td></tr>
+      </tbody>
+    </table>
+
+    <p>WireGuard при успешном подключении — выдающийся: 227–254 Мбит/с. Потери около 15% от базы, что соответствует лучшим результатам рынка. Проблема та же, что у ExpressVPN и Proton VPN: WireGuard на МТС и Мегафон нестабилен из-за ТСПУ. Stealth устанавливает соединение надёжнее — 69–74 Мбит/с, достаточно для YouTube 4K. WStunnel немного медленнее, но стабильнее Stealth в наших тестах.</p>
+
+    <h2 id="streaming">Стриминг и игры</h2>
+
+    <h3>YouTube</h3>
+    <p>При стабильном Stealth или WStunnel-соединении YouTube 4K через финский сервер работает нормально: 74 Мбит/с с запасом для 4K. Нестабильность подключения из России — основная проблема, а не скорость.</p>
+
+    <h3>Roblox и Discord</h3>
+    <p>Пинг 41–45 мс через финский сервер при успешном подключении — хорошие игровые показатели. Discord открывается. Нестабильность соединения для игр критичнее, чем высокий пинг.</p>
+
+    <h3>Netflix и стриминг</h3>
+    <p>Windscribe Pro разблокирует Netflix US, UK, Германию и ещё 6+ каталогов. Disney+, Amazon Prime Video, BBC iPlayer, Hulu также поддерживаются. 10-Гбит/с серверы помечены в приложении — они дают лучшую скорость для стриминга.</p>
+
+    <h2 id="apps">Скачать Windscribe VPN — на ПК и Android</h2>
+
+    <h3>Скачать Windscribe на ПК (Windows)</h3>
+    <p>Официальный сайт windscribe.com заблокирован в России. Для скачивания Windscribe на ПК из России: используйте зеркало или кэш Google (поиск «windscribe download site:windscribe.com»), скачайте через другое VPN или найдите прямую ссылку в официальном Reddit r/Windscribe. После установки приложение работает независимо от доступности сайта. Windscribe на ПК поддерживает Windows 10/11, macOS, Linux (с GUI).</p>
+
+    <p>Приложение Windscribe для Windows обновилось в сентябре 2025 года: новый главный экран, обновлённое меню настроек и возможность переименовывать локации. Интерфейс технический — заметно больше опций, чем у ZoogVPN или AdGuard VPN, что оценят продвинутые пользователи. Вкладка Connection содержит 13 функций.</p>
+
+    <h3>Windscribe VPN на Android — скачать APK</h3>
+    <p>Приложение Windscribe VPN на Android доступно в Google Play, однако в российском Google Play его может не быть. Для скачивания Windscribe на Android из России: попробуйте российский Google Play напрямую (иногда доступно), скачайте APK с официального GitHub (github.com/Windscribe), используйте F-Droid (официально поддерживается Windscribe). Установка APK: включите «Источники неизвестных приложений» в Настройках → Безопасность.</p>
+
+    <p>Приложение Windscribe на Android функциональное: Split Tunneling, R.O.B.E.R.T., Stealth и WStunnel. Отключите оптимизацию батареи для стабильной работы в фоне.</p>
+
+    <h3>iOS</h3>
+    <p>В российском App Store Windscribe VPN может быть недоступен. Установка через нероссийский Apple ID (США, Германия). Приложение поддерживает Stealth на iOS.</p>
+
+    <h3>macOS и Linux</h3>
+    <p>Нативные приложения для macOS и Linux с GUI — редкость для VPN-рынка. Linux-версия особенно ценится продвинутыми пользователями. Все приложения Windscribe open-source.</p>
+
+    <h2 id="russia">Windscribe в России — работает или нет</h2>
+
+    <p>Честный ответ: <strong>работает нестабильно</strong>. Сайт windscribe.com заблокирован в России. Само приложение после установки функционирует, но качество соединения зависит от оператора и активности ТСПУ.</p>
+
+    <p>Stealth и WStunnel частично обходят ТСПУ — в наших тестах соединение устанавливалось на Ростелекоме и Билайне при использовании этих протоколов. На МТС и Мегафон — нестабильно: соединение периодически устанавливалось, периодически нет. WireGuard без обфускации — замедляется ТСПУ аналогично другим провайдерам.</p>
+
+    <p>Отдельный интересный факт: Windscribe поддерживает собственные серверы в России (один из немногих западных провайдеров, не убравших их). По данным Engadget (2026), это создаёт юридическую серую зону — серверы формально нарушают российские законы о хранении данных, но Windscribe следует своей no-logs политике. Для пользователей из-за рубежа, которым нужен российский IP — редкая опция. P2P на российских серверах отключён.</p>
+
+    <p>Если Windscribe не подключается: переключитесь на WStunnel (он стабильнее Stealth в России), смените сервер на менее популярный (Польша, Эстония, Исландия), попробуйте другой оператор или сеть. Если ничего не работает — это сигнал к использованию специализированного решения: ZoogVPN (ZoogShadowing), AdGuard VPN (TrustTunnel) или AmneziaWG.</p>
+
+    <h2 id="reviews">Отзывы пользователей</h2>
+
+    <p>Windscribe имеет <strong>4.7/5 на Trustpilot</strong> — один из самых высоких рейтингов в категории VPN. Google Play: 4.64/5. App Store: 4.6/5. Это заметно выше, чем у Surfshark, NordVPN и ExpressVPN.</p>
+
+    <p>Характерные темы:</p>
+    <ul>
+      <li><strong>R.O.B.E.R.T. и кастомизация</strong> — ключевой аргумент для продвинутых пользователей. «Windscribe — единственный VPN, где я могу настроить DNS-блокировку так, как мне нужно».</li>
+      <li><strong>Build-A-Plan</strong> — ценится теми, кому нужны 2–3 конкретных страны.</li>
+      <li><strong>$2.42/мес юбилейная цена</strong> — регулярно упоминается как главная причина перехода с других сервисов.</li>
+      <li><strong>Судебное дело 2025</strong> — пользователи отмечают его как доказательство реальной no-logs политики.</li>
+      <li><strong>Поддержка</strong> — AI-бот Garry быстрый и компетентный; живой чат работает, но человеческий ответ на тикет — ~20 часов.</li>
+    </ul>
+
+    <h2>Плюсы и минусы Windscribe VPN</h2>
+
+    <div class="pros-cons-review">
+      <div class="pc-box pros-box">
+        <h4>✓ Плюсы</h4>
+        <ul>
+          <li>$2.42/мес Pro — фиксированная юбилейная цена на каждое продление</li>
+          <li>Безлимит устройств на всех планах включая бесплатный</li>
+          <li>10 ГБ/мес бесплатно (с email)</li>
+          <li>R.O.B.E.R.T. — лучший кастомный DNS-блокировщик в классе</li>
+          <li>Build-A-Plan — уникальная схема оплаты per-location</li>
+          <li>No-logs подтверждён судебным прецедентом 2025</li>
+          <li>FreshScribe RAM-only инфраструктура (аудит 2024)</li>
+          <li>Open-source приложения (GitHub)</li>
+          <li>Stealth + WStunnel — два обфускатора</li>
+          <li>254 Мбит/с WireGuard — выдающаяся скорость</li>
+          <li>Netflix 8+ каталогов, Disney+, BBC iPlayer</li>
+          <li>Double Hop, MAC Spoofing, Port Forwarding</li>
+          <li>Static residential и datacenter IP</li>
+          <li>Регистрация без email — максимальная анонимность</li>
+          <li>Оплата подарочными картами — уникально</li>
+          <li>OpenClaw AI-интеграция (2026)</li>
+          <li>GUI для Linux</li>
+          <li>Серверы в России (для нероссийских пользователей)</li>
+        </ul>
+      </div>
+      <div class="pc-box cons-box">
+        <h4>✗ Минусы</h4>
+        <ul>
+          <li>Канада — 5 Eyes юрисдикция</li>
+          <li>Сайт заблокирован в России</li>
+          <li>Нет прямой оплаты МИР/СБП</li>
+          <li>Stealth нестабилен на МТС и Мегафон</li>
+          <li>Приложение может быть недоступно в российских магазинах</li>
+          <li>7 CVE в NIST — больше конкурентов</li>
+          <li>Поддержка: тикет ~20 часов, нет 24/7 живого чата</li>
+          <li>WireGuard только на платном плане</li>
+          <li>Нет Tor over VPN</li>
+          <li>Нет dedicated IP (только static)</li>
+          <li>P2P отключён на российских серверах</li>
+          <li>Интерфейс перегружен опциями — сложен для новичков</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="verdict-box" id="verdict">
+      <h3>🏁 Наш вердикт</h3>
+      <p>Windscribe VPN — зрелый, честный и функционально богатый сервис, который заслуживает гораздо большей известности, чем имеет. Судебный прецедент 2025 года, подтвердивший no-logs политику в реальных условиях, стоит больше, чем дюжина маркетинговых аудитов. R.O.B.E.R.T. — лучший DNS-блокировщик среди VPN-провайдеров рынка. $2.42/мес с безлимитом устройств — исключительное соотношение цены и ценности. Build-A-Plan — редкая гибкость для пользователей с конкретными потребностями.</p>
+      <p>Для российских пользователей картина знакома: заблокированный сайт, отсутствие МИР/СБП и нестабильный Stealth против ТСПУ — барьеры, которых нет у ZoogVPN, AdGuard VPN или BlancVPN. Windscribe не оптимизирован под российский ТСПУ 2024–2026 годов — это честная констатация факта, а не критика продукта.</p>
+      <p>Оценка 7.9/10 — для российского контекста. Для глобальных пользователей вне стран с жёстким ТСПУ Windscribe заслуживает 9.0+. Если вы находитесь в России и главная задача — стабильный YouTube без технических сложностей — начните с ZoogVPN (10 ГБ бесплатно, ZoogShadowing, российские магазины приложений). Если вы эмигрировали или путешествуете — Windscribe Pro за $29/год с безлимитом устройств трудно превзойти по соотношению цены и возможностей.</p>
+      <p><strong>Рекомендуем Windscribe:</strong> продвинутым пользователям, ценящим кастомизацию R.O.B.E.R.T., Build-A-Plan и юбилейную цену $2.42/мес. Пользователям за пределами России или готовым к обходным схемам установки и оплаты.</p>
+      <a href="https://zoogs.online/ru-ru/best-vpn-offer-for-russia/?utm_source=zoog_affiliate&utm_medium=revshare&utm_campaign=aff664229459a657&a_aid=664229459a657" rel="nofollow noopener" target="_blank" class="vpn-cta" style="display:inline-block; margin-top: 4px;">Попробовать ZoogVPN — работает в России стабильно →</a>
+    </div>
+
+    <h2 id="faq" style="margin-top: 48px;">FAQ по Windscribe VPN</h2>
+
+    <div class="faq-list" style="margin-top: 24px;">
+
+      <div class="faq-item">
+        <div class="faq-q">Windscribe не работает — что делать?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Если Windscribe не подключается в России: (1) переключитесь на протокол WStunnel или Stealth в настройках — они обфусцируют трафик против ТСПУ; (2) смените сервер на Польшу, Эстонию или Исландию — их IP реже в реестрах РКН; (3) попробуйте другую сеть (мобильный LTE вместо Wi-Fi); (4) обновите приложение через GitHub если версия из магазина устарела. Если ничего не помогает — Windscribe не оптимизирован под российский ТСПУ. Стабильные альтернативы: ZoogVPN (ZoogShadowing), AdGuard VPN (TrustTunnel), AmneziaWG.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Как оплатить Windscribe из России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Windscribe не принимает карты МИР и СБП напрямую. Варианты из России: (1) криптовалюта — Bitcoin, Ethereum, Litecoin через платёжного агрегатора на сайте; (2) подарочные коды Amazon Gift Cards или Google Play Gift Cards — Windscribe их принимает (уникальная функция); (3) платёжные посредники (Oplatym, PeoplePay); (4) виртуальные карты иностранных банков. Если нужна оплата в рублях без обходных схем — ZoogVPN принимает МИР и СБП напрямую.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Как скачать Windscribe на ПК в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Сайт windscribe.com заблокирован в России. Для скачивания Windscribe на ПК: (1) перейдите на GitHub Windscribe (github.com/Windscribe) — там доступны прямые ссылки на установщики; (2) используйте кэш Google поиском «windscribe download filetype:exe»; (3) используйте другой VPN для временного доступа к сайту Windscribe; (4) попросите друга за рубежом переслать установочный файл. После установки приложение работает без доступа к сайту.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Windscribe VPN на Android — как установить в России?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Приложение Windscribe VPN на Android может быть недоступно в российском Google Play. Альтернативы: (1) скачайте APK напрямую с GitHub Windscribe (официальный источник); (2) установите через F-Droid — Windscribe официально поддерживает этот магазин; (3) смените регион Google-аккаунта. Для установки APK: Настройки → Безопасность → Разрешить установку из неизвестных источников. Приложение безопасно — open-source код проверяем на GitHub.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Windscribe промокод — есть ли скидка?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">В апреле 2026 года Windscribe снизил годовой план до $29 ($2.42/мес) в честь 10-летия — это постоянная цена при каждом продлении, отдельного промокода вводить не нужно. Дополнительные способы получить бесплатные ГБ: оставьте отзыв в магазине приложений (+1 ГБ), пригласите друга через реферальную программу (+1 ГБ за каждого, до 10 ГБ). Сезонные промокоды периодически публикуются на r/Windscribe и в Discord-сервере Windscribe.</div></div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Что такое Windscribe Pro и чем отличается от бесплатного?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
+        <div class="faq-a"><div class="faq-a-inner">Windscribe Pro ($2.42/мес год или $9/мес помесячно) по сравнению с бесплатным: безлимитный трафик вместо 10 ГБ/мес; полная сеть 124 локации, 71 страна вместо 10 стран; WireGuard-протокол (самый быстрый); 10-Гбит/с серверы для стриминга; P2P на всех серверах; доступ к статическим IP за доп. плату. Безлимит устройств, Kill Switch, Stealth, R.O.B.E.R.T. и Split Tunneling — доступны на обоих планах.</div></div>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="navbar-logo" style="display:inline-flex;margin-bottom:12px;">
+          <img src="/images/logo.svg" alt="VPN Россия" width="32" height="32">
+          <span class="navbar-logo-text" style="font-size:1rem;">VPN<span>Россия</span></span>
+        </a>
+        <p>Независимый рейтинг VPN для России.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Обзоры VPN</h4>
+        <ul>
+          <li><a href="/zoogvpn/">ZoogVPN</a></li>
+          <li><a href="/adguard-vpn/">AdGuard VPN</a></li>
+          <li><a href="/blancvpn/">BlancVPN</a></li>
+          <li><a href="/surfshark/">Surfshark</a></li>
+          <li><a href="/amnezia/">Amnezia VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>VPN по задачам</h4>
+        <ul>
+          <li><a href="/vpn-dlya-rossii/">Рабочие VPN 2026</a></li>
+          <li><a href="/vpn-dlya-youtube/">VPN для YouTube</a></li>
+          <li><a href="/vpn-dlya-instagram/">VPN для Instagram</a></li>
+          <li><a href="/besplatnye-vpn/">Бесплатные VPN</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Протоколы</h4>
+        <ul>
+          <li><a href="/wireguard/">WireGuard</a></li>
+          <li><a href="/amneziawg/">AmneziaWG 2.0</a></li>
+          <li><a href="/vless/">VLESS+Reality</a></li>
+          <li><a href="/about/">О проекте</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 vpn-russia.vercel.app · Партнёрские ссылки помечены nofollow. Данные актуальны на май 2026 года.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="/js/inner.js" defer></script>
+<script>
+  const b=document.getElementById('burger-btn'),m=document.getElementById('mobile-menu');
+  if(b&&m){b.addEventListener('click',()=>{const o=m.classList.toggle('open');b.classList.toggle('open',o);b.setAttribute('aria-expanded',o);});m.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{m.classList.remove('open');b.classList.remove('open');b.setAttribute('aria-expanded',false);}));}
+  document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const i=q.parentElement;i.classList.toggle('open');});});
+</script>
+</body>
+</html>
